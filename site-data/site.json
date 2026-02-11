@@ -1,0 +1,983 @@
+{
+  "site": {
+    "name": "3옥타브장인 보컬학원",
+    "nameEn": "3 Octave Master Vocal Academy",
+    "originalPlatform": "imweb",
+    "originalUrl": "https://3octavevocal.com",
+    "crawledAt": "2026-02-11T12:00:00Z",
+    "designAgency": "de.blur (draw.best)"
+  },
+
+  "brand": {
+    "slogan": {
+      "ko": "당신의 범위를 넘어서",
+      "en": "Exceed Your Range"
+    },
+    "taglines": [
+      "3옥타브의 로망, 당신이 할 수 있게",
+      "누구나 즐겁고, 누구나 끈기있게 당신의 목소리가 해낼 수 있도록",
+      "VOCAL CRAFTSMANSHIP",
+      "대한민국 프로페셔널 발성전문 보컬 트레이닝 학원"
+    ],
+    "coreValues": ["CHALLENGE", "PATIENCE", "DREAM"],
+    "brandEssence": {
+      "targetIssue": "탄탄하지 않은 보컬 트레이닝 이슈",
+      "process": "체계적인 즐거운, 끈기 있는 트레이닝",
+      "solution": "한계를 뛰어넘는 보컬 실현"
+    },
+    "founder": {
+      "name": "김윤민",
+      "nameEn": "Yoonmink Kim",
+      "title": "원장",
+      "credentials": [
+        "명지대학교 미래교육원 실용음악과 교수",
+        "제11회 대한민국 모범기업인 시상식 문화예술부문 대상",
+        "YouTube 음악 강의 채널 구독자 약 110,000명",
+        "과학적/해부학적 발성법 개발자"
+      ]
+    }
+  },
+
+  "pages": [
+    {
+      "path": "/",
+      "originalPath": "/main",
+      "title": "3옥타브장인 보컬학원 — No.1 강남보컬학원",
+      "metaDescription": "3옥타브의 로망, 당신이 할 수 있게. 노래에 대한 꿈과 목표를 장인정신으로 실현시켜주는 발성 전문 보컬 트레이닝 학원",
+      "ogImage": "",
+      "h1": "3 OCTAVE MASTER",
+      "sections": [
+        {
+          "order": 1,
+          "type": "hero",
+          "heading": "3 OCTAVE MASTER",
+          "subheading": "Exceed your range",
+          "content": "대한민국 프로페셔널 발성전문 보컬 트레이닝 학원",
+          "images": [],
+          "cta": {
+            "text": "무료 상담 신청",
+            "link": "/contact"
+          },
+          "background": {
+            "type": "image",
+            "overlay": "dark",
+            "note": "디자인 가이드 Artboard 38 기준: 좌측 공연장 이미지 + 우측 텍스트 2단 레이아웃, 블랙 배경"
+          },
+          "designNote": "디자인 가이드 기준 — 좌측(55%): 히어로 이미지/비디오 + 3B 심볼 오버레이 + 'Exceed your range' 필기체 / 우측(45%): '3 OCTAVE MASTER' 타이틀 + 본문 + 핫핑크 꺾쇠 장식. 오선지 라인 가로 장식."
+        },
+        {
+          "order": 2,
+          "type": "stats",
+          "heading": "",
+          "subheading": "",
+          "content": "",
+          "items": [
+            { "label": "누적 수강생", "value": "7,000+", "unit": "명" },
+            { "label": "YouTube 구독자", "value": "110,000+", "unit": "명" },
+            { "label": "지점", "value": "3", "unit": "개 (서울/인천/부산)" }
+          ],
+          "images": [],
+          "cta": null,
+          "background": {
+            "type": "color",
+            "value": "#000000"
+          }
+        },
+        {
+          "order": 3,
+          "type": "features",
+          "heading": "",
+          "subheading": "",
+          "content": "",
+          "items": [
+            {
+              "title": "CHALLENGE",
+              "description": "기초 발성부터 체계적으로"
+            },
+            {
+              "title": "PATIENCE",
+              "description": "끈기 있는 단계별 트레이닝"
+            },
+            {
+              "title": "DREAM",
+              "description": "한계를 넘어 꿈의 보컬 실현"
+            }
+          ],
+          "images": [],
+          "cta": null,
+          "background": {
+            "type": "color",
+            "value": "#000000"
+          },
+          "designNote": "디자인 가이드 기준 계단식(Staircase) 배치 레이아웃 — 3옥타브 상승 모티브. 오선지 라인으로 각 단계 구분."
+        },
+        {
+          "order": 4,
+          "type": "cta",
+          "heading": "지금 시작하세요",
+          "subheading": "단 10분, 첫 레슨만으로도 변화를 경험하세요",
+          "content": "",
+          "images": [],
+          "cta": {
+            "text": "무료 상담 예약",
+            "link": "/contact"
+          },
+          "background": {
+            "type": "color",
+            "value": "#E6204D"
+          }
+        }
+      ]
+    },
+
+    {
+      "path": "/about",
+      "originalPath": "/about",
+      "title": "소개 — 3옥타브장인 보컬학원",
+      "metaDescription": "3옥타브장인 보컬학원을 소개합니다. 대표 철학, 차별점, 지점 안내.",
+      "ogImage": "",
+      "h1": "ABOUT",
+      "sections": [
+        {
+          "order": 1,
+          "type": "hero",
+          "heading": "ABOUT",
+          "subheading": "Exceed Your Range",
+          "content": "",
+          "images": [],
+          "cta": null,
+          "background": {
+            "type": "color",
+            "value": "#000000"
+          },
+          "note": "소개 섹션 랜딩 — 하위 3개 페이지로 연결"
+        }
+      ]
+    },
+
+    {
+      "path": "/about/philosophy",
+      "originalPath": "/about01",
+      "title": "대표 철학 — 3옥타브장인 보컬학원",
+      "metaDescription": "고시원 달방에서 7년간 과학적 발성법을 연구한 김윤민 원장의 교육 철학. 원리만 알면 누구나 노래 잘 부를 수 있습니다.",
+      "ogImage": "",
+      "h1": "대표 철학",
+      "sections": [
+        {
+          "order": 1,
+          "type": "hero",
+          "heading": "대표 철학",
+          "subheading": "",
+          "content": "",
+          "images": [],
+          "cta": null,
+          "background": {
+            "type": "image",
+            "overlay": "dark"
+          }
+        },
+        {
+          "order": 2,
+          "type": "about",
+          "heading": "김윤민 원장",
+          "subheading": "원리만 알면 누구나 노래 잘 부를 수 있다",
+          "content": "고시원 달방에서 7년간 실용음악, 해부학, 역사 등 여러 분야를 공부하며 과학적 발성법을 연구했습니다. 고음이 막히는 지점에서 목의 근육이 어떻게 움직이는지 해부학적으로 연구하여 과학적 발성법을 개발했습니다.",
+          "images": [],
+          "cta": null,
+          "background": {
+            "type": "color",
+            "value": "#000000"
+          }
+        },
+        {
+          "order": 3,
+          "type": "features",
+          "heading": "교육 철학",
+          "subheading": "",
+          "content": "",
+          "items": [
+            {
+              "title": "맞춤형 피드백",
+              "description": "개인별 특성에 맞는 맞춤형 피드백 제공"
+            },
+            {
+              "title": "실전 적용",
+              "description": "단순한 수업이 아닌 실전에서 적용 가능한 실력을 교육"
+            },
+            {
+              "title": "지속 가능한 방법",
+              "description": "수강 종료 이후에도 지속적으로 활용할 수 있는 방법들 제공"
+            }
+          ],
+          "images": [],
+          "cta": null,
+          "background": {
+            "type": "color",
+            "value": "#FFFFFF"
+          }
+        },
+        {
+          "order": 4,
+          "type": "about",
+          "heading": "강사 관리 시스템",
+          "subheading": "",
+          "content": "6개월 이상의 체계적인 자체교육을 거쳐 검증된 강사만 채용합니다. 프리랜서가 아닌 정직원 강사진으로 구성되어 있으며, 3개월의 인턴 기간을 거쳐 커리큘럼을 완전히 이해하고 가르칠 수 있는 수준이 되어야 합니다.",
+          "images": [],
+          "cta": null,
+          "background": {
+            "type": "color",
+            "value": "#000000"
+          }
+        },
+        {
+          "order": 5,
+          "type": "about",
+          "heading": "사회공헌",
+          "subheading": "",
+          "content": "장애인 재단에 3,000만원 기부, 보육원 기부와 봉사 활동 지속, 성대결절/연축성 발성장애/근긴장성 발성장애로 어려움을 겪는 분들에게 무료 상태 개선, 명지대학교 학우들을 위해 매 학기 장학금 쾌척",
+          "images": [],
+          "cta": null,
+          "background": {
+            "type": "color",
+            "value": "#FFFFFF"
+          }
+        }
+      ]
+    },
+
+    {
+      "path": "/about/difference",
+      "originalPath": "/about02",
+      "title": "차별점 — 3옥타브장인 보컬학원",
+      "metaDescription": "6,000명 이상의 누적 수강생이 검증한 교육 효과. 단 10분 첫 레슨만으로도 변화를 경험하세요.",
+      "ogImage": "",
+      "h1": "차별점",
+      "sections": [
+        {
+          "order": 1,
+          "type": "hero",
+          "heading": "차별점",
+          "subheading": "Why 3 Octave Master?",
+          "content": "",
+          "images": [],
+          "cta": null,
+          "background": {
+            "type": "image",
+            "overlay": "dark"
+          }
+        },
+        {
+          "order": 2,
+          "type": "features",
+          "heading": "",
+          "subheading": "",
+          "content": "",
+          "items": [
+            {
+              "title": "검증된 교육 효과",
+              "description": "7,000명 이상의 누적 수강생과 비포애프터 사례로 입증"
+            },
+            {
+              "title": "단 10분, 첫 레슨의 변화",
+              "description": "첫 레슨만으로도 변화를 경험할 수 있습니다"
+            },
+            {
+              "title": "정직원 전문 강사진",
+              "description": "6개월 이상 교육 + 3개월 인턴을 통과한 정직원 강사"
+            },
+            {
+              "title": "과학적/해부학적 접근",
+              "description": "체계적이고 과학적인 방법으로 발성을 지도"
+            },
+            {
+              "title": "엄격한 커리큘럼 관리",
+              "description": "모든 지점에서 동일한 커리큘럼으로 레슨 진행"
+            },
+            {
+              "title": "대표 원장 직접 피드백",
+              "description": "김윤민 원장이 직접 수강생에게 피드백 제공"
+            },
+            {
+              "title": "동일한 수강료",
+              "description": "취미반, 입시반 등 모든 과정의 수강료가 동일 — 수업 퀄리티 차이 없음"
+            },
+            {
+              "title": "해외에서도 찾아오는 학원",
+              "description": "국내(제주, 부산, 강원, 대전) 및 해외(미국, 홍콩, 러시아, 일본)에서도 수강"
+            }
+          ],
+          "images": [],
+          "cta": {
+            "text": "무료 상담 예약",
+            "link": "/contact"
+          },
+          "background": {
+            "type": "color",
+            "value": "#000000"
+          }
+        }
+      ]
+    },
+
+    {
+      "path": "/about/locations",
+      "originalPath": "/about03",
+      "title": "지점 찾기 — 3옥타브장인 보컬학원",
+      "metaDescription": "서울 강남, 인천 부평, 부산 서면. 가까운 3옥타브장인 보컬학원 지점을 찾아보세요.",
+      "ogImage": "",
+      "h1": "지점 찾기",
+      "sections": [
+        {
+          "order": 1,
+          "type": "hero",
+          "heading": "지점 찾기",
+          "subheading": "Find Your Branch",
+          "content": "",
+          "images": [],
+          "cta": null,
+          "background": {
+            "type": "color",
+            "value": "#000000"
+          }
+        },
+        {
+          "order": 2,
+          "type": "custom",
+          "heading": "",
+          "subheading": "",
+          "content": "",
+          "items": [
+            {
+              "branch": "서울점",
+              "address": "서울시 서초구 서초대로78길 36, 강남지웰타워 5층 501호",
+              "landmark": "강남역 5번출구 100m",
+              "phone": ["02-566-2848", "0507-1406-2849"],
+              "instructors": 7,
+              "kakao": "https://pf.kakao.com/_VwYHd"
+            },
+            {
+              "branch": "인천점",
+              "address": "인천 부평구 경원대로 1414, 2층 (부평동 185-41)",
+              "landmark": "부평역 7번출구 250m / 부평지하상가 11번출구 100m",
+              "phone": ["0507-1319-1769"],
+              "instructors": null,
+              "kakao": null
+            },
+            {
+              "branch": "부산점",
+              "address": "부산 부산진구 서전로 17, 3층 (부전동, 진성빌딩)",
+              "landmark": "서면역 8번출구 100m",
+              "phone": ["0507-1351-9158"],
+              "instructors": 3,
+              "kakao": "https://pf.kakao.com/_gUMxbs"
+            }
+          ],
+          "note": "각 지점에 카카오맵/네이버지도 임베드 필요",
+          "images": [],
+          "cta": null,
+          "background": {
+            "type": "color",
+            "value": "#FFFFFF"
+          }
+        },
+        {
+          "order": 3,
+          "type": "custom",
+          "heading": "운영시간",
+          "subheading": "",
+          "content": "평일: 13:00~22:00\n주말(금/일): 12:00~19:00\n토요일: 13:00~22:00\n휴무: 목요일",
+          "images": [],
+          "cta": null,
+          "background": {
+            "type": "color",
+            "value": "#000000"
+          }
+        }
+      ]
+    },
+
+    {
+      "path": "/program",
+      "originalPath": "/program",
+      "title": "교육과정 — 3옥타브장인 보컬학원",
+      "metaDescription": "음치, 고음불가 일반인부터 프로 가수까지. 3단계 체계적 보컬 트레이닝 커리큘럼.",
+      "ogImage": "",
+      "h1": "VOCAL CLASS",
+      "sections": [
+        {
+          "order": 1,
+          "type": "hero",
+          "heading": "VOCAL CLASS",
+          "subheading": "",
+          "content": "음치, 고음불가 일반인부터 프로 가수까지 모두 동일한 레슨 과정",
+          "images": [],
+          "cta": null,
+          "background": {
+            "type": "image",
+            "overlay": "dark"
+          }
+        },
+        {
+          "order": 2,
+          "type": "process",
+          "heading": "3-Step Curriculum",
+          "subheading": "",
+          "content": "",
+          "items": [
+            {
+              "step": 1,
+              "title": "기초 과정",
+              "description": "발성 기본기, 호흡, 공명, 성대 컨트롤"
+            },
+            {
+              "step": 2,
+              "title": "심화 과정",
+              "description": "노래 적용, 음역대 확장, 곡 해석 & 감정 표현"
+            },
+            {
+              "step": 3,
+              "title": "프로페셔널 과정",
+              "description": "완성도 높은 보컬 테크닉, 다양한 장르 스타일링"
+            }
+          ],
+          "images": [],
+          "cta": {
+            "text": "무료 상담 예약",
+            "link": "/contact"
+          },
+          "background": {
+            "type": "color",
+            "value": "#000000"
+          },
+          "designNote": "계단식 배치 레이아웃 적용 (브랜드 가이드 Key Visual)"
+        }
+      ]
+    },
+
+    {
+      "path": "/program/basic",
+      "originalPath": "/program01",
+      "title": "기본 교육과정 — 3옥타브장인 보컬학원",
+      "metaDescription": "발성의 기본인 호흡, 위치, 피치를 체계적으로 배우는 기초 보컬 트레이닝. 완전 초보자도 부담 없이 시작 가능.",
+      "ogImage": "",
+      "h1": "기본 교육과정",
+      "sections": [
+        {
+          "order": 1,
+          "type": "hero",
+          "heading": "기본 교육과정",
+          "subheading": "Basic Vocal Training",
+          "content": "",
+          "images": [],
+          "cta": null,
+          "background": {
+            "type": "image",
+            "overlay": "dark"
+          }
+        },
+        {
+          "order": 2,
+          "type": "services",
+          "heading": "",
+          "subheading": "",
+          "content": "발성의 기본인 호흡, 위치, 피치에 대한 수업을 진행합니다. 발성이 완성됐을 때 비로소 노래를 할 수 있는 사람이 됩니다. 기본적인 호흡, 발성부터 단계별로 진행하며, 완전 초보자도 부담 없이 시작할 수 있습니다.",
+          "items": [
+            {
+              "title": "호흡",
+              "description": "올바른 복식호흡과 호흡 컨트롤"
+            },
+            {
+              "title": "공명",
+              "description": "공명 위치 이해와 활용"
+            },
+            {
+              "title": "성대 컨트롤",
+              "description": "성대 근육의 해부학적 이해와 컨트롤"
+            },
+            {
+              "title": "피치",
+              "description": "정확한 음정과 음역대 확장"
+            }
+          ],
+          "images": [],
+          "cta": {
+            "text": "무료 상담 예약",
+            "link": "/contact"
+          },
+          "background": {
+            "type": "color",
+            "value": "#000000"
+          }
+        },
+        {
+          "order": 3,
+          "type": "about",
+          "heading": "교육 결과",
+          "subheading": "",
+          "content": "저음과 고음의 경계선이 없어지고 모든 음역대에서의 이동과 표현이 자유로워집니다. 체계적인 기초 발성 커리큘럼으로 모든 노하우와 솔루션이 담겨있으며, 수강 종료 이후에도 지속적으로 활용할 수 있는 방법들을 제공합니다.",
+          "images": [],
+          "cta": null,
+          "background": {
+            "type": "color",
+            "value": "#FFFFFF"
+          }
+        }
+      ]
+    },
+
+    {
+      "path": "/program/advanced",
+      "originalPath": "/program02",
+      "title": "심화 교육과정 — 3옥타브장인 보컬학원",
+      "metaDescription": "기초 발성을 실제 노래에 적용하는 심화 보컬 트레이닝. 음역대 확장, 곡 해석, 감정 표현, 장르별 스타일링.",
+      "ogImage": "",
+      "h1": "심화 교육과정",
+      "sections": [
+        {
+          "order": 1,
+          "type": "hero",
+          "heading": "심화 교육과정",
+          "subheading": "Advanced Vocal Training",
+          "content": "",
+          "images": [],
+          "cta": null,
+          "background": {
+            "type": "image",
+            "overlay": "dark"
+          }
+        },
+        {
+          "order": 2,
+          "type": "services",
+          "heading": "",
+          "subheading": "",
+          "content": "",
+          "items": [
+            {
+              "title": "노래 적용",
+              "description": "기초에서 배운 발성을 실제 노래에 적용"
+            },
+            {
+              "title": "음역대 확장",
+              "description": "저음부터 고음까지 자유로운 이동"
+            },
+            {
+              "title": "곡 해석 & 감정 표현",
+              "description": "단순 테크닉을 넘어서 음악적 표현력 강화"
+            },
+            {
+              "title": "다양한 장르 스타일링",
+              "description": "장르별 보컬 테크닉 습득"
+            }
+          ],
+          "images": [],
+          "cta": {
+            "text": "무료 상담 예약",
+            "link": "/contact"
+          },
+          "background": {
+            "type": "color",
+            "value": "#000000"
+          }
+        }
+      ]
+    },
+
+    {
+      "path": "/community",
+      "originalPath": "/community",
+      "title": "커뮤니티 — 3옥타브장인 보컬학원",
+      "metaDescription": "수강생 후기와 발성 꿀팁. 3옥타브장인 보컬학원의 교육 효과를 직접 확인하세요.",
+      "ogImage": "",
+      "h1": "COMMUNITY",
+      "sections": [
+        {
+          "order": 1,
+          "type": "hero",
+          "heading": "COMMUNITY",
+          "subheading": "",
+          "content": "",
+          "images": [],
+          "cta": null,
+          "background": {
+            "type": "color",
+            "value": "#000000"
+          },
+          "note": "커뮤니티 랜딩 — 수강생 후기, 발성 꿀팁 하위 페이지로 연결"
+        }
+      ]
+    },
+
+    {
+      "path": "/community/reviews",
+      "originalPath": "/community01",
+      "title": "수강생 후기 — 3옥타브장인 보컬학원",
+      "metaDescription": "7,000명 이상의 수강생이 검증한 3옥타브장인 보컬학원. 비포애프터 사례와 수강 후기를 확인하세요.",
+      "ogImage": "",
+      "h1": "수강생 후기",
+      "sections": [
+        {
+          "order": 1,
+          "type": "hero",
+          "heading": "수강생 후기",
+          "subheading": "Reviews",
+          "content": "",
+          "images": [],
+          "cta": null,
+          "background": {
+            "type": "image",
+            "overlay": "dark"
+          }
+        },
+        {
+          "order": 2,
+          "type": "testimonials",
+          "heading": "",
+          "subheading": "",
+          "content": "",
+          "items": [],
+          "note": "SPA 동적 콘텐츠로 개별 후기 추출 불가. 비포애프터 영상, 텍스트 후기 포함 예상. YouTube 임베드 형태 가능성 높음.",
+          "images": [],
+          "cta": null,
+          "background": {
+            "type": "color",
+            "value": "#000000"
+          }
+        }
+      ]
+    },
+
+    {
+      "path": "/community/tips",
+      "originalPath": "/community02",
+      "title": "발성 꿀팁 — 3옥타브장인 보컬학원",
+      "metaDescription": "고음 발성법, 호흡 조절, 성대 컨트롤 등 3옥타브장인 보컬학원의 발성 꿀팁을 확인하세요.",
+      "ogImage": "",
+      "h1": "발성 꿀팁",
+      "sections": [
+        {
+          "order": 1,
+          "type": "hero",
+          "heading": "발성 꿀팁",
+          "subheading": "Vocal Tips",
+          "content": "",
+          "images": [],
+          "cta": null,
+          "background": {
+            "type": "color",
+            "value": "#000000"
+          }
+        },
+        {
+          "order": 2,
+          "type": "blog-preview",
+          "heading": "",
+          "subheading": "",
+          "content": "",
+          "items": [],
+          "note": "SPA 동적 콘텐츠로 개별 팁 추출 불가. 블로그/교육 콘텐츠 형태. YouTube 영상 임베드 가능성 높음.",
+          "images": [],
+          "cta": null,
+          "background": {
+            "type": "color",
+            "value": "#FFFFFF"
+          }
+        }
+      ]
+    },
+
+    {
+      "path": "/contact",
+      "originalPath": "/34",
+      "title": "상담 예약 — 3옥타브장인 보컬학원",
+      "metaDescription": "3옥타브장인 보컬학원 무료 상담 예약. 평일 13:00~22:00, 주말 12:00~19:00.",
+      "ogImage": "",
+      "h1": "CONTACT",
+      "sections": [
+        {
+          "order": 1,
+          "type": "hero",
+          "heading": "CONTACT",
+          "subheading": "무료 상담 예약",
+          "content": "",
+          "images": [],
+          "cta": null,
+          "background": {
+            "type": "color",
+            "value": "#000000"
+          }
+        },
+        {
+          "order": 2,
+          "type": "contact-form",
+          "heading": "상담 예약",
+          "subheading": "",
+          "content": "",
+          "fields": [
+            { "type": "select", "label": "지점 선택", "options": ["서울점", "인천점", "부산점"] },
+            { "type": "text", "label": "이름" },
+            { "type": "tel", "label": "전화번호" },
+            { "type": "datetime", "label": "희망 상담 일시" },
+            { "type": "textarea", "label": "문의 내용" }
+          ],
+          "note": "아임웹 자체 폼 → 커스텀 구현 필요. 카카오톡 상담 연결 버튼도 추가 권장.",
+          "images": [],
+          "cta": {
+            "text": "상담 예약하기",
+            "link": ""
+          },
+          "background": {
+            "type": "color",
+            "value": "#FFFFFF"
+          }
+        },
+        {
+          "order": 3,
+          "type": "custom",
+          "heading": "상담 안내",
+          "subheading": "",
+          "content": "상담시간: 평일 13:00~22:00, 주말 12:00~19:00\n휴무일: 목요일",
+          "items": [
+            {
+              "branch": "서울점",
+              "phone": "02-566-2848",
+              "kakao": "https://pf.kakao.com/_VwYHd"
+            },
+            {
+              "branch": "인천점",
+              "phone": "0507-1319-1769",
+              "kakao": null
+            },
+            {
+              "branch": "부산점",
+              "phone": "0507-1351-9158",
+              "kakao": "https://pf.kakao.com/_gUMxbs"
+            }
+          ],
+          "images": [],
+          "cta": null,
+          "background": {
+            "type": "color",
+            "value": "#000000"
+          }
+        }
+      ]
+    }
+  ],
+
+  "navigation": {
+    "logo": {
+      "src": "",
+      "alt": "3옥타브장인 보컬학원 로고",
+      "width": 0,
+      "height": 0,
+      "note": "design-assets/Asset 1.png (영문 가로형 블랙) 또는 Asset 3.png (한글 가로형 블랙) 사용. 다크 배경이므로 Asset 2.png 또는 Asset 4.png (화이트 버전) 사용."
+    },
+    "items": [
+      {
+        "label": "ABOUT",
+        "href": "/about",
+        "children": [
+          { "label": "대표 철학", "href": "/about/philosophy" },
+          { "label": "차별점", "href": "/about/difference" },
+          { "label": "지점 찾기", "href": "/about/locations" }
+        ]
+      },
+      {
+        "label": "VOCAL CLASS",
+        "href": "/program",
+        "children": [
+          { "label": "기본 교육과정", "href": "/program/basic" },
+          { "label": "심화 교육과정", "href": "/program/advanced" }
+        ]
+      },
+      {
+        "label": "COMMUNITY",
+        "href": "/community",
+        "children": [
+          { "label": "수강생 후기", "href": "/community/reviews" },
+          { "label": "발성 꿀팁", "href": "/community/tips" }
+        ]
+      },
+      {
+        "label": "CONTACT",
+        "href": "/contact"
+      }
+    ]
+  },
+
+  "footer": {
+    "logo": {
+      "src": "",
+      "alt": "3옥타브장인 보컬학원 로고",
+      "note": "design-assets/Asset 2.png (영문 가로형 화이트) 사용"
+    },
+    "columns": [
+      {
+        "title": "교육과정",
+        "links": [
+          { "label": "기본 교육과정", "href": "/program/basic" },
+          { "label": "심화 교육과정", "href": "/program/advanced" }
+        ]
+      },
+      {
+        "title": "소개",
+        "links": [
+          { "label": "대표 철학", "href": "/about/philosophy" },
+          { "label": "차별점", "href": "/about/difference" },
+          { "label": "지점 찾기", "href": "/about/locations" }
+        ]
+      },
+      {
+        "title": "커뮤니티",
+        "links": [
+          { "label": "수강생 후기", "href": "/community/reviews" },
+          { "label": "발성 꿀팁", "href": "/community/tips" }
+        ]
+      }
+    ],
+    "businessInfo": {
+      "companyName": "3옥타브장인보컬학원 주식회사",
+      "representative": "김윤민",
+      "businessNumber": "202-85-35932",
+      "address": "서울시 서초구 서초대로78길 36, 강남지웰타워 5층 501호",
+      "phone": "02-566-2848",
+      "email": "3octavemaster@dev.kr"
+    },
+    "copyright": "© 2026 3옥타브장인 보컬학원. All rights reserved.",
+    "bottomLinks": []
+  },
+
+  "design": {
+    "colors": {
+      "primary": "#000000",
+      "secondary": "#FFFFFF",
+      "accent": "#E6204D",
+      "background": "#000000",
+      "backgroundAlt": "#FFFFFF",
+      "text": "#FFFFFF",
+      "textOnLight": "#212121",
+      "textLight": "#999999"
+    },
+    "fonts": {
+      "heading": "FuturaPress Press",
+      "headingFallback": "Sandoll 격동고딕",
+      "body": "Acumin Variable Concept",
+      "bodyFallback": "Sandoll 격동고딕",
+      "korean": "Sandoll 격동고딕",
+      "script": "unknown — 확인 필요 (Exceed your range 필기체)",
+      "currentSite": "Spoqa Han Sans"
+    },
+    "style": {
+      "borderRadius": "rounded-none",
+      "buttonStyle": "squared",
+      "tone": "bold-modern-dark",
+      "theme": "dark",
+      "decorativeElements": [
+        "오선지(musical staff) 라인 — 가로 장식/구분선",
+        "핫핑크 꺾쇠(chevron) — 포인트 장식",
+        "3B 심볼 오버레이 — 이미지 위 반투명 적용",
+        "계단식(staircase) 배치 — 3옥타브 상승 모티브"
+      ]
+    },
+    "layoutNotes": {
+      "hero": "2단 레이아웃: 좌측(55%) 이미지/비디오, 우측(45%) 텍스트/CTA",
+      "navigation": "가로 GNB, 볼드 대문자, 오선지 라인 장식",
+      "sections": "다크 배경 기본, 화이트 배경 교차",
+      "cta": "핫핑크 (#E6204D) 배경, 화이트 텍스트"
+    }
+  },
+
+  "logoAssets": {
+    "note": "모든 에셋은 design-assets/ 디렉토리에 PNG 형식으로 존재. 짝수 번호는 화이트 버전(다크 배경용).",
+    "primary": {
+      "horizontal": {
+        "en": { "black": "Asset 1.png", "white": "Asset 2.png" },
+        "ko": { "black": "Asset 3.png", "white": "Asset 4.png" }
+      },
+      "vertical": {
+        "en": { "black": "Asset 7.png", "white": "Asset 8.png" },
+        "ko": { "black": "Asset 9.png", "white": "Asset 10.png" }
+      },
+      "wordmarkOnly": {
+        "ko": { "black": "Asset 5.png", "white": "Asset 6.png" }
+      },
+      "fullName": {
+        "stacked": { "black": "추가 Asset 1.png", "white": "추가 Asset 2.png" },
+        "singleLine": { "black": "추가 Asset 3.png", "white": "추가 Asset 4.png" }
+      }
+    },
+    "webUsage": {
+      "headerLogo": "Asset 2.png (영문 가로형 화이트 — 다크 헤더용)",
+      "footerLogo": "Asset 2.png (영문 가로형 화이트 — 다크 푸터용)",
+      "favicon": "Asset 7.png 또는 Asset 9.png 기반 축소",
+      "ogImage": "별도 제작 필요"
+    }
+  },
+
+  "contact": {
+    "branches": [
+      {
+        "name": "서울점",
+        "address": "서울시 서초구 서초대로78길 36, 강남지웰타워 5층 501호",
+        "addressDetail": "서초동, 강남역 5번출구 100m",
+        "phone": ["02-566-2848", "0507-1406-2849"],
+        "kakao": "https://pf.kakao.com/_VwYHd",
+        "instructors": 7
+      },
+      {
+        "name": "인천점",
+        "address": "인천 부평구 경원대로 1414, 2층",
+        "addressDetail": "부평동 185-41, 부평역 7번출구 250m",
+        "phone": ["0507-1319-1769"],
+        "kakao": null,
+        "instructors": null
+      },
+      {
+        "name": "부산점",
+        "address": "부산 부산진구 서전로 17, 3층",
+        "addressDetail": "부전동 진성빌딩, 서면역 8번출구 100m",
+        "phone": ["0507-1351-9158"],
+        "kakao": "https://pf.kakao.com/_gUMxbs",
+        "instructors": 3
+      }
+    ],
+    "operatingHours": {
+      "weekday": "13:00~22:00",
+      "weekend": "12:00~19:00",
+      "holiday": "목요일"
+    },
+    "email": "3octavemaster@dev.kr",
+    "socialLinks": [
+      { "platform": "youtube", "url": "https://www.youtube.com/@3octave", "label": "YouTube" },
+      { "platform": "instagram", "url": "https://www.instagram.com/3octave_official/", "label": "Instagram" },
+      { "platform": "blog", "url": "https://blog.naver.com/3octave1", "label": "네이버 블로그" },
+      { "platform": "cafe", "url": "http://cafe.naver.com/cloud9ent", "label": "네이버 카페" },
+      { "platform": "soundcloud", "url": "https://soundcloud.com/user-208871057", "label": "SoundCloud" }
+    ]
+  },
+
+  "seo": {
+    "existingRedirects": [
+      { "from": "/main", "to": "/", "type": 301, "note": "홈페이지 경로 변경" },
+      { "from": "/about01", "to": "/about/philosophy", "type": 301, "note": "대표 철학" },
+      { "from": "/about02", "to": "/about/difference", "type": 301, "note": "차별점" },
+      { "from": "/about03", "to": "/about/locations", "type": 301, "note": "지점 찾기" },
+      { "from": "/program01", "to": "/program/basic", "type": 301, "note": "기본 교육과정" },
+      { "from": "/program02", "to": "/program/advanced", "type": 301, "note": "심화 교육과정" },
+      { "from": "/community01", "to": "/community/reviews", "type": 301, "note": "수강생 후기" },
+      { "from": "/community02", "to": "/community/tips", "type": 301, "note": "발성 꿀팁" },
+      { "from": "/34", "to": "/contact", "type": 301, "note": "상담 예약" }
+    ],
+    "missingMeta": [
+      { "path": "/about", "missing": ["metaDescription", "ogImage"], "note": "랜딩 페이지 — 고유 meta description 필요" },
+      { "path": "/community", "missing": ["metaDescription", "ogImage"], "note": "랜딩 페이지 — 고유 meta description 필요" }
+    ],
+    "notes": [
+      "아임웹 SPA → SSR Next.js 전환으로 SEO 대폭 개선 기대",
+      "현재 사이트는 JS 렌더링 의존으로 검색엔진 크롤링 제한적",
+      "shop_view/* 페이지 12개는 비활성 — 리다이렉트 불필요",
+      "YouTube 채널(11만 구독자)과 연동된 콘텐츠 SEO 전략 필요"
+    ]
+  }
+}
