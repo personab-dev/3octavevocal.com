@@ -22,8 +22,18 @@
   --font-script: var(--font-dancing), cursive;
 }
 
+html {
+  scroll-behavior: smooth;
+}
+
 body {
   background-color: var(--color-primary);
   color: var(--color-text);
   font-family: var(--font-sans);
+}
+
+/* Selection color */
+::selection {
+  background-color: var(--color-accent);
+  color: #ffffff;
 }

@@ -123,9 +123,9 @@ export default function MobileMenu() {
                             <Link
                                 href="/contact"
                                 onClick={() => setIsOpen(false)}
-                                className="block w-full text-center bg-accent hover:bg-white hover:text-black text-white px-6 py-3 font-bold transition-all text-sm uppercase tracking-widest"
+                                className="block w-full text-center bg-accent hover:bg-white hover:text-black text-white px-6 py-3 font-bold transition-all text-sm tracking-widest"
                             >
-                                Free Consultation
+                                무료 상담 예약
                             </Link>
                         </div>
                     </motion.div>
