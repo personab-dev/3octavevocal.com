@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import DifferenceContent from "@/components/about/DifferenceContent";
 
 export const metadata: Metadata = {
   title: "차별점",
@@ -7,9 +8,5 @@ export const metadata: Metadata = {
 };
 
 export default function DifferencePage() {
-  return (
-    <main>
-      <h1>차별점</h1>
-    </main>
-  );
+  return <DifferenceContent />;
 }

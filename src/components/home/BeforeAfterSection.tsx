@@ -9,32 +9,32 @@ const videos = [
   {
     title: "목 쥐어짜는 흔한 일반인이\n보컬레슨을 받으면 생기는 변화",
     url: "https://www.youtube.com/shorts/z57DrPANPQ8",
-    thumbnail: "https://img.youtube.com/vi/z57DrPANPQ8/oar2.jpg",
+    thumbnail: "/images/videos/thumb-1.png",
   },
   {
     title: "목으로만 지르는 일반인이\n'믹스 보이스'를 배우면 생기는 일",
     url: "https://www.youtube.com/shorts/lrYzzluMoX8",
-    thumbnail: "https://img.youtube.com/vi/lrYzzluMoX8/oar2.jpg",
+    thumbnail: "/images/videos/thumb-2.png",
   },
   {
     title: "노래를 겁내던 일반인이\n노래를 배운 뒤 생긴 변화",
     url: "https://www.youtube.com/shorts/Gwfri1Pa5sM",
-    thumbnail: "https://img.youtube.com/vi/Gwfri1Pa5sM/oar2.jpg",
+    thumbnail: "/images/videos/thumb-3.png",
   },
   {
     title: "원래 목소리가 좋은 일반인이\n보컬 레슨을 받는다면?!",
     url: "https://www.youtube.com/shorts/eH_5DPSKwmU",
-    thumbnail: "https://img.youtube.com/vi/eH_5DPSKwmU/oar2.jpg",
+    thumbnail: "/images/videos/thumb-4.png",
   },
   {
     title: "꽥꽥지르던 일반인도 배우면\n'마크툽 노래'를 부를 수 있을까?",
     url: "https://www.youtube.com/shorts/DFK_YLVzBoU",
-    thumbnail: "https://img.youtube.com/vi/DFK_YLVzBoU/oar2.jpg",
+    thumbnail: "/images/videos/thumb-5.png",
   },
   {
     title: "3옥타브 매번 실패했었는데,\n이게 되네?",
     url: "https://www.youtube.com/shorts/UMLeeKdEB7w",
-    thumbnail: "https://img.youtube.com/vi/UMLeeKdEB7w/oar2.jpg",
+    thumbnail: "/images/videos/thumb-6.png",
   },
 ];
 

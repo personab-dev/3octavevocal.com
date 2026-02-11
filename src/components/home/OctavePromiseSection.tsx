@@ -37,7 +37,7 @@ export default function OctavePromiseSection() {
           transition={{ duration: 0.7, delay: 0.2 }}
         >
           <Link
-            href="/community/reviews"
+            href="/contact"
             className="group inline-flex items-center gap-2 border border-accent text-accent hover:bg-accent hover:text-white px-6 py-3 text-sm font-bold tracking-wide transition-all duration-300"
           >
             100% 찐후기 보러가기

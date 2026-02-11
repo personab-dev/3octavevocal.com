@@ -1,9 +1,9 @@
 "use client";
 
 import Link from "next/link";
+import Image from "next/image";
 import { useRef } from "react";
 import { motion, useInView } from "framer-motion";
-import BrandSymbol from "@/components/BrandSymbol";
 
 export default function TrustCtaSection() {
   const ref = useRef<HTMLElement>(null);
@@ -43,25 +43,16 @@ export default function TrustCtaSection() {
           </motion.div>
         </div>
 
-        {/* Right: Brand symbol */}
-        <div className="bg-black flex items-center justify-center p-12 relative overflow-hidden">
-          <div className="absolute inset-0 bg-gradient-to-b from-zinc-900/50 to-black/80" />
-          <motion.div
-            initial={{ opacity: 0, scale: 0.8 }}
-            animate={isInView ? { opacity: 0.3, scale: 1 } : {}}
-            transition={{ duration: 1, delay: 0.3 }}
-            className="relative z-10"
-          >
-            <BrandSymbol size={250} color="#ffffff" />
-          </motion.div>
-          <motion.p
-            initial={{ opacity: 0 }}
-            animate={isInView ? { opacity: 1 } : {}}
-            transition={{ duration: 0.7, delay: 0.5 }}
-            className="absolute bottom-8 right-8 text-white font-display text-2xl md:text-3xl tracking-tight z-10"
-          >
-            3OCTAVE<br />MASTER
-          </motion.p>
+        {/* Right: Background image */}
+        <div className="relative overflow-hidden min-h-[300px] md:min-h-[400px]">
+          <Image
+            src="/images/cta/trust-bg.png"
+            alt="3옥타브장인 보컬학원"
+            fill
+            sizes="50vw"
+            className="object-cover"
+          />
+          <div className="absolute inset-0 bg-black/30" />
         </div>
       </div>
     </section>

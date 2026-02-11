@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import AboutLanding from "@/components/about/AboutLanding";
 
 export const metadata: Metadata = {
   title: "소개",
@@ -7,9 +8,5 @@ export const metadata: Metadata = {
 };
 
 export default function AboutPage() {
-  return (
-    <main>
-      <h1>ABOUT</h1>
-    </main>
-  );
+  return <AboutLanding />;
 }

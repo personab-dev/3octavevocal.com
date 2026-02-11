@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import TipsContent from "@/components/community/TipsContent";
 
 export const metadata: Metadata = {
   title: "발성 꿀팁",
@@ -7,9 +8,5 @@ export const metadata: Metadata = {
 };
 
 export default function TipsPage() {
-  return (
-    <main>
-      <h1>발성 꿀팁</h1>
-    </main>
-  );
+  return <TipsContent />;
 }

@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import CommunityLanding from "@/components/community/CommunityLanding";
 
 export const metadata: Metadata = {
   title: "커뮤니티",
@@ -7,9 +8,5 @@ export const metadata: Metadata = {
 };
 
 export default function CommunityPage() {
-  return (
-    <main>
-      <h1>COMMUNITY</h1>
-    </main>
-  );
+  return <CommunityLanding />;
 }

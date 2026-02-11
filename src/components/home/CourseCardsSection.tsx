@@ -1,6 +1,7 @@
 "use client";
 
 import Link from "next/link";
+import Image from "next/image";
 import { useRef } from "react";
 import { motion, useInView } from "framer-motion";
 
@@ -9,11 +10,13 @@ const courses = [
     title: "기본과정",
     href: "/program/basic",
     description: "발성의 기본 — 호흡, 공명, 성대 컨트롤, 피치",
+    image: "/images/courses/basic.png",
   },
   {
     title: "심화과정",
     href: "/program/advanced",
     description: "노래 적용 — 음역대 확장, 곡 해석, 감정 표현",
+    image: "/images/courses/advanced.png",
   },
 ];
 
@@ -49,12 +52,15 @@ export default function CourseCardsSection() {
               transition={{ duration: 0.5, delay: 0.2 + index * 0.15 }}
             >
               <Link href={course.href} className="group block relative overflow-hidden">
-                {/* Image placeholder */}
                 <div className="aspect-[16/9] bg-zinc-800 relative overflow-hidden">
+                  <Image
+                    src={course.image}
+                    alt={`${course.title} 레슨`}
+                    fill
+                    sizes="(max-width: 768px) 100vw, 50vw"
+                    className="object-cover group-hover:scale-105 transition-transform duration-500"
+                  />
                   <div className="absolute inset-0 bg-gradient-to-t from-black/70 to-transparent" />
-                  <span className="absolute inset-0 flex items-center justify-center text-zinc-600 text-xs tracking-widest uppercase">
-                    {course.title} 레슨 이미지
-                  </span>
 
                   {/* CTA overlay */}
                   <div className="absolute bottom-6 right-6">

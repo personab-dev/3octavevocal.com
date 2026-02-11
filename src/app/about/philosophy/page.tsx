@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import PhilosophyContent from "@/components/about/PhilosophyContent";
 
 export const metadata: Metadata = {
   title: "대표 철학",
@@ -7,9 +8,5 @@ export const metadata: Metadata = {
 };
 
 export default function PhilosophyPage() {
-  return (
-    <main>
-      <h1>대표 철학</h1>
-    </main>
-  );
+  return <PhilosophyContent />;
 }

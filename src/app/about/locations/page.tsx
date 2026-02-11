@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import LocationsContent from "@/components/about/LocationsContent";
 
 export const metadata: Metadata = {
   title: "지점 찾기",
@@ -7,9 +8,5 @@ export const metadata: Metadata = {
 };
 
 export default function LocationsPage() {
-  return (
-    <main>
-      <h1>지점 찾기</h1>
-    </main>
-  );
+  return <LocationsContent />;
 }

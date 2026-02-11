@@ -1,6 +1,7 @@
 "use client";
 
 import { useRef } from "react";
+import Image from "next/image";
 import { motion, useInView } from "framer-motion";
 import CountUp from "@/components/animations/CountUp";
 
@@ -18,12 +19,16 @@ export default function StatsSection() {
 
   return (
     <section ref={ref} className="relative py-20 lg:py-28 overflow-hidden">
-      {/* Background: dark classroom image placeholder */}
-      <div className="absolute inset-0 bg-zinc-900">
+      {/* Background: classroom image */}
+      <div className="absolute inset-0">
+        <Image
+          src="/images/stats/bg.png"
+          alt="3옥타브장인 보컬학원 강의실"
+          fill
+          sizes="100vw"
+          className="object-cover"
+        />
         <div className="absolute inset-0 bg-gradient-to-r from-black/80 to-black/60" />
-        <span className="absolute inset-0 flex items-center justify-center text-zinc-700 text-xs tracking-widest uppercase pointer-events-none">
-          강의실 이미지
-        </span>
       </div>
 
       <div className="relative z-10 max-w-[1200px] mx-auto px-6">

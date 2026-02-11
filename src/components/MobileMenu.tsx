@@ -38,7 +38,7 @@ const navItems = [
     },
 ];
 
-export default function MobileMenu() {
+export default function MobileMenu({ scrolled }: { scrolled: boolean }) {
     const [isOpen, setIsOpen] = useState(false);
     const [openSubmenu, setOpenSubmenu] = useState<string | null>(null);
     const pathname = usePathname();
@@ -51,7 +51,9 @@ export default function MobileMenu() {
         <div className="lg:hidden">
             <button
                 onClick={toggleMenu}
-                className="p-2 text-white hover:text-accent transition-colors"
+                className={`p-2 transition-colors duration-500 hover:text-accent ${
+                    scrolled ? "text-gray-800" : "text-white"
+                }`}
                 aria-label="Toggle menu"
             >
                 {isOpen ? <Icons.X size={24} /> : <Icons.Menu size={24} />}
