@@ -25,25 +25,25 @@ export default function CourseCardsSection() {
   const isInView = useInView(ref, { once: true, amount: 0.3 });
 
   return (
-    <section ref={ref} className="bg-black py-20 lg:py-28">
-      <div className="max-w-5xl mx-auto px-6">
+    <section ref={ref} className="bg-black py-24 lg:py-36">
+      <div className="max-w-6xl mx-auto px-6">
         {/* Headline */}
         <motion.div
           initial={{ opacity: 0, y: 30 }}
           animate={isInView ? { opacity: 1, y: 0 } : {}}
           transition={{ duration: 0.7 }}
-          className="text-center mb-6"
+          className="text-center mb-8"
         >
-          <p className="text-gray-400 text-sm md:text-base mb-3">
+          <p className="text-gray-400 text-lg md:text-xl mb-3">
             현직 가수부터 일반인까지, <strong className="text-white">모두가 인정한 검증된 시스템</strong>
           </p>
-          <h2 className="text-2xl md:text-3xl lg:text-4xl font-bold text-white">
+          <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold text-white">
             그 비결이 궁금하다면?
           </h2>
         </motion.div>
 
         {/* Course cards */}
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mt-12">
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-8 mt-14">
           {courses.map((course, index) => (
             <motion.div
               key={course.title}
@@ -64,7 +64,7 @@ export default function CourseCardsSection() {
 
                   {/* CTA overlay */}
                   <div className="absolute bottom-6 right-6">
-                    <span className="inline-flex items-center gap-2 bg-accent text-white px-5 py-3 text-sm font-bold group-hover:bg-white group-hover:text-black transition-all duration-300">
+                    <span className="inline-flex items-center gap-2 bg-accent text-white px-6 py-3.5 text-base md:text-lg font-bold group-hover:bg-white group-hover:text-black transition-all duration-300">
                       {course.title}
                       <svg width="14" height="10" viewBox="0 0 14 10" fill="none" className="transition-transform group-hover:translate-x-1">
                         <path d="M9 1L13 5L9 9M0 5H13" stroke="currentColor" strokeWidth="1.5" />
@@ -73,7 +73,7 @@ export default function CourseCardsSection() {
                   </div>
                 </div>
 
-                <p className="mt-3 text-gray-400 text-sm">{course.description}</p>
+                <p className="mt-4 text-gray-400 text-base md:text-lg">{course.description}</p>
               </Link>
             </motion.div>
           ))}
@@ -84,7 +84,7 @@ export default function CourseCardsSection() {
           initial={{ opacity: 0, y: 20 }}
           animate={isInView ? { opacity: 1, y: 0 } : {}}
           transition={{ duration: 0.7, delay: 0.5 }}
-          className="text-center mt-12 text-sm md:text-base text-gray-400"
+          className="text-center mt-14 text-lg md:text-xl text-gray-400"
         >
           <span className="text-accent underline underline-offset-4">동종 업계에서도 참고</span>하는 커리큘럼,{" "}
           <span className="text-white underline underline-offset-4">보컬 트레이너들</span>도 배우러 옵니다.

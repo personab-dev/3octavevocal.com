@@ -100,15 +100,15 @@ export default function Footer() {
         {/* Top section: Logo + Info + Social */}
         <div className="flex flex-col lg:flex-row lg:items-start lg:justify-between gap-8">
           {/* Left: Logo & business info */}
-          <div className="flex flex-col gap-4">
+          <div className="flex flex-col gap-4 items-start">
             <Image
               src="/images/logo-black.png"
               alt="3옥타브장인"
               width={200}
               height={36}
-              className="h-9 w-auto"
+              className="h-9 w-auto object-contain"
             />
-            <div className="text-sm text-gray-500 leading-relaxed">
+            <div className="text-sm md:text-base text-gray-500 leading-relaxed">
               <p>
                 3옥타브장인 보컬학원 &nbsp;|&nbsp; 대표자: 김윤민
                 &nbsp;|&nbsp; 정보보호책임자: 김윤민 &nbsp;|&nbsp; EMAIL :{" "}
@@ -153,36 +153,33 @@ export default function Footer() {
         {/* Divider */}
         <div className="h-[1px] bg-gray-300 my-8" />
 
-        {/* Bottom section: Branch info table */}
-        <div className="overflow-x-auto">
-          <table className="w-full text-sm">
-            <thead>
-              <tr className="text-left text-gray-800 font-bold">
-                <th className="pb-3 pr-8 whitespace-nowrap min-w-[160px]">
-                  사업자번호
-                </th>
-                <th className="pb-3 pr-8 whitespace-nowrap min-w-[180px]">
-                  상담번호
-                </th>
-                <th className="pb-3 whitespace-nowrap">주소</th>
-              </tr>
-            </thead>
-            <tbody className="text-gray-500">
-              {branches.map((branch) => (
-                <tr key={branch.name}>
-                  <td className="py-1.5 pr-8 whitespace-nowrap">
-                    {branch.name} : {branch.bizNo}
-                  </td>
-                  <td className="py-1.5 pr-8 whitespace-nowrap">
-                    {branch.name} : {branch.phone}
-                  </td>
-                  <td className="py-1.5">
-                    {branch.name} : {branch.address}
-                  </td>
-                </tr>
-              ))}
-            </tbody>
-          </table>
+        {/* Bottom section: Branch info grid */}
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 text-sm md:text-base text-gray-500">
+          {branches.map((branch) => (
+            <div key={branch.name} className="flex flex-col gap-1">
+              <strong className="text-gray-800 text-base mb-1">
+                {branch.name}
+              </strong>
+              <div className="flex flex-col gap-0.5">
+                <p>
+                  <span className="font-medium text-gray-600">사업자번호:</span>{" "}
+                  {branch.bizNo}
+                </p>
+                <p>
+                  <span className="font-medium text-gray-600">상담번호:</span>{" "}
+                  {branch.phone}
+                </p>
+                <p>
+                  <span className="font-medium text-gray-600">주소:</span>{" "}
+                  {branch.address}
+                </p>
+              </div>
+            </div>
+          ))}
+        </div>
+
+        <div className="mt-8 pt-8 border-t border-gray-200 text-center text-sm text-gray-400">
+          © {new Date().getFullYear()} 3Octave Vocal. All rights reserved.
         </div>
       </div>
     </footer>

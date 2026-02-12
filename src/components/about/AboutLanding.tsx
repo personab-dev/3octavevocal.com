@@ -84,7 +84,7 @@ export default function AboutLanding() {
                     </span>
 
                     {/* English title */}
-                    <span className="font-display text-xs tracking-[0.2em] text-gray-400 mt-4 block">
+                    <span className="font-display text-sm tracking-[0.2em] text-gray-400 mt-4 block">
                       {page.titleEn}
                     </span>
 
@@ -94,12 +94,12 @@ export default function AboutLanding() {
                     </h2>
 
                     {/* Description */}
-                    <p className="text-sm text-text-on-light/60 mt-4 leading-relaxed flex-1">
+                    <p className="text-sm md:text-base text-text-on-light/60 mt-4 leading-relaxed flex-1">
                       {page.description}
                     </p>
 
                     {/* Arrow */}
-                    <div className="mt-6 flex items-center gap-2 text-sm font-bold text-text-on-light/40 group-hover:text-accent transition-colors duration-300">
+                    <div className="mt-6 flex items-center gap-2 text-sm md:text-base font-bold text-text-on-light/40 group-hover:text-accent transition-colors duration-300">
                       자세히 보기
                       <svg
                         width="16"
@@ -137,7 +137,7 @@ export default function AboutLanding() {
             transition={{ duration: 0.7 }}
             className="mb-16"
           >
-            <p className="text-gray-500 text-sm mb-3 tracking-widest uppercase">
+            <p className="text-gray-500 text-sm md:text-base mb-3 tracking-widest uppercase">
               Core Values
             </p>
             <h2 className="text-2xl md:text-3xl lg:text-4xl font-bold text-white leading-snug">
@@ -170,7 +170,7 @@ export default function AboutLanding() {
                   <div className="flex items-center gap-3 mt-2">
                     <span className="text-accent font-bold">{value.ko}</span>
                     <span className="w-1 h-1 rounded-full bg-gray-600" />
-                    <span className="text-gray-400 text-sm">
+                    <span className="text-gray-400 text-sm md:text-base">
                       {value.description}
                     </span>
                   </div>
@@ -206,7 +206,7 @@ export default function AboutLanding() {
           </p>
           <Link
             href="/contact"
-            className="inline-flex items-center gap-2 bg-white text-text-on-light hover:bg-black hover:text-white px-8 py-4 text-sm font-bold transition-all duration-300"
+            className="inline-flex items-center gap-2 bg-white text-text-on-light hover:bg-black hover:text-white px-8 py-4 text-base font-bold transition-all duration-300"
           >
             무료 상담 예약하기
             <svg

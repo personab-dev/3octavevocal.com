@@ -11,23 +11,23 @@ export default function TrustCtaSection() {
 
   return (
     <section ref={ref} className="relative overflow-hidden">
-      <div className="grid grid-cols-1 md:grid-cols-2 min-h-[400px]">
+      <div className="grid grid-cols-1 md:grid-cols-2 min-h-[480px]">
         {/* Left: Dark with text */}
-        <div className="bg-gradient-to-br from-zinc-900 to-black p-8 lg:p-16 flex flex-col justify-center">
+        <div className="bg-gradient-to-br from-zinc-900 to-black p-10 lg:p-20 flex flex-col justify-center">
           <motion.div
             initial={{ opacity: 0, x: -30 }}
             animate={isInView ? { opacity: 1, x: 0 } : {}}
             transition={{ duration: 0.7 }}
           >
-            <h2 className="text-2xl md:text-3xl lg:text-4xl font-bold text-white leading-snug">
+            <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold text-white leading-snug">
               여기서도 안 된다면,<br />어디서도 안 됩니다.
             </h2>
-            <p className="text-gray-400 text-sm md:text-base mt-4">
+            <p className="text-gray-400 text-lg md:text-xl mt-5">
               그만큼 확실한 커리큘럼, 직접 확인하세요.
             </p>
             <Link
               href="/contact"
-              className="group inline-flex items-center gap-2 border border-accent text-accent hover:bg-accent hover:text-white px-6 py-3 text-sm font-bold mt-8 transition-all duration-300"
+              className="group inline-flex items-center gap-2 border border-accent text-accent hover:bg-accent hover:text-white px-8 py-4 text-lg font-bold mt-8 transition-all duration-300"
             >
               무료 상담 문의하기
               <svg
@@ -44,15 +44,15 @@ export default function TrustCtaSection() {
         </div>
 
         {/* Right: Background image */}
-        <div className="relative overflow-hidden min-h-[300px] md:min-h-[400px]">
+        <div className="relative overflow-hidden min-h-[350px] md:min-h-[480px]">
           <Image
             src="/images/cta/trust-bg.png"
             alt="3옥타브장인 보컬학원"
             fill
             sizes="50vw"
-            className="object-cover"
+            className="object-cover object-top"
           />
-          <div className="absolute inset-0 bg-black/30" />
+          <div className="absolute inset-0 bg-black/10" />
         </div>
       </div>
     </section>

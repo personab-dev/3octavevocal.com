@@ -59,7 +59,7 @@ export default function PhilosophyContent() {
                 <div className="absolute inset-0 flex items-center justify-center">
                   <BrandSymbol size={120} color="white" className="opacity-20" />
                 </div>
-                <span className="absolute bottom-4 left-4 text-zinc-500 text-xs tracking-widest uppercase">
+                <span className="absolute bottom-4 left-4 text-zinc-500 text-sm tracking-widest uppercase">
                   3옥타브장인의 시작
                 </span>
               </div>
@@ -71,7 +71,7 @@ export default function PhilosophyContent() {
               animate={originInView ? { opacity: 1, x: 0 } : {}}
               transition={{ duration: 0.7, delay: 0.2 }}
             >
-              <p className="text-accent text-sm font-bold tracking-widest uppercase mb-6">
+              <p className="text-accent text-sm md:text-base font-bold tracking-widest uppercase mb-6">
                 3옥타브장인의 시작
               </p>
 
@@ -82,7 +82,7 @@ export default function PhilosophyContent() {
                 그래서, 여러분들도 가능합니다.
               </p>
 
-              <p className="text-gray-500 text-sm font-bold mb-4">
+              <p className="text-gray-500 text-sm md:text-base font-bold mb-4">
                 저희도 똑같이 겪었습니다.
               </p>
 
@@ -120,7 +120,7 @@ export default function PhilosophyContent() {
             transition={{ duration: 0.7 }}
             className="text-center mb-16"
           >
-            <p className="text-text-on-light/50 text-sm mb-3 tracking-widest uppercase">
+            <p className="text-text-on-light/50 text-sm md:text-base mb-3 tracking-widest uppercase">
               3옥타브장인의 시작
             </p>
             <h2 className="text-2xl md:text-3xl lg:text-4xl font-bold text-text-on-light">
@@ -153,7 +153,7 @@ export default function PhilosophyContent() {
                 <div className="w-12 h-[2px] bg-accent mb-4" />
 
                 {/* Body */}
-                <p className="text-sm text-text-on-light/60 leading-relaxed whitespace-pre-line">
+                <p className="text-sm md:text-base text-text-on-light/60 leading-relaxed whitespace-pre-line">
                   {promise.body}
                 </p>
               </motion.div>
@@ -291,12 +291,12 @@ export default function PhilosophyContent() {
           <p className="text-white text-xl md:text-2xl lg:text-3xl font-bold mb-4">
             여기서도 안 된다면, 어디서도 안 됩니다.
           </p>
-          <p className="text-white/80 text-sm md:text-base mb-8">
+          <p className="text-white/80 text-base md:text-lg mb-8">
             그만큼 확실한 커리큘럼, 직접 확인하세요.
           </p>
           <Link
             href="/contact"
-            className="inline-flex items-center gap-2 bg-white text-text-on-light hover:bg-black hover:text-white px-8 py-4 text-sm font-bold transition-all duration-300"
+            className="inline-flex items-center gap-2 bg-white text-text-on-light hover:bg-black hover:text-white px-8 py-4 text-base font-bold transition-all duration-300"
           >
             무료 상담 문의하기
           </Link>

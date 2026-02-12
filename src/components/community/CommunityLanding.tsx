@@ -52,7 +52,7 @@ export default function CommunityLanding() {
                       {page.number}
                     </span>
 
-                    <span className="font-display text-xs tracking-[0.2em] text-gray-400 mt-4 block">
+                    <span className="font-display text-sm tracking-[0.2em] text-gray-400 mt-4 block">
                       {page.titleEn}
                     </span>
 
@@ -60,11 +60,11 @@ export default function CommunityLanding() {
                       {page.title}
                     </h2>
 
-                    <p className="text-sm text-text-on-light/60 mt-4 leading-relaxed flex-1">
+                    <p className="text-sm md:text-base text-text-on-light/60 mt-4 leading-relaxed flex-1">
                       {page.description}
                     </p>
 
-                    <div className="mt-6 flex items-center gap-2 text-sm font-bold text-text-on-light/40 group-hover:text-accent transition-colors duration-300">
+                    <div className="mt-6 flex items-center gap-2 text-sm md:text-base font-bold text-text-on-light/40 group-hover:text-accent transition-colors duration-300">
                       자세히 보기
                       <svg
                         width="16"

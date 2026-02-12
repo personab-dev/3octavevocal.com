@@ -18,7 +18,7 @@ export default function StatsSection() {
   const isInView = useInView(ref, { once: true, amount: 0.3 });
 
   return (
-    <section ref={ref} className="relative py-20 lg:py-28 overflow-hidden">
+    <section ref={ref} className="relative py-24 lg:py-36 overflow-hidden">
       {/* Background: classroom image */}
       <div className="absolute inset-0">
         <Image
@@ -32,14 +32,14 @@ export default function StatsSection() {
       </div>
 
       <div className="relative z-10 max-w-[1200px] mx-auto px-6">
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-x-16 gap-y-12 items-start">
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-x-16 gap-y-14 items-start">
           {/* Left: Question */}
           <motion.div
             initial={{ opacity: 0, x: -30 }}
             animate={isInView ? { opacity: 1, x: 0 } : {}}
             transition={{ duration: 0.7 }}
           >
-            <h2 className="text-2xl md:text-3xl lg:text-4xl font-bold text-white leading-snug">
+            <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold text-white leading-snug">
               고음이 안 되던<br />
               수많은 사람들은<br />
               <span className="text-accent underline decoration-accent underline-offset-4">왜 3옥타브장인</span>을<br />
@@ -48,7 +48,7 @@ export default function StatsSection() {
           </motion.div>
 
           {/* Right: Stats */}
-          <div className="flex flex-col gap-8">
+          <div className="flex flex-col gap-10">
             {/* Top row: 2 stats */}
             <div className="grid grid-cols-2 gap-8">
               {stats.slice(0, 2).map((stat, index) => (
@@ -58,12 +58,12 @@ export default function StatsSection() {
                   animate={isInView ? { opacity: 1, y: 0 } : {}}
                   transition={{ duration: 0.5, delay: 0.2 + index * 0.1 }}
                 >
-                  <span className="text-gray-400 text-xs md:text-sm">{stat.label}</span>
+                  <span className="text-gray-400 text-base">{stat.label}</span>
                   <div className="flex items-baseline gap-1 mt-1">
-                    <span className="font-bold text-4xl md:text-5xl text-white">
+                    <span className="font-bold text-5xl md:text-6xl text-white">
                       <CountUp end={stat.value} suffix="" />
                     </span>
-                    <span className="text-white text-lg md:text-xl">{stat.suffix}</span>
+                    <span className="text-white text-xl md:text-2xl">{stat.suffix}</span>
                   </div>
                 </motion.div>
               ))}
@@ -77,14 +77,14 @@ export default function StatsSection() {
                 animate={isInView ? { opacity: 1, y: 0 } : {}}
                 transition={{ duration: 0.5, delay: 0.4 + index * 0.1 }}
               >
-                <span className="text-gray-400 text-xs md:text-sm">{stat.label}</span>
+                <span className="text-gray-400 text-base">{stat.label}</span>
                 <div className="flex items-baseline gap-2 mt-1">
-                  <span className="font-bold text-4xl md:text-5xl lg:text-6xl text-white">
+                  <span className="font-bold text-5xl md:text-6xl lg:text-7xl text-white">
                     <CountUp end={stat.value} suffix="" />
                   </span>
-                  <span className="text-white text-lg md:text-xl">{stat.suffix}</span>
+                  <span className="text-white text-xl md:text-2xl">{stat.suffix}</span>
                   {stat.sublabel && (
-                    <span className="text-gray-400 text-xs md:text-sm ml-2">{stat.sublabel}</span>
+                    <span className="text-gray-400 text-base ml-2">{stat.sublabel}</span>
                   )}
                 </div>
               </motion.div>

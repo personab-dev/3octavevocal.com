@@ -1,6 +1,7 @@
 "use client";
 
 import Link from "next/link";
+import Image from "next/image";
 import { useRef, useState } from "react";
 import { motion, useInView, AnimatePresence } from "framer-motion";
 import { MapPin, Phone, Clock, ChevronRight, MessageCircle } from "lucide-react";
@@ -16,9 +17,8 @@ const branches = [
     phone: ["0507-1406-2849", "02-566-2848"],
     instructors: 7,
     kakao: "https://pf.kakao.com/_VwYHd",
+    mapImage: "/images/locations/map-seoul.png",
     mapUrl: "https://naver.me/5vcHjbd8",
-    naverMapEmbed:
-      "https://map.naver.com/p/entry/place/1818515278?c=15.00,0,0,0,dh",
   },
   {
     name: "인천점",
@@ -28,9 +28,8 @@ const branches = [
     phone: ["0507-1319-1769"],
     instructors: null,
     kakao: null,
+    mapImage: "/images/locations/map-incheon.png",
     mapUrl: "https://naver.me/5YFpHxrR",
-    naverMapEmbed:
-      "https://map.naver.com/p/entry/place/1929475538?c=15.00,0,0,0,dh",
   },
   {
     name: "부산점",
@@ -40,9 +39,8 @@ const branches = [
     phone: ["0507-1351-9158"],
     instructors: 3,
     kakao: "https://pf.kakao.com/_gUMxbs",
+    mapImage: "/images/locations/map-busan.png",
     mapUrl: "https://naver.me/5PVPwh3I",
-    naverMapEmbed:
-      "https://map.naver.com/p/entry/place/1671122094?c=15.00,0,0,0,dh",
   },
 ];
 
@@ -89,7 +87,7 @@ export default function LocationsContent() {
                     : "text-text-on-light/40 hover:text-text-on-light/70"
                 }`}
               >
-                <span className="font-display text-xs tracking-[0.2em] block mb-1">
+                <span className="font-display text-sm tracking-[0.2em] block mb-1">
                   {branch.nameEn}
                 </span>
                 {branch.name}
@@ -113,22 +111,27 @@ export default function LocationsContent() {
               transition={{ duration: 0.3 }}
             >
               <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-12">
-                {/* Map Placeholder */}
-                <div className="aspect-square lg:aspect-auto lg:min-h-[500px] bg-zinc-100 relative overflow-hidden">
-                  <Link
-                    href={branches[activeBranch].mapUrl}
-                    target="_blank"
-                    rel="noopener noreferrer nofollow"
-                    className="absolute inset-0 flex flex-col items-center justify-center gap-4 group"
-                  >
-                    <div className="w-16 h-16 bg-accent rounded-full flex items-center justify-center shadow-lg group-hover:scale-110 transition-transform">
-                      <MapPin size={28} className="text-white" />
-                    </div>
-                    <span className="text-text-on-light/50 text-sm group-hover:text-accent transition-colors">
-                      네이버 지도에서 보기
-                    </span>
-                  </Link>
-                </div>
+                {/* Map Image */}
+                <Link
+                  href={branches[activeBranch].mapUrl}
+                  target="_blank"
+                  rel="noopener noreferrer nofollow"
+                  className="block relative overflow-hidden bg-zinc-100 group"
+                >
+                  <div className="relative w-full h-[250px] md:h-[350px] lg:h-[400px]">
+                    <Image
+                      src={branches[activeBranch].mapImage}
+                      alt={`${branches[activeBranch].name} 지도`}
+                      fill
+                      sizes="(max-width: 1024px) 100vw, 50vw"
+                      className="object-cover"
+                    />
+                  </div>
+                  <div className="absolute bottom-4 right-4 bg-white/90 backdrop-blur-sm px-4 py-2 flex items-center gap-2 text-sm font-medium text-text-on-light group-hover:bg-accent group-hover:text-white transition-all duration-300">
+                    <MapPin size={14} />
+                    네이버 지도에서 보기
+                  </div>
+                </Link>
 
                 {/* Branch Info */}
                 <div className="flex flex-col justify-center">
@@ -146,7 +149,7 @@ export default function LocationsContent() {
                         <MapPin size={18} className="text-accent" />
                       </div>
                       <div>
-                        <p className="text-xs text-text-on-light/40 mb-1">주소</p>
+                        <p className="text-sm text-text-on-light/40 mb-1">주소</p>
                         <p className="text-text-on-light font-medium text-sm md:text-base">
                           {branches[activeBranch].address}
                         </p>
@@ -162,7 +165,7 @@ export default function LocationsContent() {
                         <Phone size={18} className="text-accent" />
                       </div>
                       <div>
-                        <p className="text-xs text-text-on-light/40 mb-1">전화</p>
+                        <p className="text-sm text-text-on-light/40 mb-1">전화</p>
                         <div className="space-y-1">
                           {branches[activeBranch].phone.map((num) => (
                             <Link
@@ -198,7 +201,7 @@ export default function LocationsContent() {
                           </svg>
                         </div>
                         <div>
-                          <p className="text-xs text-text-on-light/40 mb-1">
+                          <p className="text-sm text-text-on-light/40 mb-1">
                             강사진
                           </p>
                           <p className="text-text-on-light font-medium text-sm md:text-base">
@@ -219,14 +222,14 @@ export default function LocationsContent() {
                       href={branches[activeBranch].mapUrl}
                       target="_blank"
                       rel="noopener noreferrer nofollow"
-                      className="inline-flex items-center justify-center gap-2 bg-accent text-white hover:bg-accent/90 px-6 py-3.5 text-sm font-bold transition-all duration-300"
+                      className="inline-flex items-center justify-center gap-2 bg-accent text-white hover:bg-accent/90 px-6 py-3.5 text-sm md:text-base font-bold transition-all duration-300"
                     >
                       <MapPin size={16} />
                       길찾기
                     </Link>
                     <Link
                       href={`tel:${branches[activeBranch].phone[0].replace(/-/g, "")}`}
-                      className="inline-flex items-center justify-center gap-2 border border-text-on-light/20 text-text-on-light hover:border-accent hover:text-accent px-6 py-3.5 text-sm font-bold transition-all duration-300"
+                      className="inline-flex items-center justify-center gap-2 border border-text-on-light/20 text-text-on-light hover:border-accent hover:text-accent px-6 py-3.5 text-sm md:text-base font-bold transition-all duration-300"
                     >
                       <Phone size={16} />
                       전화 상담
@@ -236,7 +239,7 @@ export default function LocationsContent() {
                         href={branches[activeBranch].kakao!}
                         target="_blank"
                         rel="noopener noreferrer nofollow"
-                        className="inline-flex items-center justify-center gap-2 bg-[#FEE500] text-[#3C1E1E] hover:bg-[#FDD835] px-6 py-3.5 text-sm font-bold transition-all duration-300"
+                        className="inline-flex items-center justify-center gap-2 bg-[#FEE500] text-[#3C1E1E] hover:bg-[#FDD835] px-6 py-3.5 text-sm md:text-base font-bold transition-all duration-300"
                       >
                         <MessageCircle size={16} />
                         카카오톡 상담
@@ -272,15 +275,15 @@ export default function LocationsContent() {
                       : "border-white/10 hover:border-white/30"
                   }`}
                 >
-                  <span className="font-display text-xs tracking-[0.2em] text-gray-500 block mb-1">
+                  <span className="font-display text-sm tracking-[0.2em] text-gray-500 block mb-1">
                     {branch.nameEn}
                   </span>
                   <h3 className="text-lg font-bold text-white mb-2">
                     {branch.name}
                   </h3>
-                  <p className="text-sm text-gray-400 mb-1">{branch.address}</p>
-                  <p className="text-xs text-accent">{branch.landmark}</p>
-                  <div className="flex items-center gap-1 text-gray-500 text-xs mt-3">
+                  <p className="text-sm md:text-base text-gray-400 mb-1">{branch.address}</p>
+                  <p className="text-sm text-accent">{branch.landmark}</p>
+                  <div className="flex items-center gap-1 text-gray-500 text-sm mt-3">
                     자세히 보기
                     <ChevronRight size={12} />
                   </div>
@@ -349,7 +352,7 @@ export default function LocationsContent() {
             initial={{ opacity: 0 }}
             animate={hoursInView ? { opacity: 1 } : {}}
             transition={{ duration: 0.5, delay: 0.4 }}
-            className="text-gray-600 text-xs mt-6 text-center"
+            className="text-gray-600 text-sm mt-6 text-center"
           >
             * 공휴일은 운영시간이 변동될 수 있습니다. 방문 전 전화 확인 부탁드립니다.
           </motion.p>
@@ -372,12 +375,12 @@ export default function LocationsContent() {
           <p className="text-white text-xl md:text-2xl lg:text-3xl font-bold mb-4">
             여기서도 안 된다면, 어디서도 안 됩니다.
           </p>
-          <p className="text-white/80 text-sm md:text-base mb-8">
+          <p className="text-white/80 text-base md:text-lg mb-8">
             그만큼 확실한 커리큘럼, 직접 확인하세요.
           </p>
           <Link
             href="/contact"
-            className="inline-flex items-center gap-2 bg-white text-text-on-light hover:bg-black hover:text-white px-8 py-4 text-sm font-bold transition-all duration-300"
+            className="inline-flex items-center gap-2 bg-white text-text-on-light hover:bg-black hover:text-white px-8 py-4 text-base font-bold transition-all duration-300"
           >
             무료 상담 문의하기
           </Link>

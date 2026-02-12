@@ -28,7 +28,7 @@ const faqs = [
   {
     question: "과정별로 무엇이 다른지, 어떻게 진행되는지 궁금해요.",
     answer:
-      "3가지 과정으로 나누어져 있으며, 음치 고음불가 일반인부터 프로 가수까지 모두 동일한 레슨 과정을 통해 단계별로 성장할 수 있도록 설계되었습니다.\n\n• 기초 과정 — 발성 기본기 / 호흡 / 공명 / 성대 컨트롤\n• 심화 과정 — 노래 적용 / 음역대 확장 / 곡 해석 & 감정 표현\n• 프로페셔널 과정 — 완성도 높은 보컬 테크닉 / 다양한 장르 스타일링\n\n자세한 내용이 궁금하다면? 무료 상담을 통해 최적의 과정 안내를 받아보세요!",
+      "2가지 과정으로 나누어져 있으며, 음치 고음불가 일반인부터 프로 가수까지 모두 동일한 레슨 과정을 통해 단계별로 성장할 수 있도록 설계되었습니다.\n\n• 기본 과정 — 발성 기본기 / 호흡 / 공명 / 성대 컨트롤\n• 심화 과정 — 노래 적용 / 음역대 확장 / 곡 해석 & 감정 표현\n\n자세한 내용이 궁금하다면? 무료 상담을 통해 최적의 과정 안내를 받아보세요!",
   },
   {
     question: "과정별로 가격 차이가 있나요?",
@@ -99,7 +99,7 @@ export default function ProgramFAQ() {
                     transition={{ duration: 0.3 }}
                     className="overflow-hidden"
                   >
-                    <p className="text-gray-400 text-sm leading-relaxed pb-6 whitespace-pre-line">
+                    <p className="text-gray-400 text-sm md:text-base leading-relaxed pb-6 whitespace-pre-line">
                       {faq.answer}
                     </p>
                   </motion.div>

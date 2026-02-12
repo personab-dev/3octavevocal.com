@@ -30,6 +30,7 @@ body {
   background-color: var(--color-primary);
   color: var(--color-text);
   font-family: var(--font-sans);
+  word-break: keep-all;
 }
 
 /* Selection color */

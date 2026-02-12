@@ -15,8 +15,8 @@ export default function PainPointsSection() {
   const isInView = useInView(ref, { once: true, amount: 0.3 });
 
   return (
-    <section ref={ref} className="bg-white py-20 lg:py-28 relative overflow-hidden">
-      <div className="max-w-4xl mx-auto px-6">
+    <section ref={ref} className="bg-white py-24 lg:py-36 relative overflow-hidden">
+      <div className="max-w-5xl mx-auto px-6">
         {/* Headline */}
         <motion.div
           initial={{ opacity: 0, y: 30 }}
@@ -24,26 +24,26 @@ export default function PainPointsSection() {
           transition={{ duration: 0.7 }}
           className="text-center mb-16"
         >
-          <p className="text-text-on-light/70 text-base md:text-lg mb-4">
+          <p className="text-text-on-light/70 text-lg md:text-xl mb-4">
             아무리 연습해도 고음은 늘 제자리인가요?
           </p>
-          <h2 className="text-2xl md:text-3xl lg:text-4xl font-bold text-text-on-light">
-            <span className="bg-accent text-white px-2 py-1 inline-block">혼자서는</span> 답을 찾기 어렵습니다.
+          <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold text-text-on-light">
+            <span className="bg-accent text-white px-3 py-1 inline-block">혼자서는</span> 답을 찾기 어렵습니다.
           </h2>
         </motion.div>
 
         {/* Scattered speech bubbles */}
-        <div className="relative min-h-[400px] md:min-h-[500px]">
+        <div className="relative min-h-[450px] md:min-h-[550px]">
           {quotes.map((quote, index) => (
             <motion.div
               key={index}
               initial={{ opacity: 0, y: 30, rotate: -2 + index * 2 }}
               animate={isInView ? { opacity: 1, y: 0, rotate: -3 + index * 3 } : {}}
               transition={{ duration: 0.6, delay: 0.3 + index * 0.2 }}
-              className="absolute max-w-[320px]"
+              className="absolute max-w-[380px]"
               style={{ left: quote.x, top: quote.y }}
             >
-              <div className="bg-zinc-800/90 backdrop-blur-sm text-white px-5 py-4 text-sm md:text-base shadow-xl">
+              <div className="bg-zinc-800/90 backdrop-blur-sm text-white px-6 py-5 text-base md:text-lg shadow-xl">
                 <span className="text-gray-300">{quote.text}</span>{" "}
                 <span className="font-bold text-white">{quote.highlight}</span>
               </div>

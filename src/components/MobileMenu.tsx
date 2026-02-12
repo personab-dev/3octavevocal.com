@@ -26,10 +26,10 @@ const navItems = [
     },
     {
         label: "COMMUNITY",
-        href: "/community",
+        href: "/reviews",
         children: [
-            { label: "수강생 후기", href: "/community/reviews" },
-            { label: "발성 꿀팁", href: "/community/tips" },
+            { label: "수강생 후기", href: "/reviews" },
+            { label: "발성 꿀팁", href: "/tips" },
         ],
     },
     {
@@ -51,9 +51,8 @@ export default function MobileMenu({ scrolled }: { scrolled: boolean }) {
         <div className="lg:hidden">
             <button
                 onClick={toggleMenu}
-                className={`p-2 transition-colors duration-500 hover:text-accent ${
-                    scrolled ? "text-gray-800" : "text-white"
-                }`}
+                className={`p-2 transition-colors duration-500 hover:text-accent ${scrolled ? "text-gray-800" : "text-white"
+                    }`}
                 aria-label="Toggle menu"
             >
                 {isOpen ? <Icons.X size={24} /> : <Icons.Menu size={24} />}
@@ -75,8 +74,8 @@ export default function MobileMenu({ scrolled }: { scrolled: boolean }) {
                                             <button
                                                 onClick={() => toggleSubmenu(item.label)}
                                                 className={`flex items-center justify-between text-lg font-bold tracking-wider hover:text-accent transition-colors ${pathname.startsWith(item.href)
-                                                        ? "text-accent"
-                                                        : "text-white"
+                                                    ? "text-accent"
+                                                    : "text-white"
                                                     }`}
                                             >
                                                 {item.label}
@@ -99,7 +98,7 @@ export default function MobileMenu({ scrolled }: { scrolled: boolean }) {
                                                                 key={child.href}
                                                                 href={child.href}
                                                                 onClick={() => setIsOpen(false)}
-                                                                className="text-sm text-gray-400 hover:text-white py-1 block"
+                                                                className="text-base text-gray-400 hover:text-white py-1.5 block"
                                                             >
                                                                 {child.label}
                                                             </Link>
@@ -125,7 +124,7 @@ export default function MobileMenu({ scrolled }: { scrolled: boolean }) {
                             <Link
                                 href="/contact"
                                 onClick={() => setIsOpen(false)}
-                                className="block w-full text-center bg-accent hover:bg-white hover:text-black text-white px-6 py-3 font-bold transition-all text-sm tracking-widest"
+                                className="block w-full text-center bg-accent hover:bg-white hover:text-black text-white px-6 py-3.5 font-bold transition-all text-base tracking-widest"
                             >
                                 무료 상담 예약
                             </Link>

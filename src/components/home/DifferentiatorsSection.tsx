@@ -54,11 +54,11 @@ export default function DifferentiatorsSection() {
   const isInView = useInView(ref, { once: true, amount: 0.1 });
 
   return (
-    <section ref={ref} className="bg-white relative overflow-hidden">
+    <section ref={ref} className="bg-white relative">
       <div className="max-w-[1440px] mx-auto">
-        <div className="grid grid-cols-1 lg:grid-cols-[400px_1fr]">
+        <div className="grid grid-cols-1 lg:grid-cols-[560px_1fr]">
           {/* Left: Red sticky panel */}
-          <div className="lg:sticky lg:top-20 lg:self-start bg-accent p-8 lg:p-12 lg:min-h-[calc(100vh-80px)] flex flex-col justify-center relative overflow-hidden">
+          <div className="lg:sticky lg:top-0 lg:self-start bg-accent p-10 lg:p-16 lg:h-screen flex flex-col justify-center relative overflow-hidden">
             {/* Decorative geometric shapes */}
             <div className="absolute top-0 right-0 w-40 h-40 bg-black/10 -translate-y-1/2 translate-x-1/2 rotate-45" />
             <div className="absolute bottom-0 left-0 w-32 h-32 bg-black/10 translate-y-1/2 -translate-x-1/2 rotate-45" />
@@ -69,16 +69,16 @@ export default function DifferentiatorsSection() {
               transition={{ duration: 0.7 }}
               className="relative z-10"
             >
-              <h2 className="text-3xl md:text-4xl lg:text-5xl font-black text-white leading-tight">
+              <h2 className="text-4xl md:text-5xl lg:text-6xl font-black text-white leading-tight">
                 <span className="underline decoration-white decoration-4 underline-offset-4">7,000명+의 선택</span>에는<br />
                 다 이유가 있습니다.
               </h2>
-              <p className="text-white/80 text-sm md:text-base mt-6 leading-relaxed">
+              <p className="text-white/80 text-lg md:text-xl mt-6 leading-relaxed">
                 평생 무료 피드백 시스템으로 완성되는<br />소수정예 커리큘럼
               </p>
               <Link
                 href="/about/difference"
-                className="inline-flex items-center gap-2 bg-white text-text-on-light hover:bg-black hover:text-white px-6 py-3 text-sm font-bold mt-8 transition-all duration-300"
+                className="inline-flex items-center gap-2 bg-white text-text-on-light hover:bg-black hover:text-white px-8 py-4 text-lg font-bold mt-8 transition-all duration-300"
               >
                 차별점 자세히 알아보기
               </Link>
@@ -113,17 +113,17 @@ function DifferentiatorItem({
       initial={{ opacity: 0, y: 40 }}
       animate={isInView ? { opacity: 1, y: 0 } : {}}
       transition={{ duration: 0.6, delay: index * 0.1 }}
-      className="p-8 lg:p-12 lg:py-16"
+      className="p-10 lg:p-14 lg:py-20"
     >
       <div className="flex gap-6 lg:gap-10">
         {/* Number */}
-        <span className="text-4xl md:text-5xl font-bold text-gray-200 shrink-0">
+        <span className="text-5xl md:text-6xl font-bold text-gray-200 shrink-0">
           {item.number}
         </span>
 
         <div>
           {/* Title */}
-          <h3 className="text-xl md:text-2xl font-bold text-text-on-light whitespace-pre-line leading-snug mb-4">
+          <h3 className="text-2xl md:text-3xl font-bold text-text-on-light whitespace-pre-line leading-snug mb-5">
             {item.title.split(item.titleAccent).map((part, i, arr) =>
               i < arr.length - 1 ? (
                 <span key={i}>
@@ -139,18 +139,18 @@ function DifferentiatorItem({
           </h3>
 
           {/* Divider */}
-          <div className="w-full h-[1px] bg-gray-200 mb-4" />
+          <div className="w-full h-[1px] bg-gray-200 mb-5" />
 
           {/* Body */}
-          <p className="text-text-on-light/70 text-sm md:text-base leading-relaxed whitespace-pre-line mb-4">
+          <p className="text-text-on-light/70 text-lg md:text-xl leading-relaxed whitespace-pre-line mb-5">
             {item.body}
           </p>
 
           {/* Bullets */}
-          <ul className="space-y-2">
+          <ul className="space-y-2.5">
             {item.bullets.map((bullet, i) => (
-              <li key={i} className="flex items-start gap-2 text-sm text-text-on-light/70">
-                <span className="w-1 h-1 rounded-full bg-text-on-light/40 mt-2 shrink-0" />
+              <li key={i} className="flex items-start gap-2 text-base md:text-lg text-text-on-light/70">
+                <span className="w-1.5 h-1.5 rounded-full bg-text-on-light/40 mt-2.5 shrink-0" />
                 {bullet}
               </li>
             ))}

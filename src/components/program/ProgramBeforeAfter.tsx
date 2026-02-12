@@ -58,7 +58,7 @@ export default function ProgramBeforeAfter({
           transition={{ duration: 0.7 }}
           className="text-center mb-6"
         >
-          <p className="text-text-on-light/60 text-sm md:text-base mb-3">
+          <p className="text-text-on-light/60 text-base md:text-lg mb-3">
             수강 이후, 당신의 <strong className="text-text-on-light">고음</strong>은 이렇게 달라집니다.
           </p>
           <h2 className="text-2xl md:text-3xl lg:text-4xl font-bold text-text-on-light">
@@ -99,7 +99,7 @@ export default function ProgramBeforeAfter({
                     </div>
                   </div>
                 </div>
-                <p className="text-text-on-light text-xs md:text-sm leading-snug whitespace-pre-line group-hover:text-accent transition-colors">
+                <p className="text-text-on-light text-sm md:text-base leading-snug whitespace-pre-line group-hover:text-accent transition-colors">
                   {video.title}
                 </p>
               </Link>
@@ -117,12 +117,12 @@ export default function ProgramBeforeAfter({
           <p className="font-display text-sm tracking-[0.2em] text-text-on-light/40 mb-2">
             100% 찐 후기
           </p>
-          <p className="text-text-on-light/60 text-sm md:text-base mb-6">
+          <p className="text-text-on-light/60 text-base md:text-lg mb-6">
             {reviewLabel}
           </p>
           <Link
             href="/contact"
-            className="group inline-flex items-center gap-2 border border-accent text-accent hover:bg-accent hover:text-white px-6 py-3 text-sm font-bold tracking-wide transition-all duration-300"
+            className="group inline-flex items-center gap-2 border border-accent text-accent hover:bg-accent hover:text-white px-7 py-3.5 text-base font-bold tracking-wide transition-all duration-300"
           >
             100% 찐후기 보러가기
             <svg

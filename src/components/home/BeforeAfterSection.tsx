@@ -43,25 +43,25 @@ export default function BeforeAfterSection() {
   const isInView = useInView(ref, { once: true, amount: 0.2 });
 
   return (
-    <section ref={ref} className="bg-white py-20 lg:py-28">
+    <section ref={ref} className="bg-white py-24 lg:py-36">
       <div className="max-w-[1440px] mx-auto px-6">
         {/* Headline */}
         <motion.div
           initial={{ opacity: 0, y: 30 }}
           animate={isInView ? { opacity: 1, y: 0 } : {}}
           transition={{ duration: 0.7 }}
-          className="text-center mb-12"
+          className="text-center mb-14"
         >
-          <p className="text-text-on-light/60 text-sm md:text-base mb-3">
+          <p className="text-text-on-light/60 text-lg md:text-xl mb-3">
             단 10분, 첫 레슨만으로도 변화를 경험한 수강생들!
           </p>
-          <h2 className="text-2xl md:text-3xl lg:text-4xl font-bold text-text-on-light">
+          <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold text-text-on-light">
             <span className="text-accent font-black">BEFORE &amp; AFTER</span>로 직접 확인하세요
           </h2>
         </motion.div>
 
         {/* YouTube Shorts Grid */}
-        <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-4">
+        <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-5">
           {videos.map((video, index) => (
             <motion.div
               key={index}
@@ -86,7 +86,7 @@ export default function BeforeAfterSection() {
                   />
                   {/* Play icon overlay */}
                   <div className="absolute inset-0 bg-black/20 group-hover:bg-black/40 transition-colors flex items-center justify-center">
-                    <div className="w-12 h-12 rounded-full bg-accent/90 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity">
+                    <div className="w-14 h-14 rounded-full bg-accent/90 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity">
                       <svg width="16" height="18" viewBox="0 0 16 18" fill="white">
                         <path d="M0 0L16 9L0 18V0Z" />
                       </svg>
@@ -94,7 +94,7 @@ export default function BeforeAfterSection() {
                   </div>
                 </div>
                 {/* Title */}
-                <p className="text-text-on-light text-xs md:text-sm leading-snug whitespace-pre-line group-hover:text-accent transition-colors">
+                <p className="text-text-on-light text-base md:text-lg leading-snug whitespace-pre-line group-hover:text-accent transition-colors">
                   {video.title}
                 </p>
               </Link>

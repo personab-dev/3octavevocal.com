@@ -4,8 +4,8 @@ import Link from "next/link";
 import { usePathname } from "next/navigation";
 
 const tabs = [
-  { label: "수강생 후기", href: "/community/reviews" },
-  { label: "발성 꿀팁", href: "/community/tips" },
+  { label: "수강생 후기", href: "/reviews" },
+  { label: "발성 꿀팁", href: "/tips" },
 ];
 
 export default function CommunitySubNav() {
@@ -21,11 +21,10 @@ export default function CommunitySubNav() {
               <Link
                 key={tab.href}
                 href={tab.href}
-                className={`flex-1 py-4 text-center text-sm font-bold transition-colors duration-300 relative ${
-                  isActive
+                className={`flex-1 py-4 text-center text-sm font-bold transition-colors duration-300 relative ${isActive
                     ? "text-accent"
                     : "text-gray-500 hover:text-white"
-                }`}
+                  }`}
               >
                 {tab.label}
                 {isActive && (

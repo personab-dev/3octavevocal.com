@@ -124,7 +124,7 @@ export default function DifferenceContent() {
               <div className="absolute bottom-0 left-0 w-32 h-32 bg-black/10 translate-y-1/2 -translate-x-1/2 rotate-45" />
 
               <div className="relative z-10">
-                <p className="font-display text-sm tracking-[0.2em] text-white/60 mb-4">
+                <p className="font-display text-sm md:text-base tracking-[0.2em] text-white/60 mb-4">
                   3옥타브장인의 보컬교육
                 </p>
                 <h2 className="text-3xl md:text-4xl lg:text-5xl font-black text-white leading-tight">
@@ -138,7 +138,7 @@ export default function DifferenceContent() {
                 </h2>
                 <Link
                   href="/contact"
-                  className="inline-flex items-center gap-2 bg-white text-text-on-light hover:bg-black hover:text-white px-6 py-3 text-sm font-bold mt-8 transition-all duration-300"
+                  className="inline-flex items-center gap-2 bg-white text-text-on-light hover:bg-black hover:text-white px-7 py-3.5 text-base font-bold mt-8 transition-all duration-300"
                 >
                   무료 상담 예약
                 </Link>
@@ -168,7 +168,7 @@ export default function DifferenceContent() {
             transition={{ duration: 0.7 }}
             className="mb-12"
           >
-            <p className="text-gray-400 text-sm md:text-base mb-2">
+            <p className="text-gray-400 text-base md:text-lg mb-2">
               더 말이 필요 있을까요?
             </p>
             <h2 className="text-2xl md:text-3xl lg:text-4xl font-bold text-white">
@@ -191,7 +191,7 @@ export default function DifferenceContent() {
                   </span>
                   <span className="text-white/60 text-lg">{stat.suffix}</span>
                 </div>
-                <span className="text-gray-500 text-sm mt-2 block">
+                <span className="text-gray-500 text-sm md:text-base mt-2 block">
                   {stat.label}
                 </span>
               </motion.div>
@@ -209,7 +209,7 @@ export default function DifferenceContent() {
             transition={{ duration: 0.7 }}
             className="text-center mb-12"
           >
-            <p className="text-text-on-light/60 text-sm md:text-base mb-3">
+            <p className="text-text-on-light/60 text-base md:text-lg mb-3">
               보컬 레슨 후 변화가 궁금하신가요?
             </p>
             <h2 className="text-2xl md:text-3xl lg:text-4xl font-bold text-text-on-light">
@@ -249,7 +249,7 @@ export default function DifferenceContent() {
                       </div>
                     </div>
                   </div>
-                  <p className="text-text-on-light text-xs md:text-sm leading-snug whitespace-pre-line group-hover:text-accent transition-colors">
+                  <p className="text-text-on-light text-sm md:text-base leading-snug whitespace-pre-line group-hover:text-accent transition-colors">
                     {video.title}
                   </p>
                 </Link>
@@ -260,7 +260,7 @@ export default function DifferenceContent() {
           <div className="text-center mt-10">
             <Link
               href="/contact"
-              className="group inline-flex items-center gap-2 border border-accent text-accent hover:bg-accent hover:text-white px-6 py-3 text-sm font-bold tracking-wide transition-all duration-300"
+              className="group inline-flex items-center gap-2 border border-accent text-accent hover:bg-accent hover:text-white px-7 py-3.5 text-base font-bold tracking-wide transition-all duration-300"
             >
               100% 찐후기 보러가기
               <svg
@@ -293,12 +293,12 @@ export default function DifferenceContent() {
           <p className="text-white text-xl md:text-2xl lg:text-3xl font-bold mb-4">
             여기서도 안 된다면, 어디서도 안 됩니다.
           </p>
-          <p className="text-white/80 text-sm md:text-base mb-8">
+          <p className="text-white/80 text-base md:text-lg mb-8">
             그만큼 확실한 커리큘럼, 직접 확인하세요.
           </p>
           <Link
             href="/contact"
-            className="inline-flex items-center gap-2 bg-white text-text-on-light hover:bg-black hover:text-white px-8 py-4 text-sm font-bold transition-all duration-300"
+            className="inline-flex items-center gap-2 bg-white text-text-on-light hover:bg-black hover:text-white px-8 py-4 text-base font-bold transition-all duration-300"
           >
             무료 상담 문의하기
           </Link>
@@ -353,7 +353,7 @@ function DifferentiatorItem({
           <div className="w-full h-[1px] bg-gray-200 mb-4" />
 
           {/* Description */}
-          <p className="text-text-on-light/70 text-sm md:text-base leading-relaxed whitespace-pre-line mb-4">
+          <p className="text-text-on-light/70 text-base md:text-lg leading-relaxed whitespace-pre-line mb-4">
             {item.description}
           </p>
 
@@ -362,7 +362,7 @@ function DifferentiatorItem({
             {item.bullets.map((bullet, i) => (
               <li
                 key={i}
-                className="flex items-start gap-2 text-sm text-text-on-light/70"
+                className="flex items-start gap-2 text-sm md:text-base text-text-on-light/70"
               >
                 <span className="w-1 h-1 rounded-full bg-text-on-light/40 mt-2 shrink-0" />
                 {bullet}

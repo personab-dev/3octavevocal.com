@@ -61,7 +61,7 @@ export default function ReviewsContent() {
             transition={{ duration: 0.7 }}
             className="text-center"
           >
-            <p className="text-accent text-sm font-bold tracking-widest uppercase mb-4">
+            <p className="text-accent text-sm md:text-base font-bold tracking-widest uppercase mb-4">
               Student Reviews
             </p>
             <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold text-text-on-light leading-tight">
@@ -69,7 +69,7 @@ export default function ReviewsContent() {
               <br />
               <span className="text-accent">변화를 경험한 수강생들</span>
             </h2>
-            <p className="text-text-on-light/60 mt-6 max-w-xl mx-auto leading-relaxed">
+            <p className="text-text-on-light/60 text-base md:text-lg mt-6 max-w-xl mx-auto leading-relaxed">
               7,000명 이상의 수강생을 배출한 3옥타브장인 보컬학원의
               생생한 레슨 현장과 후기를 소개합니다.
             </p>
@@ -114,7 +114,7 @@ export default function ReviewsContent() {
       {/* CTA Section */}
       <section className="bg-black py-16 lg:py-20">
         <div className="max-w-3xl mx-auto px-6 text-center">
-          <p className="text-gray-400 text-sm mb-3 tracking-widest uppercase">
+          <p className="text-gray-400 text-sm md:text-base mb-3 tracking-widest uppercase">
             Start Your Change
           </p>
           <p className="text-xl md:text-2xl lg:text-3xl font-bold text-white mb-8 leading-snug">
@@ -125,7 +125,7 @@ export default function ReviewsContent() {
             href="/contact"
             whileHover={{ scale: 1.02 }}
             whileTap={{ scale: 0.98 }}
-            className="inline-flex items-center gap-2 bg-accent hover:bg-white hover:text-text-on-light text-white px-8 py-4 text-sm font-bold transition-colors duration-300"
+            className="inline-flex items-center gap-2 bg-accent hover:bg-white hover:text-text-on-light text-white px-8 py-4 text-base font-bold transition-colors duration-300"
           >
             무료 상담 예약하기
             <svg width="16" height="12" viewBox="0 0 16 12" fill="none">

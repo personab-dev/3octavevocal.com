@@ -16,19 +16,19 @@ export default function ProCurriculumSection() {
   const isInView = useInView(ref, { once: true, amount: 0.2 });
 
   return (
-    <section ref={ref} className="bg-white py-20 lg:py-28">
+    <section ref={ref} className="bg-white py-24 lg:py-36">
       <div className="max-w-[1200px] mx-auto px-6">
         {/* Headline */}
         <motion.div
           initial={{ opacity: 0, y: 30 }}
           animate={isInView ? { opacity: 1, y: 0 } : {}}
           transition={{ duration: 0.7 }}
-          className="text-center mb-6"
+          className="text-center mb-8"
         >
-          <p className="text-accent font-bold text-base md:text-lg mb-2">
+          <p className="text-accent font-bold text-lg md:text-xl mb-2">
             프로들도 배우는 커리큘럼
           </p>
-          <h2 className="text-2xl md:text-3xl lg:text-4xl font-bold text-text-on-light">
+          <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold text-text-on-light">
             <span className="text-accent">같은 방식 그대로 성장</span>할 수
             있습니다.
           </h2>
@@ -38,7 +38,7 @@ export default function ProCurriculumSection() {
           initial={{ opacity: 0, y: 20 }}
           animate={isInView ? { opacity: 1, y: 0 } : {}}
           transition={{ duration: 0.7, delay: 0.2 }}
-          className="text-center mb-12 text-text-on-light/60 text-sm md:text-base leading-relaxed"
+          className="text-center mb-14 text-text-on-light/60 text-lg md:text-xl leading-relaxed"
         >
           <p>프로들은 이유 없이 선택하지 않습니다.</p>
           <p>
@@ -51,7 +51,7 @@ export default function ProCurriculumSection() {
         </motion.div>
 
         {/* Artist Images Grid */}
-        <div className="grid grid-cols-2 md:grid-cols-4 gap-3 md:gap-4 mb-10">
+        <div className="grid grid-cols-2 md:grid-cols-4 gap-4 md:gap-5 mb-12">
           {artistImages.map((img, i) => (
             <motion.div
               key={img.src}
@@ -76,7 +76,7 @@ export default function ProCurriculumSection() {
           initial={{ opacity: 0, y: 20 }}
           animate={isInView ? { opacity: 1, y: 0 } : {}}
           transition={{ duration: 0.7, delay: 0.5 }}
-          className="grid grid-cols-1 md:grid-cols-2 gap-8 text-sm text-text-on-light/70 leading-relaxed"
+          className="grid grid-cols-1 md:grid-cols-2 gap-8 text-base md:text-lg text-text-on-light/70 leading-relaxed"
         >
           <div>
             <p>
