@@ -89,7 +89,7 @@ export default function Header() {
             >
               <Link
                 href={item.href}
-                className={`text-[15px] font-bold font-display tracking-[0.15em] transition-colors duration-500 flex items-center gap-1 ${scrolled
+                className={`text-base font-bold font-display tracking-[0.15em] transition-colors duration-500 flex items-center gap-1 ${scrolled
                     ? "text-gray-800 hover:text-accent"
                     : "text-white/90 hover:text-accent"
                   }`}
@@ -112,7 +112,7 @@ export default function Header() {
                     <Link
                       key={child.href}
                       href={child.href}
-                      className={`block px-6 py-3 text-[15px] transition-all duration-200 ${scrolled
+                      className={`block px-6 py-3 text-base transition-all duration-200 ${scrolled
                           ? "text-gray-500 hover:text-accent hover:bg-gray-50 hover:pl-8"
                           : "text-gray-400 hover:text-white hover:bg-white/5 hover:pl-8"
                         }`}
@@ -130,7 +130,7 @@ export default function Header() {
         <div className="hidden lg:block ml-8">
           <Link
             href="/contact"
-            className={`px-8 py-3 text-[15px] font-bold tracking-widest transition-all duration-500 uppercase ${scrolled
+            className={`px-8 py-3 text-base font-bold tracking-widest transition-all duration-500 uppercase ${scrolled
                 ? "border border-accent text-accent hover:bg-accent hover:text-white hover:shadow-[0_0_20px_rgba(230,32,77,0.3)]"
                 : "border border-accent/60 text-white hover:bg-accent hover:shadow-[0_0_20px_rgba(230,32,77,0.3)]"
               }`}

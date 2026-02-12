@@ -4,10 +4,10 @@ import { useRef } from "react";
 import { motion, useInView } from "framer-motion";
 
 const quotes = [
-  { text: "\"목이 아픈 게 정상인가?", highlight: "원래 다 이렇게 부르나?\"", x: "60%", y: "10%" },
-  { text: "\"연습할수록 목이 잠기는데,", highlight: "뭘 잘못한 거지?\"", x: "10%", y: "30%" },
-  { text: "\"유튜브 보고 연습했는데,", highlight: "왜 난 안 되지?\"", x: "45%", y: "50%" },
-  { text: "\"다른 사람들은 쉽게 부르던데,", highlight: "난왜 이렇게 힘들까?\"", x: "5%", y: "70%" },
+  { text: "\"목이 아픈 게 정상인가?", highlight: "원래 다 이렇게 부르나?\"", x: "50%", y: "5%" },
+  { text: "\"연습할수록 목이 잠기는데,", highlight: "뭘 잘못한 거지?\"", x: "5%", y: "28%" },
+  { text: "\"유튜브 보고 연습했는데,", highlight: "왜 난 안 되지?\"", x: "35%", y: "52%" },
+  { text: "\"다른 사람들은 쉽게 부르던데,", highlight: "난왜 이렇게 힘들까?\"", x: "3%", y: "76%" },
 ];
 
 export default function PainPointsSection() {
@@ -32,18 +32,36 @@ export default function PainPointsSection() {
           </h2>
         </motion.div>
 
-        {/* Scattered speech bubbles */}
-        <div className="relative min-h-[450px] md:min-h-[550px]">
+        {/* Mobile: stacked layout */}
+        <div className="flex flex-col gap-4 md:hidden">
+          {quotes.map((quote, index) => (
+            <motion.div
+              key={index}
+              initial={{ opacity: 0, x: index % 2 === 0 ? -20 : 20 }}
+              animate={isInView ? { opacity: 1, x: 0 } : {}}
+              transition={{ duration: 0.5, delay: 0.2 + index * 0.15 }}
+              className={index % 2 === 0 ? "self-start max-w-[85%]" : "self-end max-w-[85%]"}
+            >
+              <div className="bg-zinc-800/90 backdrop-blur-sm text-white px-7 py-6 text-lg shadow-xl">
+                <span className="text-gray-300">{quote.text}</span>{" "}
+                <span className="font-bold text-white">{quote.highlight}</span>
+              </div>
+            </motion.div>
+          ))}
+        </div>
+
+        {/* Desktop: scattered absolute layout */}
+        <div className="relative min-h-[620px] hidden md:block">
           {quotes.map((quote, index) => (
             <motion.div
               key={index}
               initial={{ opacity: 0, y: 30, rotate: -2 + index * 2 }}
               animate={isInView ? { opacity: 1, y: 0, rotate: -3 + index * 3 } : {}}
               transition={{ duration: 0.6, delay: 0.3 + index * 0.2 }}
-              className="absolute max-w-[380px]"
+              className="absolute max-w-[420px]"
               style={{ left: quote.x, top: quote.y }}
             >
-              <div className="bg-zinc-800/90 backdrop-blur-sm text-white px-6 py-5 text-base md:text-lg shadow-xl">
+              <div className="bg-zinc-800/90 backdrop-blur-sm text-white px-8 py-6 text-lg lg:text-xl shadow-xl">
                 <span className="text-gray-300">{quote.text}</span>{" "}
                 <span className="font-bold text-white">{quote.highlight}</span>
               </div>
