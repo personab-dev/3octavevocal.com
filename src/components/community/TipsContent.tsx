@@ -1,8 +1,8 @@
 "use client";
 
-import { useRef, useState } from "react";
+import { useRef } from "react";
 import Image from "next/image";
-import { motion, useInView, AnimatePresence } from "framer-motion";
+import { motion, useInView } from "framer-motion";
 import PageHero from "@/components/PageHero";
 import CommunitySubNav from "./CommunitySubNav";
 
@@ -12,61 +12,69 @@ const tipCards = [
     alt: "유튜브 보고 백날 따라해도 고음 안 뚫리는 이유 - 해결법 공개",
     width: 1547,
     height: 880,
+    youtube: "https://www.youtube.com/watch?v=EHubyOKJD0I",
   },
   {
     src: "/images/community/tips/tip-02.png",
     alt: "믹스 보이스 이렇게 연습 안하면 평생 2옥타브 솔이야",
     width: 1547,
     height: 880,
+    youtube: "https://www.youtube.com/watch?v=vTDXCwryPIc",
   },
   {
     src: "/images/community/tips/tip-03.png",
     alt: "AI 기술로도 불가능한 박효신만의 비밀",
     width: 1547,
     height: 880,
+    youtube: "https://www.youtube.com/watch?v=8lDDz8UCeog",
   },
   {
     src: "/images/community/tips/tip-04.png",
-    alt: "3옥타브장인 보컬 꿀팁 4",
+    alt: "2옥타브 라 이상 쌉가능! 진짜 고음 뚫리는 연습법 (Feat. 믹스 보이스)",
     width: 1547,
     height: 880,
+    youtube: "https://www.youtube.com/watch?v=DqrkPfChE7Q",
   },
   {
     src: "/images/community/tips/tip-05.png",
-    alt: "3옥타브장인 보컬 꿀팁 5",
+    alt: "이게 안되면 평생 고음 불가 - 고음 필수 조건 1가지 (99% 일반인들은 모름)",
     width: 1547,
     height: 880,
+    youtube: "https://www.youtube.com/watch?v=ht9yyOPDXlc",
   },
   {
     src: "/images/community/tips/tip-06.png",
-    alt: "3옥타브장인 보컬 꿀팁 6",
+    alt: "박효신 VS 김범수 - 둘 중에 누가 더 잘한다고?",
     width: 1547,
     height: 880,
+    youtube: "https://www.youtube.com/watch?v=6oSPrX7Q17g",
   },
   {
     src: "/images/community/tips/tip-07.png",
-    alt: "3옥타브장인 보컬 꿀팁 7",
+    alt: "나얼 애드리브 너무 빡세네요 - 브라운 아이드 소울 Love Ballad",
     width: 1547,
     height: 880,
+    youtube: "https://www.youtube.com/watch?v=QSPJyWjo6sk",
   },
   {
     src: "/images/community/tips/tip-08.png",
-    alt: "3옥타브장인 보컬 꿀팁 8",
+    alt: "노래 연습을 해도 실력이 제자리인 이유",
     width: 1547,
     height: 880,
+    youtube: "https://www.youtube.com/watch?v=QWtooMTgBVc",
   },
   {
     src: "/images/community/tips/tip-09.png",
-    alt: "3옥타브장인 보컬 꿀팁 9",
+    alt: "반가성 VS 믹스 보이스 이 영상으로 종결합니다",
     width: 1547,
     height: 880,
+    youtube: "https://www.youtube.com/watch?v=CeAovSqR5gE",
   },
 ];
 
 export default function TipsContent() {
   const gridRef = useRef<HTMLElement>(null);
   const gridInView = useInView(gridRef, { once: true, amount: 0.1 });
-  const [selectedImage, setSelectedImage] = useState<number | null>(null);
 
   return (
     <>
@@ -85,7 +93,7 @@ export default function TipsContent() {
             transition={{ duration: 0.7 }}
             className="text-center"
           >
-            <p className="text-accent text-sm font-bold tracking-widest uppercase mb-4">
+            <p className="text-accent text-sm md:text-base font-bold tracking-widest uppercase mb-4">
               Hot Tip
             </p>
             <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold text-text-on-light leading-tight">
@@ -93,7 +101,7 @@ export default function TipsContent() {
               <br />
               <span className="text-accent">발성 꿀팁</span>
             </h2>
-            <p className="text-text-on-light/60 mt-6 max-w-xl mx-auto leading-relaxed">
+            <p className="text-text-on-light/60 text-base md:text-lg mt-6 max-w-xl mx-auto leading-relaxed">
               고음 발성법, 호흡 조절, 성대 컨트롤 등
               3옥타브장인 보컬학원의 핵심 보컬 팁을 확인하세요.
             </p>
@@ -103,16 +111,18 @@ export default function TipsContent() {
 
       {/* Tips Grid */}
       <section ref={gridRef} className="bg-zinc-50 py-16 lg:py-24">
-        <div className="max-w-6xl mx-auto px-6">
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 lg:gap-6">
+        <div className="max-w-7xl mx-auto px-6">
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5 lg:gap-8">
             {tipCards.map((tip, index) => (
-              <motion.button
+              <motion.a
                 key={tip.src}
+                href={tip.youtube}
+                target="_blank"
+                rel="noopener noreferrer nofollow"
                 initial={{ opacity: 0, y: 30 }}
                 animate={gridInView ? { opacity: 1, y: 0 } : {}}
                 transition={{ duration: 0.5, delay: index * 0.08 }}
-                onClick={() => setSelectedImage(index)}
-                className="group relative aspect-video overflow-hidden bg-gray-200 cursor-pointer rounded-lg shadow-sm hover:shadow-lg transition-shadow duration-300"
+                className="group relative aspect-video overflow-hidden bg-gray-200 cursor-pointer rounded-xl shadow-md hover:shadow-2xl transition-all duration-300"
               >
                 <Image
                   src={tip.src}
@@ -121,8 +131,14 @@ export default function TipsContent() {
                   height={tip.height}
                   className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
                 />
-                <div className="absolute inset-0 bg-black/0 group-hover:bg-black/10 transition-colors duration-300" />
-              </motion.button>
+                <div className="absolute inset-0 bg-black/0 group-hover:bg-black/30 transition-colors duration-300 flex items-center justify-center">
+                  <div className="w-14 h-14 rounded-full bg-red-600 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300 shadow-lg">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="white">
+                      <path d="M8 5v14l11-7z" />
+                    </svg>
+                  </div>
+                </div>
+              </motion.a>
             ))}
           </div>
         </div>
@@ -131,7 +147,7 @@ export default function TipsContent() {
       {/* CTA Section */}
       <section className="bg-black py-16 lg:py-20">
         <div className="max-w-3xl mx-auto px-6 text-center">
-          <p className="text-gray-400 text-sm mb-3 tracking-widest uppercase">
+          <p className="text-gray-400 text-sm md:text-base mb-3 tracking-widest uppercase">
             Level Up Your Voice
           </p>
           <p className="text-xl md:text-2xl lg:text-3xl font-bold text-white mb-8 leading-snug">
@@ -143,7 +159,7 @@ export default function TipsContent() {
             href="/contact"
             whileHover={{ scale: 1.02 }}
             whileTap={{ scale: 0.98 }}
-            className="inline-flex items-center gap-2 bg-accent hover:bg-white hover:text-text-on-light text-white px-8 py-4 text-sm font-bold transition-colors duration-300"
+            className="inline-flex items-center gap-2 bg-accent hover:bg-white hover:text-text-on-light text-white px-8 py-4 text-base font-bold transition-colors duration-300"
           >
             무료 상담 예약하기
             <svg width="16" height="12" viewBox="0 0 16 12" fill="none">
@@ -152,69 +168,6 @@ export default function TipsContent() {
           </motion.a>
         </div>
       </section>
-
-      {/* Lightbox */}
-      <AnimatePresence>
-        {selectedImage !== null && (
-          <motion.div
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            exit={{ opacity: 0 }}
-            className="fixed inset-0 z-[100] bg-black/90 flex items-center justify-center p-4"
-            onClick={() => setSelectedImage(null)}
-          >
-            <motion.div
-              initial={{ scale: 0.9, opacity: 0 }}
-              animate={{ scale: 1, opacity: 1 }}
-              exit={{ scale: 0.9, opacity: 0 }}
-              className="relative max-w-5xl w-full"
-              onClick={(e) => e.stopPropagation()}
-            >
-              <Image
-                src={tipCards[selectedImage].src}
-                alt={tipCards[selectedImage].alt}
-                width={tipCards[selectedImage].width}
-                height={tipCards[selectedImage].height}
-                className="w-full h-auto rounded-lg"
-              />
-
-              <button
-                onClick={() => setSelectedImage(null)}
-                className="absolute -top-12 right-0 text-white/70 hover:text-white transition-colors"
-              >
-                <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
-                  <path d="M18 6L6 18M6 6L18 18" stroke="currentColor" strokeWidth="2" strokeLinecap="round" />
-                </svg>
-              </button>
-
-              <div className="absolute top-1/2 -translate-y-1/2 -left-12 lg:-left-16">
-                <button
-                  onClick={() =>
-                    setSelectedImage((selectedImage - 1 + tipCards.length) % tipCards.length)
-                  }
-                  className="w-10 h-10 rounded-full bg-white/10 hover:bg-white/20 flex items-center justify-center text-white transition-colors"
-                >
-                  <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
-                    <path d="M10 3L5 8L10 13" stroke="currentColor" strokeWidth="2" strokeLinecap="round" />
-                  </svg>
-                </button>
-              </div>
-              <div className="absolute top-1/2 -translate-y-1/2 -right-12 lg:-right-16">
-                <button
-                  onClick={() =>
-                    setSelectedImage((selectedImage + 1) % tipCards.length)
-                  }
-                  className="w-10 h-10 rounded-full bg-white/10 hover:bg-white/20 flex items-center justify-center text-white transition-colors"
-                >
-                  <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
-                    <path d="M6 3L11 8L6 13" stroke="currentColor" strokeWidth="2" strokeLinecap="round" />
-                  </svg>
-                </button>
-              </div>
-            </motion.div>
-          </motion.div>
-        )}
-      </AnimatePresence>
     </>
   );
 }
