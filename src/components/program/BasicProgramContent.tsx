@@ -3,323 +3,561 @@
 import Link from "next/link";
 import { useRef } from "react";
 import { motion, useInView } from "framer-motion";
-import { Check } from "lucide-react";
+import {
+  Check,
+  Wind,
+  Mic,
+  Music,
+  MessageCircle,
+  Users,
+} from "lucide-react";
 import PageHero from "@/components/PageHero";
 import ProgramSubNav from "./ProgramSubNav";
 import ProgramBeforeAfter from "./ProgramBeforeAfter";
 import ProgramFAQ from "./ProgramFAQ";
 
-const curriculumItems = [
+/* ── Data ─────────────────────────────────────────── */
+
+const worries = [
+  "고음이 안 나와서",
+  "목이 아파서",
+  "내 목소리가 싫어서...",
+];
+
+const curriculumDetails = [
   {
     number: "01",
     title: "호흡",
-    description:
-      "올바른 복식호흡과 호흡 컨트롤. 노래의 기본 중의 기본인 호흡부터 제대로 잡아드립니다. 안정적인 호흡이 있어야 발성이 가능합니다.",
+    subtitle: "고음이 뚫리는 기본기",
+    icon: Wind,
+    items: [
+      "기초 호흡법 (안정적인 호흡 조절)",
+      "호흡 밸런스 훈련 (불필요한 힘 빼고, 필요한 힘만 쓰는 법)",
+      "호흡근 강화 (숨이 차지 않고 지치지 않는 가창력)",
+      "호흡 컨트롤 (호흡 사용 최적화)",
+    ],
   },
   {
     number: "02",
-    title: "공명",
-    description:
-      "공명 위치를 이해하고 활용하는 방법. 목소리가 풍성해지고, 적은 힘으로도 큰 소리를 낼 수 있는 비밀이 바로 공명에 있습니다.",
+    title: "위치",
+    subtitle: "소리를 컨트롤하는 핵심 기술",
+    icon: Mic,
+    items: [
+      "소리의 위치 이해 (답답한 소리를 시원하게 변환)",
+      "성대 컨트롤 (같은 고음도 강하게&부드럽게, 원하는대로!)",
+      "톤 & 감정 (단순한 발음이 아닌, 감정이 묻어나는 소리 만들기)",
+      "모음/자음 발음 교정 (가사가 또렷하게 전달되는 선명한 발성)",
+      "목에 힘빼기 & 공명 훈련 (힘으로 밀지 않아도 뚫리는 고음)",
+    ],
   },
   {
     number: "03",
-    title: "성대 컨트롤",
-    description:
-      "성대 근육의 해부학적 이해와 컨트롤. 과학적/해부학적 접근으로 성대를 올바르게 사용하는 방법을 배웁니다.",
-  },
-  {
-    number: "04",
     title: "피치",
-    description:
-      "정확한 음정과 음역대 확장. 저음과 고음의 경계선이 없어지고, 모든 음역대에서의 이동과 표현이 자유로워집니다.",
+    subtitle: "초고음까지 음역대를 확장하는 기술",
+    icon: Music,
+    items: [
+      "고음 확장 (힘으로 밀지 않아도 시원하게 올라가는 고음)",
+      "성구 전환 & 통합 (저음에서 고음을 이질감 없이 넘나들 수 있다!)",
+      "고음 컨트롤 능력 강화 (성대를 보호하면서 초고음까지 음역대 확장)",
+    ],
   },
 ];
 
-const checklist = [
-  "고음에서 목이 조이고, 쥐어짜는 느낌이 든다",
-  "노래할 때 목이 금방 아프거나 쉰다",
-  "음정이 불안정하고 자꾸 흔들린다",
-  "호흡이 부족해서 긴 음을 유지하지 못한다",
-  "노래방에서 목소리가 마이크에 실리지 않는다",
-  "독학으로 연습했는데 실력이 제자리다",
+const checklistCategories = [
+  {
+    title: "고음 & 음역대",
+    items: [
+      "고음 구간만 나오면 목이 조이면서 소리가 안 나와요",
+      "2옥타브 라(A4) 이상은 아예 시도도 못해요",
+      "음을 지르면 지를수록 점점 더 안 나와요",
+    ],
+  },
+  {
+    title: "목 상태 & 호흡",
+    items: [
+      "노래 한 곡만 불러도 목이 쉬어버려요",
+      "호흡이 짧아서 한 소절도 못 끝내겠어요",
+      "가슴이나 어깨로 숨을 쉬는 것 같아요",
+    ],
+  },
+  {
+    title: "발음 & 톤",
+    items: [
+      "고음 부분에서는 발음이 전혀 안 돼요",
+      "목소리가 너무 얇고 약해서 콤플렉스에요",
+      "삑사리가 너무 심해서 노래방을 갈 때마다 겁이 나요",
+    ],
+  },
 ];
 
-const instructorFeatures = [
-  {
-    title: "6개월 이상 자체교육",
-    description: "체계적인 자체교육 과정을 이수한 검증된 강사진",
-  },
-  {
-    title: "3개월 인턴 기간",
-    description:
-      "커리큘럼을 완전히 이해하고 가르칠 수 있는 수준이 되어야 합니다",
-  },
-  {
-    title: "프리랜서 NO, 정직원 강사",
-    description:
-      "프리랜서가 아닌 정직원 강사진으로 구성. 책임감 있는 교육을 보장합니다",
-  },
-  {
-    title: "원장 직접 피드백",
-    description:
-      "김윤민 원장이 모든 강사의 수업을 모니터링하고 직접 피드백합니다",
-  },
+const expertList = [
+  "WHO 공인 중국침구의",
+  "대한통증척수학회 전문의",
+  "Carrick's 카이로프랙틱 전문가",
 ];
+
+/* ── Component ────────────────────────────────────── */
 
 export default function BasicProgramContent() {
-  const introRef = useRef<HTMLElement>(null);
-  const introInView = useInView(introRef, { once: true, amount: 0.2 });
-  const curriculumRef = useRef<HTMLElement>(null);
-  const curriculumInView = useInView(curriculumRef, { once: true, amount: 0.1 });
-  const checklistRef = useRef<HTMLElement>(null);
-  const checklistInView = useInView(checklistRef, { once: true, amount: 0.2 });
-  const instructorRef = useRef<HTMLElement>(null);
-  const instructorInView = useInView(instructorRef, { once: true, amount: 0.1 });
-  const resultRef = useRef<HTMLElement>(null);
-  const resultInView = useInView(resultRef, { once: true, amount: 0.2 });
+  const hookRef = useRef<HTMLElement>(null);
+  const hookInView = useInView(hookRef, { once: true, amount: 0.2 });
+
+  const approachRef = useRef<HTMLElement>(null);
+  const approachInView = useInView(approachRef, { once: true, amount: 0.15 });
+
+  const compareRef = useRef<HTMLElement>(null);
+  const compareInView = useInView(compareRef, { once: true, amount: 0.15 });
+
+  const currRef = useRef<HTMLElement>(null);
+  const currInView = useInView(currRef, { once: true, amount: 0.1 });
+
+  const instrRef = useRef<HTMLElement>(null);
+  const instrInView = useInView(instrRef, { once: true, amount: 0.15 });
+
+  const checkRef = useRef<HTMLElement>(null);
+  const checkInView = useInView(checkRef, { once: true, amount: 0.1 });
 
   return (
     <>
+      {/* ── 1. PageHero ──────────────────────────── */}
       <PageHero
         heading="기본 교육과정"
         subheading="Basic Vocal Training"
-        description="발성의 기본인 호흡, 위치, 피치를 체계적으로 배우는 기초 보컬 트레이닝"
+        description="발성의 기본 — 호흡, 위치, 피치를 체계적으로 배우는 기초 보컬 트레이닝"
       />
+
+      {/* ── 2. ProgramSubNav ─────────────────────── */}
       <ProgramSubNav />
 
-      {/* Section 1: Intro */}
-      <section ref={introRef} className="bg-black py-20 lg:py-28">
-        <div className="max-w-5xl mx-auto px-6">
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-16 items-center">
-            <motion.div
-              initial={{ opacity: 0, x: -30 }}
-              animate={introInView ? { opacity: 1, x: 0 } : {}}
-              transition={{ duration: 0.7 }}
-            >
-              <p className="text-accent text-sm font-bold tracking-widest uppercase mb-4">
-                7,000명+이 검증한
-              </p>
-              <h2 className="text-3xl md:text-4xl font-bold text-white leading-snug mb-6">
-                단 하나의{" "}
-                <span className="text-accent">발성 기본 커리큘럼</span>
-              </h2>
-              <p className="text-gray-400 text-sm md:text-base leading-relaxed mb-6">
-                학원비로 중형차 한 대 태운 수강생, 20분 만에 고쳤습니다.
-                <br />
-                주먹구구식 강의가 아닌{" "}
-                <span className="text-white font-bold">
-                  &lsquo;진짜&rsquo; 발성 강의
-                </span>
-                입니다.
-              </p>
-              <p className="text-gray-400 text-sm md:text-base leading-relaxed">
-                발성의 기본인 호흡, 위치, 피치에 대한 수업을 진행합니다. 발성이
-                완성됐을 때 비로소 노래를 할 수 있는 사람이 됩니다.{" "}
-                <span className="text-white font-bold">
-                  기본적인 호흡, 발성부터 단계별로 진행
-                </span>
-                하며, 완전 초보자도 부담 없이 시작할 수 있습니다.
-              </p>
-            </motion.div>
+      {/* ── 3. Hook Section ──────────────────────── */}
+      <section ref={hookRef} className="bg-black py-20 lg:py-28">
+        <div className="max-w-5xl mx-auto px-6 text-center">
+          <motion.p
+            initial={{ opacity: 0, y: 20 }}
+            animate={hookInView ? { opacity: 1, y: 0 } : {}}
+            transition={{ duration: 0.6 }}
+            className="text-accent text-sm md:text-base font-bold tracking-widest mb-6"
+          >
+            7천명+이 검증한 단 하나의 발성 기본 커리큘럼
+          </motion.p>
 
-            <motion.div
-              initial={{ opacity: 0, x: 30 }}
-              animate={introInView ? { opacity: 1, x: 0 } : {}}
-              transition={{ duration: 0.7, delay: 0.2 }}
-              className="relative"
-            >
-              <div className="aspect-[4/3] bg-zinc-900 relative overflow-hidden">
-                <div className="absolute inset-0 bg-gradient-to-br from-accent/10 to-transparent" />
-                <div className="absolute inset-0 flex items-center justify-center">
-                  <div className="text-center">
-                    <p className="font-display text-6xl md:text-7xl text-white/10">
-                      BASIC
-                    </p>
-                    <p className="text-accent text-sm tracking-widest mt-2">
-                      VOCAL TRAINING
-                    </p>
-                  </div>
-                </div>
-              </div>
-            </motion.div>
+          <motion.h2
+            initial={{ opacity: 0, y: 20 }}
+            animate={hookInView ? { opacity: 1, y: 0 } : {}}
+            transition={{ duration: 0.7, delay: 0.1 }}
+            className="text-2xl md:text-3xl lg:text-[2.5rem] font-bold text-white leading-snug mb-14"
+          >
+            학원비로 중형차 한 대 태운 수강생,
+            <br />
+            <span className="text-accent">20분 만에</span> 고쳤습니다.
+          </motion.h2>
+
+          {/* Worry Bubbles */}
+          <div className="flex flex-wrap justify-center gap-4 mb-16">
+            {worries.map((text, i) => (
+              <motion.div
+                key={i}
+                initial={{ opacity: 0, y: 16 }}
+                animate={hookInView ? { opacity: 1, y: 0 } : {}}
+                transition={{ duration: 0.5, delay: 0.3 + i * 0.15 }}
+                className="bg-zinc-800/80 border border-white/10 rounded-full px-6 py-3 text-gray-300 text-sm md:text-base"
+              >
+                &ldquo;{text}&rdquo;
+              </motion.div>
+            ))}
           </div>
         </div>
+
+        {/* Accent Bridge */}
+        <motion.div
+          initial={{ opacity: 0 }}
+          animate={hookInView ? { opacity: 1 } : {}}
+          transition={{ duration: 0.7, delay: 0.7 }}
+          className="bg-accent py-5"
+        >
+          <p className="text-center text-white text-base md:text-lg font-bold tracking-wide">
+            당신의 고민, 모두 <span className="underline underline-offset-4">발성</span>에서 시작됩니다.
+          </p>
+        </motion.div>
       </section>
 
-      {/* Section 2: Curriculum */}
-      <section ref={curriculumRef} className="bg-white py-20 lg:py-28">
+      {/* ── 4. Curriculum Approach ────────────────── */}
+      <section ref={approachRef} className="bg-white py-20 lg:py-28">
         <div className="max-w-5xl mx-auto px-6">
           <motion.div
             initial={{ opacity: 0, y: 30 }}
-            animate={curriculumInView ? { opacity: 1, y: 0 } : {}}
+            animate={approachInView ? { opacity: 1, y: 0 } : {}}
             transition={{ duration: 0.7 }}
             className="text-center mb-16"
           >
-            <p className="text-text-on-light/50 text-sm mb-3 tracking-widest uppercase">
-              Curriculum
+            <p className="text-text-on-light/50 text-sm mb-3 tracking-widest">
+              주먹구구식 강의가 아닌 &lsquo;진짜&rsquo; 발성강의
             </p>
             <h2 className="text-2xl md:text-3xl lg:text-4xl font-bold text-text-on-light">
-              <span className="text-accent">15년의</span> 발성과정 커리큘럼
+              매일을 고민하며 쌓아온,{" "}
+              <span className="text-accent">15년</span>의 발성과정 커리큘럼
             </h2>
-            <p className="text-text-on-light/60 text-sm md:text-base mt-4 max-w-2xl mx-auto">
-              과학적이고 체계적인 발성 원리를 기반으로, 누구나 노래를 잘 부를 수
-              있도록 설계된 커리큘럼입니다.
-            </p>
           </motion.div>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-6 lg:gap-8">
-            {curriculumItems.map((item, index) => (
-              <motion.div
-                key={item.number}
-                initial={{ opacity: 0, y: 30 }}
-                animate={curriculumInView ? { opacity: 1, y: 0 } : {}}
-                transition={{ duration: 0.5, delay: 0.1 + index * 0.1 }}
-                className="border border-gray-200 p-8 lg:p-10 relative overflow-hidden group hover:border-accent transition-colors duration-300"
-              >
-                <span className="font-display text-5xl text-gray-100 group-hover:text-accent/10 transition-colors duration-300 leading-none">
-                  {item.number}
-                </span>
-                <h3 className="text-xl font-bold text-text-on-light mt-4 mb-3">
-                  {item.title}
-                </h3>
-                <div className="w-12 h-[2px] bg-accent mb-4" />
-                <p className="text-sm text-text-on-light/60 leading-relaxed">
-                  {item.description}
-                </p>
-              </motion.div>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      {/* Section 3: Checklist */}
-      <section ref={checklistRef} className="bg-zinc-900 py-20 lg:py-28">
-        <div className="max-w-3xl mx-auto px-6">
+          {/* Row 1 */}
           <motion.div
             initial={{ opacity: 0, y: 30 }}
-            animate={checklistInView ? { opacity: 1, y: 0 } : {}}
-            transition={{ duration: 0.7 }}
-            className="text-center mb-12"
+            animate={approachInView ? { opacity: 1, y: 0 } : {}}
+            transition={{ duration: 0.6, delay: 0.15 }}
+            className="grid grid-cols-1 lg:grid-cols-2 gap-6 mb-6"
           >
-            <p className="font-display text-sm tracking-[0.2em] text-gray-500 mb-3">
-              CHECKLIST
-            </p>
-            <h2 className="text-2xl md:text-3xl lg:text-4xl font-bold text-white">
-              내 발성의 문제는{" "}
-              <span className="text-accent">뭘까?</span>
-            </h2>
-            <p className="text-gray-400 text-sm md:text-base mt-4">
-              아래 항목 중 하나라도 해당된다면, 기본 과정이 필요합니다.
-            </p>
+            <div className="bg-zinc-900 p-10 lg:p-12 flex flex-col justify-center">
+              <span className="font-display text-5xl text-accent/20 leading-none mb-4">
+                01
+              </span>
+              <h3 className="text-xl md:text-2xl font-bold text-white mb-3">
+                누구나 이해 가능한
+                <br />
+                체계적인 발성 교육
+              </h3>
+              <div className="w-10 h-[2px] bg-accent" />
+            </div>
+            <div className="flex flex-col justify-center p-6 lg:p-10">
+              <p className="text-text-on-light/70 text-base md:text-lg leading-relaxed">
+                해부학, 생리학, 음성학 기반의 체계적 발성 훈련 커리큘럼.
+                <br className="hidden md:block" />
+                과학적 원리를 이해하면, 누구나 올바른 발성을 할 수 있습니다.
+              </p>
+            </div>
           </motion.div>
 
-          <div className="space-y-4">
-            {checklist.map((item, index) => (
-              <motion.div
-                key={index}
-                initial={{ opacity: 0, x: -20 }}
-                animate={checklistInView ? { opacity: 1, x: 0 } : {}}
-                transition={{ duration: 0.4, delay: 0.1 + index * 0.08 }}
-                className="flex items-start gap-4 p-4 border border-white/10 hover:border-accent/50 transition-colors duration-300"
-              >
-                <div className="w-6 h-6 shrink-0 bg-accent/20 flex items-center justify-center mt-0.5">
-                  <Check size={14} className="text-accent" />
-                </div>
-                <p className="text-white text-sm md:text-base">{item}</p>
-              </motion.div>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      {/* Section 4: Instructors */}
-      <section ref={instructorRef} className="bg-black py-20 lg:py-28">
-        <div className="max-w-5xl mx-auto px-6">
+          {/* Row 2 */}
           <motion.div
             initial={{ opacity: 0, y: 30 }}
-            animate={instructorInView ? { opacity: 1, y: 0 } : {}}
-            transition={{ duration: 0.7 }}
-            className="text-center mb-16"
+            animate={approachInView ? { opacity: 1, y: 0 } : {}}
+            transition={{ duration: 0.6, delay: 0.3 }}
+            className="grid grid-cols-1 lg:grid-cols-2 gap-6"
           >
-            <p className="font-display text-sm tracking-[0.2em] text-gray-500 mb-3">
-              INSTRUCTORS
-            </p>
-            <h2 className="text-2xl md:text-3xl lg:text-4xl font-bold text-white">
-              <span className="text-accent">최정예</span> 강사진
-            </h2>
-            <p className="text-gray-400 text-sm md:text-base mt-4 max-w-2xl mx-auto">
-              6개월 이상의 체계적인 자체교육을 거쳐 검증된 강사만 채용합니다.
-            </p>
-          </motion.div>
-
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-            {instructorFeatures.map((feature, index) => (
-              <motion.div
-                key={feature.title}
-                initial={{ opacity: 0, y: 20 }}
-                animate={instructorInView ? { opacity: 1, y: 0 } : {}}
-                transition={{ duration: 0.5, delay: 0.1 + index * 0.1 }}
-                className="border border-white/10 p-6 lg:p-8 hover:border-accent/50 transition-colors duration-300"
-              >
-                <h3 className="text-white font-bold text-base mb-2">
-                  {feature.title}
-                </h3>
-                <p className="text-gray-400 text-sm leading-relaxed">
-                  {feature.description}
-                </p>
-              </motion.div>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      {/* Section 5: 교육 결과 */}
-      <section ref={resultRef} className="bg-white py-20 lg:py-28">
-        <div className="max-w-3xl mx-auto px-6">
-          <motion.div
-            initial={{ opacity: 0, y: 30 }}
-            animate={resultInView ? { opacity: 1, y: 0 } : {}}
-            transition={{ duration: 0.7 }}
-            className="text-center"
-          >
-            <p className="font-display text-sm tracking-[0.2em] text-text-on-light/40 mb-3">
-              RESULT
-            </p>
-            <h2 className="text-2xl md:text-3xl lg:text-4xl font-bold text-text-on-light mb-8">
-              기본 과정을 마치면
-            </h2>
-            <div className="space-y-4 text-text-on-light/70 text-sm md:text-base leading-relaxed text-left max-w-xl mx-auto">
-              <p>
-                저음과 고음의{" "}
-                <span className="text-text-on-light font-bold">
-                  경계선이 없어지고
-                </span>{" "}
-                모든 음역대에서의 이동과 표현이 자유로워집니다.
+            <div className="flex flex-col justify-center p-6 lg:p-10 order-2 lg:order-1">
+              <p className="text-text-on-light/70 text-base md:text-lg leading-relaxed mb-5">
+                전문 의료진과의 협업을 통해 검증된 커리큘럼
               </p>
-              <p>
-                체계적인 기초 발성 커리큘럼으로 모든{" "}
-                <span className="text-text-on-light font-bold">
-                  노하우와 솔루션
-                </span>
-                이 담겨있으며, 수강 종료 이후에도 지속적으로 활용할 수 있는
-                방법들을 제공합니다.
-              </p>
-              <p className="text-accent font-bold text-center pt-4">
-                &ldquo;원리만 알면 누구나 노래 잘 부를 수 있습니다.&rdquo;
-              </p>
+              <ul className="space-y-3">
+                {expertList.map((item) => (
+                  <li
+                    key={item}
+                    className="flex items-center gap-3 text-text-on-light text-sm md:text-base"
+                  >
+                    <span className="w-5 h-5 shrink-0 rounded-full bg-accent/10 flex items-center justify-center">
+                      <Check size={12} className="text-accent" />
+                    </span>
+                    {item}
+                  </li>
+                ))}
+              </ul>
+            </div>
+            <div className="bg-zinc-900 p-10 lg:p-12 flex flex-col justify-center order-1 lg:order-2">
+              <span className="font-display text-5xl text-accent/20 leading-none mb-4">
+                02
+              </span>
+              <h3 className="text-xl md:text-2xl font-bold text-white mb-3">
+                해부학 및 생리학
+                <br />
+                전문가와의 협업
+              </h3>
+              <div className="w-10 h-[2px] bg-accent" />
             </div>
           </motion.div>
         </div>
       </section>
 
-      {/* Before & After */}
+      {/* ── 5. Before / After Comparison ──────────── */}
+      <section ref={compareRef} className="bg-zinc-900 py-20 lg:py-28">
+        <div className="max-w-5xl mx-auto px-6">
+          <motion.div
+            initial={{ opacity: 0, y: 30 }}
+            animate={compareInView ? { opacity: 1, y: 0 } : {}}
+            transition={{ duration: 0.7 }}
+            className="text-center mb-14"
+          >
+            <p className="font-display text-sm tracking-[0.2em] text-gray-500 mb-3">
+              BEFORE / AFTER
+            </p>
+            <h2 className="text-2xl md:text-3xl lg:text-4xl font-bold text-white">
+              수강 이후, 당신의{" "}
+              <span className="text-accent">고음</span>은 이렇게 달라집니다.
+            </h2>
+          </motion.div>
+
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-6 lg:gap-8">
+            {/* Before */}
+            <motion.div
+              initial={{ opacity: 0, x: -30 }}
+              animate={compareInView ? { opacity: 1, x: 0 } : {}}
+              transition={{ duration: 0.6, delay: 0.15 }}
+              className="bg-zinc-800 p-8 lg:p-10 hover:scale-[1.02] transition-transform duration-300"
+            >
+              <p className="font-display text-sm tracking-[0.2em] text-gray-500 mb-4">
+                BEFORE
+              </p>
+              <h3 className="text-lg md:text-xl font-bold text-gray-400 mb-6">
+                힘으로만 버티는 고음,
+                <br />
+                불안정한 소리
+              </h3>
+              <ul className="space-y-4">
+                {[
+                  "목이 조여서 고음이 올라가지 않음",
+                  "소리가 갈라지고 흔들림",
+                  "몇 곡만 불러도 목이 피로하고 금방 잠김",
+                ].map((item, i) => (
+                  <li key={i} className="flex items-start gap-3">
+                    <span className="w-1.5 h-1.5 rounded-full bg-gray-500 shrink-0 mt-2" />
+                    <span className="text-gray-400 text-sm md:text-base leading-relaxed">
+                      {item}
+                    </span>
+                  </li>
+                ))}
+              </ul>
+            </motion.div>
+
+            {/* After */}
+            <motion.div
+              initial={{ opacity: 0, x: 30 }}
+              animate={compareInView ? { opacity: 1, x: 0 } : {}}
+              transition={{ duration: 0.6, delay: 0.3 }}
+              className="bg-accent p-8 lg:p-10 hover:scale-[1.02] transition-transform duration-300"
+            >
+              <p className="font-display text-sm tracking-[0.2em] text-white/60 mb-4">
+                AFTER
+              </p>
+              <h3 className="text-lg md:text-xl font-bold text-white mb-6">
+                힘이 아닌 기술로 뚫리는
+                <br />
+                시원한 고음
+              </h3>
+              <ul className="space-y-4">
+                {[
+                  "편안한 발성으로 2옥타브에서 3옥타브까지 음역대 확장",
+                  "흔들리지 않는 고음, 여유로운 고음 처리",
+                  "힘들이지 않아도 노래가 쉬워지고, 자신감 UP",
+                ].map((item, i) => (
+                  <li key={i} className="flex items-start gap-3">
+                    <span className="w-1.5 h-1.5 rounded-full bg-white/60 shrink-0 mt-2" />
+                    <span className="text-white text-sm md:text-base leading-relaxed">
+                      {item}
+                    </span>
+                  </li>
+                ))}
+              </ul>
+            </motion.div>
+          </div>
+        </div>
+      </section>
+
+      {/* ── 6. Curriculum Details ─────────────────── */}
+      <section ref={currRef} className="bg-white py-20 lg:py-28">
+        <div className="max-w-5xl mx-auto px-6">
+          <motion.div
+            initial={{ opacity: 0, y: 30 }}
+            animate={currInView ? { opacity: 1, y: 0 } : {}}
+            transition={{ duration: 0.7 }}
+            className="text-center mb-16"
+          >
+            <p className="text-text-on-light/50 text-sm mb-3 tracking-widest">
+              매달 1키씩 올라가는 마법 같은 커리큘럼
+            </p>
+            <h2 className="text-2xl md:text-3xl lg:text-4xl font-bold text-text-on-light">
+              3옥타브장인만의{" "}
+              <span className="text-accent">기본과정</span>
+            </h2>
+          </motion.div>
+
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+            {curriculumDetails.map((cur, index) => {
+              const Icon = cur.icon;
+              return (
+                <motion.div
+                  key={cur.number}
+                  initial={{ opacity: 0, y: 30 }}
+                  animate={currInView ? { opacity: 1, y: 0 } : {}}
+                  transition={{ duration: 0.5, delay: 0.1 + index * 0.12 }}
+                  className="bg-zinc-900 p-8 lg:p-10 border border-transparent hover:border-accent transition-colors duration-300 group"
+                >
+                  <Icon
+                    size={32}
+                    className="text-white/30 group-hover:text-accent transition-colors duration-300 mb-5"
+                  />
+                  <span className="font-display text-4xl text-accent leading-none">
+                    {cur.number}
+                  </span>
+                  <h3 className="text-xl font-bold text-white mt-3 mb-1">
+                    {cur.title}
+                  </h3>
+                  <p className="text-gray-500 text-sm mb-6">
+                    {cur.subtitle}
+                  </p>
+                  <div className="w-8 h-[2px] bg-accent/40 mb-6" />
+                  <ul className="space-y-3">
+                    {cur.items.map((item, i) => (
+                      <li
+                        key={i}
+                        className="flex items-start gap-2.5 text-gray-400 text-sm leading-relaxed"
+                      >
+                        <span className="w-1 h-1 rounded-full bg-accent shrink-0 mt-2" />
+                        {item}
+                      </li>
+                    ))}
+                  </ul>
+                </motion.div>
+              );
+            })}
+          </div>
+        </div>
+      </section>
+
+      {/* ── 7. Instructors ────────────────────────── */}
+      <section ref={instrRef} className="bg-white py-20 lg:py-28 border-t border-gray-100">
+        <div className="max-w-5xl mx-auto px-6">
+          <motion.div
+            initial={{ opacity: 0, y: 30 }}
+            animate={instrInView ? { opacity: 1, y: 0 } : {}}
+            transition={{ duration: 0.7 }}
+            className="text-center mb-14"
+          >
+            <p className="text-text-on-light/50 text-sm mb-3 tracking-widest">
+              3옥타브장인이 보장하는 최정예 강사진
+            </p>
+            <h2 className="text-2xl md:text-3xl lg:text-4xl font-bold text-text-on-light">
+              한 명의 선생님이 아닌,{" "}
+              <span className="text-accent">모든 선생님이 당신의 성장</span>을
+              돕습니다.
+            </h2>
+          </motion.div>
+
+          {/* Main 2-column cards */}
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6">
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              animate={instrInView ? { opacity: 1, y: 0 } : {}}
+              transition={{ duration: 0.5, delay: 0.15 }}
+              className="bg-zinc-900 p-8 lg:p-10"
+            >
+              <MessageCircle
+                size={28}
+                className="text-accent mb-5"
+              />
+              <h3 className="text-lg md:text-xl font-bold text-white mb-3">
+                자유로운 피드백 시스템
+              </h3>
+              <p className="text-gray-400 text-sm md:text-base leading-relaxed">
+                수업이 없는 시간, 모든 선생님께 피드백이 가능합니다. 담당
+                선생님뿐만 아니라 모든 강사진에게 자유롭게 질문하고 피드백을
+                받으세요.
+              </p>
+            </motion.div>
+
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              animate={instrInView ? { opacity: 1, y: 0 } : {}}
+              transition={{ duration: 0.5, delay: 0.25 }}
+              className="bg-zinc-900 p-8 lg:p-10"
+            >
+              <Users
+                size={28}
+                className="text-accent mb-5"
+              />
+              <h3 className="text-lg md:text-xl font-bold text-white mb-3">
+                동일한 퀄리티로 일관된 보컬 교육
+              </h3>
+              <p className="text-gray-400 text-sm md:text-base leading-relaxed">
+                본원의 모든 선생님이 같은 커리큘럼으로 가르칩니다. 강사에 따라
+                수업 퀄리티가 달라지는 일은 없습니다.
+              </p>
+            </motion.div>
+          </div>
+
+          {/* Sub cards */}
+          <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
+            {[
+              { title: "6개월 자체교육", desc: "체계적인 자체교육 이수" },
+              { title: "3개월 인턴", desc: "실전 수업 검증 완료" },
+              { title: "정직원 강사", desc: "프리랜서 NO, 책임감 보장" },
+              { title: "원장 직접 피드백", desc: "모든 수업 모니터링" },
+            ].map((item, i) => (
+              <motion.div
+                key={item.title}
+                initial={{ opacity: 0, y: 20 }}
+                animate={instrInView ? { opacity: 1, y: 0 } : {}}
+                transition={{ duration: 0.4, delay: 0.35 + i * 0.08 }}
+                className="border border-gray-200 p-5 text-center hover:border-accent transition-colors duration-300"
+              >
+                <p className="text-text-on-light font-bold text-sm md:text-base mb-1">
+                  {item.title}
+                </p>
+                <p className="text-text-on-light/50 text-xs md:text-sm">
+                  {item.desc}
+                </p>
+              </motion.div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* ── 8. Checklist ──────────────────────────── */}
+      <section ref={checkRef} className="bg-zinc-900 py-20 lg:py-28">
+        <div className="max-w-5xl mx-auto px-6">
+          <motion.div
+            initial={{ opacity: 0, y: 30 }}
+            animate={checkInView ? { opacity: 1, y: 0 } : {}}
+            transition={{ duration: 0.7 }}
+            className="text-center mb-14"
+          >
+            <p className="font-display text-sm tracking-[0.2em] text-gray-500 mb-3">
+              CHECKLIST
+            </p>
+            <h2 className="text-2xl md:text-3xl lg:text-4xl font-bold text-white mb-4">
+              내 발성의 문제는{" "}
+              <span className="text-accent">뭘까?</span>
+            </h2>
+            <p className="text-gray-400 text-base md:text-lg">
+              <span className="text-accent font-bold">3개 이상</span> 해당되면
+              지금 당장 무료상담 받으세요.
+            </p>
+          </motion.div>
+
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+            {checklistCategories.map((cat, catIdx) => (
+              <motion.div
+                key={cat.title}
+                initial={{ opacity: 0, y: 30 }}
+                animate={checkInView ? { opacity: 1, y: 0 } : {}}
+                transition={{ duration: 0.5, delay: 0.1 + catIdx * 0.12 }}
+                className="bg-zinc-700/50 p-7 lg:p-8"
+              >
+                <h3 className="text-white font-bold text-base md:text-lg mb-5 pb-4 border-b border-white/10">
+                  {cat.title}
+                </h3>
+                <ul className="space-y-4">
+                  {cat.items.map((item, i) => (
+                    <li key={i} className="flex items-start gap-3">
+                      <span className="w-5 h-5 shrink-0 rounded-full border-2 border-accent flex items-center justify-center mt-0.5">
+                        <Check size={10} className="text-accent" />
+                      </span>
+                      <span className="text-gray-300 text-sm leading-relaxed">
+                        {item}
+                      </span>
+                    </li>
+                  ))}
+                </ul>
+              </motion.div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* ── 9. ProgramBeforeAfter (영상 후기) ──── */}
       <ProgramBeforeAfter reviewLabel="기본 과정을 이수한 후기가 궁금하신가요?" />
 
-      {/* FAQ */}
+      {/* ── 10. ProgramFAQ ────────────────────────── */}
       <ProgramFAQ />
 
-      {/* CTA */}
+      {/* ── 11. Final CTA ─────────────────────────── */}
       <section className="bg-accent py-16 lg:py-20 relative overflow-hidden">
         <div className="absolute inset-0 opacity-5 pointer-events-none">
           <div
@@ -335,12 +573,12 @@ export default function BasicProgramContent() {
           <p className="text-white text-xl md:text-2xl lg:text-3xl font-bold mb-4">
             2옥타브에서 멈추실 건가요?
           </p>
-          <p className="text-white/80 text-sm md:text-base mb-8">
+          <p className="text-white/80 text-base md:text-lg mb-8">
             단 10분, 첫 레슨만으로도 변화를 경험하세요.
           </p>
           <Link
             href="/contact"
-            className="inline-flex items-center gap-2 bg-white text-text-on-light hover:bg-black hover:text-white px-8 py-4 text-sm font-bold transition-all duration-300"
+            className="inline-flex items-center gap-2 bg-white text-text-on-light hover:bg-black hover:text-white px-8 py-4 text-base font-bold transition-all duration-300"
           >
             무료 상담 문의하기
           </Link>
