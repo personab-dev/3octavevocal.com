@@ -207,7 +207,7 @@ export default function AboutLanding() {
           </p>
           <Link
             href="/contact"
-            className="inline-flex items-center gap-2 bg-white text-text-on-light hover:bg-black hover:text-white px-8 py-4 text-base font-bold transition-all duration-300"
+            className="inline-flex items-center gap-2 bg-white text-text-on-light hover:bg-black hover:text-white rounded-r-full px-8 py-4 text-base font-bold transition-all duration-300"
           >
             무료 상담 예약하기
             <svg

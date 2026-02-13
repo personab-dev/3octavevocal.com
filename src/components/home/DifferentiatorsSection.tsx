@@ -1,6 +1,7 @@
 "use client";
 
 import Link from "next/link";
+import Image from "next/image";
 import { useRef } from "react";
 import { motion, useInView } from "framer-motion";
 
@@ -59,9 +60,16 @@ export default function DifferentiatorsSection() {
         <div className="grid grid-cols-1 lg:grid-cols-[560px_1fr]">
           {/* Left: Red sticky panel */}
           <div className="lg:sticky lg:top-0 lg:self-start bg-accent p-10 lg:p-16 lg:h-screen flex flex-col justify-center relative overflow-hidden">
-            {/* Decorative geometric shapes */}
-            <div className="absolute top-0 right-0 w-40 h-40 bg-black/10 -translate-y-1/2 translate-x-1/2 rotate-45" />
-            <div className="absolute bottom-0 left-0 w-32 h-32 bg-black/10 translate-y-1/2 -translate-x-1/2 rotate-45" />
+            {/* Logo watermark layer */}
+            <div className="absolute inset-0 flex items-center justify-center pointer-events-none">
+              <Image
+                src="/images/logo-accent.png"
+                alt=""
+                width={500}
+                height={500}
+                className="opacity-[0.12] w-[80%] max-w-[450px] h-auto mix-blend-multiply"
+              />
+            </div>
 
             <motion.div
               initial={{ opacity: 0, y: 30 }}
@@ -78,7 +86,7 @@ export default function DifferentiatorsSection() {
               </p>
               <Link
                 href="/difference"
-                className="inline-flex items-center gap-2 bg-white text-text-on-light hover:bg-black hover:text-white px-8 py-4 text-lg font-bold mt-8 transition-all duration-300"
+                className="inline-flex items-center gap-2 bg-white text-text-on-light hover:bg-black hover:text-white rounded-r-full px-8 py-4 text-lg font-bold mt-8 transition-all duration-300"
               >
                 차별점 자세히 알아보기
               </Link>

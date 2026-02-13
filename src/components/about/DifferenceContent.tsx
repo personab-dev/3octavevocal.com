@@ -352,7 +352,7 @@ export default function DifferenceContent() {
           <div className="text-center mt-10">
             <Link
               href="/reviews"
-              className="group inline-flex items-center gap-2 border border-accent text-accent hover:bg-accent hover:text-white px-7 py-3.5 text-base font-bold tracking-wide transition-all duration-300"
+              className="group inline-flex items-center gap-2 bg-accent text-white hover:bg-accent/90 rounded-r-full px-7 py-3.5 text-base font-bold tracking-wide transition-all duration-300"
             >
               100% 찐후기 보러가기
               <svg

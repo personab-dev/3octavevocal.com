@@ -46,7 +46,7 @@ export default function FinalCta({
           </p>
           <Link
             href="/contact"
-            className="group inline-flex items-center gap-2 border border-accent text-accent hover:bg-accent hover:text-white px-8 py-4 text-lg font-bold mt-8 transition-all duration-300"
+            className="group inline-flex items-center gap-2 bg-accent text-white hover:bg-accent/90 rounded-r-full px-8 py-4 text-lg font-bold mt-8 transition-all duration-300"
           >
             {buttonText}
             <svg

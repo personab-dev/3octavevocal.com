@@ -136,7 +136,7 @@ export default function ReviewsContent() {
             href="/contact"
             whileHover={{ scale: 1.02 }}
             whileTap={{ scale: 0.98 }}
-            className="inline-flex items-center gap-2 bg-accent hover:bg-white hover:text-text-on-light text-white px-8 py-4 text-base font-bold transition-colors duration-300"
+            className="inline-flex items-center gap-2 bg-accent hover:bg-accent/90 text-white rounded-r-full px-8 py-4 text-base font-bold transition-colors duration-300"
           >
             무료 상담 예약하기
             <svg width="16" height="12" viewBox="0 0 16 12" fill="none">

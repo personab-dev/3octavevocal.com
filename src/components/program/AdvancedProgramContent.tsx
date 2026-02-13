@@ -438,7 +438,7 @@ function DiagnosisSection() {
             </p>
             <Link
               href="/contact"
-              className="inline-flex items-center gap-2 bg-accent text-white hover:bg-red-700 px-7 py-3.5 text-base font-bold transition-all duration-300"
+              className="inline-flex items-center gap-2 bg-accent text-white hover:bg-accent/90 rounded-r-full px-7 py-3.5 text-base font-bold transition-all duration-300"
             >
               무료 상담 받기
               <ChevronRight size={16} />
@@ -716,7 +716,7 @@ function TargetSection() {
         >
           <Link
             href="/contact"
-            className="inline-flex items-center gap-2 border border-accent text-accent hover:bg-accent hover:text-white px-7 py-3.5 text-base font-bold transition-all duration-300"
+            className="inline-flex items-center gap-2 bg-accent text-white hover:bg-accent/90 rounded-r-full px-7 py-3.5 text-base font-bold transition-all duration-300"
           >
             무료 상담 문의하기
             <ChevronRight size={16} />

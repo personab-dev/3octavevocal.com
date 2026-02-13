@@ -66,13 +66,13 @@ export default function LocationsSection() {
                 className="group block"
               >
                 {/* Map Image */}
-                <div className="aspect-square bg-zinc-100 relative overflow-hidden mb-4 group-hover:shadow-lg transition-shadow">
+                <div className="aspect-[5/3] bg-zinc-100 relative overflow-hidden rounded-lg mb-4 group-hover:shadow-lg transition-shadow">
                   <Image
                     src={branch.mapImage}
                     alt={`${branch.name} 지도`}
                     fill
                     sizes="(max-width: 768px) 100vw, 33vw"
-                    className="object-cover"
+                    className="object-cover scale-[1.3]"
                   />
                   <span className="absolute bottom-2 right-2 text-zinc-400 text-sm">
                     지도 보기
