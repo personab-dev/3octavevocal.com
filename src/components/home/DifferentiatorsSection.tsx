@@ -60,14 +60,14 @@ export default function DifferentiatorsSection() {
         <div className="grid grid-cols-1 lg:grid-cols-[560px_1fr]">
           {/* Left: Red sticky panel */}
           <div className="lg:sticky lg:top-0 lg:self-start bg-accent p-10 lg:p-16 lg:h-screen flex flex-col justify-center relative overflow-hidden">
-            {/* Logo watermark layer */}
-            <div className="absolute inset-0 flex items-center justify-center pointer-events-none">
+            {/* Logo watermark layer — overflowing bottom-right */}
+            <div className="absolute -bottom-[10%] -right-[15%] pointer-events-none">
               <Image
-                src="/images/logo-accent.png"
+                src="/images/logo-symbol-white.png"
                 alt=""
-                width={500}
-                height={500}
-                className="opacity-[0.12] w-[80%] max-w-[450px] h-auto mix-blend-multiply"
+                width={600}
+                height={600}
+                className="opacity-[0.08] w-[500px] lg:w-[600px] h-auto"
               />
             </div>
 
