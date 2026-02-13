@@ -102,7 +102,7 @@ export default function Footer() {
           {/* Left: Logo & business info */}
           <div className="flex flex-col gap-4 items-start">
             <Image
-              src="/images/logo-black.png"
+              src="/images/logo-footer.png"
               alt="3옥타브장인"
               width={200}
               height={36}

@@ -63,6 +63,7 @@ export default function AboutLanding() {
         heading="ABOUT"
         subheading="Exceed Your Range"
         description="노래에 대한 꿈과 목표를 장인정신으로 실현시켜주는 발성 전문 보컬 트레이닝 학원"
+        backgroundImage="/images/about/hero.png"
       />
 
       {/* Sub-page Cards */}
