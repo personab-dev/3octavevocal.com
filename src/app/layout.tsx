@@ -28,11 +28,34 @@ const dancingScript = Dancing_Script({
 
 export const metadata: Metadata = {
   title: {
-    default: "3옥타브장인 보컬학원 — Exceed Your Range",
+    default: "3옥타브장인 보컬학원, No.1 강남보컬학원",
     template: "%s — 3옥타브장인 보컬학원",
   },
   description:
-    "대한민국 프로페셔널 발성전문 보컬 트레이닝 학원. 3옥타브의 로망, 당신이 할 수 있게.",
+    "10년간 7,000명 이상의 수강생, 연예인들이 증명한, 강남 No.1 3옥타브장인 보컬학원 입니다.",
+  openGraph: {
+    title: "3옥타브장인 보컬학원, No.1 강남보컬학원",
+    description:
+      "10년간 7,000명 이상의 수강생, 연예인들이 증명한, 강남 No.1 3옥타브장인 보컬학원 입니다.",
+    url: "https://3octavevocal.com",
+    siteName: "3옥타브장인 보컬학원",
+    images: [
+      {
+        url: "/images/og-image.png",
+        width: 1200,
+        height: 630,
+      },
+    ],
+    type: "website",
+    locale: "ko_KR",
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "3옥타브장인 보컬학원, No.1 강남보컬학원",
+    description:
+      "10년간 7,000명 이상의 수강생, 연예인들이 증명한, 강남 No.1 3옥타브장인 보컬학원 입니다.",
+    images: ["/images/og-image.png"],
+  },
 };
 
 export default function RootLayout({

@@ -31,7 +31,7 @@ export default function Home() {
         <LocationsSection />
       </div>
       <FloatingSidebar />
-      <FloatingBottomBar />
+      {/* <FloatingBottomBar /> */}
     </>
   );
 }

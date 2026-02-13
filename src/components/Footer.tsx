@@ -132,7 +132,7 @@ export default function Footer() {
               <NaverBlogIcon className="w-10 h-10" />
             </Link>
             <Link
-              href="https://www.youtube.com/@3octave"
+              href="https://www.youtube.com/channel/UCp1xHspGwp6EhZwalQmI8Iw"
               target="_blank"
               rel="noopener noreferrer nofollow"
               aria-label="YouTube"

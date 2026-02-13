@@ -1,11 +1,21 @@
 "use client";
 
 import Link from "next/link";
+import Image from "next/image";
 import { useRef } from "react";
 import { motion, useInView } from "framer-motion";
 import PageHero from "@/components/PageHero";
 import AboutSubNav from "./AboutSubNav";
 import BrandSymbol from "@/components/BrandSymbol";
+
+const galleryImages = [
+  { src: "/images/gallery/gallery-01.png", alt: "보컬 레슨 현장 — 1:1 발성 트레이닝" },
+  { src: "/images/gallery/gallery-02.png", alt: "보컬 레슨 현장 — 그룹 피드백" },
+  { src: "/images/gallery/gallery-03.png", alt: "보컬 레슨 현장 — 해부학 기반 발성 강의" },
+  { src: "/images/gallery/gallery-04.png", alt: "보컬 레슨 현장 — 화이트보드 교육" },
+  { src: "/images/gallery/gallery-05.png", alt: "보컬 레슨 현장 — 자세 교정 지도" },
+  { src: "/images/gallery/gallery-06.png", alt: "보컬 레슨 현장 — 녹음 실습" },
+];
 
 const promises = [
   {
@@ -40,74 +50,103 @@ export default function PhilosophyContent() {
       <PageHero heading="대표 철학" subheading="Philosophy" />
       <AboutSubNav />
 
-      {/* Section 1: 3옥타브장인의 시작 */}
-      <section ref={originRef} className="bg-black py-20 lg:py-28 relative overflow-hidden">
-        <div className="absolute right-0 top-0 opacity-[0.03] pointer-events-none translate-x-1/4 -translate-y-1/4">
-          <BrandSymbol size={600} color="white" />
+      {/* Section 1: 3옥타브장인의 시작 — 상단 헤딩 */}
+      <section ref={originRef} className="bg-white py-16 lg:py-20">
+        <div className="max-w-4xl mx-auto px-6 text-center">
+          <motion.p
+            initial={{ opacity: 0, y: 20 }}
+            animate={originInView ? { opacity: 1, y: 0 } : {}}
+            transition={{ duration: 0.6 }}
+            className="text-accent text-sm md:text-base font-bold tracking-widest mb-5"
+          >
+            3옥타브장인의 시작
+          </motion.p>
+          <motion.h2
+            initial={{ opacity: 0, y: 20 }}
+            animate={originInView ? { opacity: 1, y: 0 } : {}}
+            transition={{ duration: 0.7, delay: 0.1 }}
+            className="text-2xl md:text-3xl lg:text-4xl font-bold text-text-on-light leading-snug"
+          >
+            저희도 <span className="text-accent">고음불가</span>였습니다.
+            <br />
+            그래서, 여러분들도 가능합니다.
+          </motion.h2>
+        </div>
+      </section>
+
+      {/* Section 1-b: 배경 이미지 + 고민 말풍선 + 본문 */}
+      <section className="relative">
+        {/* Background image */}
+        <div className="absolute inset-0">
+          <Image
+            src="/images/about/philosophy-hero.png"
+            alt="3옥타브장인 보컬 레슨 현장"
+            fill
+            sizes="100vw"
+            className="object-cover"
+            priority
+          />
+          <div className="absolute inset-0 bg-black/60" />
         </div>
 
-        <div className="max-w-5xl mx-auto px-6 relative z-10">
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-16 items-center">
-            {/* Left: Photo placeholder */}
-            <motion.div
-              initial={{ opacity: 0, x: -30 }}
-              animate={originInView ? { opacity: 1, x: 0 } : {}}
-              transition={{ duration: 0.7 }}
-            >
-              <div className="aspect-[3/4] bg-zinc-900 relative overflow-hidden">
-                <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent" />
-                <div className="absolute inset-0 flex items-center justify-center">
-                  <BrandSymbol size={120} color="white" className="opacity-20" />
-                </div>
-                <span className="absolute bottom-4 left-4 text-zinc-500 text-sm tracking-widest uppercase">
-                  3옥타브장인의 시작
-                </span>
-              </div>
-            </motion.div>
-
-            {/* Right: Content */}
-            <motion.div
-              initial={{ opacity: 0, x: 30 }}
-              animate={originInView ? { opacity: 1, x: 0 } : {}}
-              transition={{ duration: 0.7, delay: 0.2 }}
-            >
-              <p className="text-accent text-sm md:text-base font-bold tracking-widest uppercase mb-6">
-                3옥타브장인의 시작
-              </p>
-
-              <h2 className="text-3xl md:text-4xl font-bold text-white leading-snug mb-2">
-                저희도 <span className="text-accent">고음불가</span> 였습니다.
-              </h2>
-              <p className="text-2xl md:text-3xl font-bold text-white mb-8">
-                그래서, 여러분들도 가능합니다.
-              </p>
-
-              <p className="text-gray-500 text-sm md:text-base font-bold mb-4">
-                저희도 똑같이 겪었습니다.
-              </p>
-
-              <p className="text-gray-400 text-sm md:text-base leading-relaxed mb-6">
-                우리는 모두 처음부터 노래를 잘했던 사람들이 아닙니다.
-                오히려 고음이 안 되고, 음정이 불안정하고, 심지어{" "}
-                <span className="text-white font-bold">발성장애</span>를 겪었던 사람들입니다.
-              </p>
-
-              <p className="text-gray-400 text-sm md:text-base leading-relaxed mb-6">
-                하지만 포기하지 않았습니다. 어떻게든 해결하고 싶었고,{" "}
-                <span className="text-white font-bold">
-                  수많은 시행착오 끝에 결국 확실한 방법
-                </span>
-                을 찾았습니다.
-                그리고 지금, 같은 고민을 하는 여러분께 그 방법을 전하고 있습니다.
-              </p>
-
-              <p className="text-white text-sm md:text-base font-bold">
-                우리는 단순히 가르치는 사람이 아닙니다.
-                <br />
-                같은 길을 걸어왔고, 끝내 극복한 사람들입니다.
-              </p>
-            </motion.div>
+        <div className="relative z-10 max-w-3xl mx-auto px-6 py-20 lg:py-28">
+          {/* 고민 말풍선 */}
+          <div className="flex flex-col items-center gap-3 mb-16">
+            {[
+              "아무리 연습해도 안 올라가는데...",
+              "목은 금방 잠기고..",
+              "다른 사람들은 잘만 올라가는데 왜 나는 안될까?",
+            ].map((text, i) => (
+              <motion.div
+                key={i}
+                initial={{ opacity: 0, y: 16 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.5, delay: 0.2 + i * 0.15 }}
+                className={`bg-zinc-800/80 backdrop-blur-sm rounded-lg px-6 py-3 text-gray-300 text-sm md:text-base ${
+                  i === 1 ? "self-end mr-4 md:mr-16" : "self-start ml-4 md:ml-16"
+                }`}
+              >
+                &ldquo;{text}&rdquo;
+              </motion.div>
+            ))}
           </div>
+
+          {/* 본문 */}
+          <motion.div
+            initial={{ opacity: 0, y: 30 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.7, delay: 0.5 }}
+            className="text-center space-y-6"
+          >
+            <p className="text-white font-bold text-base md:text-lg">
+              저희도 똑같이 겪었습니다.
+            </p>
+
+            <p className="inline-block bg-accent px-4 py-2 text-white font-bold text-base md:text-lg">
+              우리는 모두 처음부터 노래를 잘했던 사람들이 아닙니다.
+            </p>
+
+            <p className="text-gray-300 text-sm md:text-base leading-relaxed">
+              오히려 고음이 안 되고, 음정이 불안정하고, 심지어{" "}
+              <span className="text-white font-bold">발성장애</span>를 겪었던 사람들입니다.
+              <br />
+              하지만 포기하지 않았습니다. 어떻게든 해결하고 싶었고,
+              <br />
+              <span className="text-white font-bold">수많은 시행착오 끝에 결국 확실한 방법</span>을 찾았습니다.
+            </p>
+
+            <p className="text-gray-400 text-sm md:text-base leading-relaxed">
+              그리고 지금, 같은 고민을 하는 여러분께 그 방법을 전하고 있습니다.
+              <br />
+              우리는 단순히 가르치는 사람이 아닙니다.
+            </p>
+
+            <p className="text-white font-bold text-lg md:text-xl pt-4">
+              같은 길을 걸어왔고, 끝내 극복한 사람들입니다.
+            </p>
+          </motion.div>
         </div>
       </section>
 
@@ -272,6 +311,31 @@ export default function PhilosophyContent() {
               3옥타브장인 보컬학원 대표 김윤민 드림
             </p>
           </motion.div>
+        </div>
+      </section>
+
+      {/* Gallery Carousel */}
+      <section className="bg-black py-16 lg:py-20 overflow-hidden">
+        <div className="relative">
+          {/* Infinite scrolling track — duplicated for seamless loop */}
+          <div className="flex animate-carousel">
+            {[...galleryImages, ...galleryImages].map((img, i) => (
+              <div
+                key={i}
+                className="shrink-0 w-[300px] md:w-[480px] lg:w-[560px] px-2"
+              >
+                <div className="aspect-[16/9] relative overflow-hidden">
+                  <Image
+                    src={img.src}
+                    alt={img.alt}
+                    fill
+                    sizes="(max-width: 768px) 300px, (max-width: 1024px) 480px, 560px"
+                    className="object-cover"
+                  />
+                </div>
+              </div>
+            ))}
+          </div>
         </div>
       </section>
 

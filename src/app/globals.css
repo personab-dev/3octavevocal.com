@@ -38,3 +38,21 @@ body {
   background-color: var(--color-accent);
   color: #ffffff;
 }
+
+/* Infinite carousel animation */
+@keyframes carousel {
+  0% {
+    transform: translateX(0);
+  }
+  100% {
+    transform: translateX(-50%);
+  }
+}
+
+.animate-carousel {
+  animation: carousel 24s linear infinite;
+}
+
+.animate-carousel:hover {
+  animation-play-state: paused;
+}

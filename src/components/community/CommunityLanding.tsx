@@ -12,7 +12,7 @@ const subPages = [
     titleEn: "REVIEWS",
     description:
       "첫 레슨만으로 변화를 경험한 수강생들. 생생한 레슨 현장과 후기를 확인하세요.",
-    href: "/community/reviews",
+    href: "/reviews",
   },
   {
     number: "02",
@@ -20,7 +20,7 @@ const subPages = [
     titleEn: "VOCAL TIPS",
     description:
       "고음 발성법, 믹스보이스, 호흡 조절 등 3옥타브장인의 핵심 보컬 팁을 공개합니다.",
-    href: "/community/tips",
+    href: "/tips",
   },
 ];
 

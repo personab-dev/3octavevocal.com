@@ -1,6 +1,7 @@
 "use client";
 
 import Link from "next/link";
+import Image from "next/image";
 import { useRef } from "react";
 import { motion, useInView } from "framer-motion";
 import {
@@ -130,41 +131,74 @@ export default function BasicProgramContent() {
       <ProgramSubNav />
 
       {/* ── 3. Hook Section ──────────────────────── */}
-      <section ref={hookRef} className="bg-black py-20 lg:py-28">
-        <div className="max-w-5xl mx-auto px-6 text-center">
-          <motion.p
-            initial={{ opacity: 0, y: 20 }}
-            animate={hookInView ? { opacity: 1, y: 0 } : {}}
-            transition={{ duration: 0.6 }}
-            className="text-accent text-sm md:text-base font-bold tracking-widest mb-6"
-          >
-            7천명+이 검증한 단 하나의 발성 기본 커리큘럼
-          </motion.p>
+      <section ref={hookRef}>
+        {/* Title area — light bg */}
+        <div className="bg-white py-14 lg:py-16">
+          <div className="max-w-5xl mx-auto px-6 text-center">
+            <motion.p
+              initial={{ opacity: 0, y: 20 }}
+              animate={hookInView ? { opacity: 1, y: 0 } : {}}
+              transition={{ duration: 0.6 }}
+              className="text-accent text-sm md:text-base font-bold tracking-widest mb-5"
+            >
+              7천명+이 검증한 단 하나의 발성 기본 커리큘럼
+            </motion.p>
 
-          <motion.h2
-            initial={{ opacity: 0, y: 20 }}
-            animate={hookInView ? { opacity: 1, y: 0 } : {}}
-            transition={{ duration: 0.7, delay: 0.1 }}
-            className="text-2xl md:text-3xl lg:text-[2.5rem] font-bold text-white leading-snug mb-14"
-          >
-            학원비로 중형차 한 대 태운 수강생,
-            <br />
-            <span className="text-accent">20분 만에</span> 고쳤습니다.
-          </motion.h2>
+            <motion.h2
+              initial={{ opacity: 0, y: 20 }}
+              animate={hookInView ? { opacity: 1, y: 0 } : {}}
+              transition={{ duration: 0.7, delay: 0.1 }}
+              className="text-2xl md:text-3xl lg:text-[2.5rem] font-bold text-text-on-light leading-snug"
+            >
+              학원비로 중형차 한 대{" "}
+              <span className="text-accent">태운 수강생,</span>
+              <br />
+              20분 만에 고쳤습니다.
+            </motion.h2>
+          </div>
+        </div>
+
+        {/* Image area with worry bubbles overlay */}
+        <div className="relative aspect-[16/7] md:aspect-[16/5] overflow-hidden bg-zinc-800">
+          {/* Placeholder — replace with actual image */}
+          <Image
+            src="/images/program/basic-hero.jpg"
+            alt="3옥타브장인 보컬 레슨 현장"
+            fill
+            sizes="100vw"
+            className="object-cover"
+            priority
+          />
+          <div className="absolute inset-0 bg-black/50" />
 
           {/* Worry Bubbles */}
-          <div className="flex flex-wrap justify-center gap-4 mb-16">
-            {worries.map((text, i) => (
+          <div className="absolute inset-0 flex items-center justify-center">
+            <div className="relative w-full max-w-2xl px-6 flex flex-wrap items-center justify-center gap-4 md:gap-6">
               <motion.div
-                key={i}
                 initial={{ opacity: 0, y: 16 }}
                 animate={hookInView ? { opacity: 1, y: 0 } : {}}
-                transition={{ duration: 0.5, delay: 0.3 + i * 0.15 }}
-                className="bg-zinc-800/80 border border-white/10 rounded-full px-6 py-3 text-gray-300 text-sm md:text-base"
+                transition={{ duration: 0.5, delay: 0.3 }}
+                className="bg-zinc-700/80 backdrop-blur-sm rounded-xl px-6 py-3.5 text-gray-200 text-sm md:text-base"
               >
-                &ldquo;{text}&rdquo;
+                고음이 안 나와서
               </motion.div>
-            ))}
+              <motion.div
+                initial={{ opacity: 0, y: 16 }}
+                animate={hookInView ? { opacity: 1, y: 0 } : {}}
+                transition={{ duration: 0.5, delay: 0.45 }}
+                className="bg-zinc-700/80 backdrop-blur-sm rounded-xl px-6 py-3.5 text-gray-200 text-sm md:text-base mt-8 md:mt-10"
+              >
+                목이 아파서
+              </motion.div>
+              <motion.div
+                initial={{ opacity: 0, y: 16 }}
+                animate={hookInView ? { opacity: 1, y: 0 } : {}}
+                transition={{ duration: 0.5, delay: 0.6 }}
+                className="bg-zinc-700/80 backdrop-blur-sm rounded-xl px-6 py-3.5 text-gray-200 text-sm md:text-base border border-white/20"
+              >
+                내 목소리가 싫어서...
+              </motion.div>
+            </div>
           </div>
         </div>
 
@@ -173,10 +207,14 @@ export default function BasicProgramContent() {
           initial={{ opacity: 0 }}
           animate={hookInView ? { opacity: 1 } : {}}
           transition={{ duration: 0.7, delay: 0.7 }}
-          className="bg-accent py-5"
+          className="bg-accent py-5 relative overflow-hidden"
         >
-          <p className="text-center text-white text-base md:text-lg font-bold tracking-wide">
-            당신의 고민, 모두 <span className="underline underline-offset-4">발성</span>에서 시작됩니다.
+          {/* Diagonal decoration */}
+          <div className="absolute left-0 top-0 h-full w-20 md:w-32 bg-accent-dark/20 -skew-x-12 -translate-x-4" />
+          <p className="text-center text-white text-base md:text-lg font-bold tracking-wide relative z-10">
+            당신의 고민, 모두{" "}
+            <span className="underline underline-offset-4">발성</span>에서
+            시작됩니다.
           </p>
         </motion.div>
       </section>
@@ -199,68 +237,71 @@ export default function BasicProgramContent() {
             </h2>
           </motion.div>
 
-          {/* Row 1 */}
+          {/* Row 1 — Image left, Text right */}
           <motion.div
             initial={{ opacity: 0, y: 30 }}
             animate={approachInView ? { opacity: 1, y: 0 } : {}}
             transition={{ duration: 0.6, delay: 0.15 }}
-            className="grid grid-cols-1 lg:grid-cols-2 gap-6 mb-6"
+            className="grid grid-cols-1 lg:grid-cols-[3fr_2fr] overflow-hidden bg-gray-50 mb-6"
           >
-            <div className="bg-zinc-900 p-10 lg:p-12 flex flex-col justify-center">
-              <span className="font-display text-5xl text-accent/20 leading-none mb-4">
-                01
-              </span>
-              <h3 className="text-xl md:text-2xl font-bold text-white mb-3">
+            <div className="relative aspect-[4/3] lg:aspect-auto bg-zinc-300">
+              <Image
+                src="/images/program/approach-01.jpg"
+                alt="체계적인 발성 교육 현장"
+                fill
+                sizes="(max-width: 1024px) 100vw, 60vw"
+                className="object-cover"
+              />
+            </div>
+            <div className="flex flex-col justify-center p-8 lg:p-12">
+              <h3 className="text-xl md:text-2xl font-bold text-text-on-light mb-4 leading-snug">
                 누구나 이해 가능한
                 <br />
                 체계적인 발성 교육
               </h3>
-              <div className="w-10 h-[2px] bg-accent" />
-            </div>
-            <div className="flex flex-col justify-center p-6 lg:p-10">
-              <p className="text-text-on-light/70 text-base md:text-lg leading-relaxed">
-                해부학, 생리학, 음성학 기반의 체계적 발성 훈련 커리큘럼.
-                <br className="hidden md:block" />
-                과학적 원리를 이해하면, 누구나 올바른 발성을 할 수 있습니다.
+              <p className="text-text-on-light/60 text-sm md:text-base leading-relaxed">
+                해부학, 생리학, 음성학
+                <br />
+                기반의 체계적 발성 훈련
+                <br />
+                커리큘럼
               </p>
             </div>
           </motion.div>
 
-          {/* Row 2 */}
+          {/* Row 2 — Text left, Image right */}
           <motion.div
             initial={{ opacity: 0, y: 30 }}
             animate={approachInView ? { opacity: 1, y: 0 } : {}}
             transition={{ duration: 0.6, delay: 0.3 }}
-            className="grid grid-cols-1 lg:grid-cols-2 gap-6"
+            className="grid grid-cols-1 lg:grid-cols-[2fr_3fr] overflow-hidden bg-gray-50"
           >
-            <div className="flex flex-col justify-center p-6 lg:p-10 order-2 lg:order-1">
-              <p className="text-text-on-light/70 text-base md:text-lg leading-relaxed mb-5">
-                전문 의료진과의 협업을 통해 검증된 커리큘럼
-              </p>
+            <div className="flex flex-col justify-center p-8 lg:p-12 order-2 lg:order-1">
+              <h3 className="text-xl md:text-2xl font-bold text-text-on-light mb-4 leading-snug">
+                해부학 및 생리학
+                <br />
+                전문가와의 협업
+              </h3>
               <ul className="space-y-3">
                 {expertList.map((item) => (
                   <li
                     key={item}
-                    className="flex items-center gap-3 text-text-on-light text-sm md:text-base"
+                    className="flex items-center gap-3 text-text-on-light/70 text-sm md:text-base"
                   >
-                    <span className="w-5 h-5 shrink-0 rounded-full bg-accent/10 flex items-center justify-center">
-                      <Check size={12} className="text-accent" />
-                    </span>
+                    <span className="w-1.5 h-1.5 rounded-full bg-text-on-light/40 shrink-0" />
                     {item}
                   </li>
                 ))}
               </ul>
             </div>
-            <div className="bg-zinc-900 p-10 lg:p-12 flex flex-col justify-center order-1 lg:order-2">
-              <span className="font-display text-5xl text-accent/20 leading-none mb-4">
-                02
-              </span>
-              <h3 className="text-xl md:text-2xl font-bold text-white mb-3">
-                해부학 및 생리학
-                <br />
-                전문가와의 협업
-              </h3>
-              <div className="w-10 h-[2px] bg-accent" />
+            <div className="relative aspect-[4/3] lg:aspect-auto bg-zinc-300 order-1 lg:order-2">
+              <Image
+                src="/images/program/approach-02.jpg"
+                alt="해부학 전문가와 협업하는 발성 교육"
+                fill
+                sizes="(max-width: 1024px) 100vw, 60vw"
+                className="object-cover"
+              />
             </div>
           </motion.div>
         </div>
