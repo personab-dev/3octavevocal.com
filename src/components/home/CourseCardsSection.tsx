@@ -8,13 +8,13 @@ import { motion, useInView } from "framer-motion";
 const courses = [
   {
     title: "기본과정",
-    href: "/program/basic",
+    href: "/basic",
     description: "발성의 기본 — 호흡, 공명, 성대 컨트롤, 피치",
     image: "/images/courses/basic.png",
   },
   {
     title: "심화과정",
-    href: "/program/advanced",
+    href: "/advanced",
     description: "노래 적용 — 음역대 확장, 곡 해석, 감정 표현",
     image: "/images/courses/advanced.png",
   },

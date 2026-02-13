@@ -69,7 +69,7 @@ export default function RootLayout({
         className={`${bebasNeue.variable} ${inter.variable} ${notoSansKr.variable} ${dancingScript.variable} antialiased font-sans bg-black text-white`}
       >
         <Header />
-        <main className="min-h-screen pt-20">{children}</main>
+        <main className="min-h-screen pt-16">{children}</main>
         <Footer />
       </body>
     </html>

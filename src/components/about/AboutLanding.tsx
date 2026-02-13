@@ -13,7 +13,7 @@ const subPages = [
     titleEn: "PHILOSOPHY",
     description:
       "고시원 달방에서 7년, 과학적 발성법을 연구한 김윤민 원장의 교육 철학.",
-    href: "/about/philosophy",
+    href: "/philosophy",
   },
   {
     number: "02",
@@ -21,7 +21,7 @@ const subPages = [
     titleEn: "DIFFERENCE",
     description:
       "7,000명 이상의 수강생이 검증한 교육 효과. 3옥타브장인만의 차별화된 시스템.",
-    href: "/about/difference",
+    href: "/difference",
   },
   {
     number: "03",
@@ -29,7 +29,7 @@ const subPages = [
     titleEn: "LOCATIONS",
     description:
       "서울 강남, 인천 부평, 부산 서면. 가까운 지점을 찾아보세요.",
-    href: "/about/locations",
+    href: "/locations",
   },
 ];
 

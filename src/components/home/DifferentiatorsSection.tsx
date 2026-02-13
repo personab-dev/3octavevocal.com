@@ -77,7 +77,7 @@ export default function DifferentiatorsSection() {
                 평생 무료 피드백 시스템으로 완성되는<br />소수정예 커리큘럼
               </p>
               <Link
-                href="/about/difference"
+                href="/difference"
                 className="inline-flex items-center gap-2 bg-white text-text-on-light hover:bg-black hover:text-white px-8 py-4 text-lg font-bold mt-8 transition-all duration-300"
               >
                 차별점 자세히 알아보기

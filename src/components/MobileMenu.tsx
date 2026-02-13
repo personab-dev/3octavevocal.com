@@ -11,17 +11,17 @@ const navItems = [
         label: "ABOUT",
         href: "/about",
         children: [
-            { label: "대표 철학", href: "/about/philosophy" },
-            { label: "차별점", href: "/about/difference" },
-            { label: "지점 찾기", href: "/about/locations" },
+            { label: "대표 철학", href: "/philosophy" },
+            { label: "차별점", href: "/difference" },
+            { label: "지점 찾기", href: "/locations" },
         ],
     },
     {
         label: "VOCAL CLASS",
         href: "/program",
         children: [
-            { label: "기본 교육과정", href: "/program/basic" },
-            { label: "심화 교육과정", href: "/program/advanced" },
+            { label: "기본 교육과정", href: "/basic" },
+            { label: "심화 교육과정", href: "/advanced" },
         ],
     },
     {

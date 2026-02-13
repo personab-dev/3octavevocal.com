@@ -5,7 +5,7 @@ import { motion } from "framer-motion";
 
 export default function HeroSection() {
   return (
-    <section className="relative bg-black overflow-hidden -mt-20 pt-20 min-h-[650px] md:min-h-[780px] lg:min-h-[860px] flex items-center">
+    <section className="relative bg-black overflow-hidden -mt-16 pt-16 min-h-[650px] md:min-h-[780px] lg:min-h-[860px] flex items-center">
       {/* Background Image — Desktop */}
       <Image
         src="/images/hero-desktop.png"

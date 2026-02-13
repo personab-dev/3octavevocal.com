@@ -1,6 +1,7 @@
 "use client";
 
 import Link from "next/link";
+import Image from "next/image";
 import { useRef, useState, useCallback } from "react";
 import { motion, useInView } from "framer-motion";
 import { Check, ChevronRight } from "lucide-react";
@@ -13,11 +14,11 @@ import ProgramFAQ from "./ProgramFAQ";
    DATA
    ──────────────────────────────────────────── */
 
-const proReferences = [
-  { name: "정성일", role: "배우", note: "'더 글로리' 주연" },
-  { name: "인피니트", role: "아이돌 그룹", note: "K-POP 보컬 트레이닝" },
-  { name: "노라조", role: "밴드", note: "엔터테이너 보컬 트레이닝" },
-  { name: "비스트", role: "아이돌 그룹", note: "K-POP 보컬 트레이닝" },
+const artistImages = [
+  { src: "/images/pro-curriculum/artist-1.png", alt: "정성일 — 배우, '더 글로리' 주연", name: "정성일", role: "배우" },
+  { src: "/images/pro-curriculum/artist-2.png", alt: "인피니트 — K-POP 보컬 트레이닝", name: "인피니트", role: "아이돌 그룹" },
+  { src: "/images/pro-curriculum/artist-3.png", alt: "노라조 — 엔터테이너 보컬 트레이닝", name: "노라조", role: "밴드" },
+  { src: "/images/pro-curriculum/artist-4.png", alt: "비스트 — K-POP 보컬 트레이닝", name: "비스트", role: "아이돌 그룹" },
 ];
 
 const painPoints = [
@@ -207,7 +208,7 @@ function IntroSection() {
               실전 음악성까지 체계적으로 배웁니다.
             </p>
             <Link
-              href="/program/basic"
+              href="/basic"
               className="inline-flex items-center gap-1 text-gray-500 hover:text-accent text-sm transition-colors group"
             >
               기본 과정부터 보기
@@ -286,46 +287,33 @@ function ProSection() {
         </motion.p>
 
         <div className="grid grid-cols-2 md:grid-cols-4 gap-4 lg:gap-6">
-          {proReferences.map((pro, index) => (
+          {artistImages.map((artist, index) => (
             <motion.div
-              key={pro.name}
+              key={artist.name}
               initial={{ opacity: 0, y: 20 }}
               animate={isInView ? { opacity: 1, y: 0 } : {}}
               transition={{ duration: 0.5, delay: 0.2 + index * 0.1 }}
               className="text-center group"
             >
-              <div className="aspect-square bg-black relative overflow-hidden mb-4">
-                <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent z-10" />
-                <div className="absolute inset-0 flex items-center justify-center">
-                  <div className="w-16 h-16 rounded-full bg-accent/20 flex items-center justify-center group-hover:scale-110 transition-transform duration-300">
-                    <svg
-                      width="24"
-                      height="24"
-                      viewBox="0 0 24 24"
-                      fill="none"
-                      stroke="#e6204d"
-                      strokeWidth="2"
-                      strokeLinecap="round"
-                      strokeLinejoin="round"
-                    >
-                      <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2" />
-                      <circle cx="12" cy="7" r="4" />
-                    </svg>
-                  </div>
-                </div>
+              <div className="aspect-square relative overflow-hidden mb-4">
+                <Image
+                  src={artist.src}
+                  alt={artist.alt}
+                  fill
+                  sizes="(max-width: 768px) 50vw, 25vw"
+                  className="object-cover group-hover:scale-105 transition-transform duration-500"
+                />
+                <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-transparent to-transparent z-10" />
                 {/* Role badge */}
                 <div className="absolute bottom-3 left-0 right-0 z-20 text-center">
                   <span className="inline-block text-[10px] font-bold tracking-wider text-accent bg-accent/10 px-2 py-0.5 backdrop-blur-sm">
-                    {pro.role}
+                    {artist.role}
                   </span>
                 </div>
               </div>
               <h3 className="text-white font-bold text-base md:text-lg">
-                {pro.name}
+                {artist.name}
               </h3>
-              <p className="text-gray-500 text-xs md:text-sm mt-1">
-                {pro.note}
-              </p>
             </motion.div>
           ))}
         </div>
@@ -654,7 +642,7 @@ function InstructorSection() {
           className="text-center mt-10"
         >
           <Link
-            href="/about/difference"
+            href="/difference"
             className="inline-flex items-center gap-1 text-accent text-sm md:text-base font-bold group"
           >
             차별점 자세히 알아보기

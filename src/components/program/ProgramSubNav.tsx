@@ -4,8 +4,8 @@ import Link from "next/link";
 import { usePathname } from "next/navigation";
 
 const tabs = [
-  { label: "기본 과정", href: "/program/basic" },
-  { label: "심화 과정", href: "/program/advanced" },
+  { label: "기본 과정", href: "/basic" },
+  { label: "심화 과정", href: "/advanced" },
 ];
 
 export default function ProgramSubNav() {

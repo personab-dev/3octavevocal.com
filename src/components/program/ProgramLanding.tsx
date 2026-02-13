@@ -25,7 +25,7 @@ const personas = [
       "발성을 제대로 배워본 적이 없다",
     ],
     solution: "호흡·공명·성대 컨트롤부터 탄탄하게",
-    href: "/program/basic",
+    href: "/basic",
     label: "기본 과정 보기",
   },
   {
@@ -38,7 +38,7 @@ const personas = [
       "좋아하는 곡을 원키로 부르고 싶다",
     ],
     solution: "음역대 확장·곡 해석·장르 스타일링까지",
-    href: "/program/advanced",
+    href: "/advanced",
     label: "심화 과정 보기",
   },
 ];
@@ -51,7 +51,7 @@ const programs = [
     description:
       "발성 기본기, 호흡, 공명, 성대 컨트롤. 완전 초보자도 부담 없이 시작할 수 있는 체계적 발성 트레이닝.",
     items: ["호흡", "공명", "성대 컨트롤", "피치"],
-    href: "/program/basic",
+    href: "/basic",
   },
   {
     step: "STEP 2",
@@ -60,7 +60,7 @@ const programs = [
     description:
       "기초 발성을 실제 노래에 적용. 음역대 확장, 곡 해석, 감정 표현, 장르별 스타일링까지.",
     items: ["노래 적용", "음역대 확장", "곡 해석 & 감정 표현", "장르 스타일링"],
-    href: "/program/advanced",
+    href: "/advanced",
   },
 ];
 
@@ -143,7 +143,6 @@ export default function ProgramLanding() {
       />
 
       {/* 2. ProgramSubNav */}
-      <ProgramSubNav />
 
       {/* 3. Persona Cards */}
       <PersonaSection />
@@ -472,14 +471,14 @@ function ComparisonSection() {
           className="flex flex-col sm:flex-row items-center justify-center gap-4 mt-12"
         >
           <Link
-            href="/program/basic"
+            href="/basic"
             className="inline-flex items-center gap-2 border border-accent text-accent hover:bg-accent hover:text-white px-7 py-3.5 text-base font-bold transition-all duration-300"
           >
             기본 과정 상세보기
             <ChevronRight size={16} />
           </Link>
           <Link
-            href="/program/advanced"
+            href="/advanced"
             className="inline-flex items-center gap-2 border border-accent text-accent hover:bg-accent hover:text-white px-7 py-3.5 text-base font-bold transition-all duration-300"
           >
             심화 과정 상세보기
@@ -645,7 +644,7 @@ function InstructorSection() {
             </ul>
 
             <Link
-              href="/about/difference"
+              href="/difference"
               className="inline-flex items-center gap-1 text-accent text-sm md:text-base font-bold mt-8 group"
             >
               차별점 자세히 알아보기

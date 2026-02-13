@@ -10,17 +10,17 @@ const navItems = [
     label: "ABOUT",
     href: "/about",
     children: [
-      { label: "대표 철학", href: "/about/philosophy" },
-      { label: "차별점", href: "/about/difference" },
-      { label: "지점 찾기", href: "/about/locations" },
+      { label: "대표 철학", href: "/philosophy" },
+      { label: "차별점", href: "/difference" },
+      { label: "지점 찾기", href: "/locations" },
     ],
   },
   {
     label: "VOCAL CLASS",
     href: "/program",
     children: [
-      { label: "기본 교육과정", href: "/program/basic" },
-      { label: "심화 교육과정", href: "/program/advanced" },
+      { label: "기본 교육과정", href: "/basic" },
+      { label: "심화 교육과정", href: "/advanced" },
     ],
   },
   {
@@ -57,7 +57,7 @@ export default function Header() {
           : "bg-transparent"
         }`}
     >
-      <div className="max-w-[1440px] mx-auto px-6 lg:px-10 h-20 lg:h-24 flex items-center justify-between">
+      <div className="max-w-[1440px] mx-auto px-6 lg:px-10 h-16 lg:h-[72px] flex items-center justify-between">
         {/* Logo — swap between white/black based on scroll */}
         <Link href="/" className="flex items-center shrink-0">
           <Image
@@ -65,7 +65,7 @@ export default function Header() {
             alt="3옥타브장인"
             width={220}
             height={40}
-            className={`h-7 lg:h-9 w-auto absolute transition-opacity duration-500 ${scrolled ? "opacity-0" : "opacity-100"
+            className={`h-6 lg:h-8 w-auto absolute transition-opacity duration-500 ${scrolled ? "opacity-0" : "opacity-100"
               }`}
             priority
           />
@@ -74,7 +74,7 @@ export default function Header() {
             alt="3옥타브장인"
             width={220}
             height={40}
-            className={`h-7 lg:h-9 w-auto transition-opacity duration-500 ${scrolled ? "opacity-100" : "opacity-0"
+            className={`h-6 lg:h-8 w-auto transition-opacity duration-500 ${scrolled ? "opacity-100" : "opacity-0"
               }`}
             priority
           />
@@ -89,7 +89,7 @@ export default function Header() {
             >
               <Link
                 href={item.href}
-                className={`text-base font-bold font-display tracking-[0.15em] transition-colors duration-500 flex items-center gap-1 ${scrolled
+                className={`text-sm font-bold font-display tracking-[0.15em] transition-colors duration-500 flex items-center gap-1 ${scrolled
                     ? "text-gray-800 hover:text-accent"
                     : "text-white/90 hover:text-accent"
                   }`}
@@ -98,7 +98,7 @@ export default function Header() {
               </Link>
 
               {/* Hover underline */}
-              <span className="absolute bottom-6 left-0 w-0 h-[2px] bg-accent group-hover:w-full transition-all duration-300" />
+              <span className="absolute bottom-4 left-0 w-0 h-[2px] bg-accent group-hover:w-full transition-all duration-300" />
 
               {/* Dropdown */}
               {item.children && (
@@ -130,7 +130,7 @@ export default function Header() {
         <div className="hidden lg:block ml-8">
           <Link
             href="/contact"
-            className={`px-8 py-3 text-base font-bold tracking-widest transition-all duration-500 uppercase ${scrolled
+            className={`px-6 py-2.5 text-sm font-bold tracking-widest transition-all duration-500 uppercase ${scrolled
                 ? "border border-accent text-accent hover:bg-accent hover:text-white hover:shadow-[0_0_20px_rgba(230,32,77,0.3)]"
                 : "border border-accent/60 text-white hover:bg-accent hover:shadow-[0_0_20px_rgba(230,32,77,0.3)]"
               }`}
