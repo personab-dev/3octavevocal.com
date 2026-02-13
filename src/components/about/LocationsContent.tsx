@@ -7,6 +7,7 @@ import { motion, useInView, AnimatePresence } from "framer-motion";
 import { MapPin, Phone, Clock, ChevronRight, MessageCircle } from "lucide-react";
 import PageHero from "@/components/PageHero";
 import AboutSubNav from "./AboutSubNav";
+import FinalCta from "@/components/FinalCta";
 
 const branches = [
   {
@@ -64,6 +65,7 @@ export default function LocationsContent() {
         heading="지점 찾기"
         subheading="Find Your Branch"
         description="서울 강남, 인천 부평, 부산 서면. 전국 3개 지점에서 만나보세요."
+        backgroundImage="/images/about/hero.png"
       />
       <AboutSubNav />
 
@@ -253,47 +255,6 @@ export default function LocationsContent() {
         </div>
       </section>
 
-      {/* All Branches Overview */}
-      <section className="bg-zinc-900 py-16 lg:py-20">
-        <div className="max-w-5xl mx-auto px-6">
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-            {branches.map((branch, index) => (
-              <motion.div
-                key={branch.name}
-                initial={{ opacity: 0, y: 20 }}
-                animate={branchesInView ? { opacity: 1, y: 0 } : {}}
-                transition={{ duration: 0.5, delay: 0.1 + index * 0.1 }}
-              >
-                <button
-                  onClick={() => {
-                    setActiveBranch(index);
-                    window.scrollTo({ top: 0, behavior: "smooth" });
-                  }}
-                  className={`block w-full text-left p-6 border transition-all duration-300 ${
-                    activeBranch === index
-                      ? "border-accent bg-accent/10"
-                      : "border-white/10 hover:border-white/30"
-                  }`}
-                >
-                  <span className="font-display text-sm tracking-[0.2em] text-gray-500 block mb-1">
-                    {branch.nameEn}
-                  </span>
-                  <h3 className="text-lg font-bold text-white mb-2">
-                    {branch.name}
-                  </h3>
-                  <p className="text-sm md:text-base text-gray-400 mb-1">{branch.address}</p>
-                  <p className="text-sm text-accent">{branch.landmark}</p>
-                  <div className="flex items-center gap-1 text-gray-500 text-sm mt-3">
-                    자세히 보기
-                    <ChevronRight size={12} />
-                  </div>
-                </button>
-              </motion.div>
-            ))}
-          </div>
-        </div>
-      </section>
-
       {/* Operating Hours */}
       <section ref={hoursRef} className="bg-black py-20 lg:py-28">
         <div className="max-w-3xl mx-auto px-6">
@@ -360,32 +321,7 @@ export default function LocationsContent() {
       </section>
 
       {/* CTA */}
-      <section className="bg-accent py-16 lg:py-20 relative overflow-hidden">
-        <div className="absolute inset-0 opacity-5 pointer-events-none">
-          <div
-            className="w-full h-full"
-            style={{
-              backgroundImage:
-                "repeating-linear-gradient(45deg, transparent, transparent 20px, white 20px, white 21px)",
-            }}
-          />
-        </div>
-
-        <div className="max-w-4xl mx-auto px-6 text-center relative z-10">
-          <p className="text-white text-xl md:text-2xl lg:text-3xl font-bold mb-4">
-            여기서도 안 된다면, 어디서도 안 됩니다.
-          </p>
-          <p className="text-white/80 text-base md:text-lg mb-8">
-            그만큼 확실한 커리큘럼, 직접 확인하세요.
-          </p>
-          <Link
-            href="/contact"
-            className="inline-flex items-center gap-2 bg-white text-text-on-light hover:bg-black hover:text-white px-8 py-4 text-base font-bold transition-all duration-300"
-          >
-            무료 상담 문의하기
-          </Link>
-        </div>
-      </section>
+      <FinalCta />
     </>
   );
 }

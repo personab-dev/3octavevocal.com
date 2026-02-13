@@ -1,39 +1,45 @@
 "use client";
 
-import { useRef, useState } from "react";
+import { useRef } from "react";
+import Link from "next/link";
 import Image from "next/image";
-import { motion, useInView, AnimatePresence } from "framer-motion";
+import { motion, useInView } from "framer-motion";
 import PageHero from "@/components/PageHero";
 import CommunitySubNav from "./CommunitySubNav";
 
 const reviewImages = [
   {
     src: "/images/community/reviews/review-01.png",
-    alt: "3옥타브장인 보컬 레슨 현장 - 강사가 수강생에게 발성법을 지도하는 모습",
+    alt: "수강생 후기 — 내가 서울 보컬학원들 중 3옥타브장인을 다니는 이유",
+    href: "https://cafe.naver.com/cloud9ent/26485",
     width: 984,
     height: 675,
   },
   {
     src: "/images/community/reviews/review-02.png",
-    alt: "3옥타브장인 보컬 레슨 현장 - 화이트보드를 활용한 발성 구조 설명",
+    alt: "수강생 후기 — 소극적으로 살던 제 인생의 초반에서 3옥타브장인을 만난건 천운입니다",
+    href: "https://cafe.naver.com/cloud9ent/26484",
     width: 984,
     height: 675,
   },
   {
     src: "/images/community/reviews/review-03.png",
-    alt: "3옥타브장인 보컬 레슨 현장 - 수강생 발성 교정 모습",
+    alt: "수강생 후기 — 선생님만 전적으로 믿고 따라가면 실력 향상 안될 수 없는 커리큘럼입니다",
+    href: "https://cafe.naver.com/cloud9ent/28022",
     width: 984,
     height: 675,
   },
   {
     src: "/images/community/reviews/review-04.png",
-    alt: "3옥타브장인 보컬 레슨 현장 - 1:1 맞춤형 보컬 트레이닝",
+    alt: "수강생 후기 — 잘하는 부분과 안되는 부분을 명확하게 알려주시고, 해결 방법도 명확하게 알려주셔요",
+    href: "https://cafe.naver.com/cloud9ent/27526",
     width: 984,
     height: 675,
   },
   {
     src: "/images/community/reviews/review-05.png",
-    alt: "3옥타브장인 보컬학원 핵심 가치 - Dream, Patience, Challenge",
+    alt: "수강생 후기 — 목잡이 탈출을 원하시거나 노래방 인기차트곡들을 잘 부르고 싶다면 무조건 오세요",
+    href: "https://cafe.naver.com/cloud9ent/22504",
     width: 984,
     height: 675,
   },
@@ -42,13 +48,13 @@ const reviewImages = [
 export default function ReviewsContent() {
   const galleryRef = useRef<HTMLElement>(null);
   const galleryInView = useInView(galleryRef, { once: true, amount: 0.1 });
-  const [selectedImage, setSelectedImage] = useState<number | null>(null);
 
   return (
     <>
       <PageHero
         heading="COMMUNITY"
         subheading="Real Voice, Real Change"
+        backgroundImage="/images/community/hero.png"
       />
       <CommunitySubNav />
 
@@ -82,30 +88,35 @@ export default function ReviewsContent() {
         <div className="max-w-6xl mx-auto px-6">
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 lg:gap-6">
             {reviewImages.map((img, index) => (
-              <motion.button
+              <motion.div
                 key={img.src}
                 initial={{ opacity: 0, y: 30 }}
                 animate={galleryInView ? { opacity: 1, y: 0 } : {}}
                 transition={{ duration: 0.5, delay: index * 0.1 }}
-                onClick={() => setSelectedImage(index)}
-                className="group relative aspect-[3/2] overflow-hidden bg-gray-200 cursor-pointer"
               >
-                <Image
-                  src={img.src}
-                  alt={img.alt}
-                  width={img.width}
-                  height={img.height}
-                  className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
-                />
-                <div className="absolute inset-0 bg-black/0 group-hover:bg-black/20 transition-colors duration-300" />
-                <div className="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300">
-                  <span className="w-10 h-10 rounded-full bg-white/90 flex items-center justify-center">
-                    <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
-                      <path d="M8 3V13M3 8H13" stroke="#1a1a1a" strokeWidth="2" strokeLinecap="round" />
-                    </svg>
-                  </span>
-                </div>
-              </motion.button>
+                <Link
+                  href={img.href}
+                  target="_blank"
+                  rel="noopener noreferrer nofollow"
+                  className="group relative aspect-[3/2] overflow-hidden bg-gray-200 block"
+                >
+                  <Image
+                    src={img.src}
+                    alt={img.alt}
+                    width={img.width}
+                    height={img.height}
+                    className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
+                  />
+                  <div className="absolute inset-0 bg-black/0 group-hover:bg-black/20 transition-colors duration-300" />
+                  <div className="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                    <span className="w-10 h-10 rounded-full bg-white/90 flex items-center justify-center">
+                      <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
+                        <path d="M3 13L13 3M13 3H5M13 3V11" stroke="#1a1a1a" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
+                      </svg>
+                    </span>
+                  </div>
+                </Link>
+              </motion.div>
             ))}
           </div>
         </div>
@@ -135,70 +146,6 @@ export default function ReviewsContent() {
         </div>
       </section>
 
-      {/* Lightbox */}
-      <AnimatePresence>
-        {selectedImage !== null && (
-          <motion.div
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            exit={{ opacity: 0 }}
-            className="fixed inset-0 z-[100] bg-black/90 flex items-center justify-center p-4"
-            onClick={() => setSelectedImage(null)}
-          >
-            <motion.div
-              initial={{ scale: 0.9, opacity: 0 }}
-              animate={{ scale: 1, opacity: 1 }}
-              exit={{ scale: 0.9, opacity: 0 }}
-              className="relative max-w-4xl w-full"
-              onClick={(e) => e.stopPropagation()}
-            >
-              <Image
-                src={reviewImages[selectedImage].src}
-                alt={reviewImages[selectedImage].alt}
-                width={reviewImages[selectedImage].width}
-                height={reviewImages[selectedImage].height}
-                className="w-full h-auto"
-              />
-
-              {/* Close button */}
-              <button
-                onClick={() => setSelectedImage(null)}
-                className="absolute -top-12 right-0 text-white/70 hover:text-white transition-colors"
-              >
-                <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
-                  <path d="M18 6L6 18M6 6L18 18" stroke="currentColor" strokeWidth="2" strokeLinecap="round" />
-                </svg>
-              </button>
-
-              {/* Navigation */}
-              <div className="absolute top-1/2 -translate-y-1/2 -left-12 lg:-left-16">
-                <button
-                  onClick={() =>
-                    setSelectedImage((selectedImage - 1 + reviewImages.length) % reviewImages.length)
-                  }
-                  className="w-10 h-10 rounded-full bg-white/10 hover:bg-white/20 flex items-center justify-center text-white transition-colors"
-                >
-                  <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
-                    <path d="M10 3L5 8L10 13" stroke="currentColor" strokeWidth="2" strokeLinecap="round" />
-                  </svg>
-                </button>
-              </div>
-              <div className="absolute top-1/2 -translate-y-1/2 -right-12 lg:-right-16">
-                <button
-                  onClick={() =>
-                    setSelectedImage((selectedImage + 1) % reviewImages.length)
-                  }
-                  className="w-10 h-10 rounded-full bg-white/10 hover:bg-white/20 flex items-center justify-center text-white transition-colors"
-                >
-                  <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
-                    <path d="M6 3L11 8L6 13" stroke="currentColor" strokeWidth="2" strokeLinecap="round" />
-                  </svg>
-                </button>
-              </div>
-            </motion.div>
-          </motion.div>
-        )}
-      </AnimatePresence>
     </>
   );
 }

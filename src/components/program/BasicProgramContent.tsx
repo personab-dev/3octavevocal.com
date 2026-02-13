@@ -16,6 +16,7 @@ import PageHero from "@/components/PageHero";
 import ProgramSubNav from "./ProgramSubNav";
 import ProgramBeforeAfter from "./ProgramBeforeAfter";
 import ProgramFAQ from "./ProgramFAQ";
+import FinalCta from "@/components/FinalCta";
 
 /* ── Data ─────────────────────────────────────────── */
 
@@ -125,6 +126,7 @@ export default function BasicProgramContent() {
         heading="기본 교육과정"
         subheading="Basic Vocal Training"
         description="발성의 기본 — 호흡, 위치, 피치를 체계적으로 배우는 기초 보컬 트레이닝"
+        backgroundImage="/images/program/hero.png"
       />
 
       {/* ── 2. ProgramSubNav ─────────────────────── */}
@@ -599,32 +601,10 @@ export default function BasicProgramContent() {
       <ProgramFAQ />
 
       {/* ── 11. Final CTA ─────────────────────────── */}
-      <section className="bg-accent py-16 lg:py-20 relative overflow-hidden">
-        <div className="absolute inset-0 opacity-5 pointer-events-none">
-          <div
-            className="w-full h-full"
-            style={{
-              backgroundImage:
-                "repeating-linear-gradient(45deg, transparent, transparent 20px, white 20px, white 21px)",
-            }}
-          />
-        </div>
-
-        <div className="max-w-4xl mx-auto px-6 text-center relative z-10">
-          <p className="text-white text-xl md:text-2xl lg:text-3xl font-bold mb-4">
-            2옥타브에서 멈추실 건가요?
-          </p>
-          <p className="text-white/80 text-base md:text-lg mb-8">
-            단 10분, 첫 레슨만으로도 변화를 경험하세요.
-          </p>
-          <Link
-            href="/contact"
-            className="inline-flex items-center gap-2 bg-white text-text-on-light hover:bg-black hover:text-white px-8 py-4 text-base font-bold transition-all duration-300"
-          >
-            무료 상담 문의하기
-          </Link>
-        </div>
-      </section>
+      <FinalCta
+        heading="2옥타브에서 멈추실 건가요?"
+        description="3옥타브를 뚫은 사람들이 선택한 가장 확실한 방법, 직접 경험해보세요."
+      />
     </>
   );
 }

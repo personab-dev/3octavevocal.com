@@ -1,5 +1,6 @@
 "use client";
 
+import Image from "next/image";
 import { motion } from "framer-motion";
 import BrandSymbol from "./BrandSymbol";
 
@@ -7,19 +8,38 @@ interface PageHeroProps {
   heading: string;
   subheading?: string;
   description?: string;
+  backgroundImage?: string;
 }
 
 export default function PageHero({
   heading,
   subheading,
   description,
+  backgroundImage,
 }: PageHeroProps) {
   return (
     <section className="relative bg-black py-28 lg:py-36 overflow-hidden">
+      {/* Background image (optional) */}
+      {backgroundImage && (
+        <div className="absolute inset-0">
+          <Image
+            src={backgroundImage}
+            alt=""
+            fill
+            sizes="100vw"
+            className="object-cover"
+            priority
+          />
+          <div className="absolute inset-0 bg-black/60" />
+        </div>
+      )}
+
       {/* Decorative brand symbol */}
-      <div className="absolute -right-20 top-1/2 -translate-y-1/2 opacity-[0.03] pointer-events-none">
-        <BrandSymbol size={500} color="white" />
-      </div>
+      {!backgroundImage && (
+        <div className="absolute -right-20 top-1/2 -translate-y-1/2 opacity-[0.03] pointer-events-none">
+          <BrandSymbol size={500} color="white" />
+        </div>
+      )}
 
       {/* Music staff lines decoration */}
       <div className="absolute top-0 left-0 w-full flex flex-col gap-[6px] opacity-10">

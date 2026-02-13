@@ -8,7 +8,7 @@ import MobileMenu from "./MobileMenu";
 const navItems = [
   {
     label: "ABOUT",
-    href: "/about",
+    href: "/philosophy",
     children: [
       { label: "대표 철학", href: "/philosophy" },
       { label: "차별점", href: "/difference" },
@@ -17,7 +17,7 @@ const navItems = [
   },
   {
     label: "VOCAL CLASS",
-    href: "/program",
+    href: "/basic",
     children: [
       { label: "기본 교육과정", href: "/basic" },
       { label: "심화 교육과정", href: "/advanced" },

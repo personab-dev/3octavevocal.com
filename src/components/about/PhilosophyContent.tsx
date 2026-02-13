@@ -7,6 +7,7 @@ import { motion, useInView } from "framer-motion";
 import PageHero from "@/components/PageHero";
 import AboutSubNav from "./AboutSubNav";
 import BrandSymbol from "@/components/BrandSymbol";
+import FinalCta from "@/components/FinalCta";
 
 const galleryImages = [
   { src: "/images/gallery/gallery-01.png", alt: "보컬 레슨 현장 — 1:1 발성 트레이닝" },
@@ -47,7 +48,7 @@ export default function PhilosophyContent() {
 
   return (
     <>
-      <PageHero heading="대표 철학" subheading="Philosophy" />
+      <PageHero heading="대표 철학" subheading="Philosophy" backgroundImage="/images/about/hero.png" />
       <AboutSubNav />
 
       {/* Section 1: 3옥타브장인의 시작 — 상단 헤딩 */}
@@ -340,32 +341,7 @@ export default function PhilosophyContent() {
       </section>
 
       {/* CTA */}
-      <section className="bg-accent py-16 lg:py-20 relative overflow-hidden">
-        <div className="absolute inset-0 opacity-5 pointer-events-none">
-          <div
-            className="w-full h-full"
-            style={{
-              backgroundImage:
-                "repeating-linear-gradient(45deg, transparent, transparent 20px, white 20px, white 21px)",
-            }}
-          />
-        </div>
-
-        <div className="max-w-4xl mx-auto px-6 text-center relative z-10">
-          <p className="text-white text-xl md:text-2xl lg:text-3xl font-bold mb-4">
-            여기서도 안 된다면, 어디서도 안 됩니다.
-          </p>
-          <p className="text-white/80 text-base md:text-lg mb-8">
-            그만큼 확실한 커리큘럼, 직접 확인하세요.
-          </p>
-          <Link
-            href="/contact"
-            className="inline-flex items-center gap-2 bg-white text-text-on-light hover:bg-black hover:text-white px-8 py-4 text-base font-bold transition-all duration-300"
-          >
-            무료 상담 문의하기
-          </Link>
-        </div>
-      </section>
+      <FinalCta />
     </>
   );
 }

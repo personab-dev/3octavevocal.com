@@ -9,6 +9,7 @@ import ProgramSubNav from "./ProgramSubNav";
 import ProgramBeforeAfter from "./ProgramBeforeAfter";
 import ProgramFAQ from "./ProgramFAQ";
 import CountUp from "@/components/animations/CountUp";
+import FinalCta from "@/components/FinalCta";
 
 /* ────────────────────────────────────────────
    DATA
@@ -169,7 +170,11 @@ export default function ProgramLanding() {
       <ProgramFAQ />
 
       {/* 11. CTA */}
-      <CtaSection />
+      <FinalCta
+        heading="2옥타브에서 멈추실 건가요?"
+        description="무료 상담으로 시작하세요"
+        buttonText="무료 상담 예약"
+      />
     </>
   );
 }
@@ -690,42 +695,3 @@ function InstructorSection() {
    11. CTA
    ──────────────────────────────────────────── */
 
-function CtaSection() {
-  const ref = useRef<HTMLElement>(null);
-  const isInView = useInView(ref, { once: true, amount: 0.3 });
-
-  return (
-    <section ref={ref} className="bg-accent py-16 lg:py-20 relative overflow-hidden">
-      <div className="absolute inset-0 opacity-5 pointer-events-none">
-        <div
-          className="w-full h-full"
-          style={{
-            backgroundImage:
-              "repeating-linear-gradient(45deg, transparent, transparent 20px, white 20px, white 21px)",
-          }}
-        />
-      </div>
-
-      <div className="max-w-4xl mx-auto px-6 text-center relative z-10">
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          animate={isInView ? { opacity: 1, y: 0 } : {}}
-          transition={{ duration: 0.7 }}
-        >
-          <p className="text-white text-xl md:text-2xl lg:text-3xl font-bold mb-4">
-            2옥타브에서 멈추실 건가요?
-          </p>
-          <p className="text-white/80 text-base md:text-lg mb-8">
-            무료 상담으로 시작하세요
-          </p>
-          <Link
-            href="/contact"
-            className="inline-flex items-center gap-2 bg-white text-text-on-light hover:bg-black hover:text-white px-8 py-4 text-base font-bold transition-all duration-300"
-          >
-            무료 상담 예약
-          </Link>
-        </motion.div>
-      </div>
-    </section>
-  );
-}

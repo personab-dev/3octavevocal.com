@@ -81,6 +81,7 @@ export default function TipsContent() {
       <PageHero
         heading="COMMUNITY"
         subheading="Real Voice, Real Change"
+        backgroundImage="/images/community/hero.png"
       />
       <CommunitySubNav />
 

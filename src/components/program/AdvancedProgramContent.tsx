@@ -9,6 +9,7 @@ import PageHero from "@/components/PageHero";
 import ProgramSubNav from "./ProgramSubNav";
 import ProgramBeforeAfter from "./ProgramBeforeAfter";
 import ProgramFAQ from "./ProgramFAQ";
+import FinalCta from "@/components/FinalCta";
 
 /* ────────────────────────────────────────────
    DATA
@@ -108,6 +109,7 @@ export default function AdvancedProgramContent() {
         heading="심화 교육과정"
         subheading="Advanced Vocal Training"
         description="기초 발성을 실제 노래에 적용하는 심화 보컬 트레이닝"
+        backgroundImage="/images/program/hero.png"
       />
 
       {/* 2. SubNav */}
@@ -138,7 +140,10 @@ export default function AdvancedProgramContent() {
       <ProgramFAQ />
 
       {/* 11. CTA */}
-      <CtaSection />
+      <FinalCta
+        heading="2옥타브에서 멈추실 건가요?"
+        description="3옥타브를 뚫은 사람들이 선택한 가장 확실한 방법, 직접 경험해보세요."
+      />
     </>
   );
 }
@@ -726,46 +731,3 @@ function TargetSection() {
    11. CTA
    ──────────────────────────────────────────── */
 
-function CtaSection() {
-  const ref = useRef<HTMLElement>(null);
-  const isInView = useInView(ref, { once: true, amount: 0.3 });
-
-  return (
-    <section
-      ref={ref}
-      className="bg-accent py-16 lg:py-20 relative overflow-hidden"
-    >
-      <div className="absolute inset-0 opacity-5 pointer-events-none">
-        <div
-          className="w-full h-full"
-          style={{
-            backgroundImage:
-              "repeating-linear-gradient(45deg, transparent, transparent 20px, white 20px, white 21px)",
-          }}
-        />
-      </div>
-
-      <div className="max-w-4xl mx-auto px-6 text-center relative z-10">
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          animate={isInView ? { opacity: 1, y: 0 } : {}}
-          transition={{ duration: 0.7 }}
-        >
-          <p className="text-white text-xl md:text-2xl lg:text-3xl font-bold mb-3">
-            2옥타브에서 멈추실 건가요?
-          </p>
-          <p className="text-white/80 text-base md:text-lg mb-8">
-            3옥타브를 뚫은 사람들이 선택한 가장 확실한 방법, 직접
-            경험해보세요.
-          </p>
-          <Link
-            href="/contact"
-            className="inline-flex items-center gap-2 bg-white text-text-on-light hover:bg-black hover:text-white px-8 py-4 text-base font-bold transition-all duration-300"
-          >
-            무료 상담 문의하기
-          </Link>
-        </motion.div>
-      </div>
-    </section>
-  );
-}
