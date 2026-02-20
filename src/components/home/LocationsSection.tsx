@@ -1,9 +1,9 @@
 "use client";
 
 import Link from "next/link";
-import Image from "next/image";
 import { useRef } from "react";
 import { motion, useInView } from "framer-motion";
+import NaverMap from "@/components/NaverMap";
 
 const branches = [
   {
@@ -11,21 +11,24 @@ const branches = [
     address: "서울시 서초구 서초대로78길 36, 강남지웰타워 5층",
     landmarks: ["강남역 5번출구 100m"],
     mapUrl: "https://naver.me/5vcHjbd8",
-    mapImage: "/images/locations/map-seoul.png",
+    lat: 37.49784,
+    lng: 127.02764,
   },
   {
     name: "부산점",
     address: "부산 부산진구 서전로17, 3층",
     landmarks: ["서면역 8번출구 100m"],
     mapUrl: "https://naver.me/5PVPwh3I",
-    mapImage: "/images/locations/map-busan.png",
+    lat: 35.15786,
+    lng: 129.05935,
   },
   {
     name: "인천점",
     address: "인천 부평구 경원대로 1414, 2층",
     landmarks: ["부평역 7번출구 250m", "부평지하상가 11번출구 100m"],
     mapUrl: "https://naver.me/5YFpHxrR",
-    mapImage: "/images/locations/map-incheon.png",
+    lat: 37.49065,
+    lng: 126.72340,
   },
 ];
 
@@ -59,27 +62,29 @@ export default function LocationsSection() {
               animate={isInView ? { opacity: 1, y: 0 } : {}}
               transition={{ duration: 0.5, delay: 0.2 + index * 0.15 }}
             >
+              {/* Map */}
+              <div className="aspect-[5/3] bg-zinc-100 relative overflow-hidden rounded-lg mb-4 group hover:shadow-lg transition-shadow">
+                <NaverMap lat={branch.lat} lng={branch.lng} className="w-full h-full" />
+                <Link
+                  href={branch.mapUrl}
+                  target="_blank"
+                  rel="noopener noreferrer nofollow"
+                  className="absolute inset-0 z-10"
+                >
+                  <span className="sr-only">{branch.name} 네이버 지도에서 보기</span>
+                </Link>
+                <span className="absolute bottom-2 right-2 text-zinc-400 text-sm z-20 pointer-events-none">
+                  지도 보기
+                </span>
+              </div>
+
+              {/* Info */}
               <Link
                 href={branch.mapUrl}
                 target="_blank"
                 rel="noopener noreferrer nofollow"
                 className="group block"
               >
-                {/* Map Image */}
-                <div className="aspect-[5/3] bg-zinc-100 relative overflow-hidden rounded-lg mb-4 group-hover:shadow-lg transition-shadow">
-                  <Image
-                    src={branch.mapImage}
-                    alt={`${branch.name} 지도`}
-                    fill
-                    sizes="(max-width: 768px) 100vw, 33vw"
-                    className="object-cover scale-[1.3]"
-                  />
-                  <span className="absolute bottom-2 right-2 text-zinc-400 text-sm">
-                    지도 보기
-                  </span>
-                </div>
-
-                {/* Info */}
                 <h3 className="text-xl font-bold text-text-on-light mb-2 group-hover:text-accent transition-colors">
                   {branch.name}
                 </h3>

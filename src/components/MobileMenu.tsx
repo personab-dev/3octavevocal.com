@@ -60,12 +60,21 @@ export default function MobileMenu({ scrolled }: { scrolled: boolean }) {
 
             <AnimatePresence>
                 {isOpen && (
-                    <motion.div
-                        initial={{ opacity: 0, y: -20 }}
-                        animate={{ opacity: 1, y: 0 }}
-                        exit={{ opacity: 0, y: -20 }}
-                        className="absolute top-full left-0 w-full bg-black/95 backdrop-blur-md border-b border-white/10 p-6 flex flex-col gap-6"
-                    >
+                    <>
+                        {/* Blur backdrop */}
+                        <motion.div
+                            initial={{ opacity: 0 }}
+                            animate={{ opacity: 1 }}
+                            exit={{ opacity: 0 }}
+                            className="fixed inset-0 top-16 bg-black/40 backdrop-blur-sm z-40"
+                            onClick={() => setIsOpen(false)}
+                        />
+                        <motion.div
+                            initial={{ opacity: 0, y: -20 }}
+                            animate={{ opacity: 1, y: 0 }}
+                            exit={{ opacity: 0, y: -20 }}
+                            className="absolute top-full left-0 w-full bg-black/95 backdrop-blur-md border-b border-white/10 p-6 flex flex-col gap-6 z-50"
+                        >
                         <nav className="flex flex-col gap-4">
                             {navItems.map((item) => (
                                 <div key={item.label} className="flex flex-col">
@@ -130,6 +139,7 @@ export default function MobileMenu({ scrolled }: { scrolled: boolean }) {
                             </Link>
                         </div>
                     </motion.div>
+                    </>
                 )}
             </AnimatePresence>
         </div>

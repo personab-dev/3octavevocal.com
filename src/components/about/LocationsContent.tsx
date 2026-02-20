@@ -1,13 +1,13 @@
 "use client";
 
 import Link from "next/link";
-import Image from "next/image";
 import { useRef, useState } from "react";
 import { motion, useInView, AnimatePresence } from "framer-motion";
-import { MapPin, Phone, Clock, ChevronRight, MessageCircle } from "lucide-react";
+import { MapPin, Phone, Clock, MessageCircle } from "lucide-react";
 import PageHero from "@/components/PageHero";
 import AboutSubNav from "./AboutSubNav";
 import FinalCta from "@/components/FinalCta";
+import NaverMap from "@/components/NaverMap";
 
 const branches = [
   {
@@ -18,8 +18,9 @@ const branches = [
     phone: ["0507-1406-2849", "02-566-2848"],
     instructors: 7,
     kakao: "https://pf.kakao.com/_VwYHd",
-    mapImage: "/images/locations/map-seoul.png",
     mapUrl: "https://naver.me/5vcHjbd8",
+    lat: 37.49784,
+    lng: 127.02764,
   },
   {
     name: "인천점",
@@ -29,8 +30,9 @@ const branches = [
     phone: ["0507-1319-1769"],
     instructors: null,
     kakao: null,
-    mapImage: "/images/locations/map-incheon.png",
     mapUrl: "https://naver.me/5YFpHxrR",
+    lat: 37.49065,
+    lng: 126.72340,
   },
   {
     name: "부산점",
@@ -40,8 +42,9 @@ const branches = [
     phone: ["0507-1351-9158"],
     instructors: 3,
     kakao: "https://pf.kakao.com/_gUMxbs",
-    mapImage: "/images/locations/map-busan.png",
     mapUrl: "https://naver.me/5PVPwh3I",
+    lat: 35.15786,
+    lng: 129.05935,
   },
 ];
 
@@ -113,27 +116,28 @@ export default function LocationsContent() {
               transition={{ duration: 0.3 }}
             >
               <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-12">
-                {/* Map Image */}
-                <Link
-                  href={branches[activeBranch].mapUrl}
-                  target="_blank"
-                  rel="noopener noreferrer nofollow"
-                  className="block relative overflow-hidden bg-zinc-100 group"
-                >
+                {/* Map */}
+                <div className="relative overflow-hidden bg-zinc-100 group">
                   <div className="relative w-full h-[250px] md:h-[350px] lg:h-[400px]">
-                    <Image
-                      src={branches[activeBranch].mapImage}
-                      alt={`${branches[activeBranch].name} 지도`}
-                      fill
-                      sizes="(max-width: 1024px) 100vw, 50vw"
-                      className="object-cover"
+                    <NaverMap
+                      lat={branches[activeBranch].lat}
+                      lng={branches[activeBranch].lng}
+                      className="w-full h-full"
                     />
+                    <Link
+                      href={branches[activeBranch].mapUrl}
+                      target="_blank"
+                      rel="noopener noreferrer nofollow"
+                      className="absolute inset-0 z-10"
+                    >
+                      <span className="sr-only">{branches[activeBranch].name} 네이버 지도에서 보기</span>
+                    </Link>
                   </div>
-                  <div className="absolute bottom-4 right-4 bg-white/90 backdrop-blur-sm px-4 py-2 flex items-center gap-2 text-sm font-medium text-text-on-light group-hover:bg-accent group-hover:text-white transition-all duration-300">
+                  <div className="absolute bottom-4 right-4 bg-white/90 backdrop-blur-sm px-4 py-2 flex items-center gap-2 text-sm font-medium text-text-on-light z-20 pointer-events-none group-hover:bg-accent group-hover:text-white transition-all duration-300">
                     <MapPin size={14} />
                     네이버 지도에서 보기
                   </div>
-                </Link>
+                </div>
 
                 {/* Branch Info */}
                 <div className="flex flex-col justify-center">

@@ -11,7 +11,6 @@ import CourseCardsSection from "@/components/home/CourseCardsSection";
 import TrustCtaSection from "@/components/home/TrustCtaSection";
 import LocationsSection from "@/components/home/LocationsSection";
 import FloatingSidebar from "@/components/FloatingSidebar";
-import FloatingBottomBar from "@/components/FloatingBottomBar";
 
 export default function Home() {
   return (
@@ -31,7 +30,6 @@ export default function Home() {
         <LocationsSection />
       </div>
       <FloatingSidebar />
-      {/* <FloatingBottomBar /> */}
     </>
   );
 }

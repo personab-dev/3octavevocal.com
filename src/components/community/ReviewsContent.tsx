@@ -123,8 +123,18 @@ export default function ReviewsContent() {
       </section>
 
       {/* CTA Section */}
-      <section className="bg-black py-16 lg:py-20">
-        <div className="max-w-3xl mx-auto px-6 text-center">
+      <section className="relative overflow-hidden bg-black py-16 lg:py-20">
+        {/* Logo watermark — left side */}
+        <div className="absolute left-0 top-1/2 -translate-y-1/2 -translate-x-[30%] pointer-events-none">
+          <Image
+            src="/images/logo-accent-white.png"
+            alt=""
+            width={400}
+            height={400}
+            className="opacity-[0.06] w-[280px] lg:w-[400px] h-auto"
+          />
+        </div>
+        <div className="relative z-10 max-w-3xl mx-auto px-6 text-center">
           <p className="text-gray-400 text-sm md:text-base mb-3 tracking-widest uppercase">
             Start Your Change
           </p>

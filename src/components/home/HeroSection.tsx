@@ -6,22 +6,13 @@ import { motion } from "framer-motion";
 export default function HeroSection() {
   return (
     <section className="relative bg-black overflow-hidden -mt-16 pt-16 min-h-[650px] md:min-h-[780px] lg:min-h-[860px] flex items-center">
-      {/* Background Image — Desktop */}
+      {/* Background Image */}
       <Image
-        src="/images/hero-desktop.png"
-        alt="3옥타브장인 보컬학원 레슨 현장"
+        src="/images/hero-bg.jpg"
+        alt="3옥타브장인 보컬학원 브랜드 포스터"
         fill
         sizes="100vw"
-        className="object-cover object-center hidden md:block"
-        priority
-      />
-      {/* Background Image — Mobile */}
-      <Image
-        src="/images/hero-mobile.png"
-        alt="3옥타브장인 보컬학원 레슨 현장"
-        fill
-        sizes="100vw"
-        className="object-cover object-center md:hidden"
+        className="object-cover object-center"
         priority
       />
 
