@@ -102,7 +102,7 @@ export default function MobileMenu({ scrolled }: { scrolled: boolean }) {
                             <Link
                                 href="/contact"
                                 onClick={() => setIsOpen(false)}
-                                className="block w-full text-center bg-accent hover:bg-white hover:text-black text-white px-6 py-3.5 font-bold transition-all text-base tracking-widest"
+                                className="block w-full text-center bg-accent hover:bg-white hover:text-black text-white px-6 py-3.5 font-bold transition-all text-base tracking-widest rounded-r-full"
                             >
                                 무료 상담 예약
                             </Link>

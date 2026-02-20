@@ -28,25 +28,45 @@ export default function Header() {
     >
       <div className="max-w-[1440px] mx-auto px-6 lg:px-10 h-16 lg:h-[72px] flex items-center justify-between">
         {/* Logo — swap between white/black based on scroll */}
-        <Link href="/" className="flex items-center shrink-0">
-          <Image
-            src="/images/logo-white.png"
-            alt="3옥타브장인"
-            width={220}
-            height={40}
-            className={`h-6 lg:h-8 w-auto absolute transition-opacity duration-500 ${scrolled ? "opacity-0" : "opacity-100"
-              }`}
-            priority
-          />
-          <Image
-            src="/images/logo-black.png"
-            alt="3옥타브장인"
-            width={220}
-            height={40}
-            className={`h-6 lg:h-8 w-auto transition-opacity duration-500 ${scrolled ? "opacity-100" : "opacity-0"
-              }`}
-            priority
-          />
+        <Link href="/" className="relative flex items-center shrink-0">
+          {/* White version (transparent bg) */}
+          <span className={`flex items-center gap-2 absolute left-0 transition-opacity duration-500 ${scrolled ? "opacity-0" : "opacity-100"}`}>
+            <Image
+              src="/images/logo-accent-white.png"
+              alt=""
+              width={40}
+              height={40}
+              className="h-6 lg:h-8 w-auto"
+              priority
+            />
+            <Image
+              src="/images/logo-white.png"
+              alt="3옥타브장인"
+              width={220}
+              height={40}
+              className="h-6 lg:h-8 w-auto"
+              priority
+            />
+          </span>
+          {/* Black version (scrolled bg) */}
+          <span className={`flex items-center gap-2 transition-opacity duration-500 ${scrolled ? "opacity-100" : "opacity-0"}`}>
+            <Image
+              src="/images/logo-accent-black.png"
+              alt=""
+              width={40}
+              height={40}
+              className="h-6 lg:h-8 w-auto"
+              priority
+            />
+            <Image
+              src="/images/logo-black.png"
+              alt="3옥타브장인"
+              width={220}
+              height={40}
+              className="h-6 lg:h-8 w-auto"
+              priority
+            />
+          </span>
         </Link>
 
         {/* Desktop Nav */}
@@ -99,7 +119,7 @@ export default function Header() {
         <div className="hidden lg:block ml-8">
           <Link
             href="/contact"
-            className={`px-6 py-2.5 text-sm font-bold tracking-widest transition-all duration-500 uppercase ${scrolled
+            className={`px-6 py-2.5 text-sm font-bold tracking-widest transition-all duration-500 uppercase rounded-r-full ${scrolled
                 ? "border border-accent text-accent hover:bg-accent hover:text-white hover:shadow-[0_0_20px_rgba(230,32,77,0.3)]"
                 : "border border-accent/60 text-white hover:bg-accent hover:shadow-[0_0_20px_rgba(230,32,77,0.3)]"
               }`}

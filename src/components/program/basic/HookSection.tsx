@@ -48,16 +48,15 @@ export default function HookSection() {
 
       {/* Image area with worry bubbles overlay */}
       <div className="relative aspect-[16/7] md:aspect-[16/5] overflow-hidden bg-zinc-800">
-        {/* Placeholder — replace with actual image */}
         <Image
-          src="/images/program/basic-hero.jpg"
+          src="/images/home/painpoints-bg.png"
           alt="3옥타브장인 보컬 레슨 현장"
           fill
           sizes="100vw"
           className="object-cover"
           priority
         />
-        <div className="absolute inset-0 bg-black/50" />
+        <div className="absolute inset-0 bg-black/40" />
 
         {/* Worry Bubbles */}
         <div className="absolute inset-0 flex items-center justify-center">

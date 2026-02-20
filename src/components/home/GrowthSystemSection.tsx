@@ -1,5 +1,6 @@
 "use client";
 
+import Image from "next/image";
 import { useRef } from "react";
 import { motion, useInView } from "framer-motion";
 
@@ -8,8 +9,19 @@ export default function GrowthSystemSection() {
   const isInView = useInView(ref, { once: true, amount: 0.4 });
 
   return (
-    <section ref={ref} className="bg-black py-20 lg:py-28">
-      <div className="max-w-5xl mx-auto px-6 text-center">
+    <section ref={ref} className="bg-black py-20 lg:py-28 relative overflow-hidden">
+      {/* Asset 38 background layer */}
+      <div className="absolute inset-0 flex items-center justify-center pointer-events-none">
+        <Image
+          src="/images/home/asset-38.png"
+          alt=""
+          width={800}
+          height={800}
+          className="w-auto h-full max-h-[80%] object-contain opacity-[0.07]"
+        />
+      </div>
+
+      <div className="relative z-10 max-w-5xl mx-auto px-6 text-center">
         <motion.h2
           initial={{ opacity: 0, y: 20 }}
           animate={isInView ? { opacity: 1, y: 0 } : {}}

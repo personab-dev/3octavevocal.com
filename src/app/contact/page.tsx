@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import ContactContent from "@/components/contact/ContactContent";
 
 export const metadata: Metadata = {
   title: "상담 예약",
@@ -9,7 +10,7 @@ export const metadata: Metadata = {
 export default function ContactPage() {
   return (
     <main>
-      <h1>CONTACT</h1>
+      <ContactContent />
     </main>
   );
 }

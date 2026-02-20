@@ -1,5 +1,6 @@
 "use client";
 
+import Image from "next/image";
 import { useRef } from "react";
 import { motion, useInView } from "framer-motion";
 
@@ -16,6 +17,27 @@ export default function PainPointsSection() {
 
   return (
     <section ref={ref} className="bg-white py-24 lg:py-36 relative overflow-hidden">
+      {/* Logo watermark — top-left */}
+      <div className="absolute -top-16 -left-16 opacity-[0.04] pointer-events-none">
+        <Image
+          src="/images/logo-accent-black.png"
+          alt=""
+          width={420}
+          height={420}
+          className="object-contain"
+        />
+      </div>
+      {/* Logo watermark — bottom-right */}
+      <div className="absolute -bottom-16 -right-16 opacity-[0.04] pointer-events-none">
+        <Image
+          src="/images/logo-accent-black.png"
+          alt=""
+          width={420}
+          height={420}
+          className="object-contain"
+        />
+      </div>
+
       {/* Radial gradient background */}
       <div className="absolute inset-0 pointer-events-none bg-[radial-gradient(ellipse_80%_60%_at_50%_55%,_rgba(0,0,0,0.06)_0%,_transparent_70%)]" />
       <div className="relative z-10 max-w-5xl mx-auto px-6">

@@ -104,9 +104,8 @@ export default function PhilosophyContent() {
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ duration: 0.5, delay: 0.2 + i * 0.15 }}
-                className={`bg-zinc-800/80 backdrop-blur-sm rounded-lg px-6 py-3 text-gray-300 text-sm md:text-base ${
-                  i === 1 ? "self-end mr-4 md:mr-16" : "self-start ml-4 md:ml-16"
-                }`}
+                className={`bg-zinc-800/80 backdrop-blur-sm rounded-lg px-6 py-3 text-gray-300 text-sm md:text-base ${i === 1 ? "self-end mr-4 md:mr-16" : "self-start ml-4 md:ml-16"
+                  }`}
               >
                 &ldquo;{text}&rdquo;
               </motion.div>
@@ -179,8 +178,19 @@ export default function PhilosophyContent() {
                 transition={{ duration: 0.5, delay: 0.2 + index * 0.15 }}
                 className="border border-gray-200 p-8 lg:p-10 relative overflow-hidden group hover:border-accent transition-colors duration-300"
               >
+                {/* Brand symbol watermark */}
+                <div className="absolute left-7 top-10 -translate-x-[30%] -translate-y-[20%] pointer-events-none">
+                  <Image
+                    src="/images/brand-symbol.png"
+                    alt=""
+                    width={120}
+                    height={120}
+                    className="opacity-[0.05] w-[100px] lg:w-[120px] h-auto"
+                  />
+                </div>
+
                 {/* Number */}
-                <span className="font-display text-5xl text-gray-100 group-hover:text-accent/10 transition-colors duration-300 leading-none">
+                <span className="font-display text-black text-5xl group-hover:text-accent transition-colors duration-300 leading-none">
                   {promise.number}
                 </span>
 
@@ -193,7 +203,7 @@ export default function PhilosophyContent() {
                 <div className="w-12 h-[2px] bg-accent mb-4" />
 
                 {/* Body */}
-                <p className="text-sm md:text-base text-text-on-light/60 leading-relaxed whitespace-pre-line">
+                <p className="text-sm md:text-base text-text-on-light leading-relaxed whitespace-pre-line">
                   {promise.body}
                 </p>
               </motion.div>
