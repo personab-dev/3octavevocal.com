@@ -5,38 +5,7 @@ import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { motion, AnimatePresence } from "framer-motion";
 import { Icons } from "./Icons";
-
-const navItems = [
-    {
-        label: "ABOUT",
-        href: "/philosophy",
-        children: [
-            { label: "대표 철학", href: "/philosophy" },
-            { label: "차별점", href: "/difference" },
-            { label: "지점 찾기", href: "/locations" },
-        ],
-    },
-    {
-        label: "VOCAL CLASS",
-        href: "/basic",
-        children: [
-            { label: "기본 교육과정", href: "/basic" },
-            { label: "심화 교육과정", href: "/advanced" },
-        ],
-    },
-    {
-        label: "COMMUNITY",
-        href: "/reviews",
-        children: [
-            { label: "수강생 후기", href: "/reviews" },
-            { label: "발성 꿀팁", href: "/tips" },
-        ],
-    },
-    {
-        label: "CONTACT",
-        href: "/contact",
-    },
-];
+import { navItems } from "@/lib/navigation";
 
 export default function MobileMenu({ scrolled }: { scrolled: boolean }) {
     const [isOpen, setIsOpen] = useState(false);

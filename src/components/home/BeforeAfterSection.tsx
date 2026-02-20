@@ -4,6 +4,7 @@ import { useRef } from "react";
 import Link from "next/link";
 import Image from "next/image";
 import { motion, useInView } from "framer-motion";
+import SectionHeader from "@/components/SectionHeader";
 
 const videos = [
   {
@@ -46,19 +47,10 @@ export default function BeforeAfterSection() {
     <section ref={ref} className="bg-white py-24 lg:py-36">
       <div className="max-w-[1440px] mx-auto px-6">
         {/* Headline */}
-        <motion.div
-          initial={{ opacity: 0, y: 30 }}
-          animate={isInView ? { opacity: 1, y: 0 } : {}}
-          transition={{ duration: 0.7 }}
-          className="text-center mb-14"
-        >
-          <p className="text-text-on-light/60 text-lg md:text-xl mb-3">
-            단 10분, 첫 레슨만으로도 변화를 경험한 수강생들!
-          </p>
-          <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold text-text-on-light">
-            <span className="text-accent font-black">BEFORE &amp; AFTER</span>로 직접 확인하세요
-          </h2>
-        </motion.div>
+        <SectionHeader
+          label="단 10분, 첫 레슨만으로도 변화를 경험한 수강생들!"
+          heading={<><span className="text-accent font-black">BEFORE &amp; AFTER</span>로 직접 확인하세요</>}
+        />
 
         {/* YouTube Shorts Grid */}
         <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-5">

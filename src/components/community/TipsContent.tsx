@@ -1,9 +1,11 @@
 "use client";
 
 import { useRef } from "react";
+import Link from "next/link";
 import Image from "next/image";
 import { motion, useInView } from "framer-motion";
 import PageHero from "@/components/PageHero";
+import SectionHeader from "@/components/SectionHeader";
 import CommunitySubNav from "./CommunitySubNav";
 
 const tipCards = [
@@ -88,25 +90,12 @@ export default function TipsContent() {
       {/* Header Section */}
       <section className="bg-white py-16 lg:py-24">
         <div className="max-w-5xl mx-auto px-6">
-          <motion.div
-            initial={{ opacity: 0, y: 30 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.7 }}
-            className="text-center"
-          >
-            <p className="text-accent text-sm md:text-base font-bold tracking-widest uppercase mb-4">
-              Hot Tip
-            </p>
-            <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold text-text-on-light leading-tight">
-              3옥타브장인
-              <br />
-              <span className="text-accent">발성 꿀팁</span>
-            </h2>
-            <p className="text-text-on-light/60 text-base md:text-lg mt-6 max-w-xl mx-auto leading-relaxed">
-              고음 발성법, 호흡 조절, 성대 컨트롤 등
-              3옥타브장인 보컬학원의 핵심 보컬 팁을 확인하세요.
-            </p>
-          </motion.div>
+          <SectionHeader
+            label="Hot Tip"
+            labelStyle="accent"
+            heading={<>3옥타브장인<br /><span className="text-accent">발성 꿀팁</span></>}
+            description="고음 발성법, 호흡 조절, 성대 컨트롤 등 3옥타브장인 보컬학원의 핵심 보컬 팁을 확인하세요."
+          />
         </div>
       </section>
 
@@ -156,17 +145,15 @@ export default function TipsContent() {
             <br />
             <span className="text-accent">전문가에게 직접 배워보세요</span>
           </p>
-          <motion.a
+          <Link
             href="/contact"
-            whileHover={{ scale: 1.02 }}
-            whileTap={{ scale: 0.98 }}
-            className="inline-flex items-center gap-2 bg-accent hover:bg-accent/90 text-white rounded-r-full px-8 py-4 text-base font-bold transition-colors duration-300"
+            className="inline-flex items-center gap-2 bg-accent hover:bg-accent/90 text-white rounded-r-full px-8 py-4 text-base font-bold transition-colors duration-300 hover:scale-[1.02] active:scale-[0.98] transition-transform"
           >
             무료 상담 예약하기
             <svg width="16" height="12" viewBox="0 0 16 12" fill="none">
               <path d="M10 1L15 6L10 11M0 6H15" stroke="currentColor" strokeWidth="1.5" />
             </svg>
-          </motion.a>
+          </Link>
         </div>
       </section>
     </>

@@ -4,6 +4,7 @@ import Link from "next/link";
 import { useRef } from "react";
 import { motion, useInView } from "framer-motion";
 import NaverMap from "@/components/NaverMap";
+import SectionHeader from "@/components/SectionHeader";
 
 const branches = [
   {
@@ -40,18 +41,10 @@ export default function LocationsSection() {
     <section ref={ref} className="bg-white py-24 lg:py-36">
       <div className="max-w-6xl mx-auto px-6">
         {/* Headline */}
-        <motion.div
-          initial={{ opacity: 0, y: 30 }}
-          animate={isInView ? { opacity: 1, y: 0 } : {}}
-          transition={{ duration: 0.7 }}
-          className="text-center mb-14"
-        >
-          <p className="text-text-on-light/50 text-base md:text-lg mb-2">오시는 길</p>
-          <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold text-text-on-light">
-            <span className="text-accent">전국 3개의 지점</span>에서<br />
-            3옥타브장인 보컬학원을 만나보세요.
-          </h2>
-        </motion.div>
+        <SectionHeader
+          label="오시는 길"
+          heading={<><span className="text-accent">전국 3개의 지점</span>에서<br />3옥타브장인 보컬학원을 만나보세요.</>}
+        />
 
         {/* Branch cards */}
         <div className="grid grid-cols-1 md:grid-cols-3 gap-8">

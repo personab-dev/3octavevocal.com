@@ -5,6 +5,7 @@ import Link from "next/link";
 import Image from "next/image";
 import { motion, useInView } from "framer-motion";
 import PageHero from "@/components/PageHero";
+import SectionHeader from "@/components/SectionHeader";
 import CommunitySubNav from "./CommunitySubNav";
 
 const reviewImages = [
@@ -61,25 +62,12 @@ export default function ReviewsContent() {
       {/* Header Section */}
       <section className="bg-white py-16 lg:py-24">
         <div className="max-w-5xl mx-auto px-6">
-          <motion.div
-            initial={{ opacity: 0, y: 30 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.7 }}
-            className="text-center"
-          >
-            <p className="text-accent text-sm md:text-base font-bold tracking-widest uppercase mb-4">
-              Student Reviews
-            </p>
-            <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold text-text-on-light leading-tight">
-              첫 레슨만으로
-              <br />
-              <span className="text-accent">변화를 경험한 수강생들</span>
-            </h2>
-            <p className="text-text-on-light/60 text-base md:text-lg mt-6 max-w-xl mx-auto leading-relaxed">
-              7,000명 이상의 수강생을 배출한 3옥타브장인 보컬학원의
-              생생한 레슨 현장과 후기를 소개합니다.
-            </p>
-          </motion.div>
+          <SectionHeader
+            label="Student Reviews"
+            labelStyle="accent"
+            heading={<>첫 레슨만으로<br /><span className="text-accent">변화를 경험한 수강생들</span></>}
+            description="7,000명 이상의 수강생을 배출한 3옥타브장인 보컬학원의 생생한 레슨 현장과 후기를 소개합니다."
+          />
         </div>
       </section>
 
@@ -142,17 +130,15 @@ export default function ReviewsContent() {
             다음 변화의 주인공은
             <span className="text-accent"> 당신</span>입니다
           </p>
-          <motion.a
+          <Link
             href="/contact"
-            whileHover={{ scale: 1.02 }}
-            whileTap={{ scale: 0.98 }}
-            className="inline-flex items-center gap-2 bg-accent hover:bg-accent/90 text-white rounded-r-full px-8 py-4 text-base font-bold transition-colors duration-300"
+            className="inline-flex items-center gap-2 bg-accent hover:bg-accent/90 text-white rounded-r-full px-8 py-4 text-base font-bold transition-colors duration-300 hover:scale-[1.02] active:scale-[0.98] transition-transform"
           >
             무료 상담 예약하기
             <svg width="16" height="12" viewBox="0 0 16 12" fill="none">
               <path d="M10 1L15 6L10 11M0 6H15" stroke="currentColor" strokeWidth="1.5" />
             </svg>
-          </motion.a>
+          </Link>
         </div>
       </section>
 

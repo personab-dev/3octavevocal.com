@@ -4,6 +4,7 @@ import Link from "next/link";
 import Image from "next/image";
 import { useRef } from "react";
 import { motion, useInView } from "framer-motion";
+import SectionHeader from "@/components/SectionHeader";
 
 const courses = [
   {
@@ -28,19 +29,12 @@ export default function CourseCardsSection() {
     <section ref={ref} className="bg-black py-24 lg:py-36">
       <div className="max-w-6xl mx-auto px-6">
         {/* Headline */}
-        <motion.div
-          initial={{ opacity: 0, y: 30 }}
-          animate={isInView ? { opacity: 1, y: 0 } : {}}
-          transition={{ duration: 0.7 }}
-          className="text-center mb-8"
-        >
-          <p className="text-gray-400 text-lg md:text-xl mb-3">
-            현직 가수부터 일반인까지, <strong className="text-white">모두가 인정한 검증된 시스템</strong>
-          </p>
-          <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold text-white">
-            그 비결이 궁금하다면?
-          </h2>
-        </motion.div>
+        <SectionHeader
+          label="현직 가수부터 일반인까지, 모두가 인정한 검증된 시스템"
+          heading="그 비결이 궁금하다면?"
+          theme="dark"
+          className="mb-8"
+        />
 
         {/* Course cards */}
         <div className="grid grid-cols-1 md:grid-cols-2 gap-8 mt-14">

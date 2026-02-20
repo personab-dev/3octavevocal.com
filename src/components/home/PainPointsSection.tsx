@@ -16,7 +16,9 @@ export default function PainPointsSection() {
 
   return (
     <section ref={ref} className="bg-white py-24 lg:py-36 relative overflow-hidden">
-      <div className="max-w-5xl mx-auto px-6">
+      {/* Radial gradient background */}
+      <div className="absolute inset-0 pointer-events-none bg-[radial-gradient(ellipse_80%_60%_at_50%_55%,_rgba(0,0,0,0.06)_0%,_transparent_70%)]" />
+      <div className="relative z-10 max-w-5xl mx-auto px-6">
         {/* Headline */}
         <motion.div
           initial={{ opacity: 0, y: 30 }}
