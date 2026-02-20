@@ -101,7 +101,7 @@ export default function Header() {
                     <Link
                       key={child.href}
                       href={child.href}
-                      className={`block px-6 py-3 text-base transition-all duration-200 ${scrolled
+                      className={`block px-6 py-3 text-base transition-all duration-200 border-l-2 border-transparent hover:border-accent ${scrolled
                           ? "text-gray-500 hover:text-accent hover:bg-gray-50 hover:pl-8"
                           : "text-gray-400 hover:text-white hover:bg-white/5 hover:pl-8"
                         }`}
@@ -114,19 +114,6 @@ export default function Header() {
             </div>
           ))}
         </nav>
-
-        {/* CTA Button (Desktop) */}
-        <div className="hidden lg:block ml-8">
-          <Link
-            href="/contact"
-            className={`px-6 py-2.5 text-sm font-bold tracking-widest transition-all duration-500 uppercase rounded-r-full ${scrolled
-                ? "border border-accent text-accent hover:bg-accent hover:text-white hover:shadow-[0_0_20px_rgba(230,32,77,0.3)]"
-                : "border border-accent/60 text-white hover:bg-accent hover:shadow-[0_0_20px_rgba(230,32,77,0.3)]"
-              }`}
-          >
-            상담 예약
-          </Link>
-        </div>
 
         {/* Mobile Menu */}
         <MobileMenu scrolled={scrolled} />

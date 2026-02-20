@@ -22,7 +22,7 @@ export async function GET(request: NextRequest) {
     );
   }
 
-  const url = `https://naveropenapi.apigw.ntruss.com/map-static/v2/raster?center=${lng},${lat}&level=${level}&w=${w}&h=${h}&maptype=basic&format=png&scale=2&lang=ko&markers=type:d|size:mid|pos:${lng}%20${lat}`;
+  const url = `https://maps.apigw.ntruss.com/map-static/v2/raster?center=${lng},${lat}&level=${level}&w=${w}&h=${h}&maptype=basic&format=png&scale=2&lang=ko&markers=type:d|size:mid|pos:${lng}%20${lat}`;
 
   const response = await fetch(url, {
     headers: {

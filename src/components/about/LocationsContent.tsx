@@ -19,8 +19,8 @@ const branches = [
     instructors: 7,
     kakao: "https://pf.kakao.com/_VwYHd",
     mapUrl: "https://naver.me/5vcHjbd8",
-    lat: 37.49784,
-    lng: 127.02764,
+    lat: 37.49472,
+    lng: 127.02817,
   },
   {
     name: "인천점",
@@ -29,10 +29,10 @@ const branches = [
     landmark: "부평역 7번출구 250m / 부평지하상가 11번출구 100m",
     phone: ["0507-1319-1769"],
     instructors: null,
-    kakao: null,
+    kakao: "https://pf.kakao.com/_Njgdxj",
     mapUrl: "https://naver.me/5YFpHxrR",
-    lat: 37.49065,
-    lng: 126.72340,
+    lat: 37.49102,
+    lng: 126.72609,
   },
   {
     name: "부산점",
@@ -43,8 +43,8 @@ const branches = [
     instructors: 3,
     kakao: "https://pf.kakao.com/_gUMxbs",
     mapUrl: "https://naver.me/5PVPwh3I",
-    lat: 35.15786,
-    lng: 129.05935,
+    lat: 35.15796,
+    lng: 129.06150,
   },
 ];
 
@@ -122,6 +122,7 @@ export default function LocationsContent() {
                     <NaverMap
                       lat={branches[activeBranch].lat}
                       lng={branches[activeBranch].lng}
+                      level={17}
                       className="w-full h-full"
                     />
                     <Link

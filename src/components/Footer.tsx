@@ -129,7 +129,7 @@ export default function Footer() {
               rel="noopener noreferrer nofollow"
               aria-label="네이버 블로그"
             >
-              <NaverBlogIcon className="w-10 h-10" />
+              <NaverBlogIcon className="w-10 h-10 transition-transform duration-300 hover:scale-110" />
             </Link>
             <Link
               href="https://www.youtube.com/channel/UCp1xHspGwp6EhZwalQmI8Iw"
@@ -137,7 +137,7 @@ export default function Footer() {
               rel="noopener noreferrer nofollow"
               aria-label="YouTube"
             >
-              <YoutubeIcon className="w-10 h-10" />
+              <YoutubeIcon className="w-10 h-10 transition-transform duration-300 hover:scale-110" />
             </Link>
             <Link
               href="https://www.instagram.com/3octave_official/"
@@ -145,7 +145,7 @@ export default function Footer() {
               rel="noopener noreferrer nofollow"
               aria-label="Instagram"
             >
-              <InstagramIcon className="w-10 h-10" />
+              <InstagramIcon className="w-10 h-10 transition-transform duration-300 hover:scale-110" />
             </Link>
           </div>
         </div>
@@ -156,8 +156,8 @@ export default function Footer() {
         {/* Bottom section: Branch info grid */}
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 text-sm md:text-base text-gray-500">
           {branches.map((branch) => (
-            <div key={branch.name} className="flex flex-col gap-1">
-              <strong className="text-gray-800 text-base mb-1">
+            <div key={branch.name} className="flex flex-col gap-1 group">
+              <strong className="text-gray-800 text-base mb-1 group-hover:text-accent transition-colors duration-300">
                 {branch.name}
               </strong>
               <div className="flex flex-col gap-0.5">
@@ -167,7 +167,7 @@ export default function Footer() {
                 </p>
                 <p>
                   <span className="font-medium text-gray-600">상담번호:</span>{" "}
-                  {branch.phone}
+                  <span className="hover:text-accent transition-colors duration-300 cursor-pointer">{branch.phone}</span>
                 </p>
                 <p>
                   <span className="font-medium text-gray-600">주소:</span>{" "}

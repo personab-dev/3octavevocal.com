@@ -12,24 +12,24 @@ const branches = [
     address: "서울시 서초구 서초대로78길 36, 강남지웰타워 5층",
     landmarks: ["강남역 5번출구 100m"],
     mapUrl: "https://naver.me/5vcHjbd8",
-    lat: 37.49784,
-    lng: 127.02764,
+    lat: 37.49472,
+    lng: 127.02817,
   },
   {
     name: "부산점",
     address: "부산 부산진구 서전로17, 3층",
     landmarks: ["서면역 8번출구 100m"],
     mapUrl: "https://naver.me/5PVPwh3I",
-    lat: 35.15786,
-    lng: 129.05935,
+    lat: 35.15796,
+    lng: 129.06150,
   },
   {
     name: "인천점",
     address: "인천 부평구 경원대로 1414, 2층",
     landmarks: ["부평역 7번출구 250m", "부평지하상가 11번출구 100m"],
     mapUrl: "https://naver.me/5YFpHxrR",
-    lat: 37.49065,
-    lng: 126.72340,
+    lat: 37.49102,
+    lng: 126.72609,
   },
 ];
 
@@ -57,7 +57,7 @@ export default function LocationsSection() {
             >
               {/* Map */}
               <div className="aspect-[5/3] bg-zinc-100 relative overflow-hidden rounded-lg mb-4 group hover:shadow-lg transition-shadow">
-                <NaverMap lat={branch.lat} lng={branch.lng} className="w-full h-full" />
+                <NaverMap lat={branch.lat} lng={branch.lng} level={17} className="w-full h-full" />
                 <Link
                   href={branch.mapUrl}
                   target="_blank"

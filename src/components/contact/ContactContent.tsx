@@ -90,7 +90,7 @@ export default function ContactContent() {
       </section>
 
       {/* 지점별 연락처 섹션 */}
-      <section className="bg-zinc-50 py-20 lg:py-28">
+      <section id="branches" className="bg-zinc-50 py-20 lg:py-28">
         <div className="max-w-6xl mx-auto px-6">
           <SectionHeader
             label="BRANCHES"

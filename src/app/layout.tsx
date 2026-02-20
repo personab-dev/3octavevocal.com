@@ -27,6 +27,7 @@ const dancingScript = Dancing_Script({
 });
 
 export const metadata: Metadata = {
+  metadataBase: new URL("https://3octavevocal.com"),
   title: {
     default: "3옥타브장인 보컬학원, No.1 강남보컬학원",
     template: "%s — 3옥타브장인 보컬학원",

@@ -5,10 +5,14 @@ import { motion, useInView } from "framer-motion";
 import Image from "next/image";
 
 const artistImages = [
-  { src: "/images/pro-curriculum/artist-1.png", alt: "아티스트 레슨 현장 1" },
-  { src: "/images/pro-curriculum/artist-2.png", alt: "아티스트 레슨 현장 2" },
-  { src: "/images/pro-curriculum/artist-3.png", alt: "아티스트 레슨 현장 3" },
-  { src: "/images/pro-curriculum/artist-4.png", alt: "아티스트 레슨 현장 4" },
+  { src: "/images/pro-curriculum/artist-1.png", alt: "정성일 — 배우 보컬 레슨" },
+  { src: "/images/pro-curriculum/artist-2.png", alt: "황치열 — 가수 보컬 레슨" },
+  { src: "/images/pro-curriculum/artist-3.png", alt: "인피니트 — 아이돌 보컬 레슨" },
+  { src: "/images/pro-curriculum/artist-4.png", alt: "하이라이트 — 아이돌 보컬 레슨" },
+  { src: "/images/pro-curriculum/artist-5.png", alt: "신화 — 아이돌 보컬 레슨" },
+  { src: "/images/pro-curriculum/artist-6.png", alt: "노라조 — 보컬 레슨" },
+  { src: "/images/pro-curriculum/artist-7.png", alt: "염유리 — 보컬 레슨" },
+  { src: "/images/pro-curriculum/artist-8.png", alt: "반광옥 — 보컬 레슨" },
 ];
 
 export default function ProCurriculumSection() {
@@ -82,7 +86,7 @@ export default function ProCurriculumSection() {
             <p>
               결과가 검증된 시스템, 이미 수많은 연예인과 아티스트들이 실력 향상을
               위해 이곳을 찾고 있습니다. &apos;더 글로리&apos; 주연 배우부터,
-              신화·비스트·인피니트·노라조까지!
+              신화·하이라이트·인피니트·황치열·노라조까지!
             </p>
             <p className="text-accent font-bold mt-2">
               프로들이 직접 검증한 커리큘럼 그대로!

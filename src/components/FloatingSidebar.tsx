@@ -6,7 +6,8 @@ import { motion } from "framer-motion";
 const sidebarItems = [
   {
     label: "카톡문의",
-    href: "https://pf.kakao.com/_VwYHd",
+    href: "/contact#branches",
+    external: false,
     icon: (
       <svg viewBox="0 0 24 24" width="22" height="22" fill="currentColor">
         <path d="M12 3C6.48 3 2 6.58 2 10.9c0 2.78 1.84 5.22 4.6 6.6-.15.54-.96 3.47-1 3.64 0 .05.02.1.06.13a.13.13 0 00.14.01c.19-.03 2.19-1.44 3.19-2.13.65.09 1.32.14 2.01.14 5.52 0 10-3.58 10-7.99S17.52 3 12 3z" />
@@ -45,8 +46,9 @@ export default function FloatingSidebar() {
         <Link
           key={item.label}
           href={item.href}
-          target="_blank"
-          rel="noopener noreferrer nofollow"
+          {...("external" in item && !item.external
+            ? {}
+            : { target: "_blank", rel: "noopener noreferrer nofollow" })}
           className="w-16 h-16 bg-white/90 backdrop-blur-sm hover:bg-accent hover:text-white text-text-on-light flex flex-col items-center justify-center gap-1 transition-all duration-300 shadow-md"
           aria-label={item.label}
         >

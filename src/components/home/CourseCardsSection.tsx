@@ -1,7 +1,6 @@
 "use client";
 
 import Link from "next/link";
-import Image from "next/image";
 import { useRef } from "react";
 import { motion, useInView } from "framer-motion";
 import SectionHeader from "@/components/SectionHeader";
@@ -9,15 +8,19 @@ import SectionHeader from "@/components/SectionHeader";
 const courses = [
   {
     title: "기본과정",
+    subtitle: "BASIC",
     href: "/basic",
     description: "발성의 기본 — 호흡, 공명, 성대 컨트롤, 피치",
-    image: "/images/courses/basic.png",
+    keywords: ["호흡", "공명", "성대 컨트롤", "피치 교정"],
+    step: "01",
   },
   {
     title: "심화과정",
+    subtitle: "ADVANCED",
     href: "/advanced",
     description: "노래 적용 — 음역대 확장, 곡 해석, 감정 표현",
-    image: "/images/courses/advanced.png",
+    keywords: ["음역대 확장", "곡 해석", "감정 표현", "스타일링"],
+    step: "02",
   },
 ];
 
@@ -45,29 +48,59 @@ export default function CourseCardsSection() {
               animate={isInView ? { opacity: 1, y: 0 } : {}}
               transition={{ duration: 0.5, delay: 0.2 + index * 0.15 }}
             >
-              <Link href={course.href} className="group block relative overflow-hidden">
-                <div className="aspect-[16/9] bg-zinc-800 relative overflow-hidden">
-                  <Image
-                    src={course.image}
-                    alt={`${course.title} 레슨`}
-                    fill
-                    sizes="(max-width: 768px) 100vw, 50vw"
-                    className="object-cover group-hover:scale-105 transition-transform duration-500"
-                  />
-                  <div className="absolute inset-0 bg-gradient-to-t from-black/70 to-transparent" />
+              <Link
+                href={course.href}
+                className="group block relative border border-zinc-800 hover:border-accent/60 transition-colors duration-500 p-8 md:p-10"
+              >
+                {/* Step number */}
+                <span className="text-[80px] md:text-[100px] font-black leading-none text-zinc-800 group-hover:text-accent/20 transition-colors duration-500 select-none">
+                  {course.step}
+                </span>
 
-                  {/* CTA overlay */}
-                  <div className="absolute bottom-6 right-6">
-                    <span className="inline-flex items-center gap-2 bg-accent text-white px-6 py-3.5 text-base md:text-lg font-bold group-hover:bg-white group-hover:text-black transition-all duration-300">
-                      {course.title}
-                      <svg width="14" height="10" viewBox="0 0 14 10" fill="none" className="transition-transform group-hover:translate-x-1">
-                        <path d="M9 1L13 5L9 9M0 5H13" stroke="currentColor" strokeWidth="1.5" />
-                      </svg>
-                    </span>
-                  </div>
+                {/* Title area */}
+                <div className="mt-4">
+                  <span className="text-xs tracking-[0.25em] text-zinc-500 font-medium">
+                    {course.subtitle}
+                  </span>
+                  <h3 className="text-2xl md:text-3xl font-bold text-white mt-1 group-hover:text-accent transition-colors duration-300">
+                    {course.title}
+                  </h3>
                 </div>
 
-                <p className="mt-4 text-gray-400 text-base md:text-lg">{course.description}</p>
+                {/* Description */}
+                <p className="mt-4 text-gray-400 text-base md:text-lg leading-relaxed">
+                  {course.description}
+                </p>
+
+                {/* Keywords */}
+                <div className="mt-6 flex flex-wrap gap-2">
+                  {course.keywords.map((keyword) => (
+                    <span
+                      key={keyword}
+                      className="text-sm text-zinc-400 border border-zinc-700 px-3 py-1 group-hover:border-zinc-600 transition-colors"
+                    >
+                      {keyword}
+                    </span>
+                  ))}
+                </div>
+
+                {/* CTA */}
+                <div className="mt-8 inline-flex items-center gap-2 text-accent text-base font-semibold group-hover:gap-3 transition-all duration-300">
+                  자세히 보기
+                  <svg
+                    width="14"
+                    height="10"
+                    viewBox="0 0 14 10"
+                    fill="none"
+                    className="transition-transform group-hover:translate-x-1"
+                  >
+                    <path
+                      d="M9 1L13 5L9 9M0 5H13"
+                      stroke="currentColor"
+                      strokeWidth="1.5"
+                    />
+                  </svg>
+                </div>
               </Link>
             </motion.div>
           ))}
