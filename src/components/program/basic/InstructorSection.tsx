@@ -84,7 +84,7 @@ export default function InstructorSection() {
               initial={{ opacity: 0, y: 20 }}
               animate={instrInView ? { opacity: 1, y: 0 } : {}}
               transition={{ duration: 0.4, delay: 0.35 + i * 0.08 }}
-              className="border border-gray-200 p-5 text-center hover:border-accent transition-colors duration-300"
+              className="border border-gray-200 p-5 text-center hover:border-accent hover:-translate-y-1 transition-all duration-300"
             >
               <p className="text-text-on-light font-bold text-sm md:text-base mb-1">
                 {item.title}

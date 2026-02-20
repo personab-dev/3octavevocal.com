@@ -107,7 +107,7 @@ export default function CurriculumSection() {
                 <h3 className="text-xl font-bold text-white mb-3 relative z-10">
                   {item.title}
                 </h3>
-                <div className="w-10 h-[2px] bg-accent mb-5" />
+                <div className="w-10 h-[2px] bg-accent mb-5 group-hover:w-full transition-all duration-500" />
 
                 {/* Bullet points */}
                 <ul className="space-y-3 relative z-10">

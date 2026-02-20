@@ -47,7 +47,7 @@ export default function BranchCards() {
           initial={{ opacity: 0, y: 30 }}
           animate={isInView ? { opacity: 1, y: 0 } : {}}
           transition={{ duration: 0.5, delay: i * 0.1 }}
-          className="bg-white p-6 lg:p-8 border border-gray-100"
+          className="bg-white p-6 lg:p-8 border border-gray-100 hover:shadow-lg hover:-translate-y-1 transition-all duration-300"
         >
           {/* Header */}
           <p className="font-display text-xs tracking-[0.2em] text-text-on-light/30 mb-1">
