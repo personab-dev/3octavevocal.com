@@ -2,6 +2,7 @@
 
 import { useRef } from "react";
 import Link from "next/link";
+import Image from "next/image";
 import { motion, useInView } from "framer-motion";
 import { ChevronRight } from "lucide-react";
 
@@ -89,21 +90,14 @@ export default function IntroSection() {
             transition={{ duration: 0.7, delay: 0.4 }}
             className="relative"
           >
-            <div className="aspect-[4/3] bg-zinc-900 relative overflow-hidden">
-              <div className="absolute inset-0 bg-gradient-to-br from-accent/10 to-transparent" />
-              <div className="absolute top-6 right-6 w-20 h-20 border border-accent/20 rotate-45" />
-              <div className="absolute bottom-8 left-8 w-12 h-12 border border-accent/10 rotate-12" />
-              <div className="absolute inset-0 flex items-center justify-center">
-                <div className="text-center">
-                  <p className="font-display text-6xl md:text-7xl text-white/10 tracking-wider">
-                    ADVANCED
-                  </p>
-                  <p className="text-accent text-sm tracking-widest mt-2">
-                    VOCAL TRAINING
-                  </p>
-                  <div className="w-12 h-[2px] bg-accent mx-auto mt-4" />
-                </div>
-              </div>
+            <div className="aspect-[3/4] bg-zinc-900 relative overflow-hidden max-w-[380px] mx-auto">
+              <Image
+                src="/images/program/asset-advanced.png"
+                alt="심화 보컬 트레이닝"
+                fill
+                sizes="(max-width: 1024px) 100vw, 380px"
+                className="object-contain"
+              />
             </div>
           </motion.div>
         </div>
