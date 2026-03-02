@@ -121,7 +121,7 @@ function DifferentiatorItem({
       initial={{ opacity: 0, y: 40 }}
       animate={isInView ? { opacity: 1, y: 0 } : {}}
       transition={{ duration: 0.6, delay: index * 0.1 }}
-      className="p-10 lg:p-14 lg:py-20"
+      className="p-10 lg:p-14 lg:min-h-screen flex items-center"
     >
       <div className="flex gap-6 lg:gap-10">
         {/* Number */}

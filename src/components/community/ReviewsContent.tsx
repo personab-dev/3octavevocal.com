@@ -8,47 +8,60 @@ import PageHero from "@/components/PageHero";
 import SectionHeader from "@/components/SectionHeader";
 import CommunitySubNav from "./CommunitySubNav";
 
-const reviewImages = [
+const reviews = [
   {
-    src: "/images/community/reviews/review-01.png",
-    alt: "수강생 후기 — 내가 서울 보컬학원들 중 3옥타브장인을 다니는 이유",
+    quote: "3옥타브장인에 5년 넘게 다녔습니다. 근데 이제 칙촉쌤을 곁들인...",
+    href: "https://cafe.naver.com/cloud9ent/29164",
+  },
+  {
+    quote: "서울보컬학원 연축성 발성장애 20대 여자 보컬레슨 후기",
+    href: "https://cafe.naver.com/cloud9ent/29117",
+  },
+  {
+    quote: "내가 서울보컬학원들 중 3옥타브장인을 다니는 이유",
     href: "https://cafe.naver.com/cloud9ent/26485",
-    width: 984,
-    height: 675,
   },
   {
-    src: "/images/community/reviews/review-02.png",
-    alt: "수강생 후기 — 소극적으로 살던 제 인생의 초반에서 3옥타브장인을 만난건 천운입니다",
-    href: "https://cafe.naver.com/cloud9ent/26484",
-    width: 984,
-    height: 675,
+    quote: "3옥타브장인 도비쌤 수강 후기",
+    href: "https://cafe.naver.com/cloud9ent/27587",
   },
   {
-    src: "/images/community/reviews/review-03.png",
-    alt: "수강생 후기 — 선생님만 전적으로 믿고 따라가면 실력 향상 안될 수 없는 커리큘럼입니다",
+    quote: "3옥타브장인 클라인쌤 수강후기",
+    href: "https://cafe.naver.com/cloud9ent/28845",
+  },
+  {
+    quote: "도비쌤과 6개월 함께한, 고음을 내고 싶은 수강생의 후기",
+    href: "https://cafe.naver.com/cloud9ent/29179",
+  },
+  {
+    quote: "서울보컬학원 3옥타브장인 뼈 묻게 된 수강생 후기",
+    href: "https://cafe.naver.com/cloud9ent/27608",
+  },
+  {
+    quote: "보컬 레슨 후기 (아이유 선생님)",
+    href: "https://cafe.naver.com/cloud9ent/29154",
+  },
+  {
+    quote: "장인이 되기 위해 왔다가 레고쌤이라는 인생 스승님을 만났습니다",
     href: "https://cafe.naver.com/cloud9ent/28022",
-    width: 984,
-    height: 675,
   },
   {
-    src: "/images/community/reviews/review-04.png",
-    alt: "수강생 후기 — 잘하는 부분과 안되는 부분을 명확하게 알려주시고, 해결 방법도 명확하게 알려주셔요",
-    href: "https://cafe.naver.com/cloud9ent/27526",
-    width: 984,
-    height: 675,
-  },
-  {
-    src: "/images/community/reviews/review-05.png",
-    alt: "수강생 후기 — 목잡이 탈출을 원하시거나 노래방 인기차트곡들을 잘 부르고 싶다면 무조건 오세요",
+    quote: "3옥타브장인 1년 조금 넘은 수강후기!",
     href: "https://cafe.naver.com/cloud9ent/22504",
-    width: 984,
-    height: 675,
+  },
+  {
+    quote: "아이유쌤 11주차 수강 후기",
+    href: "https://cafe.naver.com/cloud9ent/27526",
+  },
+  {
+    quote: "3옥타브 뚫은 후기",
+    href: "https://cafe.naver.com/cloud9ent/29154",
   },
 ];
 
 export default function ReviewsContent() {
-  const galleryRef = useRef<HTMLElement>(null);
-  const galleryInView = useInView(galleryRef, { once: true, amount: 0.1 });
+  const reviewsRef = useRef<HTMLElement>(null);
+  const reviewsInView = useInView(reviewsRef, { once: true, amount: 0.1 });
 
   return (
     <>
@@ -71,37 +84,39 @@ export default function ReviewsContent() {
         </div>
       </section>
 
-      {/* Gallery Section */}
-      <section ref={galleryRef} className="bg-zinc-50 py-16 lg:py-24">
-        <div className="max-w-6xl mx-auto px-6">
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 lg:gap-6">
-            {reviewImages.map((img, index) => (
+      {/* Reviews Section — Text only */}
+      <section ref={reviewsRef} className="bg-zinc-50 py-16 lg:py-24">
+        <div className="max-w-5xl mx-auto px-6">
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5">
+            {reviews.map((item, index) => (
               <motion.div
-                key={img.src}
+                key={index}
                 initial={{ opacity: 0, y: 30 }}
-                animate={galleryInView ? { opacity: 1, y: 0 } : {}}
+                animate={reviewsInView ? { opacity: 1, y: 0 } : {}}
                 transition={{ duration: 0.5, delay: index * 0.1 }}
               >
                 <Link
-                  href={img.href}
+                  href={item.href}
                   target="_blank"
                   rel="noopener noreferrer nofollow"
-                  className="group relative aspect-[3/2] overflow-hidden bg-gray-200 block"
+                  className="group block bg-white p-6 hover:shadow-lg transition-shadow duration-300 h-full"
                 >
-                  <Image
-                    src={img.src}
-                    alt={img.alt}
-                    width={img.width}
-                    height={img.height}
-                    className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
-                  />
-                  <div className="absolute inset-0 bg-black/0 group-hover:bg-black/20 transition-colors duration-300" />
-                  <div className="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300">
-                    <span className="w-10 h-10 rounded-full bg-white/90 flex items-center justify-center">
-                      <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
-                        <path d="M3 13L13 3M13 3H5M13 3V11" stroke="#1a1a1a" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
-                      </svg>
-                    </span>
+                  <div className="flex items-start gap-3">
+                    <svg
+                      width="24"
+                      height="20"
+                      viewBox="0 0 32 28"
+                      fill="none"
+                      className="shrink-0 mt-0.5"
+                    >
+                      <path
+                        d="M0 28V17.5C0 12.833 1.167 9.083 3.5 6.25C5.833 3.417 9.167 1.5 13.5 0.5L14.5 3C11.833 4 9.75 5.417 8.25 7.25C6.75 9.083 6 11.167 6 13.5H12V28H0ZM18 28V17.5C18 12.833 19.167 9.083 21.5 6.25C23.833 3.417 27.167 1.5 31.5 0.5L32.5 3C29.833 4 27.75 5.417 26.25 7.25C24.75 9.083 24 11.167 24 13.5H30V28H18Z"
+                        fill="#D4879C"
+                      />
+                    </svg>
+                    <p className="text-text-on-light/80 text-sm md:text-base leading-relaxed font-semibold group-hover:text-accent transition-colors">
+                      {item.quote}
+                    </p>
                   </div>
                 </Link>
               </motion.div>
@@ -112,7 +127,6 @@ export default function ReviewsContent() {
 
       {/* CTA Section */}
       <section className="relative overflow-hidden bg-black py-16 lg:py-20">
-        {/* Logo watermark — left side */}
         <div className="absolute left-0 top-1/2 -translate-y-1/2 -translate-x-[30%] pointer-events-none">
           <Image
             src="/images/logo-accent-white.png"
@@ -134,7 +148,7 @@ export default function ReviewsContent() {
             href="/contact"
             className="inline-flex items-center gap-2 bg-accent hover:bg-accent/90 text-white rounded-r-full px-8 py-4 text-base font-bold transition-colors duration-300 hover:scale-[1.02] active:scale-[0.98] transition-transform"
           >
-            무료 상담 예약하기
+            내 상태 확인 &amp; 상담 예약하기
             <svg width="16" height="12" viewBox="0 0 16 12" fill="none">
               <path d="M10 1L15 6L10 11M0 6H15" stroke="currentColor" strokeWidth="1.5" />
             </svg>

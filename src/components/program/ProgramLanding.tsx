@@ -51,7 +51,7 @@ export default function ProgramLanding() {
       <FinalCta
         heading="2옥타브에서 멈추실 건가요?"
         description="무료 상담으로 시작하세요"
-        buttonText="무료 상담 예약"
+        buttonText="내 상태 확인 & 상담 예약하기"
       />
     </>
   );

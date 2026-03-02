@@ -5,6 +5,8 @@ import { motion } from "framer-motion";
 import BrandSymbol from "./BrandSymbol";
 
 interface PageHeroProps {
+  /** 라벨이 있으면: label=시각적 라벨(<p>), heading=h1(후킹 카피) */
+  label?: string;
   heading: string;
   subheading?: string;
   description?: string;
@@ -12,6 +14,7 @@ interface PageHeroProps {
 }
 
 export default function PageHero({
+  label,
   heading,
   subheading,
   description,
@@ -61,24 +64,47 @@ export default function PageHero({
           <span className="w-2 h-2 rounded-full bg-accent" />
         </motion.div>
 
-        <motion.h1
-          initial={{ opacity: 0, y: 30 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8, delay: 0.1 }}
-          className="font-display text-5xl md:text-6xl lg:text-7xl tracking-[0.1em] text-white"
-        >
-          {heading}
-        </motion.h1>
-
-        {subheading && (
-          <motion.p
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8, delay: 0.3 }}
-            className="font-script text-2xl md:text-3xl text-white/60 mt-4"
-          >
-            {subheading}
-          </motion.p>
+        {/* label이 있으면: label → <p>, heading → <h1>(문장형) */}
+        {label ? (
+          <>
+            <motion.p
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.6, delay: 0.1 }}
+              className="font-display text-sm md:text-base tracking-[0.2em] text-white/50 mb-4"
+            >
+              {label}
+            </motion.p>
+            <motion.h1
+              initial={{ opacity: 0, y: 30 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.8, delay: 0.2 }}
+              className="text-3xl md:text-4xl lg:text-5xl font-bold text-white leading-snug"
+            >
+              {heading}
+            </motion.h1>
+          </>
+        ) : (
+          <>
+            <motion.h1
+              initial={{ opacity: 0, y: 30 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.8, delay: 0.1 }}
+              className="font-display text-5xl md:text-6xl lg:text-7xl tracking-[0.1em] text-white"
+            >
+              {heading}
+            </motion.h1>
+            {subheading && (
+              <motion.p
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.8, delay: 0.3 }}
+                className="font-script text-2xl md:text-3xl text-white/60 mt-4"
+              >
+                {subheading}
+              </motion.p>
+            )}
+          </>
         )}
 
         {description && (

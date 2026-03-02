@@ -34,7 +34,7 @@ export default function Home() {
       {localBusinessSchemas.map((schema, i) => (
         <JsonLd key={i} data={schema} />
       ))}
-      <div className="flex flex-col w-full overflow-hidden">
+      <div className="flex flex-col w-full">
         <HeroSection />
         <PainPointsSection />
         <ProblemSolutionSection />

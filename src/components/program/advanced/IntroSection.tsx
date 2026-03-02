@@ -19,6 +19,16 @@ export default function IntroSection() {
   return (
     <section ref={ref} className="bg-black py-20 lg:py-28">
       <div className="max-w-5xl mx-auto px-6">
+        {/* Sub copy */}
+        <motion.p
+          initial={{ opacity: 0, y: 15 }}
+          animate={isInView ? { opacity: 1, y: 0 } : {}}
+          transition={{ duration: 0.5 }}
+          className="text-center text-gray-300 text-base md:text-lg mb-10"
+        >
+          동요 부르듯 정직하게만 부르는 아마추어 티, 완벽하게 벗겨 드립니다.
+        </motion.p>
+
         {/* Pain point speech bubbles */}
         <motion.div
           initial={{ opacity: 0, y: 20 }}

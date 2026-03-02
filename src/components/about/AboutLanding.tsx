@@ -209,7 +209,7 @@ export default function AboutLanding() {
             href="/contact"
             className="inline-flex items-center gap-2 bg-white text-text-on-light hover:bg-black hover:text-white rounded-r-full px-8 py-4 text-base font-bold transition-all duration-300"
           >
-            무료 상담 예약하기
+            내 상태 확인 &amp; 상담 예약하기
             <svg
               width="16"
               height="12"

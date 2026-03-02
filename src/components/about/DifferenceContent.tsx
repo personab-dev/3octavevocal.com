@@ -98,31 +98,26 @@ const testimonials = [
   {
     quote: "내가 서울 보컬학원들 중 3옥타브장인을 다니는 이유",
     href: "https://cafe.naver.com/cloud9ent/26485",
-    thumbnail: "https://cdn.imweb.me/thumbnail/20250324/c3d1cba81dc7b.png",
   },
   {
     quote:
       "소극적으로 살던 제 인생의 초반에서 3옥타브장인을 만난건 천운입니다.",
     href: "https://cafe.naver.com/cloud9ent/26484",
-    thumbnail: "https://cdn.imweb.me/thumbnail/20250320/3b1aabb889e25.png",
   },
   {
     quote:
       "선생님만 전적으로 믿고 따라가면 실력 향상 안될 수 없는 커리큘럼입니다.",
     href: "https://cafe.naver.com/cloud9ent/28022",
-    thumbnail: "https://cdn.imweb.me/thumbnail/20250319/e358e6a987495.png",
   },
   {
     quote:
       "잘하는 부분과 안되는 부분을 명확하게 알려주시고, 해결 방법도 명확하게 알려주셔요.",
     href: "https://cafe.naver.com/cloud9ent",
-    thumbnail: "https://cdn.imweb.me/thumbnail/20250319/684387f783747.png",
   },
   {
     quote:
       "목잡이 탈출을 원하시거나 노래방 인기차트곡들을 잘 부르고 싶다면 무조건 오세요.",
     href: "https://cafe.naver.com/cloud9ent/22504",
-    thumbnail: "https://cdn.imweb.me/thumbnail/20250324/99841a64bc95e.png",
   },
 ];
 
@@ -170,9 +165,9 @@ export default function DifferenceContent() {
   return (
     <>
       <PageHero
-        heading="차별점"
-        subheading="Why 3 Octave Master?"
-        description="고음이 안되던 우리가 직접 경험한 확실한 방법"
+        label="차별점 · Why 3 Octave Master?"
+        heading="고음이 안되던 우리가 직접 경험한 가장 확실한 방법"
+        description="평범한 일반인부터 현직 가수까지. 누구든 실력이 오를 수밖에 없는 3옥타브장인만의 독보적인 시스템."
         backgroundImage="/images/about/hero.png"
       />
       <AboutSubNav />
@@ -402,18 +397,6 @@ export default function DifferenceContent() {
                   rel="noopener noreferrer nofollow"
                   className="group block bg-white rounded-2xl overflow-hidden hover:shadow-lg transition-shadow duration-300"
                 >
-                  {/* Thumbnail */}
-                  <div className="relative aspect-[16/10] bg-zinc-200">
-                    <Image
-                      src={item.thumbnail}
-                      alt={item.quote}
-                      fill
-                      sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
-                      className="object-cover group-hover:scale-105 transition-transform duration-500"
-                    />
-                  </div>
-
-                  {/* Quote text */}
                   <div className="p-6 flex items-start gap-3">
                     <svg
                       width="24"

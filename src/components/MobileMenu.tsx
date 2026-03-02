@@ -104,7 +104,7 @@ export default function MobileMenu({ scrolled }: { scrolled: boolean }) {
                                 onClick={() => setIsOpen(false)}
                                 className="block w-full text-center bg-accent hover:bg-white hover:text-black text-white px-6 py-3.5 font-bold transition-all text-base tracking-widest rounded-r-full"
                             >
-                                무료 상담 예약
+                                내 상태 확인 &amp; 상담 예약하기
                             </Link>
                         </div>
                     </motion.div>

@@ -10,38 +10,26 @@ const curriculumDetails = [
   {
     number: "01",
     title: "호흡",
-    subtitle: "고음이 뚫리는 기본기",
+    subtitle: "숨만 잘 쉬어도 고음이 뚫립니다",
     icon: Wind,
-    items: [
-      "기초 호흡법 (안정적인 호흡 조절)",
-      "호흡 밸런스 훈련 (불필요한 힘 빼고, 필요한 힘만 쓰는 법)",
-      "호흡근 강화 (숨이 차지 않고 지치지 않는 가창력)",
-      "호흡 컨트롤 (호흡 사용 최적화)",
-    ],
+    description:
+      "노래 한 곡만 불러도 목이 쉬고 숨이 차나요? 가슴으로 얕게 쉬는 호흡을 몸 전체를 채우는 깊은 호흡으로 바꿔드립니다. 목을 조이게 만드는 불필요한 힘이 빠지고, 편안하게 소리 내는 몸으로 바뀌게 됩니다.",
   },
   {
     number: "02",
     title: "위치",
-    subtitle: "소리를 컨트롤하는 핵심 기술",
+    subtitle: "답답한 소리를 시원하게 꺼내드립니다",
     icon: Mic,
-    items: [
-      "소리의 위치 이해 (답답한 소리를 시원하게 변환)",
-      "성대 컨트롤 (같은 고음도 강하게&부드럽게, 원하는대로!)",
-      "톤 & 감정 (단순한 발음이 아닌, 감정이 묻어나는 소리 만들기)",
-      "모음/자음 발음 교정 (가사가 또렷하게 전달되는 선명한 발성)",
-      "목에 힘빼기 & 공명 훈련 (힘으로 밀지 않아도 뚫리는 고음)",
-    ],
+    description:
+      "억지로 쥐어짜는 생목, 입안에서 웅얼거리는 발음, 조금만 방심해도 튀어나오는 삑사리. 소리가 울리는 '위치'만 제대로 잡아줘도 내 목소리가 막힘없이 시원하게 뻗어나갑니다.",
   },
   {
     number: "03",
     title: "피치",
-    subtitle: "초고음까지 음역대를 확장하는 기술",
+    subtitle: "내 목소리의 한계를 깨는 성구 전환",
     icon: Music,
-    items: [
-      "고음 확장 (힘으로 밀지 않아도 시원하게 올라가는 고음)",
-      "성구 전환 & 통합 (저음에서 고음을 이질감 없이 넘나들 수 있다!)",
-      "고음 컨트롤 능력 강화 (성대를 보호하면서 초고음까지 음역대 확장)",
-    ],
+    description:
+      "저음과 고음을 끊김 없이 부드럽게 연결하는 '성구 전환'이 가능하게 만들어 줍니다. 이후에 성구를 통합하게 되면 3옥타브까지 시원하게 소리낼 수 있게 됩니다.",
   },
 ];
 
@@ -61,12 +49,15 @@ export default function CurriculumSection() {
           className="text-center mb-16"
         >
           <p className="text-text-on-light/50 text-sm mb-3 tracking-widest">
-            매달 1키씩 올라가는 마법 같은 커리큘럼
+            매달 1키씩 올라가는 마법, 누구나 바뀔 수 밖에 없는 3옥타브장인만의 3단계 기초 발성 커리큘럼
           </p>
           <h2 className="text-2xl md:text-3xl lg:text-4xl font-bold text-text-on-light">
-            3옥타브장인만의{" "}
-            <span className="text-accent">기본과정</span>
+            &apos;고음불가&apos; 출신들이 몸으로 부딪혀 찾아낸{" "}
+            <span className="text-accent">가장 확실한 방법</span>
           </h2>
+          <p className="text-text-on-light/60 text-base md:text-lg mt-4 max-w-2xl mx-auto leading-relaxed">
+            7,000명 이상의 수강생 데이터가 증명합니다. 타고나지 않아도, 어떤 케이스라도 변화시킬 수 있는 솔루션이 준비되어 있습니다.
+          </p>
         </motion.div>
 
         <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
@@ -94,17 +85,9 @@ export default function CurriculumSection() {
                   {cur.subtitle}
                 </p>
                 <div className="w-8 h-[2px] bg-accent/40 mb-6" />
-                <ul className="space-y-3">
-                  {cur.items.map((item, i) => (
-                    <li
-                      key={i}
-                      className="flex items-start gap-2.5 text-gray-400 text-sm leading-relaxed"
-                    >
-                      <span className="w-1 h-1 rounded-full bg-accent shrink-0 mt-2" />
-                      {item}
-                    </li>
-                  ))}
-                </ul>
+                <p className="text-gray-400 text-sm leading-relaxed">
+                  {cur.description}
+                </p>
               </motion.div>
             );
           })}

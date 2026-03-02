@@ -1,17 +1,28 @@
 "use client";
 
 import { useRef } from "react";
-import Link from "next/link";
 import { motion, useInView } from "framer-motion";
-import { Check, ChevronRight } from "lucide-react";
+import { Mic, Video, Headphones } from "lucide-react";
 
-const targetChecklist = [
-  "기본 발성은 되는데, 노래에 적용이 안 된다",
-  "고음은 나오지만 듣기 좋은 소리가 아니다",
-  "감정 전달이 어렵고, 밋밋한 노래가 된다",
-  "자신만의 보컬 스타일을 찾고 싶다",
-  "실용음악 입시나 오디션을 준비 중이다",
-  "프로 가수/뮤지컬 배우로 한 단계 성장하고 싶다",
+const vipBenefits = [
+  {
+    icon: Mic,
+    title: "수강생 전원! 정기 레코딩 수업",
+    description:
+      "우수 수강생만 녹음한다고요? 아닙니다. 내 노래의 2% 부족함을 캐치하려면 진짜 가수처럼 녹음해 봐야 합니다. 누구나 정기적인 레코딩으로 디테일을 완벽하게 교정받습니다.",
+  },
+  {
+    icon: Video,
+    title: "인생 커버 영상 제작 & 든든한 장학 제도",
+    description:
+      "눈에 띄게 성장한 우수 수강생에게는 평생 소장할 '나만의 커버 영상' 촬영을 전폭 지원하며, 장학금 혜택까지 아낌없이 제공합니다.",
+  },
+  {
+    icon: Headphones,
+    title: "졸업해도 끝까지! 평생 보컬 A/S 피드백",
+    description:
+      "코인노래방에서 막힐 때, 갑자기 축가를 부르게 될 때 언제든 질문하세요. 검증된 강사진이 평생 보컬 페이스메이커가 되어 드립니다.",
+  },
 ];
 
 export default function TargetSection() {
@@ -20,7 +31,7 @@ export default function TargetSection() {
 
   return (
     <section ref={ref} className="bg-black py-20 lg:py-28">
-      <div className="max-w-3xl mx-auto px-6">
+      <div className="max-w-5xl mx-auto px-6">
         <motion.div
           initial={{ opacity: 0, y: 30 }}
           animate={isInView ? { opacity: 1, y: 0 } : {}}
@@ -28,48 +39,38 @@ export default function TargetSection() {
           className="text-center mb-12"
         >
           <p className="font-display text-sm tracking-[0.2em] text-gray-500 mb-3">
-            FOR YOU
+            VIP BENEFITS
           </p>
           <h2 className="text-2xl md:text-3xl lg:text-4xl font-bold text-white">
-            이런 분들을 위한{" "}
-            <span className="text-accent">과정입니다</span>
+            수강료 그 이상의 가치,{" "}
+            <span className="text-accent">심화반 전용 VIP 혜택</span>
           </h2>
         </motion.div>
 
-        <div className="space-y-4">
-          {targetChecklist.map((item, index) => (
-            <motion.div
-              key={index}
-              initial={{ opacity: 0, x: -20 }}
-              animate={isInView ? { opacity: 1, x: 0 } : {}}
-              transition={{ duration: 0.4, delay: 0.1 + index * 0.08 }}
-              className="flex items-start gap-4 p-5 border border-white/10 hover:border-accent/50 transition-colors duration-300 group"
-            >
-              <div className="w-7 h-7 shrink-0 bg-accent/20 group-hover:bg-accent flex items-center justify-center transition-colors duration-300 mt-0.5">
-                <Check
-                  size={14}
-                  className="text-accent group-hover:text-white transition-colors duration-300"
-                />
-              </div>
-              <p className="text-white text-sm md:text-base">{item}</p>
-            </motion.div>
-          ))}
+        <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
+          {vipBenefits.map((item, index) => {
+            const Icon = item.icon;
+            return (
+              <motion.div
+                key={item.title}
+                initial={{ opacity: 0, y: 30 }}
+                animate={isInView ? { opacity: 1, y: 0 } : {}}
+                transition={{ duration: 0.5, delay: 0.1 + index * 0.12 }}
+                className="bg-zinc-900 border border-white/10 p-8 lg:p-10 hover:border-accent/30 transition-colors duration-300 group"
+              >
+                <div className="w-14 h-14 bg-accent/10 group-hover:bg-accent/20 flex items-center justify-center mb-6 transition-colors duration-300">
+                  <Icon size={28} className="text-accent" />
+                </div>
+                <h3 className="text-lg md:text-xl font-bold text-white mb-3">
+                  {item.title}
+                </h3>
+                <p className="text-gray-400 text-sm md:text-base leading-relaxed">
+                  {item.description}
+                </p>
+              </motion.div>
+            );
+          })}
         </div>
-
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          animate={isInView ? { opacity: 1, y: 0 } : {}}
-          transition={{ duration: 0.5, delay: 0.6 }}
-          className="text-center mt-10"
-        >
-          <Link
-            href="/contact"
-            className="inline-flex items-center gap-2 bg-accent text-white hover:bg-accent/90 rounded-r-full px-7 py-3.5 text-base font-bold transition-all duration-300"
-          >
-            무료 상담 문의하기
-            <ChevronRight size={16} />
-          </Link>
-        </motion.div>
       </div>
     </section>
   );

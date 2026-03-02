@@ -6,14 +6,14 @@ import { motion, useInView } from "framer-motion";
 import { Check, ChevronRight } from "lucide-react";
 
 const diagnosisItems = [
-  "노래할 때 목이 금방 피로해진다",
-  "고음에서 소리가 얇아지거나 꺾인다",
-  "발성은 배웠는데 노래에 적용이 안 된다",
-  "감정 전달이 밋밋하다는 말을 듣는다",
-  "음역대가 6개월째 제자리걸음이다",
-  "좋아하는 곡을 원키로 못 부른다",
-  "자신만의 보컬 스타일이 없다",
-  "레코딩하면 생각보다 못 부른다",
+  "기본 발성법을 알지만, 노래에 적용이 잘 안되는 것 같아요.",
+  "고음은 올라가는데, 주변에서 '노래 잘한다'는 칭찬은 못 들어본 것 같아요.",
+  "가수처럼 바이브레이션이나 기교를 멋지게 넣어보고 싶은데, 내가 하면 뭔가 어색해요.",
+  "가수처럼 '잘' 부르려면 어떻게 해야 될지 잘 모르겠어요.",
+  "프로 가수들이 쓰는 테크닉과 스킬을 배우고 싶어요.",
+  "좋아하는 가수의 노래를 불러도 뭔가 밋밋하고 이상한 것 같아요.",
+  "내 노래를 녹음해서 들어보면 아마추어 티가 나는 것 같아요.",
+  "내 보컬 스타일이 어떤 건지 잘 모르겠어요.",
 ];
 
 export default function DiagnosisSection() {
@@ -46,7 +46,8 @@ export default function DiagnosisSection() {
             SELF CHECK
           </p>
           <h2 className="text-2xl md:text-3xl lg:text-4xl font-bold text-white">
-            내 발성의 <span className="text-accent">문제</span>는 뭘까?
+            내 노래가 <span className="text-accent">2% 부족</span>하게 들리는
+            이유는?
           </h2>
         </motion.div>
 
@@ -117,15 +118,24 @@ export default function DiagnosisSection() {
                 : "opacity-0 translate-y-4 pointer-events-none"
             }`}
           >
-            <p className="text-white font-bold text-base md:text-lg mb-4">
-              <span className="text-accent">3개 이상</span> 체크되셨다면,
-              <br className="md:hidden" /> 지금 당장 무료상담 받으세요.
+            <p className="text-white font-bold text-base md:text-lg mb-4 max-w-xl mx-auto leading-relaxed">
+              <span className="text-accent">3개 이상</span> 체크되셨다면, 혼자
+              답답해하지 말고 진단을 받아보세요. 커리큘럼을 알아보고 수강
+              방향성을 잡고 싶다면 일반 상담을, 내 발성의 한계를 정확히 분석하고
+              솔루션을 얻고 싶다면 심층 보컬 진단을 받아보세요!
             </p>
             <Link
               href="/contact"
-              className="inline-flex items-center gap-2 bg-accent text-white hover:bg-accent/90 rounded-r-full px-7 py-3.5 text-base font-bold transition-all duration-300"
+              onClick={() => {
+                const checkedItems = diagnosisItems.filter((_, i) => checked.has(i));
+                sessionStorage.setItem(
+                  "vocalDiagnosis",
+                  JSON.stringify({ source: "advanced", items: checkedItems })
+                );
+              }}
+              className="inline-flex items-center gap-2 bg-accent text-white hover:bg-accent/90 rounded-full px-7 py-3.5 text-base font-bold shadow-lg shadow-accent/25 transition-all duration-300"
             >
-              무료 상담 받기
+              내 상태에 맞는 진단 &amp; 상담 받기
               <ChevronRight size={16} />
             </Link>
           </div>

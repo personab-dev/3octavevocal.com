@@ -4,7 +4,6 @@ import PageHero from "@/components/PageHero";
 import ProgramSubNav from "./ProgramSubNav";
 import HookSection from "./basic/HookSection";
 import ApproachSection from "./basic/ApproachSection";
-import CompareSection from "./basic/CompareSection";
 import CurriculumSection from "./basic/CurriculumSection";
 import InstructorSection from "./basic/InstructorSection";
 import ChecklistSection from "./basic/ChecklistSection";
@@ -19,9 +18,9 @@ export default function BasicProgramContent() {
     <>
       {/* ── 1. PageHero ──────────────────────────── */}
       <PageHero
-        heading="기본 교육과정"
-        subheading="Basic Vocal Training"
-        description="발성의 기본 — 호흡, 위치, 피치를 체계적으로 배우는 기초 보컬 트레이닝"
+        label="기본 교육과정 · Basic Vocal Training"
+        heading="고음이 안 올라가서, 목이 아파서 노래방 가기가 두려우신가요?"
+        description="타고난 천재들은 모르는 평범한 사람들의 고충. 생목을 쥐어짜며 좌절해 본 '고음불가 출신' 트레이너들이 여러분의 막힌 고음을 뚫어드립니다."
         backgroundImage="/images/program/hero.png"
       />
 
@@ -34,10 +33,7 @@ export default function BasicProgramContent() {
       {/* ── 4. Curriculum Approach ────────────────── */}
       <ApproachSection />
 
-      {/* ── 5. Before / After Comparison ──────────── */}
-      <CompareSection />
-
-      {/* ── 6. Curriculum Details ─────────────────── */}
+      {/* ── 5. Curriculum Details ─────────────────── */}
       <CurriculumSection />
 
       {/* ── 7. Instructors ────────────────────────── */}
@@ -54,8 +50,9 @@ export default function BasicProgramContent() {
 
       {/* ── 11. Final CTA ─────────────────────────── */}
       <FinalCta
-        heading="2옥타브에서 멈추실 건가요?"
-        description="3옥타브를 뚫은 사람들이 선택한 가장 확실한 방법, 직접 경험해보세요."
+        heading="노래방에서 더 이상 남들 눈치 보며 작아지지 마세요. 3옥타브장인이 변화시켜 드리겠습니다."
+        description=""
+        buttonText="내 상태에 맞는 진단 & 상담 받기"
       />
     </>
   );

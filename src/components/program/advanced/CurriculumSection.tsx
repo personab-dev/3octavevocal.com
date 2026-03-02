@@ -6,33 +6,32 @@ import { motion, useInView } from "framer-motion";
 const advancedCurriculum = [
   {
     number: "01",
-    title: "호흡과 감정의 조화",
-    subtitle: "BREATH & EMOTION",
+    title: "프로들의 '사이다 발성 & 톤 메이킹'",
+    subtitle: "SODA VOICE & TONE MAKING",
     bullets: [
-      "힘 빼고 고음 내는 '호흡 컨트롤'",
-      "감정을 표현하는 호흡 활용법",
-      "듣는 이를 사로잡는 안정적인 발성 & 호흡 테크닉",
+      "억지로 지르는 아마추어식 고음은 그만!",
+      "답답한 소리를 청량하게 뻗어나가게 하는 '공간감'과 '소리길' 조절 테크닉",
+      "고음은 되는데 왜 답답할까? 그 답을 알려드립니다",
     ],
   },
   {
     number: "02",
-    title: "가사 전달의 기술",
-    subtitle: "LYRIC DELIVERY",
+    title: "프로들의 '디테일 컨트롤'",
+    subtitle: "DETAIL CONTROL",
     bullets: [
-      "'국어책 읽기'가 아닌, 감정을 전달하는 보컬 테크닉",
-      "프로들이 쓰는 딕션 디테일",
-      "전달력을 3배 업그레이드 시켜주는 딕션 활용법",
-      "듣는 순간 몰입되는 감정 표현법",
+      "어색한 모창에서 벗어날 차례!",
+      "바이브레이션, 밴딩, 호흡 조절 등 프로들의 디테일한 기술 장착",
+      "내 목소리를 마음대로 컨트롤하는 법",
     ],
   },
   {
     number: "03",
-    title: "실전 음악성 강화",
-    subtitle: "PRACTICAL MUSICALITY",
+    title: "나만의 보컬 스타일",
+    subtitle: "MY VOCAL STYLE",
     bullets: [
-      "밴딩, 비브라토, 애드립 등 프로들이 쓰는 실전 테크닉",
-      "'듣는 귀'를 키워, 어떤 곡도 쉽게 소화하는 트레이닝",
-      "'내 목소리'에 색깔을 더하는 음색 컨트롤",
+      "평범한 노래에 입체감을 불어넣는 기술",
+      "남의 노래를 따라 부르는 사람이 아닌 '나만의 보컬 스타일' 완성",
+      "부족한 2%를 채워 진짜 실력자로",
     ],
   },
 ];
@@ -51,12 +50,12 @@ export default function CurriculumSection() {
           className="text-center mb-16"
         >
           <p className="text-text-on-light/50 text-sm mb-3 tracking-widest uppercase">
-            Curriculum
+            프로 가수들의 실전 보컬 테크닉을 장착해 드립니다.
           </p>
           <h2 className="text-2xl md:text-3xl lg:text-4xl font-bold text-text-on-light">
-            고음과 테크닉을 동시에 잡는
+            &lsquo;와, 진짜 잘 부른다!&rsquo; 소리를 끌어내는
             <br />
-            <span className="text-accent">심화 과정</span> 커리큘럼
+            <span className="text-accent">3옥타브장인</span>만의 치트키
           </h2>
         </motion.div>
 

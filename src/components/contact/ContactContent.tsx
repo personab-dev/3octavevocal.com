@@ -18,18 +18,18 @@ const operatingHours = [
 const infoCards = [
   {
     icon: Phone,
-    title: "전화 상담",
-    description: "각 지점으로 직접 전화하시면\n빠르게 상담받으실 수 있습니다.",
+    title: "다이렉트 전화 상담",
+    description: "글로 설명하기 답답하신가요?\n각 지점 전문 매니저가 현재 고민을 듣고\n속 시원하게 안내해 드립니다.",
   },
   {
     icon: MessageCircle,
-    title: "카카오톡 상담",
-    description: "카카오톡 채널을 통해\n편하게 문의해주세요.",
+    title: "1분 컷 카카오톡 문의",
+    description: "수강료, 시간표, 지점별 대기 현황 등\n가벼운 궁금증을 카톡으로\n부담 없이 물어보세요.",
   },
   {
     icon: Clock,
-    title: "빠른 응답",
-    description: "평균 30분 이내 답변.\n영업시간 내 접수 시 당일 회신.",
+    title: "고민을 끝내는 빠른 응답",
+    description: "망설임은 변화를 늦출 뿐입니다.\n평일 기준 평균 30분 이내에\n빠르게 회신해 드립니다.",
   },
 ];
 
@@ -44,17 +44,17 @@ export default function ContactContent() {
       <PageHero
         heading="CONTACT"
         subheading="Get in Touch"
-        description="무료 상담 예약부터 지점 안내까지, 궁금한 점을 편하게 문의해주세요."
+        description="혼자서 고민하는 시간은 끝났습니다. 내 목소리의 한계를 깰 가장 확실한 첫걸음을 시작하세요."
       />
 
       {/* 상담 예약 폼 섹션 */}
       <section className="bg-white py-20 lg:py-28">
         <div className="max-w-6xl mx-auto px-6">
           <SectionHeader
-            label="무료 상담 예약"
+            label="내 목소리의 변화, 여기서 시작됩니다."
             labelStyle="accent"
-            heading="지금 바로 상담을 시작하세요"
-            description="아래 양식을 작성해주시면 담당자가 빠르게 연락드리겠습니다."
+            heading="막막했던 내 노래, 지금 바로 해결책을 확인하세요."
+            description="아래 양식을 남겨주시면, 담당자가 확인 후 가장 빠르고 정확하게 안내해 드립니다."
           />
 
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-16">
@@ -96,7 +96,7 @@ export default function ContactContent() {
             label="BRANCHES"
             labelStyle="display"
             heading="지점별 연락처"
-            description="가까운 지점을 선택해 방문하거나 연락해주세요."
+            description="전국 3개 지점, 가장 가까운 곳에서 3옥타브장인의 압도적인 커리큘럼을 직접 경험해보세요."
           />
           <BranchCards />
         </div>

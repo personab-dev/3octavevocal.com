@@ -98,10 +98,8 @@ export default function HookSection() {
       >
         {/* Diagonal decoration */}
         <div className="absolute left-0 top-0 h-full w-20 md:w-32 bg-accent-dark/20 -skew-x-12 -translate-x-4" />
-        <p className="text-center text-white text-base md:text-lg font-bold tracking-wide relative z-10">
-          당신의 고민, 모두{" "}
-          <span className="underline underline-offset-4">발성</span>에서
-          시작됩니다.
+        <p className="text-center text-white text-base md:text-lg font-bold tracking-wide relative z-10 max-w-3xl mx-auto px-4">
+          초등학생도 이해 가능한 쉽고 체계적인 발성 교육 — 가장 쉽고 빠른 방법으로 고음이 될 수 밖에 없는 몸으로 바꿔드립니다.
         </p>
       </motion.div>
     </section>

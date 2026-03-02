@@ -4,7 +4,6 @@ import IntroSection from "./advanced/IntroSection";
 import ProSection from "./advanced/ProSection";
 import DiagnosisSection from "./advanced/DiagnosisSection";
 import CurriculumSection from "./advanced/CurriculumSection";
-import InstructorSection from "./advanced/InstructorSection";
 import TargetSection from "./advanced/TargetSection";
 import ProgramBeforeAfter from "./ProgramBeforeAfter";
 import ProgramFAQ from "./ProgramFAQ";
@@ -15,9 +14,9 @@ export default function AdvancedProgramContent() {
     <>
       {/* 1. Hero */}
       <PageHero
-        heading="심화 교육과정"
-        subheading="Advanced Vocal Training"
-        description="기초 발성을 실제 노래에 적용하는 심화 보컬 트레이닝"
+        label="심화 교육과정 · Advanced Vocal Training"
+        heading="고음만 올라간다고 끝이 아닙니다."
+        description="어딜 가나 '와, 노래 진짜 잘한다!' 소리를 듣게 만들어 드립니다."
         backgroundImage="/images/program/hero.png"
       />
 
@@ -36,22 +35,20 @@ export default function AdvancedProgramContent() {
       {/* 6. Curriculum */}
       <CurriculumSection />
 
-      {/* 7. Instructor */}
-      <InstructorSection />
-
-      {/* 8. Target Checklist */}
+      {/* 7. VIP Benefits */}
       <TargetSection />
 
-      {/* 9. Before & After */}
+      {/* 8. Before & After */}
       <ProgramBeforeAfter reviewLabel="심화 과정을 이수한 후기가 궁금하신가요?" />
 
-      {/* 10. FAQ */}
+      {/* 9. FAQ */}
       <ProgramFAQ />
 
-      {/* 11. CTA */}
+      {/* 10. CTA */}
       <FinalCta
-        heading="2옥타브에서 멈추실 건가요?"
-        description="3옥타브를 뚫은 사람들이 선택한 가장 확실한 방법, 직접 경험해보세요."
+        heading="진심으로 노래를 잘 부르고 싶은 사람만 문의 주세요"
+        description="프로들도 선택한 가장 확실한 방법을 직접 경험해보세요."
+        buttonText="무료 상담 & 진단 신청하기"
       />
     </>
   );
