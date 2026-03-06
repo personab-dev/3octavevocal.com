@@ -46,7 +46,9 @@ export default function DiagnosisSection() {
             SELF CHECK
           </p>
           <h2 className="text-2xl md:text-3xl lg:text-4xl font-bold text-white">
-            내 노래가 <span className="text-accent">2% 부족</span>하게 들리는
+            <span className="text-accent">[내 노래 실력 체크]</span>
+            <br />
+            내 노래가 2% 부족하게 들리는
             이유는?
           </h2>
         </motion.div>

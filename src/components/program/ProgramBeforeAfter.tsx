@@ -4,78 +4,57 @@ import Link from "next/link";
 import Image from "next/image";
 import { useRef } from "react";
 import { motion, useInView } from "framer-motion";
-
-const videos = [
-  {
-    title: "목 쥐어짜는 흔한 일반인이\n보컬레슨을 받으면 생기는 변화",
-    url: "https://www.youtube.com/shorts/z57DrPANPQ8",
-    thumbnail: "https://img.youtube.com/vi/z57DrPANPQ8/oar2.jpg",
-  },
-  {
-    title: "목으로만 지르는 일반인이\n'믹스 보이스'를 배우면 생기는 일",
-    url: "https://www.youtube.com/shorts/lrYzzluMoX8",
-    thumbnail: "https://img.youtube.com/vi/lrYzzluMoX8/oar2.jpg",
-  },
-  {
-    title: "노래를 겁내던 일반인이\n노래를 배운 뒤 생긴 변화",
-    url: "https://www.youtube.com/shorts/Gwfri1Pa5sM",
-    thumbnail: "https://img.youtube.com/vi/Gwfri1Pa5sM/oar2.jpg",
-  },
-  {
-    title: "원래 목소리가 좋은 일반인이\n보컬 레슨을 받는다면?!",
-    url: "https://www.youtube.com/shorts/eH_5DPSKwmU",
-    thumbnail: "https://img.youtube.com/vi/eH_5DPSKwmU/oar2.jpg",
-  },
-  {
-    title: "꽥꽥지르던 일반인도 배우면\n'마크툽 노래'를 부를 수 있을까?",
-    url: "https://www.youtube.com/shorts/DFK_YLVzBoU",
-    thumbnail: "https://img.youtube.com/vi/DFK_YLVzBoU/oar2.jpg",
-  },
-  {
-    title: "3옥타브 매번 실패했었는데,\n이게 되네?",
-    url: "https://www.youtube.com/shorts/UMLeeKdEB7w",
-    thumbnail: "https://img.youtube.com/vi/UMLeeKdEB7w/oar2.jpg",
-  },
-];
+import { beforeAfterShorts } from "@/lib/videos";
+import type { VideoItem } from "@/lib/videos";
 
 interface ProgramBeforeAfterProps {
   reviewLabel?: string;
+  heading?: string;
+  subHeading?: string;
+  videos?: VideoItem[];
+  isShorts?: boolean;
 }
 
 export default function ProgramBeforeAfter({
   reviewLabel = "기본 과정을 이수한 후기가 궁금하신가요?",
+  heading = "수강 이후, 당신의 고음은 이렇게 달라집니다.",
+  subHeading = "백 번의 설명보다 확실한 증명. 수강생들의 소름 돋는 비포 & 애프터",
+  videos = beforeAfterShorts,
+  isShorts = true,
 }: ProgramBeforeAfterProps) {
   const ref = useRef<HTMLElement>(null);
   const isInView = useInView(ref, { once: true, amount: 0.15 });
 
+  const gridCols = isShorts
+    ? "grid-cols-2 md:grid-cols-3 lg:grid-cols-5"
+    : "grid-cols-1 md:grid-cols-3";
+
   return (
     <section ref={ref} className="bg-white py-20 lg:py-28">
       <div className="max-w-[1440px] mx-auto px-6">
-        {/* Before & After heading */}
+        {/* Heading */}
         <motion.div
           initial={{ opacity: 0, y: 30 }}
           animate={isInView ? { opacity: 1, y: 0 } : {}}
           transition={{ duration: 0.7 }}
           className="text-center mb-6"
         >
-          <p className="text-text-on-light/60 text-base md:text-lg mb-3">
-            수강 이후, 당신의 <strong className="text-text-on-light">고음</strong>은 이렇게 달라집니다.
-          </p>
           <h2 className="text-2xl md:text-3xl lg:text-4xl font-bold text-text-on-light">
-            생생한{" "}
-            <span className="text-accent font-black">BEFORE &amp; AFTER</span>
-            로 직접 확인하세요
+            {heading}
           </h2>
+          <p className="text-text-on-light/60 text-base md:text-lg mt-3">
+            {subHeading}
+          </p>
         </motion.div>
 
-        {/* YouTube Shorts Grid */}
-        <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-4 mt-10">
+        {/* Video Grid */}
+        <div className={`grid ${gridCols} gap-4 mt-10`}>
           {videos.map((video, index) => (
             <motion.div
               key={index}
               initial={{ opacity: 0, y: 30 }}
               animate={isInView ? { opacity: 1, y: 0 } : {}}
-              transition={{ duration: 0.5, delay: 0.1 + index * 0.1 }}
+              transition={{ duration: 0.5, delay: 0.1 + index * 0.06 }}
             >
               <Link
                 href={video.url}
@@ -83,12 +62,12 @@ export default function ProgramBeforeAfter({
                 rel="noopener noreferrer nofollow"
                 className="group block"
               >
-                <div className="aspect-[9/16] bg-zinc-200 relative overflow-hidden mb-3">
+                <div className={`${isShorts ? "aspect-[9/16]" : "aspect-video"} bg-zinc-200 relative overflow-hidden mb-3`}>
                   <Image
                     src={video.thumbnail}
-                    alt={video.title.replace("\n", " ")}
+                    alt={video.title}
                     fill
-                    sizes="(max-width: 768px) 50vw, 16vw"
+                    sizes={isShorts ? "(max-width: 768px) 50vw, 20vw" : "(max-width: 768px) 100vw, 33vw"}
                     className="object-cover group-hover:scale-105 transition-transform duration-500"
                   />
                   <div className="absolute inset-0 bg-black/20 group-hover:bg-black/40 transition-colors flex items-center justify-center">
@@ -99,7 +78,7 @@ export default function ProgramBeforeAfter({
                     </div>
                   </div>
                 </div>
-                <p className="text-text-on-light text-sm md:text-base leading-snug whitespace-pre-line group-hover:text-accent transition-colors">
+                <p className="text-text-on-light text-sm md:text-base leading-snug group-hover:text-accent transition-colors">
                   {video.title}
                 </p>
               </Link>

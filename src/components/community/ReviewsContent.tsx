@@ -148,7 +148,7 @@ export default function ReviewsContent() {
             href="/contact"
             className="inline-flex items-center gap-2 bg-accent hover:bg-accent/90 text-white rounded-r-full px-8 py-4 text-base font-bold transition-colors duration-300 hover:scale-[1.02] active:scale-[0.98] transition-transform"
           >
-            내 상태 확인 &amp; 상담 예약하기
+            내 상태 진단 &amp; 상담 신청
             <svg width="16" height="12" viewBox="0 0 16 12" fill="none">
               <path d="M10 1L15 6L10 11M0 6H15" stroke="currentColor" strokeWidth="1.5" />
             </svg>

@@ -48,8 +48,10 @@ export default function ChecklistSection() {
             SELF CHECK
           </p>
           <h2 className="text-2xl md:text-3xl lg:text-4xl font-bold text-white leading-snug">
+            <span className="text-accent">[내 발성 능력 테스트]</span>
+            <br />
             나는 왜 노래 1~2곡만 불러도{" "}
-            <span className="text-accent">목이 아플까?</span>
+            목이 아플까?
           </h2>
         </motion.div>
 

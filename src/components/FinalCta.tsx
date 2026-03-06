@@ -14,7 +14,7 @@ interface FinalCtaProps {
 export default function FinalCta({
   heading = "여기서도 안 된다면, 어디서도 안 됩니다.",
   description = "그만큼 확실한 커리큘럼, 직접 확인하세요.",
-  buttonText = "내 상태 확인 & 상담 예약하기",
+  buttonText = "내 상태 진단 & 상담 신청",
 }: FinalCtaProps) {
   const ref = useRef<HTMLElement>(null);
   const isInView = useInView(ref, { once: true, amount: 0.3 });

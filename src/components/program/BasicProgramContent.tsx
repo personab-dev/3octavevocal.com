@@ -36,16 +36,20 @@ export default function BasicProgramContent() {
       {/* ── 5. Curriculum Details ─────────────────── */}
       <CurriculumSection />
 
-      {/* ── 7. Instructors ────────────────────────── */}
-      <InstructorSection />
+      {/* ── 6. ProgramBeforeAfter (영상 후기) ──── */}
+      <ProgramBeforeAfter
+        heading="수강 이후, 당신의 고음은 이렇게 달라집니다."
+        subHeading="백 번의 설명보다 확실한 증명. 수강생들의 소름 돋는 비포 & 애프터"
+        reviewLabel="기본 과정을 이수한 후기가 궁금하신가요?"
+      />
 
-      {/* ── 8. Checklist ──────────────────────────── */}
+      {/* ── 7. Checklist ──────────────────────────── */}
       <ChecklistSection />
 
-      {/* ── 9. ProgramBeforeAfter (영상 후기) ──── */}
-      <ProgramBeforeAfter reviewLabel="기본 과정을 이수한 후기가 궁금하신가요?" />
+      {/* ── 8. Instructors ────────────────────────── */}
+      <InstructorSection />
 
-      {/* ── 10. ProgramFAQ ────────────────────────── */}
+      {/* ── 9. ProgramFAQ ────────────────────────── */}
       <ProgramFAQ />
 
       {/* ── 11. Final CTA ─────────────────────────── */}

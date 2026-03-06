@@ -41,7 +41,7 @@ export default function HookSection() {
             학원비로 중형차 한 대{" "}
             <span className="text-accent">태운 수강생,</span>
             <br />
-            20분 만에 고쳤습니다.
+            단 20분 만에 고쳤습니다.
           </motion.h2>
         </div>
       </div>

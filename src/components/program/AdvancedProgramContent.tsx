@@ -2,12 +2,13 @@ import PageHero from "@/components/PageHero";
 import ProgramSubNav from "./ProgramSubNav";
 import IntroSection from "./advanced/IntroSection";
 import ProSection from "./advanced/ProSection";
-import DiagnosisSection from "./advanced/DiagnosisSection";
 import CurriculumSection from "./advanced/CurriculumSection";
-import TargetSection from "./advanced/TargetSection";
 import ProgramBeforeAfter from "./ProgramBeforeAfter";
+import DiagnosisSection from "./advanced/DiagnosisSection";
+import TargetSection from "./advanced/TargetSection";
 import ProgramFAQ from "./ProgramFAQ";
 import FinalCta from "@/components/FinalCta";
+import { interviewVideos } from "@/lib/videos";
 
 export default function AdvancedProgramContent() {
   return (
@@ -29,17 +30,23 @@ export default function AdvancedProgramContent() {
       {/* 4. Pro References */}
       <ProSection />
 
-      {/* 5. Self-Diagnosis */}
-      <DiagnosisSection />
-
-      {/* 6. Curriculum */}
+      {/* 5. Curriculum */}
       <CurriculumSection />
 
-      {/* 7. VIP Benefits */}
-      <TargetSection />
+      {/* 6. Before & After — 인터뷰+커버 영상 3개 */}
+      <ProgramBeforeAfter
+        heading="더 이상 긴말하지 않겠습니다. 이 영상이 변화할 당신의 모습입니다."
+        subHeading="수강생 인터뷰 + 비포 & 애프터"
+        videos={interviewVideos}
+        isShorts={false}
+        reviewLabel="심화 과정을 이수한 후기가 궁금하신가요?"
+      />
 
-      {/* 8. Before & After */}
-      <ProgramBeforeAfter reviewLabel="심화 과정을 이수한 후기가 궁금하신가요?" />
+      {/* 7. Self-Diagnosis */}
+      <DiagnosisSection />
+
+      {/* 8. VIP Benefits */}
+      <TargetSection />
 
       {/* 9. FAQ */}
       <ProgramFAQ />

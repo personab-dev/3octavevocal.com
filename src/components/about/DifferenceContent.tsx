@@ -121,38 +121,7 @@ const testimonials = [
   },
 ];
 
-const videos = [
-  {
-    title: "목 쥐어짜는 흔한 일반인이\n보컬레슨을 받으면 생기는 변화",
-    url: "https://www.youtube.com/shorts/z57DrPANPQ8",
-    thumbnail: "https://img.youtube.com/vi/z57DrPANPQ8/oar2.jpg",
-  },
-  {
-    title: "목으로만 지르는 일반인이\n'믹스 보이스'를 배우면 생기는 일",
-    url: "https://www.youtube.com/shorts/lrYzzluMoX8",
-    thumbnail: "https://img.youtube.com/vi/lrYzzluMoX8/oar2.jpg",
-  },
-  {
-    title: "노래를 겁내던 일반인이\n노래를 배운 뒤 생긴 변화",
-    url: "https://www.youtube.com/shorts/Gwfri1Pa5sM",
-    thumbnail: "https://img.youtube.com/vi/Gwfri1Pa5sM/oar2.jpg",
-  },
-  {
-    title: "원래 목소리가 좋은 일반인이\n보컬 레슨을 받는다면?!",
-    url: "https://www.youtube.com/shorts/eH_5DPSKwmU",
-    thumbnail: "https://img.youtube.com/vi/eH_5DPSKwmU/oar2.jpg",
-  },
-  {
-    title: "꽥꽥지르던 일반인도 배우면\n'마크툽 노래'를 부를 수 있을까?",
-    url: "https://www.youtube.com/shorts/DFK_YLVzBoU",
-    thumbnail: "https://img.youtube.com/vi/DFK_YLVzBoU/oar2.jpg",
-  },
-  {
-    title: "3옥타브 매번 실패했었는데,\n이게 되네?",
-    url: "https://www.youtube.com/shorts/UMLeeKdEB7w",
-    thumbnail: "https://img.youtube.com/vi/UMLeeKdEB7w/oar2.jpg",
-  },
-];
+import { beforeAfterShorts } from "@/lib/videos";
 
 export default function DifferenceContent() {
   const strengthRef = useRef<HTMLElement>(null);
@@ -306,8 +275,8 @@ export default function DifferenceContent() {
             </h2>
           </motion.div>
 
-          <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-4">
-            {videos.map((video, index) => (
+          <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-4">
+            {beforeAfterShorts.map((video, index) => (
               <motion.div
                 key={index}
                 initial={{ opacity: 0, y: 30 }}

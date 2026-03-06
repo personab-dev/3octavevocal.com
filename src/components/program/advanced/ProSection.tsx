@@ -3,27 +3,17 @@
 import { useRef, useState } from "react";
 import Image from "next/image";
 import { motion, useInView } from "framer-motion";
-
-const artistImages = [
-  { src: "/images/pro-curriculum/artist-1.png", alt: "정성일 — 배우, '더 글로리' 주연", name: "정성일", role: "배우" },
-  { src: "/images/pro-curriculum/artist-2.png", alt: "황치열 — 가수, 보컬 트레이닝", name: "황치열", role: "가수" },
-  { src: "/images/pro-curriculum/artist-yoosieun.webp", alt: "유시은 — 솔로지옥3 출연", name: "유시은", role: "솔로지옥3" },
-  { src: "/images/pro-curriculum/artist-6.png", alt: "노라조 — 엔터테이너 보컬 트레이닝", name: "노라조", role: "가수" },
-  { src: "/images/pro-curriculum/artist-7.png", alt: "염유리 — 보컬 트레이닝", name: "염유리", role: "가수" },
-  { src: "/images/pro-curriculum/artist-shinhwa.webp", alt: "신화 — K-POP 보컬 트레이닝", name: "신화", role: "아이돌 그룹" },
-  { src: "/images/pro-curriculum/artist-4.png", alt: "하이라이트 — K-POP 보컬 트레이닝", name: "하이라이트", role: "아이돌 그룹" },
-  { src: "/images/pro-curriculum/artist-8.png", alt: "반광옥 — 보컬 트레이닝", name: "반광옥", role: "가수" },
-];
+import { allArtists, FEATURED_COUNT } from "@/lib/artists";
 
 export default function ProSection() {
   const ref = useRef<HTMLElement>(null);
   const isInView = useInView(ref, { once: true, amount: 0.1 });
   const [showAll, setShowAll] = useState(false);
-  const visibleArtists = showAll ? artistImages : artistImages.slice(0, 3);
-  const remainingCount = artistImages.length - 3;
+  const visibleArtists = showAll ? allArtists : allArtists.slice(0, FEATURED_COUNT);
+  const remainingCount = allArtists.length - FEATURED_COUNT;
 
   return (
-    <section ref={ref} className="bg-zinc-900 py-20 lg:py-28">
+    <section id="artists" ref={ref} className="bg-zinc-900 py-20 lg:py-28">
       <div className="max-w-5xl mx-auto px-6">
         <motion.div
           initial={{ opacity: 0, y: 30 }}
@@ -58,8 +48,8 @@ export default function ProSection() {
             <motion.div
               key={artist.name}
               initial={{ opacity: 0, y: 20 }}
-              animate={isInView ? { opacity: 1, y: 0 } : {}}
-              transition={{ duration: 0.5, delay: 0.2 + index * 0.1 }}
+              animate={isInView || showAll ? { opacity: 1, y: 0 } : {}}
+              transition={{ duration: 0.5, delay: 0.2 + index * 0.05 }}
               className="text-center group"
             >
               <div className="aspect-square relative overflow-hidden mb-4">
@@ -71,7 +61,6 @@ export default function ProSection() {
                   className="object-cover group-hover:scale-105 transition-transform duration-500"
                 />
                 <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-transparent to-transparent z-10" />
-                {/* Role badge */}
                 <div className="absolute bottom-3 left-0 right-0 z-20 text-center">
                   <span className="inline-block text-[10px] font-bold tracking-wider text-accent bg-accent/10 px-2 py-0.5 backdrop-blur-sm">
                     {artist.role}
