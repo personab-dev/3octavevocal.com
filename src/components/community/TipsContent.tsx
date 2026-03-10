@@ -1,12 +1,14 @@
 "use client";
 
-import { useRef } from "react";
+import { useState, useRef, useCallback } from "react";
 import Link from "next/link";
 import Image from "next/image";
 import { motion, useInView } from "framer-motion";
 import PageHero from "@/components/PageHero";
 import SectionHeader from "@/components/SectionHeader";
 import CommunitySubNav from "./CommunitySubNav";
+import YouTubeModal from "@/components/YouTubeModal";
+import { extractYouTubeId } from "@/lib/videos";
 
 const tipCards = [
   {
@@ -77,6 +79,8 @@ const tipCards = [
 export default function TipsContent() {
   const gridRef = useRef<HTMLElement>(null);
   const gridInView = useInView(gridRef, { once: true, amount: 0.1 });
+  const [activeVideo, setActiveVideo] = useState<string | null>(null);
+  const closeModal = useCallback(() => setActiveVideo(null), []);
 
   return (
     <>
@@ -104,11 +108,12 @@ export default function TipsContent() {
         <div className="max-w-7xl mx-auto px-6">
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5 lg:gap-8">
             {tipCards.map((tip, index) => (
-              <motion.a
+              <motion.button
                 key={tip.src}
-                href={tip.youtube}
-                target="_blank"
-                rel="noopener noreferrer nofollow"
+                onClick={() => {
+                  const id = extractYouTubeId(tip.youtube);
+                  if (id) setActiveVideo(id);
+                }}
                 initial={{ opacity: 0, y: 30 }}
                 animate={gridInView ? { opacity: 1, y: 0 } : {}}
                 transition={{ duration: 0.5, delay: index * 0.08 }}
@@ -128,7 +133,7 @@ export default function TipsContent() {
                     </svg>
                   </div>
                 </div>
-              </motion.a>
+              </motion.button>
             ))}
           </div>
         </div>
@@ -156,6 +161,8 @@ export default function TipsContent() {
           </Link>
         </div>
       </section>
+
+      <YouTubeModal videoId={activeVideo} onClose={closeModal} isShorts={false} />
     </>
   );
 }

@@ -138,10 +138,10 @@ export default function ChecklistSection() {
                   JSON.stringify({ source: "basic", items: checkedItems })
                 );
               }}
-              className="inline-flex items-center gap-2 bg-accent text-white hover:bg-accent/90 rounded-full px-8 py-4 text-base font-bold shadow-lg shadow-accent/20 hover:shadow-accent/30 transition-all duration-300 hover:scale-[1.02] active:scale-[0.98]"
+              className="group cta-shimmer inline-flex items-center gap-2 bg-accent text-white hover:bg-accent/90 rounded-full px-8 py-4 text-base font-bold shadow-lg shadow-accent/20 hover:shadow-accent/30 transition-all duration-300 hover:scale-[1.02] active:scale-[0.98]"
             >
               내 상태에 맞는 진단 &amp; 상담 받기
-              <svg width="16" height="12" viewBox="0 0 16 12" fill="none" className="transition-transform group-hover:translate-x-1">
+              <svg width="16" height="12" viewBox="0 0 16 12" fill="none" className="transition-transform duration-300 group-hover:translate-x-1.5">
                 <path d="M10 1L15 6L10 11M0 6H15" stroke="currentColor" strokeWidth="1.5" />
               </svg>
             </Link>

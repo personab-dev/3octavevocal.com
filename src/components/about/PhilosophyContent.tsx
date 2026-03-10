@@ -217,6 +217,16 @@ export default function PhilosophyContent() {
         <div className="absolute left-0 bottom-0 opacity-[0.03] pointer-events-none -translate-x-1/4 translate-y-1/4">
           <BrandSymbol size={500} color="white" />
         </div>
+        <div className="absolute inset-0 flex items-center justify-center">
+          <Image
+            src="/images/logo-symbol-white.png"
+            alt=""
+            width={280}
+            height={280}
+            className="opacity-[0.04]"
+            aria-hidden="true"
+          />
+        </div>
 
         <div className="max-w-3xl mx-auto px-6 relative z-10">
           <motion.div
@@ -270,6 +280,16 @@ export default function PhilosophyContent() {
       <section ref={proofRef} className="relative py-20 lg:py-28 overflow-hidden">
         <div className="absolute inset-0 bg-zinc-900">
           <div className="absolute inset-0 bg-gradient-to-r from-black/80 to-black/60" />
+          <div className="absolute inset-0 flex items-center justify-center">
+            <Image
+              src="/images/logo-symbol-white.png"
+              alt=""
+              width={280}
+              height={280}
+              className="opacity-[0.04]"
+              aria-hidden="true"
+            />
+          </div>
         </div>
 
         <div className="relative z-10 max-w-3xl mx-auto px-6">
@@ -322,31 +342,6 @@ export default function PhilosophyContent() {
               3옥타브장인 보컬학원 대표 김윤민 드림
             </p>
           </motion.div>
-        </div>
-      </section>
-
-      {/* Gallery Carousel */}
-      <section className="bg-black py-16 lg:py-20 overflow-hidden">
-        <div className="relative">
-          {/* Infinite scrolling track — duplicated for seamless loop */}
-          <div className="flex animate-carousel">
-            {[...galleryImages, ...galleryImages].map((img, i) => (
-              <div
-                key={i}
-                className="shrink-0 w-[300px] md:w-[480px] lg:w-[560px] px-2"
-              >
-                <div className="aspect-[16/9] relative overflow-hidden">
-                  <Image
-                    src={img.src}
-                    alt={img.alt}
-                    fill
-                    sizes="(max-width: 768px) 300px, (max-width: 1024px) 480px, 560px"
-                    className="object-cover"
-                  />
-                </div>
-              </div>
-            ))}
-          </div>
         </div>
       </section>
 

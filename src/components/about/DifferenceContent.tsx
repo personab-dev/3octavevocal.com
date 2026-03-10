@@ -2,12 +2,13 @@
 
 import Link from "next/link";
 import Image from "next/image";
-import { useRef } from "react";
+import { useState, useRef, useCallback } from "react";
 import { motion, useInView } from "framer-motion";
 import PageHero from "@/components/PageHero";
 import AboutSubNav from "./AboutSubNav";
 import CountUp from "@/components/animations/CountUp";
 import FinalCta from "@/components/FinalCta";
+import YouTubeModal from "@/components/YouTubeModal";
 
 const strengths = [
   {
@@ -130,6 +131,8 @@ export default function DifferenceContent() {
   const statsInView = useInView(statsRef, { once: true, amount: 0.3 });
   const videoRef = useRef<HTMLElement>(null);
   const videoInView = useInView(videoRef, { once: true, amount: 0.2 });
+  const [activeVideo, setActiveVideo] = useState<string | null>(null);
+  const closeModal = useCallback(() => setActiveVideo(null), []);
 
   return (
     <>
@@ -283,11 +286,9 @@ export default function DifferenceContent() {
                 animate={videoInView ? { opacity: 1, y: 0 } : {}}
                 transition={{ duration: 0.5, delay: 0.1 + index * 0.1 }}
               >
-                <Link
-                  href={video.url}
-                  target="_blank"
-                  rel="noopener noreferrer nofollow"
-                  className="group block"
+                <button
+                  onClick={() => setActiveVideo(video.id)}
+                  className="group block w-full text-left cursor-pointer"
                 >
                   <div className="aspect-[9/16] bg-zinc-200 relative overflow-hidden mb-3">
                     <Image
@@ -308,7 +309,7 @@ export default function DifferenceContent() {
                   <p className="text-text-on-light text-sm md:text-base leading-snug whitespace-pre-line group-hover:text-accent transition-colors">
                     {video.title}
                   </p>
-                </Link>
+                </button>
               </motion.div>
             ))}
           </div>
@@ -392,6 +393,7 @@ export default function DifferenceContent() {
 
       {/* CTA */}
       <FinalCta />
+      <YouTubeModal videoId={activeVideo} onClose={closeModal} />
     </>
   );
 }

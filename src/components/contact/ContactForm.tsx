@@ -280,79 +280,6 @@ export default function ContactForm() {
         </div>
       )}
 
-      {/* 사전 진단: 직접 방문한 경우 — 인라인 체크리스트 */}
-      {!fromProgram && (
-        <div className="border border-gray-200 p-5">
-          <p className="text-sm font-medium text-text-on-light mb-1">
-            자가진단 <span className="text-text-on-light/40 font-normal">(선택)</span>
-          </p>
-          <p className="text-xs text-text-on-light/50 mb-4">
-            해당하는 항목을 체크하시면 더 정확한 상담이 가능합니다.
-          </p>
-
-          {/* 탭 */}
-          <div className="flex gap-2 mb-4">
-            {([
-              { key: "basic" as DiagnosisTab, label: "기본과정" },
-              { key: "advanced" as DiagnosisTab, label: "심화과정" },
-            ]).map((tab) => (
-              <button
-                key={tab.key}
-                type="button"
-                onClick={() => handleTabChange(tab.key)}
-                className={`px-4 py-2 text-sm font-medium border transition-colors duration-200 ${
-                  diagnosisTab === tab.key
-                    ? "border-accent bg-accent/5 text-accent"
-                    : "border-gray-200 text-text-on-light/50 hover:border-gray-300"
-                }`}
-              >
-                {tab.label}
-              </button>
-            ))}
-          </div>
-
-          {/* 체크리스트 */}
-          <div className="grid grid-cols-1 gap-2 max-h-64 overflow-y-auto">
-            {currentItems.map((item, index) => {
-              const isChecked = checked.has(index);
-              return (
-                <button
-                  key={`${diagnosisTab}-${index}`}
-                  type="button"
-                  onClick={() => toggleCheck(index)}
-                  className={`flex items-center gap-3 p-3 text-left transition-all duration-200 border ${
-                    isChecked
-                      ? "border-accent bg-accent/5"
-                      : "border-gray-100 hover:border-gray-200"
-                  }`}
-                >
-                  <div
-                    className={`w-4 h-4 shrink-0 flex items-center justify-center transition-all duration-200 ${
-                      isChecked ? "bg-accent" : "border border-gray-300"
-                    }`}
-                  >
-                    {isChecked && <Check size={10} className="text-white" />}
-                  </div>
-                  <span
-                    className={`text-sm transition-colors duration-200 ${
-                      isChecked ? "text-text-on-light" : "text-text-on-light/60"
-                    }`}
-                  >
-                    {item}
-                  </span>
-                </button>
-              );
-            })}
-          </div>
-
-          {checked.size > 0 && (
-            <p className="text-accent text-xs font-medium mt-3">
-              {checked.size}개 항목 선택됨
-            </p>
-          )}
-        </div>
-      )}
-
       {/* ── 필수 정보 ── */}
 
       {/* 이름 */}
@@ -489,6 +416,79 @@ export default function ContactForm() {
             className="overflow-hidden"
           >
             <div className="space-y-5 pt-2 border-t border-gray-100">
+              {/* 자가진단 체크리스트 */}
+              {!fromProgram && (
+                <div className="border border-gray-200 p-5">
+                  <p className="text-sm font-medium text-text-on-light mb-1">
+                    자가진단
+                  </p>
+                  <p className="text-xs text-text-on-light/50 mb-4">
+                    해당하는 항목을 체크하시면 더 정확한 상담이 가능합니다.
+                  </p>
+
+                  {/* 탭 */}
+                  <div className="flex gap-2 mb-4">
+                    {([
+                      { key: "basic" as DiagnosisTab, label: "기본과정" },
+                      { key: "advanced" as DiagnosisTab, label: "심화과정" },
+                    ]).map((tab) => (
+                      <button
+                        key={tab.key}
+                        type="button"
+                        onClick={() => handleTabChange(tab.key)}
+                        className={`px-4 py-2 text-sm font-medium border transition-colors duration-200 ${
+                          diagnosisTab === tab.key
+                            ? "border-accent bg-accent/5 text-accent"
+                            : "border-gray-200 text-text-on-light/50 hover:border-gray-300"
+                        }`}
+                      >
+                        {tab.label}
+                      </button>
+                    ))}
+                  </div>
+
+                  {/* 체크리스트 */}
+                  <div className="grid grid-cols-1 gap-2 max-h-64 overflow-y-auto">
+                    {currentItems.map((item, index) => {
+                      const isChecked = checked.has(index);
+                      return (
+                        <button
+                          key={`${diagnosisTab}-${index}`}
+                          type="button"
+                          onClick={() => toggleCheck(index)}
+                          className={`flex items-center gap-3 p-3 text-left transition-all duration-200 border ${
+                            isChecked
+                              ? "border-accent bg-accent/5"
+                              : "border-gray-100 hover:border-gray-200"
+                          }`}
+                        >
+                          <div
+                            className={`w-4 h-4 shrink-0 flex items-center justify-center transition-all duration-200 ${
+                              isChecked ? "bg-accent" : "border border-gray-300"
+                            }`}
+                          >
+                            {isChecked && <Check size={10} className="text-white" />}
+                          </div>
+                          <span
+                            className={`text-sm transition-colors duration-200 ${
+                              isChecked ? "text-text-on-light" : "text-text-on-light/60"
+                            }`}
+                          >
+                            {item}
+                          </span>
+                        </button>
+                      );
+                    })}
+                  </div>
+
+                  {checked.size > 0 && (
+                    <p className="text-accent text-xs font-medium mt-3">
+                      {checked.size}개 항목 선택됨
+                    </p>
+                  )}
+                </div>
+              )}
+
               {/* 연령대 */}
               <div>
                 <label htmlFor="contact-age" className="block text-sm font-medium text-text-on-light mb-1.5">

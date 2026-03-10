@@ -135,10 +135,10 @@ export default function DiagnosisSection() {
                   JSON.stringify({ source: "advanced", items: checkedItems })
                 );
               }}
-              className="inline-flex items-center gap-2 bg-accent text-white hover:bg-accent/90 rounded-full px-7 py-3.5 text-base font-bold shadow-lg shadow-accent/25 transition-all duration-300"
+              className="group cta-shimmer inline-flex items-center gap-2 bg-accent text-white hover:bg-accent/90 rounded-full px-8 py-4 text-base font-bold shadow-lg shadow-accent/25 hover:shadow-accent/35 transition-all duration-300 hover:scale-[1.02] active:scale-[0.98]"
             >
               내 상태에 맞는 진단 &amp; 상담 받기
-              <ChevronRight size={16} />
+              <ChevronRight size={16} className="transition-transform duration-300 group-hover:translate-x-1.5" />
             </Link>
           </div>
 

@@ -73,7 +73,7 @@ export default function ReviewsContent() {
       <CommunitySubNav />
 
       {/* Header Section */}
-      <section className="bg-white py-16 lg:py-24">
+      <section className="bg-white py-16 lg:py-18">
         <div className="max-w-5xl mx-auto px-6">
           <SectionHeader
             label="Student Reviews"
@@ -84,43 +84,69 @@ export default function ReviewsContent() {
         </div>
       </section>
 
-      {/* Reviews Section — Text only */}
+      {/* Reviews Section — Dynamic Bento Box */}
       <section ref={reviewsRef} className="bg-zinc-50 py-16 lg:py-24">
         <div className="max-w-5xl mx-auto px-6">
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5">
-            {reviews.map((item, index) => (
-              <motion.div
-                key={index}
-                initial={{ opacity: 0, y: 30 }}
-                animate={reviewsInView ? { opacity: 1, y: 0 } : {}}
-                transition={{ duration: 0.5, delay: index * 0.1 }}
-              >
-                <Link
-                  href={item.href}
-                  target="_blank"
-                  rel="noopener noreferrer nofollow"
-                  className="group block bg-white p-6 hover:shadow-lg transition-shadow duration-300 h-full"
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 lg:gap-6 grid-flow-dense">
+            {reviews.map((item, index) => {
+              // Create rhythm: Highlight certain reviews to span 2 columns based on index
+              const isHero = index === 0 || index === 5 || index === 8;
+
+              return (
+                <motion.div
+                  key={index}
+                  className={isHero ? "md:col-span-2 lg:col-span-2" : "col-span-1"}
+                  initial={{ opacity: 0, y: 30 }}
+                  animate={reviewsInView ? { opacity: 1, y: 0 } : {}}
+                  transition={{ duration: 0.5, delay: index * 0.05 }}
                 >
-                  <div className="flex items-start gap-3">
-                    <svg
-                      width="24"
-                      height="20"
-                      viewBox="0 0 32 28"
-                      fill="none"
-                      className="shrink-0 mt-0.5"
-                    >
-                      <path
-                        d="M0 28V17.5C0 12.833 1.167 9.083 3.5 6.25C5.833 3.417 9.167 1.5 13.5 0.5L14.5 3C11.833 4 9.75 5.417 8.25 7.25C6.75 9.083 6 11.167 6 13.5H12V28H0ZM18 28V17.5C18 12.833 19.167 9.083 21.5 6.25C23.833 3.417 27.167 1.5 31.5 0.5L32.5 3C29.833 4 27.75 5.417 26.25 7.25C24.75 9.083 24 11.167 24 13.5H30V28H18Z"
-                        fill="#D4879C"
-                      />
-                    </svg>
-                    <p className="text-text-on-light/80 text-sm md:text-base leading-relaxed font-semibold group-hover:text-accent transition-colors">
-                      {item.quote}
-                    </p>
-                  </div>
-                </Link>
-              </motion.div>
-            ))}
+                  <Link
+                    href={item.href}
+                    target="_blank"
+                    rel="noopener noreferrer nofollow"
+                    className={`group relative block bg-white border border-zinc-100/80 rounded-2xl overflow-hidden h-full
+                      transition-all duration-500 ease-out
+                      hover:-translate-y-1 hover:border-accent/30 
+                      hover:shadow-[0_20px_40px_-15px_rgba(230,32,77,0.15)]
+                      ${isHero ? "p-8 md:p-10" : "p-6 md:p-8"}`}
+                  >
+                    {/* Background Quote Watermark (Resonance effect) */}
+                    <div className="absolute -bottom-4 -right-2 text-[120px] leading-none font-serif text-zinc-50 opacity-0 group-hover:opacity-100 group-hover:text-accent/5 transition-all duration-700 ease-out scale-75 group-hover:scale-100 origin-bottom-right pointer-events-none select-none">
+                      "
+                    </div>
+
+                    <div className="relative z-10 flex flex-col h-full justify-between gap-6">
+                      <div className="flex items-start gap-4">
+                        <svg
+                          width="24"
+                          height="20"
+                          viewBox="0 0 32 28"
+                          fill="none"
+                          className="shrink-0 mt-1 opacity-20 group-hover:opacity-100 group-hover:fill-accent transition-all duration-500 transform group-hover:-translate-y-0.5"
+                        >
+                          <path
+                            d="M0 28V17.5C0 12.833 1.167 9.083 3.5 6.25C5.833 3.417 9.167 1.5 13.5 0.5L14.5 3C11.833 4 9.75 5.417 8.25 7.25C6.75 9.083 6 11.167 6 13.5H12V28H0ZM18 28V17.5C18 12.833 19.167 9.083 21.5 6.25C23.833 3.417 27.167 1.5 31.5 0.5L32.5 3C29.833 4 27.75 5.417 26.25 7.25C24.75 9.083 24 11.167 24 13.5H30V28H18Z"
+                            fill="currentColor"
+                          />
+                        </svg>
+                        <p className={`text-text-on-light font-semibold leading-relaxed tracking-tight group-hover:text-black transition-colors duration-300
+                          ${isHero ? "text-lg md:text-2xl" : "text-base md:text-lg"}
+                        `}>
+                          {item.quote}
+                        </p>
+                      </div>
+
+                      <div className="flex items-center gap-2 mt-auto pt-4">
+                        <div className="w-6 h-px bg-zinc-200 group-hover:bg-accent/50 group-hover:w-10 transition-all duration-500"></div>
+                        <span className="text-xs font-bold text-zinc-400 group-hover:text-accent transition-colors duration-300">
+                          수강생 후기 보기
+                        </span>
+                      </div>
+                    </div>
+                  </Link>
+                </motion.div>
+              );
+            })}
           </div>
         </div>
       </section>
