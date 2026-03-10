@@ -51,7 +51,7 @@ export default function InstructorSection() {
           className="text-center mb-14"
         >
           <p className="text-text-on-light/50 text-sm mb-3 tracking-widest">
-            오직 초보자를 위해 설계된 시스템
+            오직 초보자를 위해 설계된
           </p>
           <h2 className="text-2xl md:text-3xl lg:text-4xl font-bold text-text-on-light">
             3옥타브장인만의{" "}

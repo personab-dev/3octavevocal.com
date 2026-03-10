@@ -1,8 +1,8 @@
 "use client";
 
-import { useState, useEffect, useRef, type FormEvent } from "react";
+import { useState, useEffect, useRef, useCallback, type FormEvent } from "react";
 import { motion, useInView, AnimatePresence } from "framer-motion";
-import { Send, ChevronDown, X } from "lucide-react";
+import { Send, ChevronDown, X, Check } from "lucide-react";
 
 const branchOptions = [
   "서울점 (강남역 5번 출구 100m)",
@@ -47,8 +47,34 @@ const consultationTypes = [
   },
 ] as const;
 
+const basicDiagnosisItems = [
+  "1~2곡만 불러도 목이 금방 쉬거나 칼칼해진다.",
+  "노래를 배워본 적이 없거나, 배워봤는데도 개선이 되지 않았다.",
+  "고음 파트에서 삑사리(음이탈)나 갈라지는 목소리가 자주 나온다.",
+  "시원하게 지르지 못하고, 억지로 생목을 쥐어짜서 부르는 느낌이 든다.",
+  "숨이 모자라서 끝음이 바들바들 떨리거나 흐지부지 끝난다.",
+  "남들이 다 부르는 평범한 노래도 원키로 부를 엄두가 나지 않는다.",
+  "내 목소리가 너무 얇고 힘이 없다고 느껴지거나 마음에 들지 않는다.",
+  "컨디션에 따라 내 노래 실력이 너무 심하게 차이가 난다.",
+  "음역대 개선이 되지 않는다.",
+  "내 문제를 해결하려면 어떻게 해야되는지 잘 모르겠다.",
+];
+
+const advancedDiagnosisItems = [
+  "기본 발성법을 알지만, 노래에 적용이 잘 안되는 것 같아요.",
+  "고음은 올라가는데, 주변에서 '노래 잘한다'는 칭찬은 못 들어본 것 같아요.",
+  "가수처럼 바이브레이션이나 기교를 멋지게 넣어보고 싶은데, 내가 하면 뭔가 어색해요.",
+  "가수처럼 '잘' 부르려면 어떻게 해야 될지 잘 모르겠어요.",
+  "프로 가수들이 쓰는 테크닉과 스킬을 배우고 싶어요.",
+  "좋아하는 가수의 노래를 불러도 뭔가 밋밋하고 이상한 것 같아요.",
+  "내 노래를 녹음해서 들어보면 아마추어 티가 나는 것 같아요.",
+  "내 보컬 스타일이 어떤 건지 잘 모르겠어요.",
+];
+
+type DiagnosisTab = "basic" | "advanced";
+
 interface DiagnosisData {
-  source: "basic" | "advanced";
+  source: DiagnosisTab;
   items: string[];
 }
 
@@ -79,6 +105,9 @@ export default function ContactForm() {
   const isInView = useInView(ref, { once: true, amount: 0.2 });
 
   const [diagnosis, setDiagnosis] = useState<DiagnosisData | null>(null);
+  const [fromProgram, setFromProgram] = useState(false);
+  const [diagnosisTab, setDiagnosisTab] = useState<DiagnosisTab>("basic");
+  const [checked, setChecked] = useState<Set<number>>(new Set());
   const [showOptional, setShowOptional] = useState(false);
   const [formData, setFormData] = useState<FormData>({
     name: "",
@@ -104,6 +133,7 @@ export default function ContactForm() {
         const data = JSON.parse(stored) as DiagnosisData;
         if (data.items && data.items.length > 0) {
           setDiagnosis(data);
+          setFromProgram(true);
         }
         sessionStorage.removeItem("vocalDiagnosis");
       }
@@ -111,6 +141,34 @@ export default function ContactForm() {
       // 무시
     }
   }, []);
+
+  const currentItems = diagnosisTab === "basic" ? basicDiagnosisItems : advancedDiagnosisItems;
+
+  const toggleCheck = useCallback((index: number) => {
+    setChecked((prev) => {
+      const next = new Set(prev);
+      if (next.has(index)) next.delete(index);
+      else next.add(index);
+      return next;
+    });
+  }, []);
+
+  // 탭 전환 시 체크 초기화
+  function handleTabChange(tab: DiagnosisTab) {
+    setDiagnosisTab(tab);
+    setChecked(new Set());
+  }
+
+  // 인라인 체크리스트에서 선택한 항목을 diagnosis에 동기화
+  useEffect(() => {
+    if (fromProgram) return;
+    if (checked.size > 0) {
+      const selectedItems = currentItems.filter((_, i) => checked.has(i));
+      setDiagnosis({ source: diagnosisTab, items: selectedItems });
+    } else {
+      setDiagnosis(null);
+    }
+  }, [checked, diagnosisTab, currentItems, fromProgram]);
 
   function removeDiagnosisItem(index: number) {
     setDiagnosis((prev) => {
@@ -191,8 +249,8 @@ export default function ContactForm() {
       className="space-y-5"
       noValidate
     >
-      {/* 사전 진단 결과 */}
-      {diagnosis && (
+      {/* 사전 진단: 프로그램에서 넘어온 경우 — 선택 항목 표시 */}
+      {fromProgram && diagnosis && (
         <div className="bg-accent/5 border border-accent/20 p-4">
           <div className="flex items-center gap-2 mb-3">
             <span className="text-accent text-xs font-bold tracking-wider uppercase">
@@ -219,6 +277,79 @@ export default function ContactForm() {
               </span>
             ))}
           </div>
+        </div>
+      )}
+
+      {/* 사전 진단: 직접 방문한 경우 — 인라인 체크리스트 */}
+      {!fromProgram && (
+        <div className="border border-gray-200 p-5">
+          <p className="text-sm font-medium text-text-on-light mb-1">
+            자가진단 <span className="text-text-on-light/40 font-normal">(선택)</span>
+          </p>
+          <p className="text-xs text-text-on-light/50 mb-4">
+            해당하는 항목을 체크하시면 더 정확한 상담이 가능합니다.
+          </p>
+
+          {/* 탭 */}
+          <div className="flex gap-2 mb-4">
+            {([
+              { key: "basic" as DiagnosisTab, label: "기본과정" },
+              { key: "advanced" as DiagnosisTab, label: "심화과정" },
+            ]).map((tab) => (
+              <button
+                key={tab.key}
+                type="button"
+                onClick={() => handleTabChange(tab.key)}
+                className={`px-4 py-2 text-sm font-medium border transition-colors duration-200 ${
+                  diagnosisTab === tab.key
+                    ? "border-accent bg-accent/5 text-accent"
+                    : "border-gray-200 text-text-on-light/50 hover:border-gray-300"
+                }`}
+              >
+                {tab.label}
+              </button>
+            ))}
+          </div>
+
+          {/* 체크리스트 */}
+          <div className="grid grid-cols-1 gap-2 max-h-64 overflow-y-auto">
+            {currentItems.map((item, index) => {
+              const isChecked = checked.has(index);
+              return (
+                <button
+                  key={`${diagnosisTab}-${index}`}
+                  type="button"
+                  onClick={() => toggleCheck(index)}
+                  className={`flex items-center gap-3 p-3 text-left transition-all duration-200 border ${
+                    isChecked
+                      ? "border-accent bg-accent/5"
+                      : "border-gray-100 hover:border-gray-200"
+                  }`}
+                >
+                  <div
+                    className={`w-4 h-4 shrink-0 flex items-center justify-center transition-all duration-200 ${
+                      isChecked ? "bg-accent" : "border border-gray-300"
+                    }`}
+                  >
+                    {isChecked && <Check size={10} className="text-white" />}
+                  </div>
+                  <span
+                    className={`text-sm transition-colors duration-200 ${
+                      isChecked ? "text-text-on-light" : "text-text-on-light/60"
+                    }`}
+                  >
+                    {item}
+                  </span>
+                </button>
+              );
+            })}
+          </div>
+
+          {checked.size > 0 && (
+            <p className="text-accent text-xs font-medium mt-3">
+              {checked.size}개 항목 선택됨
+            </p>
+          )}
         </div>
       )}
 

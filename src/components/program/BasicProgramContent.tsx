@@ -31,7 +31,7 @@ export default function BasicProgramContent() {
       <HookSection />
 
       {/* ── 4. Curriculum Approach ────────────────── */}
-      <ApproachSection />
+      {/* <ApproachSection /> */}
 
       {/* ── 5. Curriculum Details ─────────────────── */}
       <CurriculumSection />

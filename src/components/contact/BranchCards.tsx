@@ -21,7 +21,7 @@ const branches = [
     address: "인천 부평구 경원대로 1414, 2층 (부평동 185-41)",
     landmark: "부평역 7번출구 250m",
     phone: "0507-1319-1769",
-    kakao: null,
+    kakao: "https://pf.kakao.com/_Njgdxj",
     mapUrl: "https://naver.me/5YFpHxrR",
   },
   {
