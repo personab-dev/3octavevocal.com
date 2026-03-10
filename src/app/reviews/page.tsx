@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import ReviewsContent from "@/components/community/ReviewsContent";
 import JsonLd from "@/components/JsonLd";
 import { getBreadcrumbSchema } from "@/lib/schema";
+import { getReviews } from "@/lib/wordpress";
 
 export const metadata: Metadata = {
   title: "수강생 후기 & 레슨 현장",
@@ -16,7 +17,9 @@ export const metadata: Metadata = {
   },
 };
 
-export default function ReviewsPage() {
+export default async function ReviewsPage() {
+  const reviews = await getReviews();
+
   return (
     <>
       <JsonLd
@@ -25,7 +28,7 @@ export default function ReviewsPage() {
           { name: "수강생 후기", url: "https://3octavevocal.com/reviews" },
         ])}
       />
-      <ReviewsContent />
+      <ReviewsContent reviews={reviews} />
     </>
   );
 }

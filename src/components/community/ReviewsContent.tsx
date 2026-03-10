@@ -8,58 +8,19 @@ import PageHero from "@/components/PageHero";
 import SectionHeader from "@/components/SectionHeader";
 import CommunitySubNav from "./CommunitySubNav";
 
-const reviews = [
-  {
-    quote: "3옥타브장인에 5년 넘게 다녔습니다. 근데 이제 칙촉쌤을 곁들인...",
-    href: "https://cafe.naver.com/cloud9ent/29164",
-  },
-  {
-    quote: "서울보컬학원 연축성 발성장애 20대 여자 보컬레슨 후기",
-    href: "https://cafe.naver.com/cloud9ent/29117",
-  },
-  {
-    quote: "내가 서울보컬학원들 중 3옥타브장인을 다니는 이유",
-    href: "https://cafe.naver.com/cloud9ent/26485",
-  },
-  {
-    quote: "3옥타브장인 도비쌤 수강 후기",
-    href: "https://cafe.naver.com/cloud9ent/27587",
-  },
-  {
-    quote: "3옥타브장인 클라인쌤 수강후기",
-    href: "https://cafe.naver.com/cloud9ent/28845",
-  },
-  {
-    quote: "도비쌤과 6개월 함께한, 고음을 내고 싶은 수강생의 후기",
-    href: "https://cafe.naver.com/cloud9ent/29179",
-  },
-  {
-    quote: "서울보컬학원 3옥타브장인 뼈 묻게 된 수강생 후기",
-    href: "https://cafe.naver.com/cloud9ent/27608",
-  },
-  {
-    quote: "보컬 레슨 후기 (아이유 선생님)",
-    href: "https://cafe.naver.com/cloud9ent/29154",
-  },
-  {
-    quote: "장인이 되기 위해 왔다가 레고쌤이라는 인생 스승님을 만났습니다",
-    href: "https://cafe.naver.com/cloud9ent/28022",
-  },
-  {
-    quote: "3옥타브장인 1년 조금 넘은 수강후기!",
-    href: "https://cafe.naver.com/cloud9ent/22504",
-  },
-  {
-    quote: "아이유쌤 11주차 수강 후기",
-    href: "https://cafe.naver.com/cloud9ent/27526",
-  },
-  {
-    quote: "3옥타브 뚫은 후기",
-    href: "https://cafe.naver.com/cloud9ent/29154",
-  },
-];
+interface Review {
+  title: string;
+  reviewFields: {
+    externalUrl: string;
+    isHighlight: boolean | null;
+  };
+}
 
-export default function ReviewsContent() {
+interface ReviewsContentProps {
+  reviews: Review[];
+}
+
+export default function ReviewsContent({ reviews }: ReviewsContentProps) {
   const reviewsRef = useRef<HTMLElement>(null);
   const reviewsInView = useInView(reviewsRef, { once: true, amount: 0.1 });
 
@@ -84,62 +45,87 @@ export default function ReviewsContent() {
         </div>
       </section>
 
-      {/* Reviews Section — Dynamic Bento Box */}
+      {/* Reviews Section — Fault-Tolerant Grid & Premium States */}
       <section ref={reviewsRef} className="bg-zinc-50 py-16 lg:py-24">
         <div className="max-w-5xl mx-auto px-6">
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 lg:gap-6 grid-flow-dense">
+          {/* 가로 방향으로 정상적으로 채워지며, 가장 높은 카드의 높이에 각 줄이 맞춰짐 */}
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5 lg:gap-6">
             {reviews.map((item, index) => {
-              // Create rhythm: Highlight certain reviews to span 2 columns based on index
-              const isHero = index === 0 || index === 5 || index === 8;
+              // CMS Highlight toggle determines the visual weight and style, NOT the rigid grid span.
+              // This guarantees the UI never breaks (empty holes) horizontally.
+              const isHero = item.reviewFields.isHighlight === true;
 
               return (
                 <motion.div
                   key={index}
-                  className={isHero ? "md:col-span-2 lg:col-span-2" : "col-span-1"}
                   initial={{ opacity: 0, y: 30 }}
                   animate={reviewsInView ? { opacity: 1, y: 0 } : {}}
-                  transition={{ duration: 0.5, delay: index * 0.05 }}
+                  transition={{ duration: 0.5, delay: (index % 6) * 0.05 }}
+                  className="h-full"
                 >
                   <Link
-                    href={item.href}
+                    href={item.reviewFields.externalUrl}
                     target="_blank"
                     rel="noopener noreferrer nofollow"
-                    className={`group relative block bg-white border border-zinc-100/80 rounded-2xl overflow-hidden h-full
-                      transition-all duration-500 ease-out
-                      hover:-translate-y-1 hover:border-accent/30 
-                      hover:shadow-[0_20px_40px_-15px_rgba(230,32,77,0.15)]
-                      ${isHero ? "p-8 md:p-10" : "p-6 md:p-8"}`}
+                    className={`group relative block rounded-2xl overflow-hidden h-full 
+                      transition-all duration-500 ease-out 
+                      hover:-translate-y-1.5 hover:shadow-[0_20px_40px_-15px_rgba(230,32,77,0.25)]
+                      ${isHero
+                        ? "bg-zinc-900 text-white border border-zinc-800 p-8 md:p-10"
+                        : "bg-white text-text-on-light border border-zinc-100/80 p-6 md:p-8 hover:border-accent/30"
+                      }`}
                   >
-                    {/* Background Quote Watermark (Resonance effect) */}
-                    <div className="absolute -bottom-4 -right-2 text-[120px] leading-none font-serif text-zinc-50 opacity-0 group-hover:opacity-100 group-hover:text-accent/5 transition-all duration-700 ease-out scale-75 group-hover:scale-100 origin-bottom-right pointer-events-none select-none">
-                      "
+                    {/* Abstract Gradient Accent for Highlighted Cards */}
+                    {isHero && (
+                      <div className="absolute inset-0 bg-gradient-to-br from-accent/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-700 pointer-events-none"></div>
+                    )}
+
+                    {/* Quotation Watermark */}
+                    <div className={`absolute -bottom-4 -right-2 text-[120px] leading-none font-serif opacity-0 group-hover:opacity-100 transition-all duration-700 ease-out scale-75 group-hover:scale-100 origin-bottom-right pointer-events-none select-none
+                      ${isHero ? "text-white/5" : "text-accent/5"}
+                    `}>
+                      &quot;
                     </div>
 
                     <div className="relative z-10 flex flex-col h-full justify-between gap-6">
                       <div className="flex items-start gap-4">
+                        {/* Quote Icon */}
                         <svg
                           width="24"
                           height="20"
                           viewBox="0 0 32 28"
                           fill="none"
-                          className="shrink-0 mt-1 opacity-20 group-hover:opacity-100 group-hover:fill-accent transition-all duration-500 transform group-hover:-translate-y-0.5"
+                          className={`shrink-0 mt-1 transition-all duration-500 transform group-hover:-translate-y-0.5
+                            ${isHero
+                              ? "opacity-60 fill-accent group-hover:opacity-100"
+                              : "opacity-20 fill-current group-hover:fill-accent group-hover:opacity-100"
+                            }`}
                         >
                           <path
                             d="M0 28V17.5C0 12.833 1.167 9.083 3.5 6.25C5.833 3.417 9.167 1.5 13.5 0.5L14.5 3C11.833 4 9.75 5.417 8.25 7.25C6.75 9.083 6 11.167 6 13.5H12V28H0ZM18 28V17.5C18 12.833 19.167 9.083 21.5 6.25C23.833 3.417 27.167 1.5 31.5 0.5L32.5 3C29.833 4 27.75 5.417 26.25 7.25C24.75 9.083 24 11.167 24 13.5H30V28H18Z"
-                            fill="currentColor"
                           />
                         </svg>
-                        <p className={`text-text-on-light font-semibold leading-relaxed tracking-tight group-hover:text-black transition-colors duration-300
-                          ${isHero ? "text-lg md:text-2xl" : "text-base md:text-lg"}
+
+                        {/* Review Content */}
+                        <p className={`font-semibold leading-relaxed tracking-tight transition-colors duration-300
+                          ${isHero
+                            ? "text-lg md:text-xl text-white/95 group-hover:text-white"
+                            : "text-base md:text-lg text-text-on-light/90 group-hover:text-black"
+                          }
                         `}>
-                          {item.quote}
+                          {item.title}
                         </p>
                       </div>
 
+                      {/* Fake Review Details (CMS could provide this later) */}
                       <div className="flex items-center gap-2 mt-auto pt-4">
-                        <div className="w-6 h-px bg-zinc-200 group-hover:bg-accent/50 group-hover:w-10 transition-all duration-500"></div>
-                        <span className="text-xs font-bold text-zinc-400 group-hover:text-accent transition-colors duration-300">
-                          수강생 후기 보기
+                        <div className={`w-6 h-px transition-all duration-500 group-hover:w-10
+                          ${isHero ? "bg-white/20 group-hover:bg-accent" : "bg-zinc-200 group-hover:bg-accent/50"}
+                        `}></div>
+                        <span className={`text-xs font-bold transition-colors duration-300
+                          ${isHero ? "text-white/40 group-hover:text-accent" : "text-zinc-400 group-hover:text-accent"}
+                        `}>
+                          수강생 후기 원문 보기
                         </span>
                       </div>
                     </div>

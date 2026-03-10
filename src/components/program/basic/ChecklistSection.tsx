@@ -1,7 +1,7 @@
 "use client";
 
 import { useState, useCallback, useRef } from "react";
-import Link from "next/link";
+import { useRouter } from "next/navigation";
 import { motion, useInView } from "framer-motion";
 import { Check } from "lucide-react";
 
@@ -19,6 +19,7 @@ const checkItems = [
 ];
 
 export default function ChecklistSection() {
+  const router = useRouter();
   const ref = useRef<HTMLElement>(null);
   const isInView = useInView(ref, { once: true, amount: 0.1 });
   const [checked, setChecked] = useState<Set<number>>(new Set());
@@ -129,14 +130,15 @@ export default function ChecklistSection() {
             <p className="text-gray-400 text-sm md:text-base mb-6 max-w-lg mx-auto">
               목을 혹사시키는 나쁜 습관, 늦기 전에 고쳐야 합니다. 가볍게 상태를 체크하고 수강 방향성을 잡고 싶다면 일반 상담을, 바로 문제점을 확인하고 솔루션을 얻고 싶다면 심층 보컬 진단을 신청하세요!
             </p>
-            <Link
-              href="/contact"
+            <button
+              type="button"
               onClick={() => {
                 const checkedItems = checkItems.filter((_, i) => checked.has(i));
                 sessionStorage.setItem(
                   "vocalDiagnosis",
                   JSON.stringify({ source: "basic", items: checkedItems })
                 );
+                router.push("/contact");
               }}
               className="group cta-shimmer inline-flex items-center gap-2 bg-accent text-white hover:bg-accent/90 rounded-full px-8 py-4 text-base font-bold shadow-lg shadow-accent/20 hover:shadow-accent/30 transition-all duration-300 hover:scale-[1.02] active:scale-[0.98]"
             >
@@ -144,7 +146,7 @@ export default function ChecklistSection() {
               <svg width="16" height="12" viewBox="0 0 16 12" fill="none" className="transition-transform duration-300 group-hover:translate-x-1.5">
                 <path d="M10 1L15 6L10 11M0 6H15" stroke="currentColor" strokeWidth="1.5" />
               </svg>
-            </Link>
+            </button>
           </div>
 
           {!showCta && (

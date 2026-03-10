@@ -6,7 +6,7 @@ import { Send, ChevronDown, X, Check } from "lucide-react";
 
 const branchOptions = [
   "서울점 (강남역 5번 출구 100m)",
-  "인천점 (부평역 7번출구 250m)",
+  "인천점 (부평역 7번 출구 250m)",
   "부산점 (서면역 8번 출구 100m)",
 ] as const;
 
@@ -27,7 +27,7 @@ const durationOptions = [
   "1년 이상",
 ] as const;
 const satisfactionOptions = [
-  "매우만족",
+  "매우 만족",
   "만족",
   "보통",
   "불만족",
@@ -124,6 +124,7 @@ export default function ContactForm() {
   });
   const [errors, setErrors] = useState<FormErrors>({});
   const [submitted, setSubmitted] = useState(false);
+  const [isSubmitting, setIsSubmitting] = useState(false);
 
   // sessionStorage에서 사전 진단 결과 읽기
   useEffect(() => {
@@ -135,11 +136,14 @@ export default function ContactForm() {
           setDiagnosis(data);
           setFromProgram(true);
         }
-        sessionStorage.removeItem("vocalDiagnosis");
       }
     } catch {
       // 무시
     }
+    // cleanup에서 제거 — Strict Mode 이중 실행에도 안전
+    return () => {
+      sessionStorage.removeItem("vocalDiagnosis");
+    };
   }, []);
 
   const currentItems = diagnosisTab === "basic" ? basicDiagnosisItems : advancedDiagnosisItems;
@@ -183,8 +187,8 @@ export default function ContactForm() {
     if (!formData.name.trim()) newErrors.name = "이름을 입력해주세요.";
     if (!formData.phone.trim()) {
       newErrors.phone = "연락처를 입력해주세요.";
-    } else if (!/^[\d-]{9,}$/.test(formData.phone.trim())) {
-      newErrors.phone = "올바른 연락처를 입력해주세요.";
+    } else if (!/^0\d{2}-\d{3,4}-\d{4}$/.test(formData.phone.trim())) {
+      newErrors.phone = "올바른 전화번호를 입력해주세요. (예: 010-1234-5678)";
     }
     if (!formData.gender) newErrors.gender = "성별을 선택해주세요.";
     if (!formData.consultationType)
@@ -193,23 +197,65 @@ export default function ContactForm() {
     return newErrors;
   }
 
-  function handleSubmit(e: FormEvent) {
+  async function handleSubmit(e: FormEvent) {
     e.preventDefault();
     const newErrors = validate();
     setErrors(newErrors);
 
     if (Object.keys(newErrors).length === 0) {
-      // TODO: 백엔드 연결 (Airtable / API)
-      console.log("Form submitted:", {
-        ...formData,
-        diagnosis: diagnosis ? diagnosis.items : [],
-      });
-      setSubmitted(true);
+      setIsSubmitting(true);
+
+      // 자가진단 기본/심화 분리
+      const basicItems = diagnosis?.source === "basic" ? diagnosis.items.join(" , ") : "";
+      const advancedItems = diagnosis?.source === "advanced" ? diagnosis.items.join(" , ") : "";
+
+      const consultationLabel = formData.consultationType === "general"
+        ? "[무료] 일반 상담"
+        : "[유료] 심층 보컬 진단 & 솔루션";
+
+      try {
+        await fetch(process.env.NEXT_PUBLIC_GOOGLE_SHEET_URL!, {
+          method: "POST",
+          mode: "no-cors",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({
+            name: formData.name,
+            phone: formData.phone,
+            gender: formData.gender,
+            consultationType: consultationLabel,
+            branch: formData.branch,
+            diagnosisBasic: basicItems,
+            diagnosisAdvanced: advancedItems,
+            age: formData.age,
+            source: formData.source,
+            hasExperience: formData.hasExperience === "예" ? true : formData.hasExperience === "아니오" ? false : "",
+            experienceDuration: formData.experienceDuration,
+            experienceSatisfaction: formData.experienceSatisfaction,
+            message: formData.message,
+          }),
+        });
+        setSubmitted(true);
+      } catch {
+        alert("전송에 실패했습니다. 잠시 후 다시 시도해주세요.");
+      } finally {
+        setIsSubmitting(false);
+      }
     }
   }
 
+  function formatPhone(value: string): string {
+    const digits = value.replace(/\D/g, "").slice(0, 11);
+    if (digits.length <= 3) return digits;
+    if (digits.length <= 7) return `${digits.slice(0, 3)}-${digits.slice(3)}`;
+    return `${digits.slice(0, 3)}-${digits.slice(3, 7)}-${digits.slice(7)}`;
+  }
+
   function updateField(field: keyof FormData, value: string) {
-    setFormData((prev) => ({ ...prev, [field]: value }));
+    if (field === "phone") {
+      setFormData((prev) => ({ ...prev, phone: formatPhone(value) }));
+    } else {
+      setFormData((prev) => ({ ...prev, [field]: value }));
+    }
   }
 
   if (submitted) {
@@ -306,6 +352,8 @@ export default function ContactForm() {
         <input
           id="contact-phone"
           type="tel"
+          inputMode="numeric"
+          maxLength={13}
           placeholder="010-1234-5678"
           value={formData.phone}
           onChange={(e) => updateField("phone", e.target.value)}
@@ -325,11 +373,10 @@ export default function ContactForm() {
               key={g}
               type="button"
               onClick={() => updateField("gender", g)}
-              className={`flex-1 py-3 text-base font-medium border transition-colors duration-200 ${
-                formData.gender === g
+              className={`flex-1 py-3 text-base font-medium border transition-colors duration-200 ${formData.gender === g
                   ? "border-accent bg-accent/5 text-accent"
                   : "border-gray-200 text-text-on-light/60 hover:border-gray-300"
-              }`}
+                }`}
             >
               {g}
             </button>
@@ -349,15 +396,13 @@ export default function ContactForm() {
               key={ct.value}
               type="button"
               onClick={() => updateField("consultationType", ct.value)}
-              className={`w-full text-left p-4 border transition-colors duration-200 ${
-                formData.consultationType === ct.value
+              className={`w-full text-left p-4 border transition-colors duration-200 ${formData.consultationType === ct.value
                   ? "border-accent bg-accent/5"
                   : "border-gray-200 hover:border-gray-300"
-              }`}
+                }`}
             >
-              <p className={`font-bold text-sm md:text-base ${
-                formData.consultationType === ct.value ? "text-accent" : "text-text-on-light"
-              }`}>
+              <p className={`font-bold text-sm md:text-base ${formData.consultationType === ct.value ? "text-accent" : "text-text-on-light"
+                }`}>
                 {ct.label}
               </p>
               <p className="text-text-on-light/50 text-xs md:text-sm mt-1">{ct.description}</p>
@@ -436,11 +481,10 @@ export default function ContactForm() {
                         key={tab.key}
                         type="button"
                         onClick={() => handleTabChange(tab.key)}
-                        className={`px-4 py-2 text-sm font-medium border transition-colors duration-200 ${
-                          diagnosisTab === tab.key
+                        className={`px-4 py-2 text-sm font-medium border transition-colors duration-200 ${diagnosisTab === tab.key
                             ? "border-accent bg-accent/5 text-accent"
                             : "border-gray-200 text-text-on-light/50 hover:border-gray-300"
-                        }`}
+                          }`}
                       >
                         {tab.label}
                       </button>
@@ -456,23 +500,20 @@ export default function ContactForm() {
                           key={`${diagnosisTab}-${index}`}
                           type="button"
                           onClick={() => toggleCheck(index)}
-                          className={`flex items-center gap-3 p-3 text-left transition-all duration-200 border ${
-                            isChecked
+                          className={`flex items-center gap-3 p-3 text-left transition-all duration-200 border ${isChecked
                               ? "border-accent bg-accent/5"
                               : "border-gray-100 hover:border-gray-200"
-                          }`}
+                            }`}
                         >
                           <div
-                            className={`w-4 h-4 shrink-0 flex items-center justify-center transition-all duration-200 ${
-                              isChecked ? "bg-accent" : "border border-gray-300"
-                            }`}
+                            className={`w-4 h-4 shrink-0 flex items-center justify-center transition-all duration-200 ${isChecked ? "bg-accent" : "border border-gray-300"
+                              }`}
                           >
                             {isChecked && <Check size={10} className="text-white" />}
                           </div>
                           <span
-                            className={`text-sm transition-colors duration-200 ${
-                              isChecked ? "text-text-on-light" : "text-text-on-light/60"
-                            }`}
+                            className={`text-sm transition-colors duration-200 ${isChecked ? "text-text-on-light" : "text-text-on-light/60"
+                              }`}
                           >
                             {item}
                           </span>
@@ -542,11 +583,10 @@ export default function ContactForm() {
                           updateField("experienceSatisfaction", "");
                         }
                       }}
-                      className={`flex-1 py-3 text-base font-medium border transition-colors duration-200 ${
-                        formData.hasExperience === v
+                      className={`flex-1 py-3 text-base font-medium border transition-colors duration-200 ${formData.hasExperience === v
                           ? "border-accent bg-accent/5 text-accent"
                           : "border-gray-200 text-text-on-light/60 hover:border-gray-300"
-                      }`}
+                        }`}
                     >
                       {v}
                     </button>
@@ -583,11 +623,10 @@ export default function ContactForm() {
                           key={s}
                           type="button"
                           onClick={() => updateField("experienceSatisfaction", s)}
-                          className={`px-4 py-2 text-sm border transition-colors duration-200 ${
-                            formData.experienceSatisfaction === s
+                          className={`px-4 py-2 text-sm border transition-colors duration-200 ${formData.experienceSatisfaction === s
                               ? "border-accent bg-accent/5 text-accent"
                               : "border-gray-200 text-text-on-light/60 hover:border-gray-300"
-                          }`}
+                            }`}
                         >
                           {s}
                         </button>
@@ -619,10 +658,11 @@ export default function ContactForm() {
       {/* 제출 */}
       <button
         type="submit"
-        className="inline-flex items-center gap-2 bg-accent text-white rounded-full px-8 py-4 font-bold text-base hover:bg-accent/90 shadow-lg shadow-accent/20 hover:shadow-accent/30 transition-all duration-300 hover:scale-[1.02] active:scale-[0.98]"
+        disabled={isSubmitting}
+        className="inline-flex items-center gap-2 bg-accent text-white rounded-full px-8 py-4 font-bold text-base hover:bg-accent/90 shadow-lg shadow-accent/20 hover:shadow-accent/30 transition-all duration-300 hover:scale-[1.02] active:scale-[0.98] disabled:opacity-50 disabled:cursor-not-allowed disabled:hover:scale-100"
       >
         <Send size={18} />
-        예약하고 변화 경험하기
+        {isSubmitting ? "전송 중..." : "예약하고 변화 경험하기"}
       </button>
     </motion.form>
   );

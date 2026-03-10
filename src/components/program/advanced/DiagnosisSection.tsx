@@ -1,7 +1,7 @@
 "use client";
 
 import { useRef, useState, useCallback } from "react";
-import Link from "next/link";
+import { useRouter } from "next/navigation";
 import { motion, useInView } from "framer-motion";
 import { Check, ChevronRight } from "lucide-react";
 
@@ -17,6 +17,7 @@ const diagnosisItems = [
 ];
 
 export default function DiagnosisSection() {
+  const router = useRouter();
   const ref = useRef<HTMLElement>(null);
   const isInView = useInView(ref, { once: true, amount: 0.1 });
   const [checked, setChecked] = useState<Set<number>>(new Set());
@@ -126,20 +127,21 @@ export default function DiagnosisSection() {
               방향성을 잡고 싶다면 일반 상담을, 내 발성의 한계를 정확히 분석하고
               솔루션을 얻고 싶다면 심층 보컬 진단을 받아보세요!
             </p>
-            <Link
-              href="/contact"
+            <button
+              type="button"
               onClick={() => {
                 const checkedItems = diagnosisItems.filter((_, i) => checked.has(i));
                 sessionStorage.setItem(
                   "vocalDiagnosis",
                   JSON.stringify({ source: "advanced", items: checkedItems })
                 );
+                router.push("/contact");
               }}
               className="group cta-shimmer inline-flex items-center gap-2 bg-accent text-white hover:bg-accent/90 rounded-full px-8 py-4 text-base font-bold shadow-lg shadow-accent/25 hover:shadow-accent/35 transition-all duration-300 hover:scale-[1.02] active:scale-[0.98]"
             >
               내 상태에 맞는 진단 &amp; 상담 받기
               <ChevronRight size={16} className="transition-transform duration-300 group-hover:translate-x-1.5" />
-            </Link>
+            </button>
           </div>
 
           {!showCta && (
