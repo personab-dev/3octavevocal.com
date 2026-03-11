@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import BasicProgramContent from "@/components/program/BasicProgramContent";
 import JsonLd from "@/components/JsonLd";
 import { getBreadcrumbSchema } from "@/lib/schema";
+import { getBeforeAfters } from "@/lib/wordpress";
 
 export const metadata: Metadata = {
   title: "기본 교육과정",
@@ -16,7 +17,9 @@ export const metadata: Metadata = {
   },
 };
 
-export default function BasicProgramPage() {
+export default async function BasicProgramPage() {
+  const beforeAfterVideos = await getBeforeAfters();
+
   return (
     <>
       <JsonLd
@@ -25,7 +28,7 @@ export default function BasicProgramPage() {
           { name: "기본 교육과정", url: "https://3octavevocal.com/basic" },
         ])}
       />
-      <BasicProgramContent />
+      <BasicProgramContent videos={beforeAfterVideos} />
     </>
   );
 }

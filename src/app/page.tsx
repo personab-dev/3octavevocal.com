@@ -18,13 +18,15 @@ import {
   getWebSiteSchema,
   getLocalBusinessSchemas,
 } from "@/lib/schema";
+import { getBeforeAfters } from "@/lib/wordpress";
 
 export const metadata: Metadata = {
   alternates: { canonical: "/" },
   openGraph: { url: "/" },
 };
 
-export default function Home() {
+export default async function Home() {
+  const beforeAfterVideos = await getBeforeAfters();
   const localBusinessSchemas = getLocalBusinessSchemas();
 
   return (
@@ -38,7 +40,7 @@ export default function Home() {
         <HeroSection />
         <PainPointsSection />
         <ProblemSolutionSection />
-        <BeforeAfterSection />
+        <BeforeAfterSection videos={beforeAfterVideos} />
         <OctavePromiseSection />
         <ProCurriculumSection />
         <StatsSection />

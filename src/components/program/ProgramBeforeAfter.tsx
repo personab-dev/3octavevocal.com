@@ -5,14 +5,13 @@ import Image from "next/image";
 import { useState, useRef, useCallback } from "react";
 import { motion, useInView } from "framer-motion";
 import YouTubeModal from "@/components/YouTubeModal";
-import { beforeAfterShorts } from "@/lib/videos";
 import type { VideoItem } from "@/lib/videos";
 
 interface ProgramBeforeAfterProps {
   reviewLabel?: string;
   heading?: string;
   subHeading?: string;
-  videos?: VideoItem[];
+  videos: VideoItem[];
   isShorts?: boolean;
 }
 
@@ -20,7 +19,7 @@ export default function ProgramBeforeAfter({
   reviewLabel = "기본 과정을 이수한 후기가 궁금하신가요?",
   heading = "수강 이후, 당신의 고음은 이렇게 달라집니다.",
   subHeading = "백 번의 설명보다 확실한 증명. 수강생들의 소름 돋는 비포 & 애프터",
-  videos = beforeAfterShorts,
+  videos,
   isShorts = true,
 }: ProgramBeforeAfterProps) {
   const ref = useRef<HTMLElement>(null);

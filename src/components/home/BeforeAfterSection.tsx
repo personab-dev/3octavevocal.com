@@ -5,9 +5,9 @@ import Image from "next/image";
 import { motion, useInView } from "framer-motion";
 import SectionHeader from "@/components/SectionHeader";
 import YouTubeModal from "@/components/YouTubeModal";
-import { beforeAfterShorts } from "@/lib/videos";
+import type { VideoItem } from "@/lib/videos";
 
-export default function BeforeAfterSection() {
+export default function BeforeAfterSection({ videos }: { videos: VideoItem[] }) {
   const ref = useRef<HTMLElement>(null);
   const isInView = useInView(ref, { once: true, amount: 0.2 });
   const [activeVideo, setActiveVideo] = useState<string | null>(null);
@@ -15,7 +15,7 @@ export default function BeforeAfterSection() {
   const closeModal = useCallback(() => setActiveVideo(null), []);
 
   // 충분히 복제하여 끊김 없는 무한 루프 보장
-  const items = [...beforeAfterShorts, ...beforeAfterShorts, ...beforeAfterShorts];
+  const items = [...videos, ...videos, ...videos];
 
   return (
     <>

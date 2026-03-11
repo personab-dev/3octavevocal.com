@@ -122,9 +122,9 @@ const testimonials = [
   },
 ];
 
-import { beforeAfterShorts } from "@/lib/videos";
+import type { VideoItem } from "@/lib/videos";
 
-export default function DifferenceContent() {
+export default function DifferenceContent({ videos }: { videos: VideoItem[] }) {
   const strengthRef = useRef<HTMLElement>(null);
   const strengthInView = useInView(strengthRef, { once: true, amount: 0.05 });
   const statsRef = useRef<HTMLElement>(null);
@@ -133,6 +133,9 @@ export default function DifferenceContent() {
   const videoInView = useInView(videoRef, { once: true, amount: 0.2 });
   const [activeVideo, setActiveVideo] = useState<string | null>(null);
   const closeModal = useCallback(() => setActiveVideo(null), []);
+
+  // 3x 복제로 끊김 없는 무한 루프 캐러셀
+  const carouselItems = [...videos, ...videos, ...videos];
 
   return (
     <>
@@ -259,8 +262,8 @@ export default function DifferenceContent() {
         </div>
       </section>
 
-      {/* Before & After Videos */}
-      <section ref={videoRef} className="bg-white py-20 lg:py-28">
+      {/* Before & After Videos — 무한 루프 캐러셀 */}
+      <section ref={videoRef} className="bg-white py-20 lg:py-28 overflow-hidden">
         <div className="max-w-[1440px] mx-auto px-6">
           <motion.div
             initial={{ opacity: 0, y: 30 }}
@@ -277,60 +280,61 @@ export default function DifferenceContent() {
               가 실력 상승을 증명합니다.
             </h2>
           </motion.div>
+        </div>
 
-          <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-4">
-            {beforeAfterShorts.map((video, index) => (
-              <motion.div
-                key={index}
-                initial={{ opacity: 0, y: 30 }}
-                animate={videoInView ? { opacity: 1, y: 0 } : {}}
-                transition={{ duration: 0.5, delay: 0.1 + index * 0.1 }}
+        <motion.div
+          initial={{ opacity: 0 }}
+          animate={videoInView ? { opacity: 1 } : {}}
+          transition={{ duration: 0.8 }}
+          className="relative"
+        >
+          <div className="flex animate-carousel-shorts">
+            {carouselItems.map((video, i) => (
+              <button
+                key={`${video.id}-${i}`}
+                onClick={() => setActiveVideo(video.id)}
+                className="shrink-0 w-[200px] md:w-[240px] lg:w-[280px] mx-2.5 group cursor-pointer"
               >
-                <button
-                  onClick={() => setActiveVideo(video.id)}
-                  className="group block w-full text-left cursor-pointer"
-                >
-                  <div className="aspect-[9/16] bg-zinc-200 relative overflow-hidden mb-3">
-                    <Image
-                      src={video.thumbnail}
-                      alt={video.title.replace("\n", " ")}
-                      fill
-                      sizes="(max-width: 768px) 50vw, 16vw"
-                      className="object-cover group-hover:scale-105 transition-transform duration-500"
-                    />
-                    <div className="absolute inset-0 bg-black/20 group-hover:bg-black/40 transition-colors flex items-center justify-center">
-                      <div className="w-12 h-12 rounded-full bg-accent/90 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity">
-                        <svg width="16" height="18" viewBox="0 0 16 18" fill="white">
-                          <path d="M0 0L16 9L0 18V0Z" />
-                        </svg>
-                      </div>
+                <div className="aspect-[9/16] bg-zinc-200 relative overflow-hidden">
+                  <Image
+                    src={video.thumbnail}
+                    alt={video.title.replace("\n", " ")}
+                    fill
+                    sizes="280px"
+                    className="object-cover group-hover:scale-105 transition-transform duration-500"
+                  />
+                  <div className="absolute inset-0 bg-black/10 group-hover:bg-black/40 transition-colors flex items-center justify-center">
+                    <div className="w-14 h-14 rounded-full bg-accent/90 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity">
+                      <svg width="16" height="18" viewBox="0 0 16 18" fill="white">
+                        <path d="M0 0L16 9L0 18V0Z" />
+                      </svg>
                     </div>
                   </div>
-                  <p className="text-text-on-light text-sm md:text-base leading-snug whitespace-pre-line group-hover:text-accent transition-colors">
-                    {video.title}
-                  </p>
-                </button>
-              </motion.div>
+                </div>
+                <p className="text-text-on-light text-sm md:text-base leading-snug mt-2 group-hover:text-accent transition-colors text-left">
+                  {video.title}
+                </p>
+              </button>
             ))}
           </div>
+        </motion.div>
 
-          <div className="text-center mt-10">
-            <Link
-              href="/reviews"
-              className="group inline-flex items-center gap-2 bg-accent text-white hover:bg-accent/90 rounded-r-full px-7 py-3.5 text-base font-bold tracking-wide transition-all duration-300"
+        <div className="text-center mt-10">
+          <Link
+            href="/reviews"
+            className="group inline-flex items-center gap-2 bg-accent text-white hover:bg-accent/90 rounded-r-full px-7 py-3.5 text-base font-bold tracking-wide transition-all duration-300"
+          >
+            100% 찐후기 보러가기
+            <svg
+              width="16"
+              height="12"
+              viewBox="0 0 16 12"
+              fill="none"
+              className="transition-transform group-hover:translate-x-1"
             >
-              100% 찐후기 보러가기
-              <svg
-                width="16"
-                height="12"
-                viewBox="0 0 16 12"
-                fill="none"
-                className="transition-transform group-hover:translate-x-1"
-              >
-                <path d="M10 1L15 6L10 11M0 6H15" stroke="currentColor" strokeWidth="1.5" />
-              </svg>
-            </Link>
-          </div>
+              <path d="M10 1L15 6L10 11M0 6H15" stroke="currentColor" strokeWidth="1.5" />
+            </svg>
+          </Link>
         </div>
       </section>
 

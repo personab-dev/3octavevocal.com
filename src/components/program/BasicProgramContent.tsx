@@ -8,10 +8,11 @@ import ChecklistSection from "./basic/ChecklistSection";
 import ProgramBeforeAfter from "./ProgramBeforeAfter";
 import ProgramFAQ from "./ProgramFAQ";
 import FinalCta from "@/components/FinalCta";
+import type { VideoItem } from "@/lib/videos";
 
 /* ── Component ────────────────────────────────────── */
 
-export default function BasicProgramContent() {
+export default function BasicProgramContent({ videos }: { videos: VideoItem[] }) {
   return (
     <>
       {/* ── 1. PageHero ──────────────────────────── */}
@@ -39,6 +40,7 @@ export default function BasicProgramContent() {
         heading="수강 이후, 당신의 고음은 이렇게 달라집니다."
         subHeading="백 번의 설명보다 확실한 증명. 수강생들의 소름 돋는 비포 & 애프터"
         reviewLabel="기본 과정을 이수한 후기가 궁금하신가요?"
+        videos={videos}
       />
 
       {/* ── 7. Checklist ──────────────────────────── */}

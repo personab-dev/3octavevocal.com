@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import DifferenceContent from "@/components/about/DifferenceContent";
 import JsonLd from "@/components/JsonLd";
 import { getBreadcrumbSchema } from "@/lib/schema";
+import { getBeforeAfters } from "@/lib/wordpress";
 
 export const metadata: Metadata = {
   title: "다른 보컬학원과의 차별점",
@@ -16,7 +17,9 @@ export const metadata: Metadata = {
   },
 };
 
-export default function DifferencePage() {
+export default async function DifferencePage() {
+  const beforeAfterVideos = await getBeforeAfters();
+
   return (
     <>
       <JsonLd
@@ -25,7 +28,7 @@ export default function DifferencePage() {
           { name: "차별점", url: "https://3octavevocal.com/difference" },
         ])}
       />
-      <DifferenceContent />
+      <DifferenceContent videos={beforeAfterVideos} />
     </>
   );
 }
