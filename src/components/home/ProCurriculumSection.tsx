@@ -1,23 +1,21 @@
 "use client";
 
-import { useRef } from "react";
-import { motion, useInView } from "framer-motion";
+import { motion } from "framer-motion";
 import Image from "next/image";
 import Link from "next/link";
 import { featuredArtists, allArtists, FEATURED_COUNT } from "@/lib/artists";
 
 export default function ProCurriculumSection() {
-  const ref = useRef<HTMLElement>(null);
-  const isInView = useInView(ref, { once: true, amount: 0.2 });
   const remainingCount = allArtists.length - FEATURED_COUNT;
 
   return (
-    <section ref={ref} className="bg-white py-24 lg:py-36">
+    <section className="bg-white py-24 lg:py-36">
       <div className="max-w-[1200px] mx-auto px-6">
         {/* Headline */}
         <motion.div
           initial={{ opacity: 0, y: 30 }}
-          animate={isInView ? { opacity: 1, y: 0 } : {}}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
           transition={{ duration: 0.7 }}
           className="text-center mb-8"
         >
@@ -32,7 +30,8 @@ export default function ProCurriculumSection() {
 
         <motion.div
           initial={{ opacity: 0, y: 20 }}
-          animate={isInView ? { opacity: 1, y: 0 } : {}}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
           transition={{ duration: 0.7, delay: 0.2 }}
           className="text-center mb-14 text-text-on-light/60 text-lg md:text-xl leading-relaxed"
         >
@@ -52,7 +51,8 @@ export default function ProCurriculumSection() {
             <motion.div
               key={artist.name}
               initial={{ opacity: 0, y: 30 }}
-              animate={isInView ? { opacity: 1, y: 0 } : {}}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
               transition={{ duration: 0.5, delay: 0.3 + i * 0.1 }}
               className="text-center group"
             >
@@ -81,7 +81,8 @@ export default function ProCurriculumSection() {
         {/* 심화과정 아티스트 섹션으로 이동 */}
         <motion.div
           initial={{ opacity: 0 }}
-          animate={isInView ? { opacity: 1 } : {}}
+          whileInView={{ opacity: 1 }}
+          viewport={{ once: true }}
           transition={{ duration: 0.5, delay: 0.5 }}
           className="flex justify-center mb-12"
         >
@@ -96,7 +97,8 @@ export default function ProCurriculumSection() {
         {/* Description */}
         <motion.div
           initial={{ opacity: 0, y: 20 }}
-          animate={isInView ? { opacity: 1, y: 0 } : {}}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
           transition={{ duration: 0.7, delay: 0.5 }}
           className="grid grid-cols-1 md:grid-cols-2 gap-8 text-base md:text-lg text-text-on-light/70 leading-relaxed"
         >

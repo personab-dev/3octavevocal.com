@@ -1,8 +1,7 @@
 "use client";
 
 import Image from "next/image";
-import { useRef } from "react";
-import { motion, useInView } from "framer-motion";
+import { motion } from "framer-motion";
 
 const quotes = [
   { text: "\"목이 아픈 게 정상인가?", highlight: "원래 다 이렇게 부르나?\"", x: "50%", y: "5%" },
@@ -12,11 +11,8 @@ const quotes = [
 ];
 
 export default function PainPointsSection() {
-  const ref = useRef<HTMLElement>(null);
-  const isInView = useInView(ref, { once: true, amount: 0.3 });
-
   return (
-    <section ref={ref} className="bg-white py-24 lg:py-36 relative overflow-hidden">
+    <section className="bg-white py-24 lg:py-36 relative overflow-hidden">
       {/* Logo watermark — top-left */}
       <div className="absolute -top-16 -left-16 opacity-[0.04] pointer-events-none">
         <Image
@@ -44,7 +40,8 @@ export default function PainPointsSection() {
         {/* Headline */}
         <motion.div
           initial={{ opacity: 0, y: 30 }}
-          animate={isInView ? { opacity: 1, y: 0 } : {}}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
           transition={{ duration: 0.7 }}
           className="text-center mb-16"
         >
@@ -62,7 +59,8 @@ export default function PainPointsSection() {
             <motion.div
               key={index}
               initial={{ opacity: 0, x: index % 2 === 0 ? -20 : 20 }}
-              animate={isInView ? { opacity: 1, x: 0 } : {}}
+              whileInView={{ opacity: 1, x: 0 }}
+              viewport={{ once: true }}
               transition={{ duration: 0.5, delay: 0.2 + index * 0.15 }}
               className={index % 2 === 0 ? "self-start max-w-[85%]" : "self-end max-w-[85%]"}
             >
@@ -80,7 +78,8 @@ export default function PainPointsSection() {
             <motion.div
               key={index}
               initial={{ opacity: 0, y: 30, rotate: -2 + index * 2 }}
-              animate={isInView ? { opacity: 1, y: 0, rotate: -3 + index * 3 } : {}}
+              whileInView={{ opacity: 1, y: 0, rotate: -3 + index * 3 }}
+              viewport={{ once: true }}
               transition={{ duration: 0.6, delay: 0.3 + index * 0.2 }}
               className="absolute max-w-[420px]"
               style={{ left: quote.x, top: quote.y }}

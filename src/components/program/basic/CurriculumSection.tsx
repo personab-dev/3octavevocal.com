@@ -1,8 +1,7 @@
 "use client";
 
 import Image from "next/image";
-import { useRef } from "react";
-import { motion, useInView } from "framer-motion";
+import { motion } from "framer-motion";
 
 /* ── Data ─────────────────────────────────────────── */
 
@@ -39,15 +38,13 @@ const curriculumDetails = [
 /* ── Component ────────────────────────────────────── */
 
 export default function CurriculumSection() {
-  const currRef = useRef<HTMLElement>(null);
-  const currInView = useInView(currRef, { once: true, amount: 0.1 });
-
   return (
-    <section ref={currRef} className="bg-white py-20 lg:py-28">
+    <section className="bg-white py-20 lg:py-28">
       <div className="max-w-5xl mx-auto px-6">
         <motion.div
           initial={{ opacity: 0, y: 30 }}
-          animate={currInView ? { opacity: 1, y: 0 } : {}}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
           transition={{ duration: 0.7 }}
           className="text-center mb-16"
         >
@@ -71,7 +68,8 @@ export default function CurriculumSection() {
               <motion.div
                 key={cur.number}
                 initial={{ opacity: 0, y: 30 }}
-                animate={currInView ? { opacity: 1, y: 0 } : {}}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
                 transition={{ duration: 0.6, delay: 0.15 + index * 0.15 }}
                 className={`grid grid-cols-1 lg:grid-cols-[3fr_2fr] overflow-hidden bg-gray-50 ${
                   !isEven ? "lg:grid-cols-[2fr_3fr]" : ""

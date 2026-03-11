@@ -1,8 +1,7 @@
 "use client";
 
 import Image from "next/image";
-import { useRef } from "react";
-import { motion, useInView } from "framer-motion";
+import { motion } from "framer-motion";
 
 /* ── Data ─────────────────────────────────────────── */
 
@@ -15,17 +14,15 @@ const worries = [
 /* ── Component ────────────────────────────────────── */
 
 export default function HookSection() {
-  const hookRef = useRef<HTMLElement>(null);
-  const hookInView = useInView(hookRef, { once: true, amount: 0.2 });
-
   return (
-    <section ref={hookRef}>
+    <section>
       {/* Title area — light bg */}
       <div className="bg-white py-14 lg:py-16">
         <div className="max-w-5xl mx-auto px-6 text-center">
           <motion.p
             initial={{ opacity: 0, y: 20 }}
-            animate={hookInView ? { opacity: 1, y: 0 } : {}}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
             transition={{ duration: 0.6 }}
             className="text-accent text-sm md:text-base font-bold tracking-widest mb-5"
           >
@@ -34,7 +31,8 @@ export default function HookSection() {
 
           <motion.h2
             initial={{ opacity: 0, y: 20 }}
-            animate={hookInView ? { opacity: 1, y: 0 } : {}}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
             transition={{ duration: 0.7, delay: 0.1 }}
             className="text-2xl md:text-3xl lg:text-[2.5rem] font-bold text-text-on-light leading-snug"
           >
@@ -63,7 +61,8 @@ export default function HookSection() {
           <div className="relative w-full max-w-2xl px-6 flex flex-wrap items-center justify-center gap-4 md:gap-6">
             <motion.div
               initial={{ opacity: 0, y: 16 }}
-              animate={hookInView ? { opacity: 1, y: 0 } : {}}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
               transition={{ duration: 0.5, delay: 0.3 }}
               className="bg-zinc-700/80 backdrop-blur-sm rounded-xl px-6 py-3.5 text-gray-200 text-sm md:text-base"
             >
@@ -71,7 +70,8 @@ export default function HookSection() {
             </motion.div>
             <motion.div
               initial={{ opacity: 0, y: 16 }}
-              animate={hookInView ? { opacity: 1, y: 0 } : {}}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
               transition={{ duration: 0.5, delay: 0.45 }}
               className="bg-zinc-700/80 backdrop-blur-sm rounded-xl px-6 py-3.5 text-gray-200 text-sm md:text-base mt-8 md:mt-10"
             >
@@ -79,7 +79,8 @@ export default function HookSection() {
             </motion.div>
             <motion.div
               initial={{ opacity: 0, y: 16 }}
-              animate={hookInView ? { opacity: 1, y: 0 } : {}}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
               transition={{ duration: 0.5, delay: 0.6 }}
               className="bg-zinc-700/80 backdrop-blur-sm rounded-xl px-6 py-3.5 text-gray-200 text-sm md:text-base border border-white/20"
             >
@@ -92,7 +93,8 @@ export default function HookSection() {
       {/* Accent Bridge */}
       <motion.div
         initial={{ opacity: 0 }}
-        animate={hookInView ? { opacity: 1 } : {}}
+        whileInView={{ opacity: 1 }}
+        viewport={{ once: true }}
         transition={{ duration: 0.7, delay: 0.7 }}
         className="bg-accent py-5 relative overflow-hidden"
       >

@@ -2,8 +2,7 @@
 
 import Link from "next/link";
 import Image from "next/image";
-import { useRef } from "react";
-import { motion, useInView } from "framer-motion";
+import { motion } from "framer-motion";
 
 const items = [
   {
@@ -51,11 +50,8 @@ const items = [
 ];
 
 export default function DifferentiatorsSection() {
-  const ref = useRef<HTMLElement>(null);
-  const isInView = useInView(ref, { once: true, amount: 0.1 });
-
   return (
-    <section ref={ref} className="bg-white relative">
+    <section className="bg-white relative">
       <div className="max-w-[1440px] mx-auto">
         <div className="grid grid-cols-1 lg:grid-cols-[560px_1fr]">
           {/* Left: Red sticky panel */}
@@ -73,7 +69,8 @@ export default function DifferentiatorsSection() {
 
             <motion.div
               initial={{ opacity: 0, y: 30 }}
-              animate={isInView ? { opacity: 1, y: 0 } : {}}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
               transition={{ duration: 0.7 }}
               className="relative z-10"
             >
@@ -112,14 +109,11 @@ function DifferentiatorItem({
   item: (typeof items)[number];
   index: number;
 }) {
-  const ref = useRef<HTMLDivElement>(null);
-  const isInView = useInView(ref, { once: true, amount: 0.3 });
-
   return (
     <motion.div
-      ref={ref}
       initial={{ opacity: 0, y: 40 }}
-      animate={isInView ? { opacity: 1, y: 0 } : {}}
+      whileInView={{ opacity: 1, y: 0 }}
+      viewport={{ once: true }}
       transition={{ duration: 0.6, delay: index * 0.1 }}
       className="p-10 lg:p-14 lg:min-h-screen flex items-center"
     >

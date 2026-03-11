@@ -1,15 +1,11 @@
 "use client";
 
 import Image from "next/image";
-import { useRef } from "react";
-import { motion, useInView } from "framer-motion";
+import { motion } from "framer-motion";
 
 export default function GrowthSystemSection() {
-  const ref = useRef<HTMLElement>(null);
-  const isInView = useInView(ref, { once: true, amount: 0.4 });
-
   return (
-    <section ref={ref} className="bg-black py-20 lg:py-28 relative overflow-hidden">
+    <section className="bg-black py-20 lg:py-28 relative overflow-hidden">
       {/* Asset 38 background layer */}
       <div className="absolute inset-0 flex items-center justify-center pointer-events-none">
         <Image
@@ -24,7 +20,8 @@ export default function GrowthSystemSection() {
       <div className="relative z-10 max-w-5xl mx-auto px-6 text-center">
         <motion.h2
           initial={{ opacity: 0, y: 20 }}
-          animate={isInView ? { opacity: 1, y: 0 } : {}}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
           transition={{ duration: 0.7 }}
           className="text-2xl md:text-3xl lg:text-4xl font-bold text-white"
         >

@@ -1,8 +1,7 @@
 "use client";
 
 import Link from "next/link";
-import { useRef } from "react";
-import { motion, useInView } from "framer-motion";
+import { motion } from "framer-motion";
 import { ChevronRight, Check } from "lucide-react";
 
 const instructorPoints = [
@@ -12,17 +11,15 @@ const instructorPoints = [
 ];
 
 export default function InstructorSection() {
-  const ref = useRef<HTMLElement>(null);
-  const isInView = useInView(ref, { once: true, amount: 0.15 });
-
   return (
-    <section ref={ref} className="bg-white py-20 lg:py-28">
+    <section className="bg-white py-20 lg:py-28">
       <div className="max-w-5xl mx-auto px-6">
         <div className="grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
           {/* Left: text */}
           <motion.div
             initial={{ opacity: 0, x: -30 }}
-            animate={isInView ? { opacity: 1, x: 0 } : {}}
+            whileInView={{ opacity: 1, x: 0 }}
+            viewport={{ once: true }}
             transition={{ duration: 0.7 }}
           >
             <p className="font-display text-sm tracking-[0.2em] text-text-on-light/40 mb-3">
@@ -41,7 +38,8 @@ export default function InstructorSection() {
                 <motion.li
                   key={index}
                   initial={{ opacity: 0, x: -20 }}
-                  animate={isInView ? { opacity: 1, x: 0 } : {}}
+                  whileInView={{ opacity: 1, x: 0 }}
+                  viewport={{ once: true }}
                   transition={{ duration: 0.5, delay: 0.3 + index * 0.1 }}
                   className="flex items-start gap-3 text-text-on-light text-sm md:text-base"
                 >
@@ -68,7 +66,8 @@ export default function InstructorSection() {
           {/* Right: placeholder image */}
           <motion.div
             initial={{ opacity: 0, x: 30 }}
-            animate={isInView ? { opacity: 1, x: 0 } : {}}
+            whileInView={{ opacity: 1, x: 0 }}
+            viewport={{ once: true }}
             transition={{ duration: 0.7, delay: 0.2 }}
             className="aspect-[4/3] bg-gray-100 flex items-center justify-center"
           >

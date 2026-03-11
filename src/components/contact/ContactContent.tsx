@@ -1,7 +1,7 @@
 "use client";
 
-import { useRef } from "react";
-import { motion, useInView } from "framer-motion";
+import { Suspense } from "react";
+import { motion } from "framer-motion";
 import { Phone, MessageCircle, Clock } from "lucide-react";
 import PageHero from "@/components/PageHero";
 import SectionHeader from "@/components/SectionHeader";
@@ -34,11 +34,6 @@ const infoCards = [
 ];
 
 export default function ContactContent() {
-  const infoRef = useRef<HTMLDivElement>(null);
-  const infoInView = useInView(infoRef, { once: true, amount: 0.2 });
-  const hoursRef = useRef<HTMLElement>(null);
-  const hoursInView = useInView(hoursRef, { once: true, amount: 0.3 });
-
   return (
     <>
       <PageHero
@@ -59,15 +54,18 @@ export default function ContactContent() {
 
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-16">
             {/* 왼쪽: 폼 */}
-            <ContactForm />
+            <Suspense fallback={<div className="animate-pulse h-96 bg-zinc-100 rounded" />}>
+              <ContactForm />
+            </Suspense>
 
             {/* 오른쪽: 안내 카드 */}
-            <div ref={infoRef} className="space-y-6">
+            <div className="space-y-6">
               {infoCards.map((card, i) => (
                 <motion.div
                   key={card.title}
                   initial={{ opacity: 0, x: 20 }}
-                  animate={infoInView ? { opacity: 1, x: 0 } : {}}
+                  whileInView={{ opacity: 1, x: 0 }}
+                  viewport={{ once: true }}
                   transition={{ duration: 0.5, delay: i * 0.15 }}
                   className="flex items-start gap-4 p-5 bg-zinc-50 border border-gray-100"
                 >
@@ -103,11 +101,12 @@ export default function ContactContent() {
       </section>
 
       {/* 운영시간 섹션 */}
-      <section ref={hoursRef} className="bg-black py-20 lg:py-28">
+      <section className="bg-black py-20 lg:py-28">
         <div className="max-w-3xl mx-auto px-6">
           <motion.div
             initial={{ opacity: 0, y: 30 }}
-            animate={hoursInView ? { opacity: 1, y: 0 } : {}}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
             transition={{ duration: 0.7 }}
             className="text-center mb-12"
           >
@@ -121,7 +120,8 @@ export default function ContactContent() {
 
           <motion.div
             initial={{ opacity: 0, y: 20 }}
-            animate={hoursInView ? { opacity: 1, y: 0 } : {}}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
             transition={{ duration: 0.5, delay: 0.2 }}
             className="divide-y divide-white/10"
           >
@@ -156,7 +156,8 @@ export default function ContactContent() {
 
           <motion.p
             initial={{ opacity: 0 }}
-            animate={hoursInView ? { opacity: 1 } : {}}
+            whileInView={{ opacity: 1 }}
+            viewport={{ once: true }}
             transition={{ duration: 0.5, delay: 0.4 }}
             className="text-gray-600 text-sm mt-6 text-center"
           >

@@ -1,7 +1,6 @@
 "use client";
 
-import { useRef } from "react";
-import { motion, useInView } from "framer-motion";
+import { motion } from "framer-motion";
 import { Mic, Video, Headphones } from "lucide-react";
 
 const vipBenefits = [
@@ -26,15 +25,13 @@ const vipBenefits = [
 ];
 
 export default function TargetSection() {
-  const ref = useRef<HTMLElement>(null);
-  const isInView = useInView(ref, { once: true, amount: 0.15 });
-
   return (
-    <section ref={ref} className="bg-black py-20 lg:py-28">
+    <section className="bg-black py-20 lg:py-28">
       <div className="max-w-5xl mx-auto px-6">
         <motion.div
           initial={{ opacity: 0, y: 30 }}
-          animate={isInView ? { opacity: 1, y: 0 } : {}}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
           transition={{ duration: 0.7 }}
           className="text-center mb-12"
         >
@@ -54,7 +51,8 @@ export default function TargetSection() {
               <motion.div
                 key={item.title}
                 initial={{ opacity: 0, y: 30 }}
-                animate={isInView ? { opacity: 1, y: 0 } : {}}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
                 transition={{ duration: 0.5, delay: 0.1 + index * 0.12 }}
                 className="bg-zinc-900 border border-white/10 p-8 lg:p-10 hover:border-accent/30 transition-colors duration-300 group"
               >

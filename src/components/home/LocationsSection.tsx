@@ -1,8 +1,7 @@
 "use client";
 
 import Link from "next/link";
-import { useRef } from "react";
-import { motion, useInView } from "framer-motion";
+import { motion } from "framer-motion";
 import NaverMap from "@/components/NaverMap";
 import SectionHeader from "@/components/SectionHeader";
 
@@ -34,11 +33,8 @@ const branches = [
 ];
 
 export default function LocationsSection() {
-  const ref = useRef<HTMLElement>(null);
-  const isInView = useInView(ref, { once: true, amount: 0.2 });
-
   return (
-    <section ref={ref} className="bg-white py-24 lg:py-36">
+    <section className="bg-white py-24 lg:py-36">
       <div className="max-w-6xl mx-auto px-6">
         {/* Headline */}
         <SectionHeader
@@ -52,7 +48,8 @@ export default function LocationsSection() {
             <motion.div
               key={branch.name}
               initial={{ opacity: 0, y: 30 }}
-              animate={isInView ? { opacity: 1, y: 0 } : {}}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
               transition={{ duration: 0.5, delay: 0.2 + index * 0.15 }}
             >
               {/* Map */}

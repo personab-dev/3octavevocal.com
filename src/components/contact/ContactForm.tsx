@@ -1,8 +1,9 @@
 "use client";
 
 import { useState, useEffect, useRef, useCallback, type FormEvent } from "react";
+import { useSearchParams } from "next/navigation";
 import { motion, useInView, AnimatePresence } from "framer-motion";
-import { Send, ChevronDown, X, Check } from "lucide-react";
+import { Send, ChevronDown, Check } from "lucide-react";
 
 const branchOptions = [
   "서울점 (강남역 5번 출구 100m)",
@@ -49,9 +50,9 @@ const consultationTypes = [
 
 const basicDiagnosisItems = [
   "1~2곡만 불러도 목이 금방 쉬거나 칼칼해진다.",
-  "노래를 배워본 적이 없거나, 배워봤는데도 개선이 되지 않았다.",
+  "노래를 배워본 적이 없거나 배워봤는데도 개선이 되지 않았다.",
   "고음 파트에서 삑사리(음이탈)나 갈라지는 목소리가 자주 나온다.",
-  "시원하게 지르지 못하고, 억지로 생목을 쥐어짜서 부르는 느낌이 든다.",
+  "시원하게 지르지 못하고 억지로 생목을 쥐어짜서 부르는 느낌이 든다.",
   "숨이 모자라서 끝음이 바들바들 떨리거나 흐지부지 끝난다.",
   "남들이 다 부르는 평범한 노래도 원키로 부를 엄두가 나지 않는다.",
   "내 목소리가 너무 얇고 힘이 없다고 느껴지거나 마음에 들지 않는다.",
@@ -62,8 +63,8 @@ const basicDiagnosisItems = [
 
 const advancedDiagnosisItems = [
   "기본 발성법을 알지만, 노래에 적용이 잘 안되는 것 같아요.",
-  "고음은 올라가는데, 주변에서 '노래 잘한다'는 칭찬은 못 들어본 것 같아요.",
-  "가수처럼 바이브레이션이나 기교를 멋지게 넣어보고 싶은데, 내가 하면 뭔가 어색해요.",
+  "고음은 올라가는데 주변에서 '노래 잘한다'는 칭찬은 못 들어본 것 같아요.",
+  "가수처럼 바이브레이션이나 기교를 멋지게 넣어보고 싶은데 내가 하면 뭔가 어색해요.",
   "가수처럼 '잘' 부르려면 어떻게 해야 될지 잘 모르겠어요.",
   "프로 가수들이 쓰는 테크닉과 스킬을 배우고 싶어요.",
   "좋아하는 가수의 노래를 불러도 뭔가 밋밋하고 이상한 것 같아요.",
@@ -103,12 +104,20 @@ interface FormErrors {
 export default function ContactForm() {
   const ref = useRef<HTMLFormElement>(null);
   const isInView = useInView(ref, { once: true, amount: 0.2 });
+  const searchParams = useSearchParams();
+
+  // URL 파라미터에서 자가진단 결과 읽기 (?source=basic&items=0,2,5)
+  const paramSource = searchParams.get("source") as DiagnosisTab | null;
+  const paramItems = searchParams.get("items");
+  const hasPrecheck = paramSource !== null && paramItems !== null;
+  const precheckedIndices = hasPrecheck
+    ? new Set(paramItems!.split(",").map(Number).filter((n) => !isNaN(n)))
+    : new Set<number>();
 
   const [diagnosis, setDiagnosis] = useState<DiagnosisData | null>(null);
-  const [fromProgram, setFromProgram] = useState(false);
-  const [diagnosisTab, setDiagnosisTab] = useState<DiagnosisTab>("basic");
-  const [checked, setChecked] = useState<Set<number>>(new Set());
-  const [showOptional, setShowOptional] = useState(false);
+  const [diagnosisTab, setDiagnosisTab] = useState<DiagnosisTab>(paramSource ?? "basic");
+  const [checked, setChecked] = useState<Set<number>>(precheckedIndices);
+  const [showOptional, setShowOptional] = useState(hasPrecheck);
   const [formData, setFormData] = useState<FormData>({
     name: "",
     phone: "",
@@ -125,26 +134,6 @@ export default function ContactForm() {
   const [errors, setErrors] = useState<FormErrors>({});
   const [submitted, setSubmitted] = useState(false);
   const [isSubmitting, setIsSubmitting] = useState(false);
-
-  // sessionStorage에서 사전 진단 결과 읽기
-  useEffect(() => {
-    try {
-      const stored = sessionStorage.getItem("vocalDiagnosis");
-      if (stored) {
-        const data = JSON.parse(stored) as DiagnosisData;
-        if (data.items && data.items.length > 0) {
-          setDiagnosis(data);
-          setFromProgram(true);
-        }
-      }
-    } catch {
-      // 무시
-    }
-    // cleanup에서 제거 — Strict Mode 이중 실행에도 안전
-    return () => {
-      sessionStorage.removeItem("vocalDiagnosis");
-    };
-  }, []);
 
   const currentItems = diagnosisTab === "basic" ? basicDiagnosisItems : advancedDiagnosisItems;
 
@@ -165,22 +154,13 @@ export default function ContactForm() {
 
   // 인라인 체크리스트에서 선택한 항목을 diagnosis에 동기화
   useEffect(() => {
-    if (fromProgram) return;
     if (checked.size > 0) {
       const selectedItems = currentItems.filter((_, i) => checked.has(i));
       setDiagnosis({ source: diagnosisTab, items: selectedItems });
     } else {
       setDiagnosis(null);
     }
-  }, [checked, diagnosisTab, currentItems, fromProgram]);
-
-  function removeDiagnosisItem(index: number) {
-    setDiagnosis((prev) => {
-      if (!prev) return null;
-      const next = prev.items.filter((_, i) => i !== index);
-      return next.length > 0 ? { ...prev, items: next } : null;
-    });
-  }
+  }, [checked, diagnosisTab, currentItems]);
 
   function validate(): FormErrors {
     const newErrors: FormErrors = {};
@@ -282,9 +262,6 @@ export default function ContactForm() {
 
   const inputBase =
     "w-full border border-gray-200 focus:border-accent focus:ring-1 focus:ring-accent outline-none px-4 py-3 text-base text-text-on-light transition-colors duration-200";
-  const diagnosisLabel =
-    diagnosis?.source === "basic" ? "기본과정 자가진단" : "심화과정 자가진단";
-
   return (
     <motion.form
       ref={ref}
@@ -295,37 +272,6 @@ export default function ContactForm() {
       className="space-y-5"
       noValidate
     >
-      {/* 사전 진단: 프로그램에서 넘어온 경우 — 선택 항목 표시 */}
-      {fromProgram && diagnosis && (
-        <div className="bg-accent/5 border border-accent/20 p-4">
-          <div className="flex items-center gap-2 mb-3">
-            <span className="text-accent text-xs font-bold tracking-wider uppercase">
-              {diagnosisLabel}
-            </span>
-            <span className="text-text-on-light/40 text-xs">
-              ({diagnosis.items.length}개 항목)
-            </span>
-          </div>
-          <div className="flex flex-wrap gap-2">
-            {diagnosis.items.map((item, i) => (
-              <span
-                key={i}
-                className="inline-flex items-center gap-1.5 bg-white border border-accent/20 text-text-on-light/70 text-xs px-3 py-1.5"
-              >
-                {item}
-                <button
-                  type="button"
-                  onClick={() => removeDiagnosisItem(i)}
-                  className="text-text-on-light/30 hover:text-accent transition-colors"
-                >
-                  <X size={12} />
-                </button>
-              </span>
-            ))}
-          </div>
-        </div>
-      )}
-
       {/* ── 필수 정보 ── */}
 
       {/* 이름 */}
@@ -374,8 +320,8 @@ export default function ContactForm() {
               type="button"
               onClick={() => updateField("gender", g)}
               className={`flex-1 py-3 text-base font-medium border transition-colors duration-200 ${formData.gender === g
-                  ? "border-accent bg-accent/5 text-accent"
-                  : "border-gray-200 text-text-on-light/60 hover:border-gray-300"
+                ? "border-accent bg-accent/5 text-accent"
+                : "border-gray-200 text-text-on-light/60 hover:border-gray-300"
                 }`}
             >
               {g}
@@ -397,8 +343,8 @@ export default function ContactForm() {
               type="button"
               onClick={() => updateField("consultationType", ct.value)}
               className={`w-full text-left p-4 border transition-colors duration-200 ${formData.consultationType === ct.value
-                  ? "border-accent bg-accent/5"
-                  : "border-gray-200 hover:border-gray-300"
+                ? "border-accent bg-accent/5"
+                : "border-gray-200 hover:border-gray-300"
                 }`}
             >
               <p className={`font-bold text-sm md:text-base ${formData.consultationType === ct.value ? "text-accent" : "text-text-on-light"
@@ -462,73 +408,71 @@ export default function ContactForm() {
           >
             <div className="space-y-5 pt-2 border-t border-gray-100">
               {/* 자가진단 체크리스트 */}
-              {!fromProgram && (
-                <div className="border border-gray-200 p-5">
-                  <p className="text-sm font-medium text-text-on-light mb-1">
-                    자가진단
-                  </p>
-                  <p className="text-xs text-text-on-light/50 mb-4">
-                    해당하는 항목을 체크하시면 더 정확한 상담이 가능합니다.
-                  </p>
+              <div className="border border-gray-200 p-5">
+                <p className="text-sm font-medium text-text-on-light mb-1">
+                  자가진단
+                </p>
+                <p className="text-xs text-text-on-light/50 mb-4">
+                  해당하는 항목을 체크하시면 더 정확한 상담이 가능합니다.
+                </p>
 
-                  {/* 탭 */}
-                  <div className="flex gap-2 mb-4">
-                    {([
-                      { key: "basic" as DiagnosisTab, label: "기본과정" },
-                      { key: "advanced" as DiagnosisTab, label: "심화과정" },
-                    ]).map((tab) => (
+                {/* 탭 */}
+                <div className="flex gap-2 mb-4">
+                  {([
+                    { key: "basic" as DiagnosisTab, label: "기본과정" },
+                    { key: "advanced" as DiagnosisTab, label: "심화과정" },
+                  ]).map((tab) => (
+                    <button
+                      key={tab.key}
+                      type="button"
+                      onClick={() => handleTabChange(tab.key)}
+                      className={`px-4 py-2 text-sm font-medium border transition-colors duration-200 ${diagnosisTab === tab.key
+                        ? "border-accent bg-accent/5 text-accent"
+                        : "border-gray-200 text-text-on-light/50 hover:border-gray-300"
+                        }`}
+                    >
+                      {tab.label}
+                    </button>
+                  ))}
+                </div>
+
+                {/* 체크리스트 */}
+                <div className="grid grid-cols-1 gap-2 max-h-64 overflow-y-auto">
+                  {currentItems.map((item, index) => {
+                    const isChecked = checked.has(index);
+                    return (
                       <button
-                        key={tab.key}
+                        key={`${diagnosisTab}-${index}`}
                         type="button"
-                        onClick={() => handleTabChange(tab.key)}
-                        className={`px-4 py-2 text-sm font-medium border transition-colors duration-200 ${diagnosisTab === tab.key
-                            ? "border-accent bg-accent/5 text-accent"
-                            : "border-gray-200 text-text-on-light/50 hover:border-gray-300"
+                        onClick={() => toggleCheck(index)}
+                        className={`flex items-center gap-3 p-3 text-left transition-all duration-200 border ${isChecked
+                          ? "border-accent bg-accent/5"
+                          : "border-gray-100 hover:border-gray-200"
                           }`}
                       >
-                        {tab.label}
-                      </button>
-                    ))}
-                  </div>
-
-                  {/* 체크리스트 */}
-                  <div className="grid grid-cols-1 gap-2 max-h-64 overflow-y-auto">
-                    {currentItems.map((item, index) => {
-                      const isChecked = checked.has(index);
-                      return (
-                        <button
-                          key={`${diagnosisTab}-${index}`}
-                          type="button"
-                          onClick={() => toggleCheck(index)}
-                          className={`flex items-center gap-3 p-3 text-left transition-all duration-200 border ${isChecked
-                              ? "border-accent bg-accent/5"
-                              : "border-gray-100 hover:border-gray-200"
+                        <div
+                          className={`w-4 h-4 shrink-0 flex items-center justify-center transition-all duration-200 ${isChecked ? "bg-accent" : "border border-gray-300"
                             }`}
                         >
-                          <div
-                            className={`w-4 h-4 shrink-0 flex items-center justify-center transition-all duration-200 ${isChecked ? "bg-accent" : "border border-gray-300"
-                              }`}
-                          >
-                            {isChecked && <Check size={10} className="text-white" />}
-                          </div>
-                          <span
-                            className={`text-sm transition-colors duration-200 ${isChecked ? "text-text-on-light" : "text-text-on-light/60"
-                              }`}
-                          >
-                            {item}
-                          </span>
-                        </button>
-                      );
-                    })}
-                  </div>
-
-                  {checked.size > 0 && (
-                    <p className="text-accent text-xs font-medium mt-3">
-                      {checked.size}개 항목 선택됨
-                    </p>
-                  )}
+                          {isChecked && <Check size={10} className="text-white" />}
+                        </div>
+                        <span
+                          className={`text-sm transition-colors duration-200 ${isChecked ? "text-text-on-light" : "text-text-on-light/60"
+                            }`}
+                        >
+                          {item}
+                        </span>
+                      </button>
+                    );
+                  })}
                 </div>
-              )}
+
+                {checked.size > 0 && (
+                  <p className="text-accent text-xs font-medium mt-3">
+                    {checked.size}개 항목 선택됨
+                  </p>
+                )}
+              </div>
 
               {/* 연령대 */}
               <div>
@@ -584,8 +528,8 @@ export default function ContactForm() {
                         }
                       }}
                       className={`flex-1 py-3 text-base font-medium border transition-colors duration-200 ${formData.hasExperience === v
-                          ? "border-accent bg-accent/5 text-accent"
-                          : "border-gray-200 text-text-on-light/60 hover:border-gray-300"
+                        ? "border-accent bg-accent/5 text-accent"
+                        : "border-gray-200 text-text-on-light/60 hover:border-gray-300"
                         }`}
                     >
                       {v}
@@ -624,8 +568,8 @@ export default function ContactForm() {
                           type="button"
                           onClick={() => updateField("experienceSatisfaction", s)}
                           className={`px-4 py-2 text-sm border transition-colors duration-200 ${formData.experienceSatisfaction === s
-                              ? "border-accent bg-accent/5 text-accent"
-                              : "border-gray-200 text-text-on-light/60 hover:border-gray-300"
+                            ? "border-accent bg-accent/5 text-accent"
+                            : "border-gray-200 text-text-on-light/60 hover:border-gray-300"
                             }`}
                         >
                           {s}

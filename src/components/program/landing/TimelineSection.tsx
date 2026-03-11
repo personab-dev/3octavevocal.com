@@ -1,7 +1,6 @@
 "use client";
 
-import { useRef } from "react";
-import { motion, useInView } from "framer-motion";
+import { motion } from "framer-motion";
 
 const timeline = [
   {
@@ -27,15 +26,13 @@ const timeline = [
 ];
 
 export default function TimelineSection() {
-  const ref = useRef<HTMLElement>(null);
-  const isInView = useInView(ref, { once: true, amount: 0.1 });
-
   return (
-    <section ref={ref} className="bg-black py-20 lg:py-28">
+    <section className="bg-black py-20 lg:py-28">
       <div className="max-w-3xl mx-auto px-6">
         <motion.div
           initial={{ opacity: 0, y: 30 }}
-          animate={isInView ? { opacity: 1, y: 0 } : {}}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
           transition={{ duration: 0.7 }}
           className="text-center mb-14"
         >
@@ -56,7 +53,8 @@ export default function TimelineSection() {
               <motion.div
                 key={item.period}
                 initial={{ opacity: 0, x: -20 }}
-                animate={isInView ? { opacity: 1, x: 0 } : {}}
+                whileInView={{ opacity: 1, x: 0 }}
+                viewport={{ once: true }}
                 transition={{ duration: 0.5, delay: 0.2 + index * 0.15 }}
                 className="relative pl-12 md:pl-16"
               >

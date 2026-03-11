@@ -1,7 +1,6 @@
 "use client";
 
-import { useRef } from "react";
-import { motion, useInView } from "framer-motion";
+import { motion } from "framer-motion";
 import { Users, MessageCircle, Shield, Gift, Award } from "lucide-react";
 
 const benefits = [
@@ -38,15 +37,13 @@ const benefits = [
 ];
 
 export default function InstructorSection() {
-  const ref = useRef<HTMLElement>(null);
-  const isInView = useInView(ref, { once: true, amount: 0.1 });
-
   return (
-    <section ref={ref} className="bg-white py-20 lg:py-28 border-t border-gray-100">
+    <section className="bg-white py-20 lg:py-28 border-t border-gray-100">
       <div className="max-w-5xl mx-auto px-6">
         <motion.div
           initial={{ opacity: 0, y: 30 }}
-          animate={isInView ? { opacity: 1, y: 0 } : {}}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
           transition={{ duration: 0.7 }}
           className="text-center mb-14"
         >
@@ -66,7 +63,8 @@ export default function InstructorSection() {
               <motion.div
                 key={item.title}
                 initial={{ opacity: 0, y: 20 }}
-                animate={isInView ? { opacity: 1, y: 0 } : {}}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
                 transition={{ duration: 0.5, delay: 0.1 + index * 0.1 }}
                 className="flex items-start gap-5 p-6 lg:p-8 bg-zinc-50 border border-gray-100 hover:border-accent/30 transition-colors duration-300 group"
               >

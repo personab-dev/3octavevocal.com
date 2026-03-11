@@ -1,7 +1,6 @@
 "use client";
 
-import { useRef } from "react";
-import { motion, useInView } from "framer-motion";
+import { motion } from "framer-motion";
 
 interface SectionHeaderProps {
   label?: string;
@@ -24,9 +23,6 @@ export default function SectionHeader({
   align = "center",
   className = "mb-14",
 }: SectionHeaderProps) {
-  const ref = useRef<HTMLDivElement>(null);
-  const isInView = useInView(ref, { once: true, amount: 0.3 });
-
   const labelClasses = {
     accent: "text-accent text-sm md:text-base font-bold tracking-widest uppercase",
     muted: theme === "light"
@@ -43,9 +39,9 @@ export default function SectionHeader({
 
   return (
     <motion.div
-      ref={ref}
       initial={{ opacity: 0, y: 30 }}
-      animate={isInView ? { opacity: 1, y: 0 } : {}}
+      whileInView={{ opacity: 1, y: 0 }}
+      viewport={{ once: true }}
       transition={{ duration: 0.7 }}
       className={`${textAlign} ${className}`}
     >

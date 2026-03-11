@@ -1,19 +1,16 @@
 "use client";
 
 import Link from "next/link";
-import { useRef } from "react";
-import { motion, useInView } from "framer-motion";
+import { motion } from "framer-motion";
 
 export default function OctavePromiseSection() {
-  const ref = useRef<HTMLElement>(null);
-  const isInView = useInView(ref, { once: true, amount: 0.4 });
-
   return (
-    <section ref={ref} className="bg-black py-20 lg:py-28 relative overflow-hidden">
+    <section className="bg-black py-20 lg:py-28 relative overflow-hidden">
       <div className="max-w-6xl mx-auto px-6 flex flex-col md:flex-row items-center justify-between gap-10">
         <motion.div
           initial={{ opacity: 0, x: -30 }}
-          animate={isInView ? { opacity: 1, x: 0 } : {}}
+          whileInView={{ opacity: 1, x: 0 }}
+          viewport={{ once: true }}
           transition={{ duration: 0.7 }}
         >
           {/* Dots */}
@@ -33,7 +30,8 @@ export default function OctavePromiseSection() {
 
         <motion.div
           initial={{ opacity: 0, x: 30 }}
-          animate={isInView ? { opacity: 1, x: 0 } : {}}
+          whileInView={{ opacity: 1, x: 0 }}
+          viewport={{ once: true }}
           transition={{ duration: 0.7, delay: 0.2 }}
         >
           <Link

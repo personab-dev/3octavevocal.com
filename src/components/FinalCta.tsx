@@ -2,8 +2,7 @@
 
 import Link from "next/link";
 import Image from "next/image";
-import { useRef } from "react";
-import { motion, useInView } from "framer-motion";
+import { motion } from "framer-motion";
 
 interface FinalCtaProps {
   heading?: string;
@@ -16,11 +15,8 @@ export default function FinalCta({
   description = "그만큼 확실한 커리큘럼, 직접 확인하세요.",
   buttonText = "내 상태 진단 & 상담 신청",
 }: FinalCtaProps) {
-  const ref = useRef<HTMLElement>(null);
-  const isInView = useInView(ref, { once: true, amount: 0.3 });
-
   return (
-    <section ref={ref} className="relative overflow-hidden bg-gradient-to-br from-zinc-900 to-black">
+    <section className="relative overflow-hidden bg-gradient-to-br from-zinc-900 to-black">
       {/* Logo watermark — right side */}
       <div className="absolute right-0 top-1/2 -translate-y-1/2 translate-x-[10%] pointer-events-none">
         <Image
@@ -35,7 +31,8 @@ export default function FinalCta({
       <div className="relative z-10 max-w-5xl mx-auto px-6 lg:px-10 py-20 lg:py-28">
         <motion.div
           initial={{ opacity: 0, y: 30 }}
-          animate={isInView ? { opacity: 1, y: 0 } : {}}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
           transition={{ duration: 0.7 }}
         >
           <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold text-white leading-snug">

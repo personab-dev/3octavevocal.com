@@ -2,8 +2,7 @@
 
 import Link from "next/link";
 import Image from "next/image";
-import { useRef } from "react";
-import { motion, useInView } from "framer-motion";
+import { motion } from "framer-motion";
 import PageHero from "@/components/PageHero";
 import AboutSubNav from "./AboutSubNav";
 import BrandSymbol from "@/components/BrandSymbol";
@@ -37,26 +36,18 @@ const promises = [
 ];
 
 export default function PhilosophyContent() {
-  const originRef = useRef<HTMLElement>(null);
-  const originInView = useInView(originRef, { once: true, amount: 0.2 });
-  const promiseRef = useRef<HTMLElement>(null);
-  const promiseInView = useInView(promiseRef, { once: true, amount: 0.1 });
-  const philosophyRef = useRef<HTMLElement>(null);
-  const philosophyInView = useInView(philosophyRef, { once: true, amount: 0.2 });
-  const proofRef = useRef<HTMLElement>(null);
-  const proofInView = useInView(proofRef, { once: true, amount: 0.2 });
-
   return (
     <>
       <PageHero heading="대표 철학" subheading="Philosophy" backgroundImage="/images/about/hero.png" />
       <AboutSubNav />
 
       {/* Section 1: 3옥타브장인의 시작 — 상단 헤딩 */}
-      <section ref={originRef} className="bg-white py-16 lg:py-20">
+      <section className="bg-white py-16 lg:py-20">
         <div className="max-w-4xl mx-auto px-6 text-center">
           <motion.p
             initial={{ opacity: 0, y: 20 }}
-            animate={originInView ? { opacity: 1, y: 0 } : {}}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
             transition={{ duration: 0.6 }}
             className="text-accent text-sm md:text-base font-bold tracking-widest mb-5"
           >
@@ -64,7 +55,8 @@ export default function PhilosophyContent() {
           </motion.p>
           <motion.h2
             initial={{ opacity: 0, y: 20 }}
-            animate={originInView ? { opacity: 1, y: 0 } : {}}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
             transition={{ duration: 0.7, delay: 0.1 }}
             className="text-2xl md:text-3xl lg:text-4xl font-bold text-text-on-light leading-snug"
           >
@@ -151,11 +143,12 @@ export default function PhilosophyContent() {
       </section>
 
       {/* Section 2: 약속 3가지 */}
-      <section ref={promiseRef} className="bg-white py-20 lg:py-28">
+      <section className="bg-white py-20 lg:py-28">
         <div className="max-w-5xl mx-auto px-6">
           <motion.div
             initial={{ opacity: 0, y: 30 }}
-            animate={promiseInView ? { opacity: 1, y: 0 } : {}}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
             transition={{ duration: 0.7 }}
             className="text-center mb-16"
           >
@@ -174,7 +167,8 @@ export default function PhilosophyContent() {
               <motion.div
                 key={promise.number}
                 initial={{ opacity: 0, y: 30 }}
-                animate={promiseInView ? { opacity: 1, y: 0 } : {}}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
                 transition={{ duration: 0.5, delay: 0.2 + index * 0.15 }}
                 className="border border-gray-200 p-8 lg:p-10 relative overflow-hidden group hover:border-accent transition-colors duration-300"
               >
@@ -213,7 +207,7 @@ export default function PhilosophyContent() {
       </section>
 
       {/* Section 3: 발성 철학 */}
-      <section ref={philosophyRef} className="bg-black py-20 lg:py-28 relative overflow-hidden">
+      <section className="bg-black py-20 lg:py-28 relative overflow-hidden">
         <div className="absolute left-0 bottom-0 opacity-[0.03] pointer-events-none -translate-x-1/4 translate-y-1/4">
           <BrandSymbol size={500} color="white" />
         </div>
@@ -231,7 +225,8 @@ export default function PhilosophyContent() {
         <div className="max-w-3xl mx-auto px-6 relative z-10">
           <motion.div
             initial={{ opacity: 0, y: 30 }}
-            animate={philosophyInView ? { opacity: 1, y: 0 } : {}}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
             transition={{ duration: 0.7 }}
           >
             <blockquote className="border-l-2 border-accent pl-6 lg:pl-10">
@@ -277,7 +272,7 @@ export default function PhilosophyContent() {
       </section>
 
       {/* Section 4: 수강생 증명 */}
-      <section ref={proofRef} className="relative py-20 lg:py-28 overflow-hidden">
+      <section className="relative py-20 lg:py-28 overflow-hidden">
         <div className="absolute inset-0 bg-zinc-900">
           <div className="absolute inset-0 bg-gradient-to-r from-black/80 to-black/60" />
           <div className="absolute inset-0 flex items-center justify-center">
@@ -295,7 +290,8 @@ export default function PhilosophyContent() {
         <div className="relative z-10 max-w-3xl mx-auto px-6">
           <motion.div
             initial={{ opacity: 0, y: 30 }}
-            animate={proofInView ? { opacity: 1, y: 0 } : {}}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
             transition={{ duration: 0.7 }}
             className="space-y-6 text-gray-400 text-sm md:text-base leading-relaxed"
           >

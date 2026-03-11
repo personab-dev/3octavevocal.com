@@ -1,5 +1,3 @@
-"use client";
-
 import PageHero from "@/components/PageHero";
 import ProgramSubNav from "./ProgramSubNav";
 import HookSection from "./basic/HookSection";

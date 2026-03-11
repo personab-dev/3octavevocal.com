@@ -1,8 +1,7 @@
 "use client";
 
-import { useRef } from "react";
 import Link from "next/link";
-import { motion, useInView } from "framer-motion";
+import { motion } from "framer-motion";
 import { ChevronRight } from "lucide-react";
 
 const promiseCards = [
@@ -21,15 +20,13 @@ const promiseCards = [
 ];
 
 export default function InstructorSection() {
-  const ref = useRef<HTMLElement>(null);
-  const isInView = useInView(ref, { once: true, amount: 0.1 });
-
   return (
-    <section ref={ref} className="bg-zinc-900 py-20 lg:py-28">
+    <section className="bg-zinc-900 py-20 lg:py-28">
       <div className="max-w-5xl mx-auto px-6">
         <motion.div
           initial={{ opacity: 0, y: 30 }}
-          animate={isInView ? { opacity: 1, y: 0 } : {}}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
           transition={{ duration: 0.7 }}
           className="text-center mb-6"
         >
@@ -43,7 +40,8 @@ export default function InstructorSection() {
         </motion.div>
         <motion.p
           initial={{ opacity: 0, y: 20 }}
-          animate={isInView ? { opacity: 1, y: 0 } : {}}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
           transition={{ duration: 0.5, delay: 0.1 }}
           className="text-gray-400 text-base md:text-lg text-center max-w-xl mx-auto mb-14"
         >
@@ -60,7 +58,8 @@ export default function InstructorSection() {
             <motion.div
               key={index}
               initial={{ opacity: 0, y: 30 }}
-              animate={isInView ? { opacity: 1, y: 0 } : {}}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
               transition={{ duration: 0.5, delay: 0.2 + index * 0.15 }}
               className="relative overflow-hidden group"
             >
@@ -105,7 +104,8 @@ export default function InstructorSection() {
 
         <motion.div
           initial={{ opacity: 0, y: 20 }}
-          animate={isInView ? { opacity: 1, y: 0 } : {}}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
           transition={{ duration: 0.5, delay: 0.5 }}
           className="text-center mt-10"
         >

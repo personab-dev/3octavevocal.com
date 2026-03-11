@@ -1,8 +1,7 @@
 "use client";
 
 import Link from "next/link";
-import { useRef } from "react";
-import { motion, useInView } from "framer-motion";
+import { motion } from "framer-motion";
 import { ChevronRight } from "lucide-react";
 
 const programs = [
@@ -27,15 +26,13 @@ const programs = [
 ];
 
 export default function CurriculumSection() {
-  const ref = useRef<HTMLElement>(null);
-  const isInView = useInView(ref, { once: true, amount: 0.1 });
-
   return (
-    <section ref={ref} className="bg-white py-20 lg:py-28">
+    <section className="bg-white py-20 lg:py-28">
       <div className="max-w-5xl mx-auto px-6">
         <motion.div
           initial={{ opacity: 0, y: 30 }}
-          animate={isInView ? { opacity: 1, y: 0 } : {}}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
           transition={{ duration: 0.7 }}
           className="text-center mb-12"
         >
@@ -54,7 +51,8 @@ export default function CurriculumSection() {
         {/* Progress bar */}
         <motion.div
           initial={{ opacity: 0 }}
-          animate={isInView ? { opacity: 1 } : {}}
+          whileInView={{ opacity: 1 }}
+          viewport={{ once: true }}
           transition={{ duration: 0.7, delay: 0.2 }}
           className="hidden md:flex items-center justify-center gap-0 mb-14"
         >
@@ -80,7 +78,8 @@ export default function CurriculumSection() {
             <motion.div
               key={program.step}
               initial={{ opacity: 0, y: 30 }}
-              animate={isInView ? { opacity: 1, y: 0 } : {}}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
               transition={{ duration: 0.5, delay: 0.2 + index * 0.15 }}
             >
               <Link

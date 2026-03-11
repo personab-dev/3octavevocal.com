@@ -1,9 +1,8 @@
 "use client";
 
-import { useRef } from "react";
 import Link from "next/link";
 import Image from "next/image";
-import { motion, useInView } from "framer-motion";
+import { motion } from "framer-motion";
 import PageHero from "@/components/PageHero";
 import SectionHeader from "@/components/SectionHeader";
 import CommunitySubNav from "./CommunitySubNav";
@@ -21,9 +20,6 @@ interface ReviewsContentProps {
 }
 
 export default function ReviewsContent({ reviews }: ReviewsContentProps) {
-  const reviewsRef = useRef<HTMLElement>(null);
-  const reviewsInView = useInView(reviewsRef, { once: true, amount: 0.1 });
-
   return (
     <>
       <PageHero
@@ -46,7 +42,7 @@ export default function ReviewsContent({ reviews }: ReviewsContentProps) {
       </section>
 
       {/* Reviews Section — Fault-Tolerant Grid & Premium States */}
-      <section ref={reviewsRef} className="bg-zinc-50 py-16 lg:py-24">
+      <section className="bg-zinc-50 py-16 lg:py-24">
         <div className="max-w-5xl mx-auto px-6">
           {/* 가로 방향으로 정상적으로 채워지며, 가장 높은 카드의 높이에 각 줄이 맞춰짐 */}
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5 lg:gap-6">
@@ -59,7 +55,8 @@ export default function ReviewsContent({ reviews }: ReviewsContentProps) {
                 <motion.div
                   key={index}
                   initial={{ opacity: 0, y: 30 }}
-                  animate={reviewsInView ? { opacity: 1, y: 0 } : {}}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  viewport={{ once: true }}
                   transition={{ duration: 0.5, delay: (index % 6) * 0.05 }}
                   className="h-full"
                 >

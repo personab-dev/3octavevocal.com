@@ -1,9 +1,8 @@
 "use client";
 
-import { useRef } from "react";
 import Link from "next/link";
 import Image from "next/image";
-import { motion, useInView } from "framer-motion";
+import { motion } from "framer-motion";
 import { ChevronRight } from "lucide-react";
 
 const painPoints = [
@@ -13,16 +12,14 @@ const painPoints = [
 ];
 
 export default function IntroSection() {
-  const ref = useRef<HTMLElement>(null);
-  const isInView = useInView(ref, { once: true, amount: 0.15 });
-
   return (
-    <section ref={ref} className="bg-black py-20 lg:py-28">
+    <section className="bg-black py-20 lg:py-28">
       <div className="max-w-5xl mx-auto px-6">
         {/* Sub copy */}
         <motion.p
           initial={{ opacity: 0, y: 15 }}
-          animate={isInView ? { opacity: 1, y: 0 } : {}}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
           transition={{ duration: 0.5 }}
           className="text-center text-gray-300 text-base md:text-lg mb-10"
         >
@@ -32,7 +29,8 @@ export default function IntroSection() {
         {/* Pain point speech bubbles */}
         <motion.div
           initial={{ opacity: 0, y: 20 }}
-          animate={isInView ? { opacity: 1, y: 0 } : {}}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
           transition={{ duration: 0.6 }}
           className="flex flex-col sm:flex-row items-center justify-center gap-3 mb-14"
         >
@@ -40,7 +38,8 @@ export default function IntroSection() {
             <motion.div
               key={index}
               initial={{ opacity: 0, y: 15 }}
-              animate={isInView ? { opacity: 1, y: 0 } : {}}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
               transition={{ duration: 0.4, delay: 0.1 + index * 0.15 }}
               className="relative bg-zinc-800/80 backdrop-blur-sm px-5 py-3 text-gray-300 text-sm md:text-base"
             >
@@ -54,7 +53,8 @@ export default function IntroSection() {
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-16 items-center">
           <motion.div
             initial={{ opacity: 0, x: -30 }}
-            animate={isInView ? { opacity: 1, x: 0 } : {}}
+            whileInView={{ opacity: 1, x: 0 }}
+            viewport={{ once: true }}
             transition={{ duration: 0.7, delay: 0.3 }}
           >
             <p className="text-accent text-sm md:text-base font-bold tracking-widest uppercase mb-4">
@@ -96,7 +96,8 @@ export default function IntroSection() {
 
           <motion.div
             initial={{ opacity: 0, x: 30 }}
-            animate={isInView ? { opacity: 1, x: 0 } : {}}
+            whileInView={{ opacity: 1, x: 0 }}
+            viewport={{ once: true }}
             transition={{ duration: 0.7, delay: 0.4 }}
             className="relative"
           >

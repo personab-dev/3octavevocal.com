@@ -130,12 +130,8 @@ export default function DiagnosisSection() {
             <button
               type="button"
               onClick={() => {
-                const checkedItems = diagnosisItems.filter((_, i) => checked.has(i));
-                sessionStorage.setItem(
-                  "vocalDiagnosis",
-                  JSON.stringify({ source: "advanced", items: checkedItems })
-                );
-                router.push("/contact");
+                const indices = Array.from(checked).sort((a, b) => a - b).join(",");
+                router.push(`/contact?source=advanced&items=${indices}`);
               }}
               className="group cta-shimmer inline-flex items-center gap-2 bg-accent text-white hover:bg-accent/90 rounded-full px-8 py-4 text-base font-bold shadow-lg shadow-accent/25 hover:shadow-accent/35 transition-all duration-300 hover:scale-[1.02] active:scale-[0.98]"
             >

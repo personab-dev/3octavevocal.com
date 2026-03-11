@@ -1,8 +1,7 @@
 "use client";
 
 import Link from "next/link";
-import { useRef } from "react";
-import { motion, useInView } from "framer-motion";
+import { motion } from "framer-motion";
 import { MapPin, Phone, MessageCircle } from "lucide-react";
 
 const branches = [
@@ -36,16 +35,14 @@ const branches = [
 ];
 
 export default function BranchCards() {
-  const ref = useRef<HTMLDivElement>(null);
-  const isInView = useInView(ref, { once: true, amount: 0.1 });
-
   return (
-    <div ref={ref} className="grid grid-cols-1 md:grid-cols-3 gap-6">
+    <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
       {branches.map((branch, i) => (
         <motion.div
           key={branch.name}
           initial={{ opacity: 0, y: 30 }}
-          animate={isInView ? { opacity: 1, y: 0 } : {}}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
           transition={{ duration: 0.5, delay: i * 0.1 }}
           className="bg-white p-6 lg:p-8 border border-gray-100 hover:shadow-lg hover:-translate-y-1 transition-all duration-300"
         >

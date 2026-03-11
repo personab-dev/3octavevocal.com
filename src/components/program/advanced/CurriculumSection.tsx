@@ -1,7 +1,6 @@
 "use client";
 
-import { useRef } from "react";
-import { motion, useInView } from "framer-motion";
+import { motion } from "framer-motion";
 
 const advancedCurriculum = [
   {
@@ -37,15 +36,13 @@ const advancedCurriculum = [
 ];
 
 export default function CurriculumSection() {
-  const ref = useRef<HTMLElement>(null);
-  const isInView = useInView(ref, { once: true, amount: 0.1 });
-
   return (
-    <section ref={ref} className="bg-white py-20 lg:py-28">
+    <section className="bg-white py-20 lg:py-28">
       <div className="max-w-5xl mx-auto px-6">
         <motion.div
           initial={{ opacity: 0, y: 30 }}
-          animate={isInView ? { opacity: 1, y: 0 } : {}}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
           transition={{ duration: 0.7 }}
           className="text-center mb-16"
         >
@@ -62,7 +59,8 @@ export default function CurriculumSection() {
         {/* Desktop: horizontal stepper line */}
         <motion.div
           initial={{ opacity: 0 }}
-          animate={isInView ? { opacity: 1 } : {}}
+          whileInView={{ opacity: 1 }}
+          viewport={{ once: true }}
           transition={{ duration: 0.7, delay: 0.2 }}
           className="hidden md:flex items-center justify-center mb-14"
         >
@@ -89,7 +87,8 @@ export default function CurriculumSection() {
             <motion.div
               key={item.number}
               initial={{ opacity: 0, y: 30 }}
-              animate={isInView ? { opacity: 1, y: 0 } : {}}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
               transition={{ duration: 0.5, delay: 0.2 + index * 0.12 }}
               className="relative overflow-hidden group"
             >

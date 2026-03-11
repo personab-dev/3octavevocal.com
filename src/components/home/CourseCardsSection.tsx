@@ -1,8 +1,7 @@
 "use client";
 
 import Link from "next/link";
-import { useRef } from "react";
-import { motion, useInView } from "framer-motion";
+import { motion } from "framer-motion";
 import SectionHeader from "@/components/SectionHeader";
 
 const courses = [
@@ -25,11 +24,8 @@ const courses = [
 ];
 
 export default function CourseCardsSection() {
-  const ref = useRef<HTMLElement>(null);
-  const isInView = useInView(ref, { once: true, amount: 0.3 });
-
   return (
-    <section ref={ref} className="bg-black py-24 lg:py-36">
+    <section className="bg-black py-24 lg:py-36">
       <div className="max-w-6xl mx-auto px-6">
         {/* Headline */}
         <SectionHeader
@@ -45,7 +41,8 @@ export default function CourseCardsSection() {
             <motion.div
               key={course.title}
               initial={{ opacity: 0, y: 30 }}
-              animate={isInView ? { opacity: 1, y: 0 } : {}}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
               transition={{ duration: 0.5, delay: 0.2 + index * 0.15 }}
             >
               <Link
@@ -109,7 +106,8 @@ export default function CourseCardsSection() {
         {/* Bottom tagline */}
         <motion.p
           initial={{ opacity: 0, y: 20 }}
-          animate={isInView ? { opacity: 1, y: 0 } : {}}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
           transition={{ duration: 0.7, delay: 0.5 }}
           className="text-center mt-14 text-lg md:text-xl text-gray-400"
         >
