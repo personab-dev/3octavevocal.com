@@ -43,7 +43,7 @@ export default function ContactContent() {
       />
 
       {/* 상담 예약 폼 섹션 */}
-      <section className="bg-white py-20 lg:py-28">
+      <section id="form" className="bg-white py-20 lg:py-28 scroll-mt-16">
         <div className="max-w-6xl mx-auto px-6">
           <SectionHeader
             label="내 목소리의 변화, 여기서 시작됩니다."

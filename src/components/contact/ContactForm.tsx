@@ -152,6 +152,13 @@ export default function ContactForm() {
     setChecked(new Set());
   }
 
+  // 진단에서 넘어온 경우 폼 섹션으로 스크롤
+  useEffect(() => {
+    if (hasPrecheck) {
+      document.getElementById("form")?.scrollIntoView({ behavior: "smooth" });
+    }
+  }, []); // eslint-disable-line react-hooks/exhaustive-deps
+
   // 인라인 체크리스트에서 선택한 항목을 diagnosis에 동기화
   useEffect(() => {
     if (checked.size > 0) {
