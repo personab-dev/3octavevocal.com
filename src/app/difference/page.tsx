@@ -24,8 +24,8 @@ export default async function DifferencePage() {
     <>
       <JsonLd
         data={getBreadcrumbSchema([
-          { name: "홈", url: "https://3octavevocal.com" },
-          { name: "차별점", url: "https://3octavevocal.com/difference" },
+          { name: "홈", path: "/" },
+          { name: "차별점", path: "/difference" },
         ])}
       />
       <DifferenceContent videos={beforeAfterVideos} />

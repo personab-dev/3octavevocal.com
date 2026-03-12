@@ -21,8 +21,8 @@ export default function LocationsPage() {
     <>
       <JsonLd
         data={getBreadcrumbSchema([
-          { name: "홈", url: "https://3octavevocal.com" },
-          { name: "지점 안내", url: "https://3octavevocal.com/locations" },
+          { name: "홈", path: "/" },
+          { name: "지점 안내", path: "/locations" },
         ])}
       />
       <LocationsContent />

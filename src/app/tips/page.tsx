@@ -21,8 +21,8 @@ export default function TipsPage() {
     <>
       <JsonLd
         data={getBreadcrumbSchema([
-          { name: "홈", url: "https://3octavevocal.com" },
-          { name: "발성 꿀팁", url: "https://3octavevocal.com/tips" },
+          { name: "홈", path: "/" },
+          { name: "발성 꿀팁", path: "/tips" },
         ])}
       />
       <TipsContent />

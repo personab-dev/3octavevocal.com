@@ -19,6 +19,7 @@ const notoSansKr = Noto_Sans_KR({
   variable: "--font-noto-sans-kr",
   subsets: ["latin"],
   weight: ["100", "300", "400", "500", "700", "900"],
+  display: "swap",
 });
 
 const dancingScript = Dancing_Script({
@@ -27,7 +28,7 @@ const dancingScript = Dancing_Script({
 });
 
 export const metadata: Metadata = {
-  metadataBase: new URL("https://3octavevocal.com"),
+  metadataBase: new URL(process.env.NEXT_PUBLIC_SITE_URL!),
   title: {
     default: "3옥타브장인 보컬학원, No.1 강남보컬학원",
     template: "%s — 3옥타브장인 보컬학원",
@@ -38,13 +39,14 @@ export const metadata: Metadata = {
     title: "3옥타브장인 보컬학원, No.1 강남보컬학원",
     description:
       "10년간 7,000명 이상의 수강생, 연예인들이 증명한, 강남 No.1 3옥타브장인 보컬학원 입니다.",
-    url: "https://3octavevocal.com",
+    url: process.env.NEXT_PUBLIC_SITE_URL!,
     siteName: "3옥타브장인 보컬학원",
     images: [
       {
-        url: "/images/og-image.png",
-        width: 1200,
-        height: 630,
+        url: "/images/og-default.jpg",
+        width: 1920,
+        height: 1080,
+        alt: "3옥타브장인 보컬학원 — 강남 No.1 보컬 트레이닝",
       },
     ],
     type: "website",
@@ -55,7 +57,7 @@ export const metadata: Metadata = {
     title: "3옥타브장인 보컬학원, No.1 강남보컬학원",
     description:
       "10년간 7,000명 이상의 수강생, 연예인들이 증명한, 강남 No.1 3옥타브장인 보컬학원 입니다.",
-    images: ["/images/og-image.png"],
+    images: ["/images/og-default.jpg"],
   },
 };
 

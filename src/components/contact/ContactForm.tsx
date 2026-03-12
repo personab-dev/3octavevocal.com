@@ -201,9 +201,8 @@ export default function ContactForm() {
         : "[유료] 심층 보컬 진단 & 솔루션";
 
       try {
-        await fetch(process.env.NEXT_PUBLIC_GOOGLE_SHEET_URL!, {
+        const res = await fetch("/api/contact", {
           method: "POST",
-          mode: "no-cors",
           headers: { "Content-Type": "application/json" },
           body: JSON.stringify({
             name: formData.name,
@@ -221,6 +220,7 @@ export default function ContactForm() {
             message: formData.message,
           }),
         });
+        if (!res.ok) throw new Error("전송 실패");
         setSubmitted(true);
       } catch {
         alert("전송에 실패했습니다. 잠시 후 다시 시도해주세요.");

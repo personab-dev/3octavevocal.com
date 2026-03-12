@@ -21,8 +21,8 @@ export default function PhilosophyPage() {
     <>
       <JsonLd
         data={getBreadcrumbSchema([
-          { name: "홈", url: "https://3octavevocal.com" },
-          { name: "대표 철학", url: "https://3octavevocal.com/philosophy" },
+          { name: "홈", path: "/" },
+          { name: "대표 철학", path: "/philosophy" },
         ])}
       />
       <PhilosophyContent />

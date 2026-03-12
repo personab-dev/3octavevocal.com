@@ -24,8 +24,8 @@ export default async function ReviewsPage() {
     <>
       <JsonLd
         data={getBreadcrumbSchema([
-          { name: "홈", url: "https://3octavevocal.com" },
-          { name: "수강생 후기", url: "https://3octavevocal.com/reviews" },
+          { name: "홈", path: "/" },
+          { name: "수강생 후기", path: "/reviews" },
         ])}
       />
       <ReviewsContent reviews={reviews} />

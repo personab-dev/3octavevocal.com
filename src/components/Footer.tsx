@@ -179,7 +179,7 @@ export default function Footer() {
         </div>
 
         <div className="mt-8 pt-8 border-t border-gray-200 text-center text-sm text-gray-400">
-          © {new Date().getFullYear()} 3Octave Vocal. All rights reserved.
+          © 2025.3octavemaster. All rights reserved.
         </div>
       </div>
     </footer>

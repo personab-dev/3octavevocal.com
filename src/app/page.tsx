@@ -17,6 +17,7 @@ import {
   getOrganizationSchema,
   getWebSiteSchema,
   getLocalBusinessSchemas,
+  getBreadcrumbSchema,
 } from "@/lib/schema";
 import { getBeforeAfters } from "@/lib/wordpress";
 
@@ -33,6 +34,7 @@ export default async function Home() {
     <>
       <JsonLd data={getOrganizationSchema()} />
       <JsonLd data={getWebSiteSchema()} />
+      <JsonLd data={getBreadcrumbSchema([{ name: "홈", path: "/" }])} />
       {localBusinessSchemas.map((schema, i) => (
         <JsonLd key={i} data={schema} />
       ))}

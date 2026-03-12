@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import ContactContent from "@/components/contact/ContactContent";
 import JsonLd from "@/components/JsonLd";
-import { getBreadcrumbSchema } from "@/lib/schema";
+import { getBreadcrumbSchema, getContactPageSchema } from "@/lib/schema";
 
 export const metadata: Metadata = {
   title: "무료 상담 예약",
@@ -21,10 +21,11 @@ export default function ContactPage() {
     <>
       <JsonLd
         data={getBreadcrumbSchema([
-          { name: "홈", url: "https://3octavevocal.com" },
-          { name: "상담 예약", url: "https://3octavevocal.com/contact" },
+          { name: "홈", path: "/" },
+          { name: "상담 예약", path: "/contact" },
         ])}
       />
+      <JsonLd data={getContactPageSchema()} />
       <ContactContent />
     </>
   );

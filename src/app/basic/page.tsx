@@ -1,7 +1,8 @@
 import type { Metadata } from "next";
 import BasicProgramContent from "@/components/program/BasicProgramContent";
 import JsonLd from "@/components/JsonLd";
-import { getBreadcrumbSchema } from "@/lib/schema";
+import { getBreadcrumbSchema, getFAQSchema, getServiceSchema } from "@/lib/schema";
+import { programFaqs } from "@/lib/faq-data";
 import { getBeforeAfters } from "@/lib/wordpress";
 
 export const metadata: Metadata = {
@@ -24,10 +25,19 @@ export default async function BasicProgramPage() {
     <>
       <JsonLd
         data={getBreadcrumbSchema([
-          { name: "홈", url: "https://3octavevocal.com" },
-          { name: "기본 교육과정", url: "https://3octavevocal.com/basic" },
+          { name: "홈", path: "/" },
+          { name: "기본 교육과정", path: "/basic" },
         ])}
       />
+      <JsonLd
+        data={getServiceSchema({
+          name: "기본 교육과정",
+          description:
+            "호흡, 공명, 성대 컨트롤, 피치를 체계적으로 배우는 기초 보컬 트레이닝",
+          path: "/basic",
+        })}
+      />
+      <JsonLd data={getFAQSchema(programFaqs)} />
       <BasicProgramContent videos={beforeAfterVideos} />
     </>
   );

@@ -1,4 +1,4 @@
-const SITE_URL = "https://3octavevocal.com";
+const SITE_URL = process.env.NEXT_PUBLIC_SITE_URL!;
 const SITE_NAME = "3옥타브장인 보컬학원";
 
 export function getOrganizationSchema() {
@@ -7,7 +7,7 @@ export function getOrganizationSchema() {
     "@type": "Organization",
     name: SITE_NAME,
     url: SITE_URL,
-    logo: `${SITE_URL}/images/og-image.png`,
+    logo: `${SITE_URL}/images/og-default.jpg`,
     sameAs: [
       "https://blog.naver.com/3octave1",
       "https://www.youtube.com/channel/UCp1xHspGwp6EhZwalQmI8Iw",
@@ -39,7 +39,7 @@ export function getLocalBusinessSchemas() {
       "@type": "LocalBusiness",
       "@id": `${SITE_URL}/#seoul`,
       name: "3옥타브장인 보컬학원 서울점",
-      image: `${SITE_URL}/images/og-image.png`,
+      image: `${SITE_URL}/images/og-default.jpg`,
       telephone: "0507-1406-2849",
       address: {
         "@type": "PostalAddress",
@@ -69,7 +69,7 @@ export function getLocalBusinessSchemas() {
       "@type": "LocalBusiness",
       "@id": `${SITE_URL}/#incheon`,
       name: "3옥타브장인 보컬학원 인천점",
-      image: `${SITE_URL}/images/og-image.png`,
+      image: `${SITE_URL}/images/og-default.jpg`,
       telephone: "0507-1319-1769",
       address: {
         "@type": "PostalAddress",
@@ -85,7 +85,7 @@ export function getLocalBusinessSchemas() {
       "@type": "LocalBusiness",
       "@id": `${SITE_URL}/#busan`,
       name: "3옥타브장인 보컬학원 부산점",
-      image: `${SITE_URL}/images/og-image.png`,
+      image: `${SITE_URL}/images/og-default.jpg`,
       telephone: "0507-1351-9158",
       address: {
         "@type": "PostalAddress",
@@ -99,8 +99,75 @@ export function getLocalBusinessSchemas() {
   ];
 }
 
+export function getFAQSchema(
+  faqs: { question: string; answer: string }[],
+) {
+  return {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    mainEntity: faqs.map((faq) => ({
+      "@type": "Question",
+      name: faq.question,
+      acceptedAnswer: {
+        "@type": "Answer",
+        text: faq.answer,
+      },
+    })),
+  };
+}
+
+export function getServiceSchema({
+  name,
+  description,
+  path,
+}: {
+  name: string;
+  description: string;
+  path: string;
+}) {
+  return {
+    "@context": "https://schema.org",
+    "@type": "Service",
+    name,
+    description,
+    provider: {
+      "@type": "Organization",
+      name: SITE_NAME,
+      url: SITE_URL,
+    },
+    url: `${SITE_URL}${path}`,
+    areaServed: {
+      "@type": "Country",
+      name: "KR",
+    },
+  };
+}
+
+export function getContactPageSchema() {
+  return {
+    "@context": "https://schema.org",
+    "@type": "ContactPage",
+    name: "무료 상담 예약",
+    description: "3옥타브장인 보컬학원 무료 상담 예약",
+    url: `${SITE_URL}/contact`,
+    mainEntity: {
+      "@type": "Organization",
+      name: SITE_NAME,
+      contactPoint: [
+        {
+          "@type": "ContactPoint",
+          telephone: "0507-1406-2849",
+          contactType: "customer service",
+          areaServed: "KR",
+          availableLanguage: "Korean",
+        },
+      ],
+    },
+  };
+}
+
 export function getBreadcrumbSchema(
-  items: { name: string; url: string }[],
+  items: { name: string; path: string }[],
 ) {
   return {
     "@context": "https://schema.org",
@@ -109,7 +176,7 @@ export function getBreadcrumbSchema(
       "@type": "ListItem",
       position: i + 1,
       name: item.name,
-      item: item.url,
+      item: `${SITE_URL}${item.path}`,
     })),
   };
 }
