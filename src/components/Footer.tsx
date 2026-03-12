@@ -1,5 +1,6 @@
 import Link from "next/link";
 import Image from "next/image";
+import { operatingHoursSummary } from "@/lib/operating-hours";
 
 const branches = [
   {
@@ -115,8 +116,7 @@ export default function Footer() {
                 3octavemaster@naver.com
               </p>
               <p className="mt-1">
-                상담시간: 평일 오후 1시~ 오후 10시, 주말 오후12시~오후7시, 목요일
-                휴무
+                상담시간: {operatingHoursSummary}
               </p>
             </div>
           </div>

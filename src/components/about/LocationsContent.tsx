@@ -8,6 +8,7 @@ import PageHero from "@/components/PageHero";
 import AboutSubNav from "./AboutSubNav";
 import FinalCta from "@/components/FinalCta";
 import NaverMap from "@/components/NaverMap";
+import { operatingHours } from "@/lib/operating-hours";
 
 const branches = [
   {
@@ -48,12 +49,6 @@ const branches = [
   },
 ];
 
-const operatingHours = [
-  { day: "평일 (월~수, 금)", time: "13:00 ~ 22:00" },
-  { day: "토요일", time: "13:00 ~ 22:00" },
-  { day: "주말 (일요일)", time: "12:00 ~ 19:00" },
-  { day: "목요일", time: "휴무", isHoliday: true },
-];
 
 export default function LocationsContent() {
   const [activeBranch, setActiveBranch] = useState(0);

@@ -7,13 +7,8 @@ import PageHero from "@/components/PageHero";
 import SectionHeader from "@/components/SectionHeader";
 import ContactForm from "./ContactForm";
 import BranchCards from "./BranchCards";
+import { operatingHours } from "@/lib/operating-hours";
 
-const operatingHours = [
-  { day: "평일 (월~수, 금)", time: "13:00 ~ 22:00" },
-  { day: "토요일", time: "13:00 ~ 22:00" },
-  { day: "주말 (일요일)", time: "12:00 ~ 19:00" },
-  { day: "목요일", time: "휴무", isHoliday: true },
-];
 
 const infoCards = [
   {
