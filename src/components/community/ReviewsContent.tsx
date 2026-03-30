@@ -17,9 +17,10 @@ interface Review {
 
 interface ReviewsContentProps {
   reviews: Review[];
+  reviewsDescription: string;
 }
 
-export default function ReviewsContent({ reviews }: ReviewsContentProps) {
+export default function ReviewsContent({ reviews, reviewsDescription }: ReviewsContentProps) {
   return (
     <>
       <PageHero
@@ -36,7 +37,7 @@ export default function ReviewsContent({ reviews }: ReviewsContentProps) {
             label="Student Reviews"
             labelStyle="accent"
             heading={<>첫 레슨만으로<br /><span className="text-accent">변화를 경험한 수강생들</span></>}
-            description="7,000명 이상의 수강생을 배출한 3옥타브장인 보컬학원의 생생한 레슨 현장과 후기를 소개합니다."
+            description={reviewsDescription}
           />
         </div>
       </section>

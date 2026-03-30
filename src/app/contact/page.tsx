@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import ContactContent from "@/components/contact/ContactContent";
 import JsonLd from "@/components/JsonLd";
 import { getBreadcrumbSchema, getContactPageSchema } from "@/lib/schema";
+import { getConsultationSettings } from "@/lib/wordpress";
 
 export const metadata: Metadata = {
   title: "무료 상담 예약",
@@ -16,7 +17,9 @@ export const metadata: Metadata = {
   },
 };
 
-export default function ContactPage() {
+export default async function ContactPage() {
+  const consultationSettings = await getConsultationSettings();
+
   return (
     <>
       <JsonLd
@@ -26,7 +29,7 @@ export default function ContactPage() {
         ])}
       />
       <JsonLd data={getContactPageSchema()} />
-      <ContactContent />
+      <ContactContent consultationSettings={consultationSettings} />
     </>
   );
 }

@@ -56,7 +56,7 @@ export default function CurriculumSection() {
             <span className="text-accent">가장 확실한 방법</span>
           </h2>
           <p className="text-text-on-light/60 text-base md:text-lg mt-4 max-w-2xl mx-auto leading-relaxed">
-            7,000명 이상의 수강생 데이터가 증명합니다. 타고나지 않아도, 어떤 케이스라도 변화시킬 수 있는 솔루션이 준비되어 있습니다.
+            8,000명 이상의 수강생 데이터가 증명합니다. 타고나지 않아도, 어떤 케이스라도 변화시킬 수 있는 솔루션이 준비되어 있습니다.
           </p>
         </motion.div>
 

@@ -5,10 +5,10 @@ import { motion, useInView } from "framer-motion";
 import CountUp from "@/components/animations/CountUp";
 
 const stats = [
-  { value: 7000, suffix: "+", label: "누적 수강생" },
+  { value: 8000, suffix: "+", label: "누적 수강생" },
   { value: 98, suffix: "%", label: "만족도" },
   { value: 15, suffix: "년", label: "커리큘럼 연구" },
-  { value: 1500, suffix: "+", label: "수강 후기" },
+  { value: 2000, suffix: "+", label: "수강 후기" },
 ];
 
 export default function StatsStrip() {

@@ -34,11 +34,11 @@ export const metadata: Metadata = {
     template: "%s — 3옥타브장인 보컬학원",
   },
   description:
-    "10년간 7,000명 이상의 수강생, 연예인들이 증명한, 강남 No.1 3옥타브장인 보컬학원 입니다.",
+    "10년간 8,000명 이상의 수강생, 연예인들이 증명한, 강남 No.1 3옥타브장인 보컬학원 입니다.",
   openGraph: {
     title: "3옥타브장인 보컬학원, No.1 강남보컬학원",
     description:
-      "10년간 7,000명 이상의 수강생, 연예인들이 증명한, 강남 No.1 3옥타브장인 보컬학원 입니다.",
+      "10년간 8,000명 이상의 수강생, 연예인들이 증명한, 강남 No.1 3옥타브장인 보컬학원 입니다.",
     url: process.env.NEXT_PUBLIC_SITE_URL!,
     siteName: "3옥타브장인 보컬학원",
     images: [
@@ -56,7 +56,7 @@ export const metadata: Metadata = {
     card: "summary_large_image",
     title: "3옥타브장인 보컬학원, No.1 강남보컬학원",
     description:
-      "10년간 7,000명 이상의 수강생, 연예인들이 증명한, 강남 No.1 3옥타브장인 보컬학원 입니다.",
+      "10년간 8,000명 이상의 수강생, 연예인들이 증명한, 강남 No.1 3옥타브장인 보컬학원 입니다.",
     images: ["/images/og-default.jpg"],
   },
 };

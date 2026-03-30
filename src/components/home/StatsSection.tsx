@@ -6,10 +6,10 @@ import { motion, useInView } from "framer-motion";
 import CountUp from "@/components/animations/CountUp";
 
 const stats = [
-  { label: "운영기간", value: 9, suffix: "년", sublabel: "" },
+  { label: "운영기간", value: 10, suffix: "년+", sublabel: "" },
   { label: "만족도", value: 98, suffix: "%", sublabel: "" },
-  { label: "누적 수강후기", value: 1500, suffix: "개+", sublabel: "일반인 대상 보컬학원 중 최다" },
-  { label: "누적 수강생", value: 7000, suffix: "명+", sublabel: "실력 향상을 보장하는 시스템" },
+  { label: "누적 수강후기", value: 2000, suffix: "개+", sublabel: "일반인 대상 보컬학원 중 최다" },
+  { label: "누적 수강생", value: 8000, suffix: "명+", sublabel: "실력 향상을 보장하는 시스템" },
   { label: "누적 보컬레슨 시간", value: 595680, suffix: "+", sublabel: "압도적인 노하우" },
 ];
 

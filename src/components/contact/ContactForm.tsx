@@ -4,6 +4,7 @@ import { useState, useEffect, useRef, useCallback, type FormEvent } from "react"
 import { useSearchParams } from "next/navigation";
 import { motion, useInView, AnimatePresence } from "framer-motion";
 import { Send, ChevronDown, Check } from "lucide-react";
+import type { ConsultationSettings } from "@/lib/wordpress";
 
 const branchOptions = [
   "서울점 (강남역 5번 출구 100m)",
@@ -34,19 +35,9 @@ const satisfactionOptions = [
   "불만족",
   "매우 불만족",
 ] as const;
-const consultationTypes = [
-  {
-    value: "general",
-    label: "[무료] 일반 상담",
-    description: "내 상태 확인, 수강료, 커리큘럼, 등록 절차 등 빠른 안내",
-  },
-  {
-    value: "deep",
-    label: "[유료] 심층 보컬 진단 & 솔루션",
-    description:
-      "내 발성의 문제점을 심도있게 진단, 맞춤 솔루션 제공 / 진단지 및 연습파일&녹음파일 등 제공",
-  },
-] as const;
+interface ContactFormProps {
+  consultationSettings: ConsultationSettings;
+}
 
 const basicDiagnosisItems = [
   "1~2곡만 불러도 목이 금방 쉬거나 칼칼해진다.",
@@ -101,7 +92,8 @@ interface FormErrors {
   branch?: string;
 }
 
-export default function ContactForm() {
+export default function ContactForm({ consultationSettings }: ContactFormProps) {
+  const { types: consultationTypes, footnote } = consultationSettings;
   const ref = useRef<HTMLFormElement>(null);
   const isInView = useInView(ref, { once: true, amount: 0.2 });
   const searchParams = useSearchParams();
@@ -118,6 +110,7 @@ export default function ContactForm() {
   const [diagnosisTab, setDiagnosisTab] = useState<DiagnosisTab>(paramSource ?? "basic");
   const [checked, setChecked] = useState<Set<number>>(precheckedIndices);
   const [showOptional, setShowOptional] = useState(hasPrecheck);
+  const autoSelectedType = consultationTypes.length === 1 ? consultationTypes[0].value : "";
   const [formData, setFormData] = useState<FormData>({
     name: "",
     phone: "",
@@ -127,7 +120,7 @@ export default function ContactForm() {
     hasExperience: "",
     experienceDuration: "",
     experienceSatisfaction: "",
-    consultationType: "",
+    consultationType: autoSelectedType,
     branch: "",
     message: "",
   });
@@ -196,9 +189,8 @@ export default function ContactForm() {
       const basicItems = diagnosis?.source === "basic" ? diagnosis.items.join(" , ") : "";
       const advancedItems = diagnosis?.source === "advanced" ? diagnosis.items.join(" , ") : "";
 
-      const consultationLabel = formData.consultationType === "general"
-        ? "[무료] 일반 상담"
-        : "[유료] 심층 보컬 진단 & 솔루션";
+      const consultationLabel =
+        consultationTypes.find((t) => t.value === formData.consultationType)?.label ?? formData.consultationType;
 
       try {
         const res = await fetch("/api/contact", {
@@ -362,9 +354,11 @@ export default function ContactForm() {
             </button>
           ))}
         </div>
-        <p className="text-text-on-light/40 text-xs mt-2">
-          * 심층 진단&amp;솔루션 비용은 정규과정 당일 등록 시 전액 할인됩니다.
-        </p>
+        {footnote && (
+          <p className="text-text-on-light/40 text-xs mt-2">
+            {footnote}
+          </p>
+        )}
         {errors.consultationType && (
           <p className="text-accent text-sm mt-1">{errors.consultationType}</p>
         )}
@@ -426,8 +420,8 @@ export default function ContactForm() {
                 {/* 탭 */}
                 <div className="flex gap-2 mb-4">
                   {([
-                    { key: "basic" as DiagnosisTab, label: "기본과정" },
-                    { key: "advanced" as DiagnosisTab, label: "심화과정" },
+                    { key: "basic" as DiagnosisTab, label: "발성" },
+                    { key: "advanced" as DiagnosisTab, label: "노래" },
                   ]).map((tab) => (
                     <button
                       key={tab.key}

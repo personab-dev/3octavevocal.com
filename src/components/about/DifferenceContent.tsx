@@ -15,14 +15,14 @@ const strengths = [
     number: "01",
     title: (
       <>
-        <span className="text-accent">7,000명</span>이 선택한 교육,
+        <span className="text-accent">8,000명</span>이 선택한 교육,
         <br />
         <span className="text-accent">경쟁 학원들도 참고</span>하는 커리큘럼
       </>
     ),
     subtitle: "체계적인 커리큘럼 (타 학원에서도 배우러 옵니다.)",
     bullets: [
-      { bold: "10년간, 7,000명 이상의 실전 데이터", rest: "로 완성된 체계적인 커리큘럼" },
+      { bold: "10년간, 8,000명 이상의 실전 데이터", rest: "로 완성된 체계적인 커리큘럼" },
       { bold: "과학적 분석을 통한 1:1 맞춤 솔루션", rest: "" },
       { bold: "안전한 발성 메소드", rest: " — 현직 이비인후과 전문의와 협력 개발" },
       { bold: "프로 가수도 찾는 검증된 시스템", rest: "" },
@@ -91,7 +91,7 @@ const strengths = [
 
 const stats = [
   { label: "누적 보컬레슨 시간", value: 595680, suffix: "+" },
-  { label: "누적 수강생", value: 7000, suffix: "명+" },
+  { label: "누적 수강생", value: 8000, suffix: "명+" },
   { label: "만족도", value: 98, suffix: "%" },
 ];
 
@@ -352,7 +352,7 @@ export default function DifferenceContent({ videos }: { videos: VideoItem[] }) {
               수강생들의 진짜 이야기
             </p>
             <h2 className="text-2xl md:text-3xl lg:text-4xl font-bold text-text-on-light">
-              <span className="text-accent">7,000명</span>이 경험한 변화
+              <span className="text-accent">8,000명</span>이 경험한 변화
             </h2>
           </motion.div>
 

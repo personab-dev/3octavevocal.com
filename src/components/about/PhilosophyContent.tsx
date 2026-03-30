@@ -26,7 +26,7 @@ const promises = [
   {
     number: "02",
     title: "실력향상에 대한 확실한 보장",
-    body: '9년간 7,000명이 "할 수 없다"에서 "해냈다"로 바뀌었습니다.\n처음엔 모두 의구심을 가졌지만,\n지금은 음역대가 2~3키 이상 상승되었고,\n자신 있게 노래합니다.\n여러분도 충분히 변화할 수 있습니다.',
+    body: '10년간 8,000명이 "할 수 없다"에서 "해냈다"로 바뀌었습니다.\n처음엔 모두 의구심을 가졌지만,\n지금은 음역대가 2~3키 이상 상승되었고,\n자신 있게 노래합니다.\n여러분도 충분히 변화할 수 있습니다.',
   },
   {
     number: "03",
@@ -296,15 +296,15 @@ export default function PhilosophyContent() {
             className="space-y-6 text-gray-400 text-sm md:text-base leading-relaxed"
           >
             <h2 className="text-2xl md:text-3xl font-bold text-white">
-              지난 9년간{" "}
-              <span className="text-accent">7,000명 이상</span>의 수강생들이
+              지난 10년간{" "}
+              <span className="text-accent">8,000명 이상</span>의 수강생들이
               증명했습니다.
             </h2>
 
             <p>
               수업을 들으면 누구나 실력이 향상될 수밖에 없는 구조,
               <br />
-              이것이 우리가 9년 동안 쌓아온, 검증된 시스템입니다.
+              이것이 우리가 10년 동안 쌓아온, 검증된 시스템입니다.
             </p>
 
             <p>

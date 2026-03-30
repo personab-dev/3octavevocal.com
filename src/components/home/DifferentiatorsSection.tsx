@@ -75,7 +75,7 @@ export default function DifferentiatorsSection() {
               className="relative z-10"
             >
               <h2 className="text-4xl md:text-5xl lg:text-6xl font-black text-white leading-tight">
-                <span className="underline decoration-white decoration-4 underline-offset-4">7,000명+의 선택</span>에는<br />
+                <span className="underline decoration-white decoration-4 underline-offset-4">8,000명+의 선택</span>에는<br />
                 다 이유가 있습니다.
               </h2>
               <p className="text-white/80 text-lg md:text-xl mt-6 leading-relaxed">

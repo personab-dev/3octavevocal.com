@@ -8,6 +8,7 @@ import SectionHeader from "@/components/SectionHeader";
 import ContactForm from "./ContactForm";
 import BranchCards from "./BranchCards";
 import { operatingHours } from "@/lib/operating-hours";
+import type { ConsultationSettings } from "@/lib/wordpress";
 
 
 const infoCards = [
@@ -28,7 +29,11 @@ const infoCards = [
   },
 ];
 
-export default function ContactContent() {
+interface ContactContentProps {
+  consultationSettings: ConsultationSettings;
+}
+
+export default function ContactContent({ consultationSettings }: ContactContentProps) {
   return (
     <>
       <PageHero
@@ -50,7 +55,7 @@ export default function ContactContent() {
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-16">
             {/* 왼쪽: 폼 */}
             <Suspense fallback={<div className="animate-pulse h-96 bg-zinc-100 rounded" />}>
-              <ContactForm />
+              <ContactForm consultationSettings={consultationSettings} />
             </Suspense>
 
             {/* 오른쪽: 안내 카드 */}
