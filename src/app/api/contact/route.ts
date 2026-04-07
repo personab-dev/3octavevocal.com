@@ -19,6 +19,19 @@ const BRANCH_PFID: Record<string, string | undefined> = {
   seomyeon: process.env.SOLAPI_PFID_SEOMYEON,
 };
 
+// 지점별 템플릿 ID
+const BRANCH_TEMPLATE_ADMIN: Record<string, string | undefined> = {
+  gangnam: process.env.SOLAPI_TEMPLATE_ADMIN_GANGNAM,
+  bupyeong: process.env.SOLAPI_TEMPLATE_ADMIN_BUPYEONG,
+  seomyeon: process.env.SOLAPI_TEMPLATE_ADMIN_SEOMYEON,
+};
+
+const BRANCH_TEMPLATE_CUSTOMER: Record<string, string | undefined> = {
+  gangnam: process.env.SOLAPI_TEMPLATE_CUSTOMER_GANGNAM,
+  bupyeong: process.env.SOLAPI_TEMPLATE_CUSTOMER_BUPYEONG,
+  seomyeon: process.env.SOLAPI_TEMPLATE_CUSTOMER_SEOMYEON,
+};
+
 // WP 어드민에서 관리하는 지점별 수신번호 가져오기
 async function fetchRecipients() {
   const res = await fetch(process.env.WORDPRESS_API_URL!, {
@@ -55,8 +68,8 @@ export async function POST(request: Request) {
     // 2. 솔라피 카카오 알림톡
     const branchKey = BRANCH_KEY[body.branch];
     const pfId = branchKey ? BRANCH_PFID[branchKey] : undefined;
-    const adminTemplateId = process.env.SOLAPI_TEMPLATE_ADMIN;
-    const customerTemplateId = process.env.SOLAPI_TEMPLATE_CUSTOMER;
+    const adminTemplateId = branchKey ? BRANCH_TEMPLATE_ADMIN[branchKey] : undefined;
+    const customerTemplateId = branchKey ? BRANCH_TEMPLATE_CUSTOMER[branchKey] : undefined;
 
     if (branchKey && pfId) {
       const recipients = await fetchRecipients();

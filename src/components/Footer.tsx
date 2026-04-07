@@ -35,7 +35,7 @@ function NaverBlogIcon({ className }: { className?: string }) {
     >
       <circle cx="24" cy="24" r="24" fill="#03C75A" />
       <path
-        d="M16 15.5V32.5H21.5L26.5 24V32.5H32V15.5H26.5L21.5 24V15.5H16Z"
+        d="M27.3 15H32V33H27.3L20.7 23.4V33H16V15H20.7L27.3 24.6V15Z"
         fill="white"
       />
     </svg>

@@ -17,13 +17,19 @@ import {
   getOrganizationSchema,
   getWebSiteSchema,
   getLocalBusinessSchemas,
+  getVideoObjectSchemas,
   getBreadcrumbSchema,
 } from "@/lib/schema";
 import { getBeforeAfters } from "@/lib/wordpress";
 
 export const metadata: Metadata = {
   alternates: { canonical: "/" },
-  openGraph: { url: "/" },
+  openGraph: {
+    url: "/",
+    title: "3옥타브장인 보컬학원, No.1 강남보컬학원",
+    description:
+      "10년간 8,000명 이상의 수강생, 연예인들이 증명한, 강남 No.1 3옥타브장인 보컬학원 입니다.",
+  },
 };
 
 export default async function Home() {
@@ -37,6 +43,9 @@ export default async function Home() {
       <JsonLd data={getBreadcrumbSchema([{ name: "홈", path: "/" }])} />
       {localBusinessSchemas.map((schema, i) => (
         <JsonLd key={i} data={schema} />
+      ))}
+      {getVideoObjectSchemas(beforeAfterVideos).map((schema, i) => (
+        <JsonLd key={`video-${i}`} data={schema} />
       ))}
       <div className="flex flex-col w-full">
         <HeroSection />

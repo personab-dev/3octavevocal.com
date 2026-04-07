@@ -1,7 +1,12 @@
 import type { Metadata } from "next";
 import BasicProgramContent from "@/components/program/BasicProgramContent";
 import JsonLd from "@/components/JsonLd";
-import { getBreadcrumbSchema, getFAQSchema, getServiceSchema } from "@/lib/schema";
+import {
+  getBreadcrumbSchema,
+  getCourseSchema,
+  getFAQSchema,
+  getVideoObjectSchemas,
+} from "@/lib/schema";
 import { programFaqs } from "@/lib/faq-data";
 import { getBeforeAfters } from "@/lib/wordpress";
 
@@ -30,7 +35,7 @@ export default async function BasicProgramPage() {
         ])}
       />
       <JsonLd
-        data={getServiceSchema({
+        data={getCourseSchema({
           name: "기본 교육과정",
           description:
             "호흡, 공명, 성대 컨트롤, 피치를 체계적으로 배우는 기초 보컬 트레이닝",
@@ -38,6 +43,9 @@ export default async function BasicProgramPage() {
         })}
       />
       <JsonLd data={getFAQSchema(programFaqs)} />
+      {getVideoObjectSchemas(beforeAfterVideos).map((schema, i) => (
+        <JsonLd key={i} data={schema} />
+      ))}
       <BasicProgramContent videos={beforeAfterVideos} />
     </>
   );

@@ -166,6 +166,44 @@ export function getContactPageSchema() {
   };
 }
 
+export function getCourseSchema({
+  name,
+  description,
+  path,
+}: {
+  name: string;
+  description: string;
+  path: string;
+}) {
+  return {
+    "@context": "https://schema.org",
+    "@type": "Course",
+    name,
+    description,
+    url: `${SITE_URL}${path}`,
+    provider: {
+      "@type": "EducationalOrganization",
+      name: SITE_NAME,
+      url: SITE_URL,
+    },
+    inLanguage: "ko",
+  };
+}
+
+export function getVideoObjectSchemas(
+  videos: { id: string; title: string; url: string }[],
+) {
+  return videos.map((v) => ({
+    "@context": "https://schema.org",
+    "@type": "VideoObject",
+    name: v.title,
+    thumbnailUrl: `https://img.youtube.com/vi/${v.id}/hqdefault.jpg`,
+    contentUrl: v.url,
+    embedUrl: `https://www.youtube.com/embed/${v.id}`,
+    uploadDate: "2025-01-01",
+  }));
+}
+
 export function getBreadcrumbSchema(
   items: { name: string; path: string }[],
 ) {
