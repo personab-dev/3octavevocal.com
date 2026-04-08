@@ -48,7 +48,7 @@ export default function HeroSection() {
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8, delay: 0.4 }}
-          className="mt-5 text-2xl md:text-3xl lg:text-4xl font-bold text-white"
+          className="mt-5 text-2xl md:text-3xl lg:text-4xl font-bold text-white leading-[1.6]"
         >
           수천명이 검증한{" "}
           <span className="underline decoration-accent decoration-4 underline-offset-8">

@@ -37,7 +37,7 @@ export default function ProblemSolutionSection() {
           viewport={{ once: true }}
           transition={{ duration: 0.7, delay: 0.3 }}
         >
-          <p className="text-2xl md:text-3xl lg:text-4xl font-bold text-white">
+          <p className="text-2xl md:text-3xl lg:text-4xl font-bold text-white leading-[1.6]">
             <span className="underline decoration-white decoration-4 underline-offset-8">
               문제의 원인을 제대로 알고 확실한 변화를 경험하세요.
             </span>

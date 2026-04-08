@@ -56,31 +56,6 @@ export default function CurriculumSection() {
           </h2>
         </motion.div>
 
-        {/* Desktop: horizontal stepper line */}
-        <motion.div
-          initial={{ opacity: 0 }}
-          whileInView={{ opacity: 1 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.7, delay: 0.2 }}
-          className="hidden md:flex items-center justify-center mb-14"
-        >
-          {advancedCurriculum.map((item, index) => (
-            <div key={item.number} className="flex items-center">
-              <div className="flex items-center gap-2">
-                <span className="w-8 h-8 rounded-full bg-accent text-white text-sm font-bold flex items-center justify-center">
-                  {item.number}
-                </span>
-                <span className="text-sm font-bold text-text-on-light">
-                  {item.title}
-                </span>
-              </div>
-              {index < advancedCurriculum.length - 1 && (
-                <div className="w-16 lg:w-24 h-[2px] bg-gray-200 mx-4" />
-              )}
-            </div>
-          ))}
-        </motion.div>
-
         {/* 3 Curriculum Cards */}
         <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
           {advancedCurriculum.map((item, index) => (
