@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { Bebas_Neue, Inter, Noto_Sans_KR, Dancing_Script } from "next/font/google";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
+import ScrollToTop from "@/components/ScrollToTop";
 import "./globals.css";
 
 const bebasNeue = Bebas_Neue({
@@ -71,6 +72,7 @@ export default function RootLayout({
       <body
         className={`${bebasNeue.variable} ${inter.variable} ${notoSansKr.variable} ${dancingScript.variable} antialiased font-sans bg-black text-white`}
       >
+        <ScrollToTop />
         <Header />
         <main className="min-h-screen pt-16">{children}</main>
         <Footer />
