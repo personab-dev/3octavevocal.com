@@ -60,6 +60,12 @@ export const metadata: Metadata = {
       "10년간 8,000명 이상의 수강생, 연예인들이 증명한, 강남 No.1 3옥타브장인 보컬학원 입니다.",
     images: ["/images/og-default.jpg"],
   },
+  verification: {
+    google: "M7MLozthGiCUL3AZnh5mKgMAVBm1oAkoL0xcuD-7MJM",
+    other: {
+      "naver-site-verification": ["54698668abaafa463c4f08d811313f4f7f9a213e"],
+    },
+  },
 };
 
 export default function RootLayout({
