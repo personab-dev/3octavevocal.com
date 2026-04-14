@@ -1,0 +1,7 @@
+User-agent: *
+Allow: /
+Disallow: /api/
+
+Sitemap: https://3octavevocal.com/sitemap.xml
+
+#DaumWebMasterTool:4cdfafd6bc72ede864f40d1358a3b1ac866d5d9ea7824e3b832e754ad53bc219:Gp3DTLCV1V07JdcqLQupTw==
