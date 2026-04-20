@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import { GoogleAnalytics } from "@next/third-parties/google";
 import { Bebas_Neue, Inter, Noto_Sans_KR, Dancing_Script } from "next/font/google";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
@@ -83,6 +84,7 @@ export default function RootLayout({
         <main className="min-h-screen pt-16">{children}</main>
         <Footer />
       </body>
+      <GoogleAnalytics gaId="G-3D2WLK5RWP" />
     </html>
   );
 }
