@@ -5,12 +5,12 @@ import { getBreadcrumbSchema, getContactPageSchema } from "@/lib/schema";
 import { getConsultationSettings } from "@/lib/wordpress";
 
 export const metadata: Metadata = {
-  title: "무료 상담 예약",
+  title: "상담&솔루션 예약",
   description:
     "3옥타브장인 보컬학원 무료 상담 예약. 서울 강남, 인천 부평, 부산 서면.",
   alternates: { canonical: "/contact" },
   openGraph: {
-    title: "무료 상담 예약",
+    title: "상담&솔루션 예약",
     description:
       "3옥타브장인 보컬학원 무료 상담 예약. 서울 강남, 인천 부평, 부산 서면.",
     url: "/contact",
