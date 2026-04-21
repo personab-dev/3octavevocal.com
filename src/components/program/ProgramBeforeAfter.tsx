@@ -79,7 +79,7 @@ export default function ProgramBeforeAfter({
                     </div>
                   </div>
                 </div>
-                <p className="text-text-on-light text-sm md:text-base leading-snug mt-2 group-hover:text-accent transition-colors text-left">
+                <p className="text-text-on-light text-sm md:text-base leading-snug mt-2 group-hover:text-accent transition-colors text-left line-clamp-2 min-h-[2.5em]">
                   {video.title}
                 </p>
               </button>

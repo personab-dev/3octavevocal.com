@@ -46,13 +46,6 @@ export const beforeAfterShorts: VideoItem[] = [
   shorts("NYwHQWvYpnA", "비포 & 애프터 #10"),
 ];
 
-// 인터뷰 + 노래 커버 (심화과정용)
-export const interviewVideos: VideoItem[] = [
-  { id: "vPdvnTJGdGQ", title: "수강생 인터뷰 + 노래 커버", url: "https://youtu.be/vPdvnTJGdGQ", thumbnail: videoThumb("vPdvnTJGdGQ") },
-  { id: "krop87qig2c", title: "수강생 인터뷰 + 노래 커버", url: "https://youtu.be/krop87qig2c", thumbnail: videoThumb("krop87qig2c") },
-  { id: "-wjniTCwal0", title: "수강생 인터뷰 + 노래 커버", url: "https://youtu.be/-wjniTCwal0", thumbnail: videoThumb("-wjniTCwal0") },
-];
-
 // 비포애프터 모음집
 export const compilationVideo: VideoItem = {
   id: "P4mlGFzwkdc",

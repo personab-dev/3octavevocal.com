@@ -3,6 +3,7 @@ import AdvancedProgramContent from "@/components/program/AdvancedProgramContent"
 import JsonLd from "@/components/JsonLd";
 import { getBreadcrumbSchema, getCourseSchema, getFAQSchema } from "@/lib/schema";
 import { programFaqs } from "@/lib/faq-data";
+import { getInterviewVideos } from "@/lib/wordpress";
 
 export const metadata: Metadata = {
   title: "심화 교육과정",
@@ -17,7 +18,9 @@ export const metadata: Metadata = {
   },
 };
 
-export default function AdvancedProgramPage() {
+export default async function AdvancedProgramPage() {
+  const interviewVideos = await getInterviewVideos();
+
   return (
     <>
       <JsonLd
@@ -35,7 +38,7 @@ export default function AdvancedProgramPage() {
         })}
       />
       <JsonLd data={getFAQSchema(programFaqs)} />
-      <AdvancedProgramContent />
+      <AdvancedProgramContent interviewVideos={interviewVideos} />
     </>
   );
 }

@@ -77,6 +77,44 @@ export async function getBeforeAfters() {
   });
 }
 
+// ── Interview Videos ──
+
+interface InterviewNode {
+  title: string;
+  menuOrder: number | null;
+  youtubeUrl: string;
+}
+
+interface InterviewsResponse {
+  interviews: {
+    nodes: InterviewNode[];
+  };
+}
+
+export async function getInterviewVideos() {
+  const data = await fetchGraphQL<InterviewsResponse>(`
+    {
+      interviews(first: 20, where: { orderby: { field: MENU_ORDER, order: ASC } }) {
+        nodes {
+          title
+          menuOrder
+          youtubeUrl
+        }
+      }
+    }
+  `);
+
+  return data.interviews.nodes.map((node) => {
+    const id = extractYouTubeId(node.youtubeUrl);
+    return {
+      id: id ?? "",
+      title: node.title,
+      url: node.youtubeUrl,
+      thumbnail: `https://img.youtube.com/vi/${id}/hqdefault.jpg`,
+    };
+  });
+}
+
 // ── Consultation Type Settings ──
 
 export interface ConsultationType {

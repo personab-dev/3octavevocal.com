@@ -8,9 +8,13 @@ import DiagnosisSection from "./advanced/DiagnosisSection";
 import TargetSection from "./advanced/TargetSection";
 import ProgramFAQ from "./ProgramFAQ";
 import FinalCta from "@/components/FinalCta";
-import { interviewVideos } from "@/lib/videos";
+import type { VideoItem } from "@/lib/videos";
 
-export default function AdvancedProgramContent() {
+export default function AdvancedProgramContent({
+  interviewVideos,
+}: {
+  interviewVideos: VideoItem[];
+}) {
   return (
     <>
       {/* 1. Hero */}
