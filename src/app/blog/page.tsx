@@ -2,6 +2,9 @@ import type { Metadata } from "next";
 import BlogContent from "@/components/community/BlogContent";
 import JsonLd from "@/components/JsonLd";
 import { getBreadcrumbSchema } from "@/lib/schema";
+import { getAllPosts, getAllCategories } from "@/lib/wordpress";
+
+export const revalidate = 3600;
 
 export const metadata: Metadata = {
   title: "블로그",
@@ -16,7 +19,12 @@ export const metadata: Metadata = {
   },
 };
 
-export default function BlogPage() {
+export default async function BlogPage() {
+  const [posts, categories] = await Promise.all([
+    getAllPosts(),
+    getAllCategories(),
+  ]);
+
   return (
     <>
       <JsonLd
@@ -25,7 +33,7 @@ export default function BlogPage() {
           { name: "블로그", path: "/blog" },
         ])}
       />
-      <BlogContent />
+      <BlogContent posts={posts} categories={categories} />
     </>
   );
 }

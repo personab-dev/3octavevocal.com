@@ -12,6 +12,11 @@ const nextConfig: NextConfig = {
         protocol: "https",
         hostname: "cdn.imweb.me",
       },
+      {
+        protocol: "https",
+        hostname: "admin.3octavevocal.com",
+        pathname: "/wp-content/uploads/**",
+      },
     ],
     formats: ["image/avif", "image/webp"],
   },

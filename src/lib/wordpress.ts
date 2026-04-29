@@ -2,21 +2,36 @@ import { extractYouTubeId } from "./videos";
 
 const API_URL = process.env.WORDPRESS_API_URL!;
 
-export async function fetchGraphQL<T>(query: string): Promise<T> {
-  const res = await fetch(API_URL, {
+export async function fetchGraphQL<T>(
+  query: string,
+  variables?: Record<string, unknown>,
+  revalidate: number = 60
+): Promise<T> {
+  const init: RequestInit & { next?: { revalidate: number } } = {
     method: "POST",
     headers: { "Content-Type": "application/json" },
-    body: JSON.stringify({ query }),
-    next: { revalidate: 60 },
-  });
+    body: JSON.stringify({ query, variables }),
+  };
 
-  const json = await res.json();
-
-  if (json.errors) {
-    throw new Error(json.errors[0].message);
+  if (revalidate <= 0) {
+    init.cache = "no-store";
+  } else {
+    init.next = { revalidate };
   }
 
-  return json.data;
+  let lastError: unknown;
+  for (let attempt = 0; attempt < 2; attempt++) {
+    try {
+      const res = await fetch(API_URL, init);
+      const json = await res.json();
+      if (json.errors) throw new Error(json.errors[0].message);
+      return json.data;
+    } catch (error) {
+      lastError = error;
+      if (attempt === 0) await new Promise((r) => setTimeout(r, 300));
+    }
+  }
+  throw lastError;
 }
 
 interface Review {
@@ -233,6 +248,141 @@ export async function getReviewsPageDescription(): Promise<string> {
 }
 
 // ── Reviews ──
+
+// ── Blog Posts ──
+
+export interface BlogCategory {
+  name: string;
+  slug: string;
+}
+
+export interface BlogPost {
+  slug: string;
+  title: string;
+  excerpt: string;
+  date: string;
+  content?: string;
+  featuredImage?: {
+    node: {
+      sourceUrl: string;
+      altText?: string;
+    };
+  };
+  categories?: {
+    nodes: BlogCategory[];
+  };
+}
+
+interface AllPostsResponse {
+  posts: { nodes: BlogPost[] };
+}
+
+interface SinglePostResponse {
+  post: BlogPost | null;
+}
+
+interface AllCategoriesResponse {
+  categories: { nodes: BlogCategory[] };
+}
+
+const BLOG_REVALIDATE = 3600;
+
+export async function getAllPosts(): Promise<BlogPost[]> {
+  try {
+    const data = await fetchGraphQL<AllPostsResponse>(
+      `
+      query GetAllPosts {
+        posts(first: 50, where: { orderby: { field: DATE, order: DESC } }) {
+          nodes {
+            slug
+            title
+            excerpt
+            date
+            featuredImage {
+              node {
+                sourceUrl
+                altText
+              }
+            }
+            categories {
+              nodes {
+                name
+                slug
+              }
+            }
+          }
+        }
+      }
+    `,
+      undefined,
+      BLOG_REVALIDATE
+    );
+    return data.posts.nodes;
+  } catch (error) {
+    console.error("Error fetching posts:", error);
+    return [];
+  }
+}
+
+export async function getAllCategories(): Promise<BlogCategory[]> {
+  try {
+    const data = await fetchGraphQL<AllCategoriesResponse>(
+      `
+      query GetAllCategories {
+        categories(first: 50) {
+          nodes {
+            name
+            slug
+          }
+        }
+      }
+    `,
+      undefined,
+      BLOG_REVALIDATE
+    );
+    return data.categories.nodes.filter((cat) => cat.slug !== "uncategorized");
+  } catch (error) {
+    console.error("Error fetching categories:", error);
+    return [];
+  }
+}
+
+export async function getPostBySlug(slug: string): Promise<BlogPost | null> {
+  const decodedSlug = decodeURIComponent(slug);
+  try {
+    const data = await fetchGraphQL<SinglePostResponse>(
+      `
+      query GetPostBySlug($id: ID!) {
+        post(id: $id, idType: SLUG) {
+          title
+          content
+          date
+          slug
+          excerpt
+          featuredImage {
+            node {
+              sourceUrl
+              altText
+            }
+          }
+          categories {
+            nodes {
+              name
+              slug
+            }
+          }
+        }
+      }
+    `,
+      { id: decodedSlug },
+      BLOG_REVALIDATE
+    );
+    return data.post;
+  } catch (error) {
+    console.error(`Error fetching post with slug ${decodedSlug}:`, error);
+    return null;
+  }
+}
 
 export async function getReviews() {
   const data = await fetchGraphQL<ReviewsResponse>(`
